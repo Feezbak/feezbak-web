@@ -1,0 +1,17 @@
+export enum StyleEnums {
+  primary = "#FF7F61",
+  secondary = "#FFAF51",
+  error = "#FF3333",
+  black = "#000000",
+  white = "#FFFFFF",
+  gray1 = "#27203C",
+  gray2 = "#847E95",
+  gray3 = "#CAC7D1",
+  gray4 = "#F0F0F4",
+  gray5 = "#F6F6F8",
+  gray6 = "#F6F6F8",
+  borderRadiusBase = "10px",
+  inputPaddingHorizontal = "16px",
+  inputPaddingVertical = "10.5px",
+  buttonBaseHeight = "48px",
+}

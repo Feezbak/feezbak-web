@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@assets/*": ["src/assets/*"],
+      "@images/*": ["src/assets/images/*"],
+      "@shared/*": ["src/shared/*"],
+      "@fonts/*": ["src/assets/fonts/*"],
+      "@components/*": ["src/components/*"],
+      "@enums/*": ["src/enums/*"]
+    }
+  }
+}
