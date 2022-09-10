@@ -1,6 +1,6 @@
+import { StyleEnums } from "./src/enums";
 const CracoAntDesignPlugin = require("craco-antd");
 const CracoAlias = require("craco-alias");
-import { StyleEnums } from "./src/enums";
 
 module.exports = {
   plugins: [

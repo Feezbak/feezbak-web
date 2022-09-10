@@ -4,6 +4,7 @@ import { ErrorMessage, SelectWithAdd } from "@/shared";
 // import { RegexEnums } from "@/enums";
 import { Input } from "antd";
 import { Link } from "react-router-dom";
+import { registerUser } from "@/api";
 import {
   SignUpFormWrapper,
   FormItem,
@@ -26,8 +27,9 @@ const SignUpForm = () => {
     mode: "onSubmit",
   });
 
-  const onSubmit = handleSubmit((data: any) => {
-    console.log("Success:", data);
+  const onSubmit = handleSubmit(async (data: any) => {
+    const res = await registerUser("account/api/register", data);
+    console.log(res, 999);
     setTimeout(
       () =>
         reset({

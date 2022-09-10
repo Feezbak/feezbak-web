@@ -8,7 +8,8 @@
       "@shared/*": ["src/shared/*"],
       "@fonts/*": ["src/assets/fonts/*"],
       "@components/*": ["src/components/*"],
-      "@enums/*": ["src/enums/*"]
+      "@enums/*": ["src/enums/*"],
+      "@api/*": ["src/api/*"]
     }
   }
 }
