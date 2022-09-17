@@ -3,6 +3,7 @@ import { Controller } from "react-hook-form";
 import { ErrorMessage, SelectWithAdd } from "@/shared";
 import { Input } from "antd";
 import { Link } from "react-router-dom";
+import { SignUpFormProps } from "./types";
 import { useSignUpByEmailForm } from "@hooks/useSignUpByEmailForm";
 import {
   SignUpFormWrapper,
@@ -12,9 +13,9 @@ import {
   Description,
 } from "./styles";
 
-const SignUpForm = () => {
+const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
   const { formErrors, formState, formControl, submitForm } =
-    useSignUpByEmailForm();
+    useSignUpByEmailForm(setAccountState);
 
   return (
     <SignUpFormWrapper

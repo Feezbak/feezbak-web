@@ -1,9 +1,12 @@
 import { UseSignUpByEmailFormResult } from "./types";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { useForm } from "react-hook-form";
+import { registerUser } from "@/api";
 import { SignUpEmailFormInputs, SignUpEmailSchema } from "@/validations";
 
-export default function useSignUpByEmailForm(): UseSignUpByEmailFormResult {
+export default function useSignUpByEmailForm(
+  setAccountState: () => void
+): UseSignUpByEmailFormResult {
   const {
     handleSubmit,
     formState: { errors: formErrors },
@@ -24,8 +27,12 @@ export default function useSignUpByEmailForm(): UseSignUpByEmailFormResult {
     }),
   });
 
-  const submitForm = handleSubmit((data) => {
-    console.log(data, 888);
+  const submitForm = handleSubmit(async (data) => {
+    const res = await registerUser("account/api/register", data);
+    console.log(res, 999);
+    if (res) {
+      setAccountState();
+    }
     setTimeout(
       () =>
         reset({

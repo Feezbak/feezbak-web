@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="858e8835-88e0-4eee-8a4b-803392729593" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/validations/customValidators/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/customValidators/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/validations/elements/password/validation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/elements/password/validation.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignUpContent/components/SignUpForm/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUpContent/components/SignUpForm/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignUpContent/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUpContent/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useSignUpByEmailForm/useSignUpByEmailForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useSignUpByEmailForm/useSignUpByEmailForm.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +15,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="tsconfig.json" />
         <option value="TypeScript File" />
       </list>
     </option>
@@ -61,7 +60,8 @@
       <workItem from="1662812361494" duration="4542000" />
       <workItem from="1662967377118" duration="16000" />
       <workItem from="1663402115048" duration="11261000" />
-      <workItem from="1663414201082" duration="2595000" />
+      <workItem from="1663414201082" duration="5278000" />
+      <workItem from="1663419607129" duration="1606000" />
     </task>
     <servers />
   </component>
