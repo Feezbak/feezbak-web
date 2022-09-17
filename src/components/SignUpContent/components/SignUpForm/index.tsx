@@ -1,10 +1,9 @@
 import React from "react";
-import { useForm, Controller } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import { ErrorMessage, SelectWithAdd } from "@/shared";
-// import { RegexEnums } from "@/enums";
 import { Input } from "antd";
 import { Link } from "react-router-dom";
-import { registerUser } from "@/api";
+import { useSignUpByEmailForm } from "@hooks/useSignUpByEmailForm";
 import {
   SignUpFormWrapper,
   FormItem,
@@ -14,36 +13,13 @@ import {
 } from "./styles";
 
 const SignUpForm = () => {
-  const emailRegExp =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/;
-  const passRegExp =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@[-`{-~]).{6,32}$/;
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-    reset,
-  } = useForm({
-    mode: "onSubmit",
-  });
-
-  const onSubmit = handleSubmit(async (data: any) => {
-    const res = await registerUser("account/api/register", data);
-    console.log(res, 999);
-    setTimeout(
-      () =>
-        reset({
-          password: "",
-          email: "",
-        }),
-      1000
-    );
-  });
+  const { formErrors, formState, formControl, submitForm } =
+    useSignUpByEmailForm();
 
   return (
     <SignUpFormWrapper
       name="signUpForm"
-      onFinish={() => onSubmit()}
+      onFinish={() => submitForm()}
       autoComplete="off"
     >
       <FormItem name="profession">
@@ -53,14 +29,17 @@ const SignUpForm = () => {
             <SelectWithAdd value={value} onChange={onChange} />
           )}
           name="profession"
-          control={control}
-          defaultValue=""
+          control={formControl}
         />
       </FormItem>
       <FormItem
         name="email"
-        validateStatus={errors && errors["email"] ? "error" : ""}
-        help={errors.email && <ErrorMessage message={errors.email.message} />}
+        validateStatus={formErrors && formErrors["email"] ? "error" : ""}
+        help={
+          formErrors.email && (
+            <ErrorMessage message={formErrors.email.message} />
+          )
+        }
       >
         <label htmlFor="email">
           Email <sub>*</sub>
@@ -75,25 +54,16 @@ const SignUpForm = () => {
             />
           )}
           name="email"
-          control={control}
-          defaultValue=""
-          rules={{
-            pattern: {
-              value: emailRegExp,
-              message: "Invalid format of email",
-            },
-            required: {
-              value: true,
-              message: "Email is required!",
-            },
-          }}
+          control={formControl}
         />
       </FormItem>
       <FormItem
-        validateStatus={errors && errors["password"] ? "error" : ""}
+        validateStatus={formErrors && formErrors["password"] ? "error" : ""}
         name="password"
         help={
-          errors.password && <ErrorMessage message={errors.password.message} />
+          formErrors.password && (
+            <ErrorMessage message={formErrors.password.message} />
+          )
         }
       >
         <label htmlFor="password">
@@ -104,22 +74,15 @@ const SignUpForm = () => {
             <Input.Password size="large" onChange={onChange} value={value} />
           )}
           name="password"
-          control={control}
-          defaultValue=""
-          rules={{
-            pattern: {
-              value: passRegExp,
-              message: "Invalid format of password",
-            },
-            required: {
-              value: true,
-              message: "Password is required!",
-            },
-          }}
+          control={formControl}
         />
       </FormItem>
       <BtnWrapper>
-        <SubmitButton type="primary" htmlType="submit">
+        <SubmitButton
+          type="primary"
+          htmlType="submit"
+          disabled={!formState.isDirty || !formState.isValid}
+        >
           Create Now
         </SubmitButton>
         <Description>

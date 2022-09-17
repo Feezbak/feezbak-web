@@ -4,13 +4,13 @@ import { PlusOutlined } from "@ant-design/icons";
 import { SelectActionWrapper, ItemAddButton, CustomSelect } from "./styles";
 
 interface Props {
-  value: string;
+  value?: string;
   onChange: () => void;
 }
 
 const { Option } = Select;
 
-const SelectWithAdd = ({ value, onChange }: Props) => {
+const SelectWithAdd = ({ value = "", onChange }: Props) => {
   const [items, setItems] = useState(["Designer", "Developer", "Manager"]);
   const [name, setName] = useState("");
   const inputRef = useRef<InputRef>(null);
