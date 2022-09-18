@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosClient = axios.create();
 
-axiosClient.defaults.baseURL = "http://127.0.0.1:8000/";
+axiosClient.defaults.baseURL = "http://api.feezbak.com/";
 
 axiosClient.defaults.headers.post = {
   "Content-Type": "application/json",

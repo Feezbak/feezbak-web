@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="858e8835-88e0-4eee-8a4b-803392729593" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SignUpContent/components/SignUpForm/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUpContent/components/SignUpForm/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SignUpContent/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUpContent/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/axiosClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/axiosClient.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hooks/useSignUpByEmailForm/useSignUpByEmailForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useSignUpByEmailForm/useSignUpByEmailForm.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +60,8 @@
       <workItem from="1662967377118" duration="16000" />
       <workItem from="1663402115048" duration="11261000" />
       <workItem from="1663414201082" duration="5278000" />
-      <workItem from="1663419607129" duration="1606000" />
+      <workItem from="1663419607129" duration="1961000" />
+      <workItem from="1663509930843" duration="2532000" />
     </task>
     <servers />
   </component>
