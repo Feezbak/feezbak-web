@@ -8,7 +8,7 @@ import {
   ImageContainer,
   Content,
   TitleWrapper,
-  Title,
+  Title3,
   Description,
 } from "./styles";
 
@@ -38,7 +38,7 @@ const SignUpContent = () => {
           </ImageContainer>
           <Content xs={24} sm={24} md={12} lg={10} xl={9} xxl={7}>
             <TitleWrapper>
-              <Title>Easiest way to gather feedback!</Title>
+              <Title3>Easiest way to gather feedback!</Title3>
               <Description>Create your account now</Description>
             </TitleWrapper>
             <SignUpForm setAccountState={handleChangeAccountState} />

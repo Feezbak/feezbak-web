@@ -35,8 +35,14 @@ export const TitleWrapper = styled.div`
   justify-content: flex-start;
 `;
 
-export const Title = styled.h3`
+export const Title3 = styled.h3`
   font-size: 1.375rem;
+  line-height: 2rem;
+  font-weight: bolder;
+  margin-bottom: 0;
+`;
+export const Title1 = styled.h1`
+  font-size: 5rem;
   line-height: 2rem;
   font-weight: bolder;
   margin-bottom: 0;

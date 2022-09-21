@@ -1,11 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import NavMenu from "./components/NavMenu";
+import Pricing from "./components/Pricing";
+
+import { PageLayout } from "./styles";
 
 const LandingContent = () => {
   return (
-    <div>
-      landing 1 <Link to="/sign-up">Sign Up</Link>
-    </div>
+    <PageLayout>
+      <Pricing />
+      <NavMenu />
+    </PageLayout>
   );
 };
 

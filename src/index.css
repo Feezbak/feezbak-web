@@ -12,6 +12,13 @@
   font-weight: normal;
 }
 
+@font-face {
+  font-family: "Epilogue, Medium";
+  src: local("Epilogue"),
+  url("assets/fonts/Epilogue/Epilogue-Medium.ttf") format("truetype");
+  font-weight: medium;
+}
+
 body {
   font-family: "Epilogue, Regular", serif;
   margin: 0;
@@ -24,13 +31,20 @@ code {
     monospace;
 }
 
-h1, h2, h3, h4, h5, h6, a, button {
+h1, h2, h3, h4, h5, h6, button {
   font-family: "Epilogue, Bold", sans-serif;
 }
 
-p, label, div, span {
+p, label, div, span{
   font-family: "Epilogue, Regular", sans-serif;
 }
+
+a {
+  font-family: "Epilogue, Medium", sans-serif;
+
+}
+
+
 
 #root {
   min-height: 100vh;
