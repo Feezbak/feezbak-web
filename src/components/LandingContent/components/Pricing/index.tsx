@@ -1,7 +1,7 @@
 import React from "react";
 import PricingListItem from "./components/PricingListItem";
-import { SectionTitle, SectionWrapper } from "../../styles";
-import { PricingList, TitleWrapper } from "./styles";
+import { SectionTitle, SectionWrapper, TitleWrapper } from "../../styles";
+import { PricingList } from "./styles";
 
 const Pricing = () => {
   return (

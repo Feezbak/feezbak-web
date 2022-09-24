@@ -1,6 +1,7 @@
 import React from "react";
 import NavMenu from "./components/NavMenu";
 import Pricing from "./components/Pricing";
+import Incomes from "./components/Incomes";
 import { LandingContainer } from "./styles";
 
 const LandingContent = () => {
@@ -8,6 +9,7 @@ const LandingContent = () => {
     <LandingContainer>
       <NavMenu />
       <Pricing />
+      <Incomes />
     </LandingContainer>
   );
 };
