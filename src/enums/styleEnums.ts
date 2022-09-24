@@ -4,6 +4,7 @@ export enum StyleEnums {
   error = "#FF3333",
   black = "#000000",
   white = "#FFFFFF",
+  secondaryTitle = "#C2BAF0",
   gray1 = "#27203C",
   gray2 = "#847E95",
   gray3 = "#CAC7D1",
