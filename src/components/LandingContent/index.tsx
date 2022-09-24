@@ -1,15 +1,14 @@
 import React from "react";
 import NavMenu from "./components/NavMenu";
 import Pricing from "./components/Pricing";
-
-import { PageLayout } from "./styles";
+import { LandingContainer } from "./styles";
 
 const LandingContent = () => {
   return (
-    <PageLayout>
-      <Pricing />
+    <LandingContainer>
       <NavMenu />
-    </PageLayout>
+      <Pricing />
+    </LandingContainer>
   );
 };
 

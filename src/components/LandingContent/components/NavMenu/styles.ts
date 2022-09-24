@@ -4,28 +4,25 @@ import { StyleEnums } from "@/enums";
 
 export const NavMenuWrapper = styled.div`
   display: flex;
-  height: 64px;
-  padding-left: 12px;
-  padding-right: 12px;
-  border-radius: 80px;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+  padding: 0 0.75rem;
+  border-radius: 50rem;
   border: 3px solid white;
   background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  position: fixed;
+  position: sticky;
+  top: 2.5rem;
+  z-index: 1;
+`;
+
+export const Nav = styled.nav`
+  width: 100%;
+  padding: 0 2rem;
 `;
 
 export const NavLink = styled(Link)`
-text-decoration: none;
-margin: 8px;
-font-weight: medium;
-color: ${StyleEnums.gray1};;
-  }
-`;
-
-export const ButtonContainer = styled.div`
-  .ant-btn-primary {
-    background-color: #181325;
-    border-color: #181325;
-    margin-left: 64px;
-  }
+  text-decoration: none;
+  margin: 8px;
+  color: ${StyleEnums.gray1};
 `;
