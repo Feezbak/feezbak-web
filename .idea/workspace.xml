@@ -3,13 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="858e8835-88e0-4eee-8a4b-803392729593" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/NavMenu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/NavMenu/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/NavMenu/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/NavMenu/styles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/Pricing/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/Pricing/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/Pricing/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/Pricing/styles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/LandingContent/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/LandingContent/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums/styleEnums.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/styleEnums.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.path.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.path.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +18,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="tsconfig.json" />
+        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
       </list>
     </option>
@@ -55,7 +54,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/taron/feezbak-web",
+    "last_opened_file_path": "/home/taron/hs-web",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "yarn",
@@ -80,7 +79,8 @@
       <workItem from="1663419607129" duration="1961000" />
       <workItem from="1663509930843" duration="3327000" />
       <workItem from="1663574268385" duration="22000" />
-      <workItem from="1664018059084" duration="4112000" />
+      <workItem from="1664018059084" duration="4652000" />
+      <workItem from="1664033943537" duration="2394000" />
     </task>
     <servers />
   </component>

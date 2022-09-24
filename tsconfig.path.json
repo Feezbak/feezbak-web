@@ -11,7 +11,8 @@
       "@enums/*": ["src/enums/*"],
       "@api/*": ["src/api/*"],
       "@hooks/*": ["src/hooks/*"],
-      "@validations/*": ["src/validations/*"]
+      "@validations/*": ["src/validations/*"],
+      "@helpers/*": ["src/helpers/*"]
     }
   }
 }

@@ -5,7 +5,3 @@ export const PricingList = styled.ul`
   padding: 0;
   flex: 1;
 `;
-
-export const TitleWrapper = styled.div`
-  flex: 1;
-`;
