@@ -4,6 +4,7 @@ export enum StyleEnums {
   error = "#FF3333",
   gradient1 = "#FF2976",
   black = "#000000",
+  blue = "#6382F2",
   white = "#FFFFFF",
   secondaryTitle = "#C2BAF0",
   announcementActionColor = "#42377E",

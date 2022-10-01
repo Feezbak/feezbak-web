@@ -17,13 +17,13 @@ const titleStyles = css`
   font-weight: bolder;
 `;
 
-export const SectionTitle = styled.h2`
+export const SectionTitle = styled.h2<{ readonly $spanColor?: string }>`
   ${titleStyles};
   font-size: 3rem;
   margin-bottom: 0;
 
   span {
-    color: ${StyleEnums.secondaryTitle};
+    color: ${prop("$spanColor")};
   }
 `;
 
