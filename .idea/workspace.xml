@@ -3,10 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="858e8835-88e0-4eee-8a4b-803392729593" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/incomes.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/Incomes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/Incomes/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/Incomes/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/Incomes/styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/NavMenu/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/NavMenu/styles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/Pricing/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/Pricing/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/Pricing/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/Pricing/styles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/LandingContent/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/LandingContent/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enums/styleEnums.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/styleEnums.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.path.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.path.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +84,9 @@
       <workItem from="1663509930843" duration="3327000" />
       <workItem from="1663574268385" duration="22000" />
       <workItem from="1664018059084" duration="4652000" />
-      <workItem from="1664033943537" duration="2394000" />
+      <workItem from="1664033943537" duration="2625000" />
+      <workItem from="1664175557300" duration="17000" />
+      <workItem from="1664626938164" duration="12787000" />
     </task>
     <servers />
   </component>

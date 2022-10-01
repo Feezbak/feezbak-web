@@ -11,7 +11,7 @@ export const NavMenuWrapper = styled.div`
   border-radius: 50rem;
   border: 3px solid white;
   background-color: rgba(255, 255, 255, 0.8);
-  position: sticky;
+  position: fixed;
   top: 2.5rem;
   z-index: 1;
 `;
