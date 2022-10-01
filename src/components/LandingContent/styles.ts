@@ -29,15 +29,16 @@ export const SectionTitle = styled.h2`
 
 export const SectionTitleSecondary = styled.h2<{
   readonly $color: string;
-  readonly $width: string;
 }>`
   ${titleStyles};
+  transition: 0.4s;
+  cursor: pointer;
   font-size: 2.5rem;
   color: ${prop("$color")};
-  width: ${prop("$width")}%;
+  width: 100%;
   margin-bottom: 5rem;
   &:first-child {
-    margin-top: 3.875rem;
+    margin-top: 3rem;
   }
   &:last-child {
     margin-bottom: 0;
@@ -50,15 +51,17 @@ export const Description = styled.p`
   margin-bottom: 0;
 `;
 
-export const SectionWrapper = styled.section`
-  padding: 0 11%;
-  width: 100%;
+export const SectionWrapper = styled.section<{ readonly $bkg?: string }>`
+  width: 80%;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   margin-top: 9.375rem;
+  border-radius: 5rem;
+  background: ${prop("$bkg")};
 `;
 
 export const TitleWrapper = styled.div`
   flex: 1;
+  margin-right: 18rem;
 `;

@@ -5,7 +5,9 @@ import { PricingList } from "./styles";
 
 const Pricing = () => {
   return (
-    <SectionWrapper>
+    <SectionWrapper
+      $bkg={"linear-gradient(104.09deg, #E6E2FF 0%, #FFE7E2 101.7%)"}
+    >
       <TitleWrapper>
         <SectionTitle>
           Our Plan <br />
