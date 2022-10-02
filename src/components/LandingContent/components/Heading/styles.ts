@@ -10,7 +10,8 @@ export const HeadingWrapper = styled.section<{ readonly $url: string }>`
   justify-content: flex-end;
   align-items: center;
   background: url(${prop("$url")});
-  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 export const TotallyFreeBtn = styled.span`
@@ -39,34 +40,13 @@ export const TotallyFreeBtn = styled.span`
 
 export const HeadingTitle = styled.h1`
   font-weight: 900;
-  font-size: 4.5rem;
+  font-size: 3.7vw;
   line-height: 5rem;
-  margin: 2.75rem 0;
+  margin: 5vh 0;
   width: 50%;
   text-align: center;
 `;
 
 export const HeadingImg = styled.img`
-  width: 42rem;
-`;
-
-export const AnnouncementBadge = styled.span`
-  background: rgba(230, 222, 253, 0.7);
-  border: 2px solid rgba(66, 55, 126, 0.5);
-  backdrop-filter: blur(7.5px);
-  padding: 0.75rem 1.25rem;
-  border-radius: 2.5rem;
-  font-size: 1.125rem;
-  line-height: 1.5rem;
-  color: ${StyleEnums.announcementActionColor};
-  position: absolute;
-  bottom: 2rem;
-  right: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  svg {
-    margin-right: 0.75rem;
-  }
+  width: 35%;
 `;

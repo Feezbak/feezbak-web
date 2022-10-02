@@ -4,6 +4,7 @@ import Heading from "./components/Heading";
 import Pricing from "./components/Pricing";
 import Incomes from "./components/Incomes";
 import HowToUse from "./components/HowToUse";
+import Footer from "./components/Footer";
 import { LandingContainer } from "./styles";
 
 const LandingContent = () => {
@@ -14,6 +15,7 @@ const LandingContent = () => {
       <Incomes />
       <Pricing />
       <HowToUse />
+      <Footer />
     </LandingContainer>
   );
 };

@@ -4,11 +4,9 @@ import {
   TotallyFreeBtn,
   HeadingTitle,
   HeadingImg,
-  AnnouncementBadge,
 } from "./styles";
 import headingBkgUrl from "@images/headingBckg.png";
 import headingImgSrc from "@images/headingImg.png";
-import { SmilingFaceIcon } from "@icons/smilingFaceIcon";
 
 const Heading = () => {
   return (
@@ -18,10 +16,6 @@ const Heading = () => {
       </TotallyFreeBtn>
       <HeadingTitle>Decisions based on reliable feedback.</HeadingTitle>
       <HeadingImg src={headingImgSrc} />
-      <AnnouncementBadge>
-        <SmilingFaceIcon />
-        First 100 Accounts For Free!
-      </AnnouncementBadge>
     </HeadingWrapper>
   );
 };
