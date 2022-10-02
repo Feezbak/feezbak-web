@@ -3,15 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="858e8835-88e0-4eee-8a4b-803392729593" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/Heading/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/Heading/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/Heading/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/Heading/styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/HowToUse/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/HowToUse/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/HowToUse/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/HowToUse/styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/Incomes/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/Incomes/styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/Pricing/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/Pricing/styles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/LandingContent/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums/styleEnums.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/styleEnums.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +79,7 @@
       <workItem from="1664033943537" duration="2625000" />
       <workItem from="1664175557300" duration="17000" />
       <workItem from="1664626938164" duration="17058000" />
-      <workItem from="1664703553114" duration="11832000" />
+      <workItem from="1664703553114" duration="14754000" />
     </task>
     <servers />
   </component>
