@@ -2,14 +2,14 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const IncomesImgWrapper = styled.div`
-  flex: 1;
-  width: 42%;
+  width: 50%;
   height: 100%;
-  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 `;
 
 export const IncomesImg = styled(motion.img)`
-  position: absolute;
-  width: 85%;
-  right: 0;
+  width: 586px;
+  height: 600px;
 `;

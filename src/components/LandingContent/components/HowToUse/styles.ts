@@ -10,5 +10,17 @@ export const HowToUseWrapper = styled.section`
 `;
 
 export const TitleWrapper = styled.div`
-  width: 36%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+`;
+
+export const CardsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 5rem;
 `;
