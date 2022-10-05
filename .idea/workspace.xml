@@ -3,7 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="858e8835-88e0-4eee-8a4b-803392729593" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/Footer/components/Contacts/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/Footer/components/Contacts/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/Heading/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/Heading/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/HowToUse/components/Card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/HowToUse/components/Card/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/Incomes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/Incomes/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/NavMenu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/NavMenu/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/Pricing/components/PricingListItem/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/Pricing/components/PricingListItem/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignInContent/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignInContent/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignUpContent/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUpContent/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +59,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/taron/hs-web&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/taron/feezbak-web&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
@@ -79,7 +88,9 @@
       <workItem from="1664033943537" duration="2625000" />
       <workItem from="1664175557300" duration="17000" />
       <workItem from="1664626938164" duration="17058000" />
-      <workItem from="1664703553114" duration="14754000" />
+      <workItem from="1664703553114" duration="14971000" />
+      <workItem from="1664966747891" duration="615000" />
+      <workItem from="1664982357045" duration="679000" />
     </task>
     <servers />
   </component>

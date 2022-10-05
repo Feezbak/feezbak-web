@@ -12,7 +12,12 @@ const PricingListItem = ({ name }: Props) => {
     <PricingListWrapper>
       <Row>
         <Col>
-          <img src={Check} alt="sign up" style={{ paddingRight: "16px" }} />
+          <img
+            src={Check}
+            alt="sign up"
+            style={{ paddingRight: "16px" }}
+            loading="lazy"
+          />
         </Col>
         <Col>
           <text>{name}</text>

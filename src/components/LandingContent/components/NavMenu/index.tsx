@@ -6,7 +6,7 @@ import { NavMenuWrapper, NavLink, Nav } from "./styles";
 const NavMenu = () => {
   return (
     <NavMenuWrapper>
-      <img src={logoFeezbak} alt="logo" />
+      <img src={logoFeezbak} alt="logo" loading="lazy" />
       <Nav>
         <NavLink to="/use-cases">Use Cases</NavLink>
         <NavLink to="/solutions">Platform</NavLink>

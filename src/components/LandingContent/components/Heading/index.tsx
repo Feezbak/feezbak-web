@@ -15,7 +15,7 @@ const Heading = () => {
         <p>It's Totally Free</p>
       </TotallyFreeBtn>
       <HeadingTitle>Decisions based on reliable feedback.</HeadingTitle>
-      <HeadingImg src={headingImgSrc} />
+      <HeadingImg src={headingImgSrc} loading="lazy" />
     </HeadingWrapper>
   );
 };

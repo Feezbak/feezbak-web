@@ -19,7 +19,7 @@ const Card = ({ title, desc, src, delay }: Props) => {
         exit={{ x: -delay * 400, opacity: 0, scale: 0 }}
         viewport={{ once: true }}
       >
-        <img src={src} alt="how to use" />
+        <img src={src} alt="how to use" loading="lazy" />
         <CardContent>
           <h4>{title}</h4>
           <p>{desc}</p>
