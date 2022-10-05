@@ -47,6 +47,7 @@ const Incomes = () => {
             transition={{ type: "spring", bounce: 0.35, duration: 0.5 }}
             exit={{ scale: 0, opacity: 0 }}
             alt="features"
+            loading="lazy"
           />
         </IncomesImgWrapper>
       </SectionWrapper>

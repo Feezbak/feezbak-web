@@ -34,7 +34,7 @@ const SignUpContent = () => {
             xxl={6}
             flex="center"
           >
-            <img src={signUpImgSrc} alt="sign up" />
+            <img src={signUpImgSrc} alt="sign up" loading="lazy" />
           </ImageContainer>
           <Content xs={24} sm={24} md={12} lg={10} xl={9} xxl={7}>
             <TitleWrapper>

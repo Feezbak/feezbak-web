@@ -10,7 +10,7 @@ import logoFeezbak from "@images/feezbak-logo-black.svg";
 const Contacts = () => {
   return (
     <ContactsWrapper>
-      <img src={logoFeezbak} alt="logo" />
+      <img src={logoFeezbak} alt="logo" loading="lazy" />
       <SocialLinksWrapper>
         <SocialLink>Linkedin</SocialLink>
         <SocialLink>Twitter</SocialLink>
