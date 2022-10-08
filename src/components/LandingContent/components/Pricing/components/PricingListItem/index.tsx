@@ -20,7 +20,7 @@ const PricingListItem = ({ name }: Props) => {
           />
         </Col>
         <Col>
-          <text>{name}</text>
+          <p>{name}</p>
         </Col>
       </Row>
     </PricingListWrapper>

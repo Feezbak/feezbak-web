@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, BreakpointEnums } from "@/enums";
 import { motion } from "framer-motion";
+import { inLessThan } from "@/helpers";
 
 export const CardBody = styled(motion.div)`
   flex: 0.32;
@@ -22,6 +23,14 @@ export const CardBody = styled(motion.div)`
       color: white !important;
     }
   }
+
+  ${inLessThan(BreakpointEnums.mobile)`
+     margin-bottom: 1.5rem;
+     
+     &:last-child {
+       margin-bottom: 0;
+     }
+  `};
 `;
 
 export const CardContent = styled.div`

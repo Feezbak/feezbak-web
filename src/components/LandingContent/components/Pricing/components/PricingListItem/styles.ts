@@ -10,4 +10,8 @@ export const PricingListWrapper = styled.div`
   &:last-child {
     margin-bottom: 0;
   }
+
+  p {
+    margin-bottom: 0;
+  }
 `;
