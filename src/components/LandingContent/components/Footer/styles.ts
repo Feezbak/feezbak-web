@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, BreakpointEnums } from "@/enums";
+import { inLessThan } from "@/helpers";
 import { Button } from "antd";
 
 export const FooterWrapper = styled.footer`
@@ -11,12 +12,23 @@ export const FooterWrapper = styled.footer`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  ${inLessThan(BreakpointEnums.mobile)`
+     margin-top: 4rem;
+     padding: 3.25rem 0;
+  `};
 `;
 
 export const BenefitsHeading = styled.p`
   font-size: 1.5rem;
   line-height: 2rem;
   margin-bottom: 3.25rem;
+
+  ${inLessThan(BreakpointEnums.mobile)`
+     font-size: 1.125rem;
+     line-height: 1rem;
+     margin-bottom: 1.5rem;
+  `};
 `;
 
 export const FooterMainTitle = styled.p`
@@ -25,6 +37,12 @@ export const FooterMainTitle = styled.p`
   text-align: center;
   width: 80%;
   margin-bottom: 3.25rem;
+
+  ${inLessThan(BreakpointEnums.mobile)`
+     font-size: 1.75rem;
+     line-height: 2rem;
+     margin-bottom: 2rem;
+  `};
 `;
 
 export const TryForFreeBtn = styled(Button)`
