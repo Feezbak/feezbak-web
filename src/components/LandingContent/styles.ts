@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
-import { prop } from "@/helpers";
+import { inGreaterThan, inLessThan, prop } from "@/helpers";
+import { BreakpointEnums, StyleEnums } from "@/enums";
 
 export const LandingContainer = styled.div`
   width: 100%;
@@ -28,6 +29,11 @@ export const SectionTitle = styled.h2<{ readonly $spanColor?: string }>`
     font-weight: bold;
     color: ${prop("$spanColor")};
   }
+
+  ${inLessThan(BreakpointEnums.mobile)`
+    font-size: 2rem;
+    line-height: 2.5rem;
+  `};
 `;
 
 export const SectionTitleSecondary = styled.h2<{
@@ -43,6 +49,13 @@ export const SectionTitleSecondary = styled.h2<{
   &:last-child {
     margin-bottom: 0;
   }
+
+  ${inLessThan(BreakpointEnums.mobile)`
+     margin: 2.5rem 0 1rem 0;
+     line-height: 2rem;
+     font-size: 1.75rem;
+     color: ${StyleEnums.gray1};
+  `};
 `;
 
 export const Description = styled.p`
@@ -60,9 +73,28 @@ export const SectionWrapper = styled.section<{ readonly $bkg?: string }>`
   margin-top: 9.375rem;
   border-radius: 5rem;
   background: ${prop("$bkg")};
+  ${inLessThan(BreakpointEnums.mobile)`
+   flex-direction: column;
+   margin-top: 2rem;
+   width: 85vw;
+   border-radius: 2rem;
+  `};
 `;
 
 export const TitleWrapper = styled.div`
   width: 50%;
   padding-right: 10vw;
+
+  ${inLessThan(BreakpointEnums.sm)`
+     width: 100%;
+     padding: 0;
+     img {
+       width: 100%;
+     }
+  `};
+  ${inGreaterThan(BreakpointEnums.sm)`
+     img {
+       display: none;
+     }
+  `};
 `;

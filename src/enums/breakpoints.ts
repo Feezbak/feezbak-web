@@ -1,4 +1,4 @@
-import { BreakpointEnums } from "@enums/breakpointEnums";
+import { BreakpointEnums } from "./breakpointEnums";
 
 export type BreakpointProps = {
   minWidth: number;

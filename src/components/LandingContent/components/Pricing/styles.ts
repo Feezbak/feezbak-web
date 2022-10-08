@@ -1,9 +1,14 @@
 import styled from "styled-components";
+import { inLessThan } from "@/helpers";
+import { BreakpointEnums } from "@/enums";
 
 export const PricingList = styled.ul`
   list-style: none;
   padding: 0;
   width: 50%;
+  ${inLessThan(BreakpointEnums.mobile)`
+     width: 100%;
+  `};
 `;
 
 export const PaddingWrapper = styled.div`
@@ -13,4 +18,8 @@ export const PaddingWrapper = styled.div`
   flex-wrap: wrap;
   align-items: center;
   padding: 5.5rem;
+
+  ${inLessThan(BreakpointEnums.mobile)`
+     padding: 2.5rem 1.5rem;
+  `};
 `;

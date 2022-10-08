@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { StyleEnums } from "@/enums";
 import { IncomesImg, IncomesImgWrapper } from "./styles";
 import questionSrc from "@images/Question.png";
@@ -24,18 +24,25 @@ const Incomes = () => {
       <SectionWrapper>
         <TitleWrapper>
           {featuresDesc.map((item, index) => (
-            <SectionTitleSecondary
-              $color={
-                activeItem.number === index + 1
-                  ? StyleEnums.gray1
-                  : StyleEnums.gray3
-              }
-              onClick={() =>
-                setActiveItem({ number: index + 1, src: item.src })
-              }
-            >
-              {item.text}
-            </SectionTitleSecondary>
+            <Fragment key={index}>
+              <SectionTitleSecondary
+                $color={
+                  activeItem.number === index + 1
+                    ? StyleEnums.gray1
+                    : StyleEnums.gray3
+                }
+                onClick={() =>
+                  setActiveItem({ number: index + 1, src: item.src })
+                }
+              >
+                {item.text}
+              </SectionTitleSecondary>
+              <img
+                src={featuresDesc[index].src}
+                alt="features"
+                loading="lazy"
+              />
+            </Fragment>
           ))}
         </TitleWrapper>
         <IncomesImgWrapper>
