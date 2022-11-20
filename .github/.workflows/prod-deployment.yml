@@ -1,0 +1,24 @@
+name: Production Deployment
+on:
+  push:
+    branches: [master]
+jobs:
+  build:
+    runs-on: ubuntu-20.04    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install and setup Node version
+      uses: actions/setup-node@v2      
+      with:
+        node-version: '14.19.1'
+        cache: 'npm'
+    - name: Setup the AWS Cli
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-region: "Paris"
+        aws-access-key-id:AKIA4MXBES5JPEC6CQYU
+        aws-secret-access-key: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
+    - run: npm ci
+    - run: NODE_ENV=production npm run build --if-present
+    - run: aws s3 sync . s3:// --quiet --delete
+
