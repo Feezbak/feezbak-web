@@ -20,5 +20,5 @@ jobs:
         aws-secret-access-key: y+0Mj8dKTOmNH7JQ+xHzLr/PtloJyiro5BBRKl7z
     - run: npm ci
     - run: NODE_ENV=production npm run build --if-present
-    - run: aws s3 sync . s3:// --quiet --delete
+    - run: aws s3 sync . s3://feezbak-web --quiet --delete
 
