@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="858e8835-88e0-4eee-8a4b-803392729593" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/Footer/components/Contacts/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/Footer/components/Contacts/styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/Footer/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/Footer/styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/HowToContact/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/HowToContact/styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/craco.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/craco.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DashboardContent/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashboardContent/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enums/styleEnums.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/styleEnums.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +25,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="tsconfig.json" />
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -52,11 +61,13 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/taron/hs-web",
+    "last_opened_file_path": "/Users/taronvardanyan/Documents/Feezback/feezbak-web",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "yarn",
-    "ts.external.directory.path": "/home/taron/feezbak-web/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Users/taronvardanyan/Documents/Feezback/feezbak-web/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -86,6 +97,7 @@
       <workItem from="1664982357045" duration="868000" />
       <workItem from="1665053705458" duration="491000" />
       <workItem from="1665228826129" duration="14514000" />
+      <workItem from="1674310663887" duration="20312000" />
     </task>
     <servers />
   </component>

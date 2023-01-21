@@ -14,6 +14,7 @@ module.exports = {
           "@input-padding-horizontal": StyleEnums.inputPaddingHorizontal,
           "@input-padding-vertical-lg": StyleEnums.inputPaddingVertical,
           "@btn-height-base": StyleEnums.buttonBaseHeight,
+          "@dropdown-vertical-padding": StyleEnums.dropdownPadding,
           "@font-family": "Epilogue",
           "@btn-font-weight": "600",
           "@error-color": StyleEnums.error,

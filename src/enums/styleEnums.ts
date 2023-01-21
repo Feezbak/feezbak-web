@@ -19,4 +19,5 @@ export enum StyleEnums {
   inputPaddingHorizontal = "16px",
   inputPaddingVertical = "10.5px",
   buttonBaseHeight = "48px",
+  dropdownPadding = "0",
 }
