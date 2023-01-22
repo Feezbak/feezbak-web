@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Landing, SignIn, SignUp, Profile } from "@/pages";
 import UseCases from "@components/DashboardContent/components/UseCases";
 import Stories from "@components/DashboardContent/components/Stories";
+import PageNotFound from "@components/PageNotFound";
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 
 function App() {
@@ -18,14 +19,7 @@ function App() {
             <Route index element={<Stories />} />
             <Route caseSensitive path="use-cases" element={<UseCases />} />
           </Route>
-          <Route
-            path="*"
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>Theres nothing here!</p>
-              </main>
-            }
-          />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Suspense>
     </Router>

@@ -1,15 +1,15 @@
 import React from "react";
-import { DashboardPageWrapper } from "./styles";
 import { NavigationHeader } from "@/shared";
 import { links } from "@components/DashboardContent/utils";
 import { Outlet } from "react-router-dom";
+import { Col } from "antd";
 
 const DashboardContent = () => {
   return (
-    <DashboardPageWrapper>
+    <Col xs={24} sm={24} md={24} lg={24} xl={15} xxl={15}>
       <NavigationHeader links={links} />
       <Outlet />
-    </DashboardPageWrapper>
+    </Col>
   );
 };
 
