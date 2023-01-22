@@ -7,9 +7,10 @@
     <list default="true" id="858e8835-88e0-4eee-8a4b-803392729593" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/DashboardContent/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashboardContent/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/use-cases/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DashboardContent/styles.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/Layout/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Layout/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="tsconfig.json" />
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>

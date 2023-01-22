@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import { LayoutWrapper } from "./styles";
 import Helmet from "react-helmet";
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
 
 const Layout = ({ pageTitle, children }: Props) => {
   return (
-    <>
+    <LayoutWrapper justify="center" align="top">
       <Helmet
         bodyAttributes={{
           class: "body",
@@ -18,7 +19,7 @@ const Layout = ({ pageTitle, children }: Props) => {
         <title>{pageTitle}</title>
       </Helmet>
       {children}
-    </>
+    </LayoutWrapper>
   );
 };
 
