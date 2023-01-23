@@ -3,6 +3,7 @@ export enum StyleEnums {
   secondary = "#FFAF51",
   error = "#FF3333",
   gradient1 = "#FF2976",
+  success = "#25C7AA",
   pink = "#FDDEED",
   black = "#000000",
   blue = "#6382F2",
