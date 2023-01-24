@@ -19,7 +19,7 @@ const SelectWithAdd = ({ value = "", onChange }: Props) => {
     setName(event.target.value);
   };
 
-  const addItem = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const addItem = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     setItems([...items, name]);
     setName("");
