@@ -6,7 +6,7 @@ import { Col } from "antd";
 
 const DashboardContent = () => {
   return (
-    <Col xs={24} sm={24} md={24} lg={24} xl={15} xxl={15}>
+    <Col xs={20} sm={20} md={20} lg={20} xl={15} xxl={15}>
       <NavigationHeader links={links} />
       <Outlet />
     </Col>

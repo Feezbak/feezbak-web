@@ -7,13 +7,13 @@ const hardcodedData = [
     id: 1,
     question: "Which Shoes should I buy?",
     type: "Image Voting",
-    status: "Draft",
+    status: "draft",
   },
   {
     id: 2,
     question: "Interior for my new shop",
     type: "Image Voting",
-    status: "Submitted",
+    status: "submitted",
   },
 ];
 const StoriesList = () => {
