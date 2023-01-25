@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { StyleEnums } from "@/enums";
+import { Button } from "antd";
 
 export const StoryListItemWrapper = styled.li`
   width: 100%;
@@ -30,7 +31,7 @@ export const StoryInfoContainer = styled.div`
   h3 {
     font-size: 1rem;
     line-height: 1.5rem;
-    margin-bottom: 0.25rem;
+    margin: 0 0 0.25rem 0;
   }
 
   p {
@@ -49,7 +50,26 @@ export const StoryStatusContainer = styled.div`
   p {
     font-size: 1rem;
     line-height: 1.25rem;
+    margin: 0 0 0.5rem 0;
   }
+`;
+export const StoryActionsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 3.5rem;
+
+  button {
+    &:last-child {
+      margin-left: 0.5rem;
+    }
+  }
+`;
+
+export const ActionBtn = styled(Button)`
+  padding: 0;
+  width: unset;
+  border: none;
 `;
 
 export const StoryItemStatusAndActions = styled.div`

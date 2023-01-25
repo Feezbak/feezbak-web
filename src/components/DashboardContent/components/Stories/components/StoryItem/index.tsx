@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Badge } from "@/shared";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, StoryStatusEnums } from "@/enums";
+import { EditIconGrayBg, DeleteIconGrayBg, LinkIconGrayBg } from "@/icons";
 import {
-  StoryListItemWrapper,
   StoryItemStatusAndActions,
+  StoryActionsContainer,
+  StoryListItemWrapper,
   StoryStatusContainer,
-  StoryItemInfo,
   StoryInfoContainer,
+  StoryItemInfo,
+  ActionBtn,
 } from "./styles";
 
 interface Props {
@@ -19,6 +22,22 @@ interface Props {
 }
 const StoryItem = ({ storyData }: Props) => {
   const { question, type, status } = storyData ?? {};
+
+  const conditionalAction = useMemo(
+    () => (
+      <ActionBtn
+        icon={
+          storyData.status === StoryStatusEnums.DRAFT ? (
+            <EditIconGrayBg />
+          ) : (
+            <LinkIconGrayBg />
+          )
+        }
+      />
+    ),
+    [storyData]
+  );
+
   return (
     <StoryListItemWrapper>
       <StoryItemInfo>
@@ -36,6 +55,10 @@ const StoryItem = ({ storyData }: Props) => {
             text={status}
           />
         </StoryStatusContainer>
+        <StoryActionsContainer>
+          {conditionalAction}
+          <ActionBtn icon={<DeleteIconGrayBg />} />
+        </StoryActionsContainer>
       </StoryItemStatusAndActions>
     </StoryListItemWrapper>
   );
