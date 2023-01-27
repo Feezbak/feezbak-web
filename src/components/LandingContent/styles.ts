@@ -17,7 +17,7 @@ const titleStyles = css`
   font-weight: bolder;
 `;
 
-export const SectionTitle = styled.h2<{ readonly $spanColor?: string }>`
+export const SectionTitle = styled.h2<{ $spanColor: string }>`
   ${titleStyles};
   font-size: 3rem;
   margin-bottom: 0;

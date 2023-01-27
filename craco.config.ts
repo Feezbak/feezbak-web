@@ -12,7 +12,6 @@ module.exports = {
           "@secondary-color": StyleEnums.secondary,
           "@border-radius-base": StyleEnums.borderRadiusBase,
           "@input-padding-horizontal": StyleEnums.inputPaddingHorizontal,
-          "@input-padding-vertical-lg": StyleEnums.inputPaddingVertical,
           "@btn-height-base": StyleEnums.buttonBaseHeight,
           "@dropdown-vertical-padding": StyleEnums.dropdownPadding,
           "@font-family": "Epilogue",

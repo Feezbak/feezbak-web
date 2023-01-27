@@ -27,9 +27,9 @@ const Incomes = () => {
             <Fragment key={index}>
               <SectionTitleSecondary
                 $color={
-                  activeItem.number === index + 1
+                  (activeItem.number === index + 1
                     ? StyleEnums.gray1
-                    : StyleEnums.gray3
+                    : StyleEnums.gray3) as string
                 }
                 onClick={() =>
                   setActiveItem({ number: index + 1, src: item.src })

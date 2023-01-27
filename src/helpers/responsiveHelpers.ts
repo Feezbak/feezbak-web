@@ -74,7 +74,7 @@ export const breakpoint = (
     maxWidth = Breakpoints[name[1]]?.maxWidth || 0;
     if (minWidth > maxWidth) {
       throw new Error(
-        "The provided responsive range is not correct, the `inRange` responsive helper receives an array with [`smallViewName`, `largeViewName`] and apply your styles between them"
+        "The provided responsive range is not correct, the `inRange` responsive helper receives an array with [`smallViewName`, `largeViewName`] and apply your style between them"
       );
     }
   } else {

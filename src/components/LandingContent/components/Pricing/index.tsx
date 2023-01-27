@@ -12,7 +12,7 @@ const Pricing = () => {
     >
       <PaddingWrapper>
         <TitleWrapper>
-          <SectionTitle $spanColor={StyleEnums.blue}>
+          <SectionTitle $spanColor={StyleEnums.blue as string}>
             Our Plan <br />
             <span>Free During Beta 🎉</span>
           </SectionTitle>
