@@ -29,7 +29,7 @@ const HowToUse = () => {
   return (
     <HowToUseWrapper>
       <TitleWrapper>
-        <SectionTitle $spanColor={StyleEnums.primary}>
+        <SectionTitle $spanColor={StyleEnums.primary as string}>
           Everything you need <br />
           <span> to make up your mind.</span>
         </SectionTitle>

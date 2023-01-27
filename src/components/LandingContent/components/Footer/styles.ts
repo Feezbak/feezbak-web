@@ -50,4 +50,5 @@ export const TryForFreeBtn = styled(Button)`
   color: ${StyleEnums.white};
   padding: 1rem 6.5rem;
   border-radius: 2.5rem;
+  height: unset;
 `;
