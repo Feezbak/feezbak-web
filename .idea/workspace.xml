@@ -7,14 +7,18 @@
     <list default="true" id="858e8835-88e0-4eee-8a4b-803392729593" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/craco.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/craco.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/Footer/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/Footer/styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/HowToUse/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/HowToUse/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/Incomes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/Incomes/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/components/Pricing/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/components/Pricing/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/components/StoryItem/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/components/StoryItem/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/components/StoryItem/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/components/StoryItem/styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DashboardContent/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashboardContent/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/LandingContent/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/styles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/enums/styleEnums.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/styleEnums.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/responsiveHelpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/responsiveHelpers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.path.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.path.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,6 +112,8 @@
       <workItem from="1674568349346" duration="965000" />
       <workItem from="1674669009414" duration="3364000" />
       <workItem from="1674757595083" duration="5819000" />
+      <workItem from="1674803047793" duration="801000" />
+      <workItem from="1674899736940" duration="8887000" />
     </task>
     <servers />
   </component>
@@ -130,51 +136,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/craco.config.ts</url>
-          <line>10</line>
-          <properties lambdaOrdinal="-1" />
+          <line>4</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/craco.config.ts</url>
-          <line>12</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/craco.config.ts</url>
-          <line>16</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/craco.config.ts</url>
-          <line>18</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/craco.config.ts</url>
-          <line>13</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/craco.config.ts</url>
-          <line>15</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/craco.config.ts</url>
-          <line>14</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/craco.config.ts</url>
-          <line>17</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

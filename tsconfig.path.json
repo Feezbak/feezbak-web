@@ -13,7 +13,8 @@
       "@hooks/*": ["src/hooks/*"],
       "@validations/*": ["src/validations/*"],
       "@helpers/*": ["src/helpers/*"],
-      "@icons/*": ["src/icons/*"]
+      "@icons/*": ["src/icons/*"],
+      "@constants/*": ["src/constants/*"]
     }
   }
 }
