@@ -83,7 +83,6 @@ export const SectionWrapper = styled.section<{ readonly $bkg?: string }>`
 
 export const TitleWrapper = styled.div`
   width: 50%;
-  padding-right: 10vw;
 
   ${inLessThan(BreakpointEnums.sm)`
      width: 100%;

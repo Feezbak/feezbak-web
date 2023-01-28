@@ -1,6 +1,7 @@
 export enum StyleEnums {
   primary = "#FF7F61",
   secondary = "#FFAF51",
+  creamy = "#FFF0E1",
   error = "#FF3333",
   gradient1 = "#FF2976",
   success = "#25C7AA",
@@ -22,4 +23,5 @@ export enum StyleEnums {
   buttonBaseHeight = 48,
   dropdownPadding = "0",
   fontFamily = "Epilogue",
+  fontWeightStrong = 600,
 }

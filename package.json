@@ -14,7 +14,6 @@
     "@types/react-dom": "^18.0.6",
     "antd": "^5.1.6",
     "axios": "^0.27.2",
-    "craco-antd": "^2.0.0",
     "framer-motion": "^6.5.1",
     "joi": "^17.6.0",
     "lodash.isstring": "^4.0.1",

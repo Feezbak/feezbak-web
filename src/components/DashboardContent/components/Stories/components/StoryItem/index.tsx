@@ -39,14 +39,14 @@ const StoryItem = ({ storyData }: Props) => {
   );
 
   return (
-    <StoryListItemWrapper>
-      <StoryItemInfo>
+    <StoryListItemWrapper wrap>
+      <StoryItemInfo xs={24} sm={24} md={12} lg={12} xl={12} xxl={12}>
         <StoryInfoContainer>
           <h3>{question}</h3>
           <p>{type}</p>
         </StoryInfoContainer>
       </StoryItemInfo>
-      <StoryItemStatusAndActions>
+      <StoryItemStatusAndActions xs={24} sm={24} md={8} lg={8} xl={8} xxl={6}>
         <StoryStatusContainer>
           <p>Status</p>
           <Badge
