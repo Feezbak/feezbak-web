@@ -6,19 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="858e8835-88e0-4eee-8a4b-803392729593" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/craco.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/craco.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/components/StoriesList/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/components/StoriesList/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/components/StoryItem/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/components/StoryItem/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/components/StoryItem/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/components/StoryItem/styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DashboardContent/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashboardContent/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LandingContent/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LandingContent/styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums/styleEnums.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/styleEnums.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.path.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.path.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +22,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="tsconfig.json" />
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -113,7 +106,8 @@
       <workItem from="1674669009414" duration="3364000" />
       <workItem from="1674757595083" duration="5819000" />
       <workItem from="1674803047793" duration="801000" />
-      <workItem from="1674899736940" duration="8887000" />
+      <workItem from="1674899736940" duration="9285000" />
+      <workItem from="1674990944066" duration="3262000" />
     </task>
     <servers />
   </component>

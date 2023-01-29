@@ -3,3 +3,4 @@ export { default as SelectWithAdd } from "./SelectWithAdd";
 export { default as Layout } from "./Layout";
 export { default as NavigationHeader } from "./NavigationHeader";
 export { default as Badge } from "./Badge";
+export { default as ConfirmModal } from "./ConfirmModal";
