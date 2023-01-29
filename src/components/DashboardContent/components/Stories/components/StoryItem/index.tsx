@@ -14,13 +14,14 @@ import {
 
 interface Props {
   storyData: {
-    id: number;
+    id: string;
     question: string;
     type: string;
     status: string;
   };
+  handleDelete: (id: string) => void;
 }
-const StoryItem = ({ storyData }: Props) => {
+const StoryItem = ({ storyData, handleDelete }: Props) => {
   const { question, type, status } = storyData ?? {};
 
   const conditionalAction = useMemo(
@@ -57,7 +58,10 @@ const StoryItem = ({ storyData }: Props) => {
         </StoryStatusContainer>
         <StoryActionsContainer>
           {conditionalAction}
-          <ActionBtn icon={<DeleteIconGrayBg />} />
+          <ActionBtn
+            icon={<DeleteIconGrayBg />}
+            onClick={() => handleDelete(storyData.id)}
+          />
         </StoryActionsContainer>
       </StoryItemStatusAndActions>
     </StoryListItemWrapper>

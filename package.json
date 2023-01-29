@@ -21,6 +21,7 @@
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
     "react-hook-form": "^7.34.0",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.5",
@@ -57,6 +58,7 @@
   "devDependencies": {
     "@types/lodash.isstring": "^4.0.7",
     "@types/react-helmet": "^6.1.5",
+    "@types/react-modal": "^3.13.1",
     "@types/styled-components": "^5.1.25",
     "@types/ua-parser-js": "^0.7.36",
     "@types/zxcvbn": "^4.4.1",
