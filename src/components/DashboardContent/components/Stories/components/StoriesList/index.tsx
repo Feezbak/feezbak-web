@@ -36,6 +36,13 @@ const StoriesList = () => {
         ))}
       </StoriesListWrapper>
       <ConfirmModal
+        title="Why are you deleting."
+        text="We’re sorry to hear this but if you already made up your
+              mind, It’s Ok"
+        negativeBtnAction={() => setRemoveIdState("")}
+        positiveBtnAction={() => setRemoveIdState("")}
+        negativeBtnText="Cancel"
+        positiveBtnText="Yes Delete"
         modalIsOpen={!!removeId}
         closeModal={() => setRemoveIdState("")}
       />

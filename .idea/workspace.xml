@@ -6,12 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="858e8835-88e0-4eee-8a4b-803392729593" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/components/StoriesList/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/components/StoriesList/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/components/StoryItem/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DashboardContent/components/Stories/components/StoryItem/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/ConfirmModal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/ConfirmModal/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +19,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="tsconfig.json" />
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -107,7 +104,10 @@
       <workItem from="1674757595083" duration="5819000" />
       <workItem from="1674803047793" duration="801000" />
       <workItem from="1674899736940" duration="9285000" />
-      <workItem from="1674990944066" duration="3262000" />
+      <workItem from="1674990944066" duration="3601000" />
+      <workItem from="1675065913684" duration="18000" />
+      <workItem from="1675427770391" duration="8246000" />
+      <workItem from="1675523951374" duration="1274000" />
     </task>
     <servers />
   </component>
