@@ -1,10 +1,9 @@
-import React, { lazy, Suspense } from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Landing, SignIn, SignUp, Profile } from "@/pages";
+import { Landing, SignIn, SignUp, Profile, Dashboard, Create } from "@/pages";
 import UseCases from "@components/DashboardContent/components/UseCases";
 import Stories from "@components/DashboardContent/components/Stories";
 import PageNotFound from "@components/PageNotFound";
-const Dashboard = lazy(() => import("./pages/Dashboard"));
 
 function App() {
   return (
@@ -19,6 +18,7 @@ function App() {
             <Route index element={<Stories />} />
             <Route caseSensitive path="use-cases" element={<UseCases />} />
           </Route>
+          <Route caseSensitive path="/create-story/:id" element={<Create />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Suspense>
