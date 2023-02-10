@@ -3,6 +3,7 @@ export enum StyleEnums {
   secondary = "#FFAF51",
   creamy = "#FFF0E1",
   error = "#FF3333",
+  storyDefaultColor = "#FF4773",
   gradient1 = "#FF2976",
   success = "#25C7AA",
   pink = "#FDDEED",
