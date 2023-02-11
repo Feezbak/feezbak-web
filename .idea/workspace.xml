@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="858e8835-88e0-4eee-8a4b-803392729593" name="Changes" comment="" />
+    <list default="true" id="858e8835-88e0-4eee-8a4b-803392729593" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TitleAddingStep/components/CreationWrapper/components/Editor/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TitleAddingStep/components/CreationWrapper/components/Editor/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TitleAddingStep/components/CreationWrapper/components/Editor/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TitleAddingStep/components/CreationWrapper/components/Editor/styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TitleAddingStep/components/PreviewWrapper/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TitleAddingStep/components/PreviewWrapper/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TitleAddingStep/components/PreviewWrapper/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TitleAddingStep/components/PreviewWrapper/styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.path.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.path.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -104,6 +118,8 @@
       <workItem from="1675427770391" duration="8246000" />
       <workItem from="1675523951374" duration="1274000" />
       <workItem from="1675863305246" duration="4609000" />
+      <workItem from="1676029158103" duration="7812000" />
+      <workItem from="1676121365532" duration="21389000" />
     </task>
     <servers />
   </component>
