@@ -14,7 +14,8 @@
       "@validations/*": ["src/validations/*"],
       "@helpers/*": ["src/helpers/*"],
       "@icons/*": ["src/icons/*"],
-      "@constants/*": ["src/constants/*"]
+      "@constants/*": ["src/constants/*"],
+      "@context/*": ["src/context/*"]
     }
   }
 }
