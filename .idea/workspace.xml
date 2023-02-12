@@ -13,10 +13,10 @@
       <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TitleAddingStep/components/PreviewWrapper/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TitleAddingStep/components/PreviewWrapper/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TitleAddingStep/components/PreviewWrapper/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TitleAddingStep/components/PreviewWrapper/styles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/draftToolbarOptions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/draftToolbarOptions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/constants/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.path.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.path.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enums/styleEnums.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/styleEnums.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/icons/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -119,7 +119,8 @@
       <workItem from="1675523951374" duration="1274000" />
       <workItem from="1675863305246" duration="4609000" />
       <workItem from="1676029158103" duration="7812000" />
-      <workItem from="1676121365532" duration="21389000" />
+      <workItem from="1676121365532" duration="21793000" />
+      <workItem from="1676187598951" duration="17570000" />
     </task>
     <servers />
   </component>

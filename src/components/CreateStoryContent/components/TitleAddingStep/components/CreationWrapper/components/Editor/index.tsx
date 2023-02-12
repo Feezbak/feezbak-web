@@ -1,8 +1,13 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
-import { ContentState, EditorState, convertFromHTML } from "draft-js";
+import {
+  ContentState,
+  EditorState,
+  convertFromHTML,
+  convertToRaw,
+} from "draft-js";
 import { message } from "antd";
 import { Editor as TitleEditor } from "react-draft-wysiwyg";
-import { convertToHTML } from "draft-convert";
+import draftToHtml from "draftjs-to-html";
 import { useDebounce } from "@/hooks";
 import { toolbarOptions } from "@/constants";
 import { StoryCreationContext, StoryCreationDataType } from "@/context";
@@ -34,17 +39,16 @@ const Editor = () => {
   }, []);
 
   useEffect(() => {
-    let html = convertToHTML(editorState.getCurrentContent());
+    const html = draftToHtml(
+      convertToRaw(editorState.getCurrentContent())
+    ).trim();
     if (html.length && html !== "<p></p>") {
       setConvertedContent(html);
     }
   }, [editorState]);
 
   useEffect(() => {
-    if (
-      setStoryCreationData &&
-      debouncedData !== storyCreationData.step1.title
-    ) {
+    if (debouncedData !== storyCreationData.step1.title) {
       //todo need to set this to store after sending successful request to back end
       setStoryCreationData(
         (ps: StoryCreationDataType): StoryCreationDataType => ({
@@ -55,7 +59,15 @@ const Editor = () => {
           },
         })
       );
-      message.success("Your changes have been successfully saved!");
+      const msgKey = Math.random().toString();
+
+      message.open({
+        key: msgKey,
+        type: "success",
+        content: "Your changes have been successfully saved!",
+        duration: 1,
+        onClick: () => message.destroy("msgKey"),
+      });
     }
   }, [debouncedData, storyCreationData, setStoryCreationData]);
 

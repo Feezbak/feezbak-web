@@ -1,17 +1,12 @@
 import React, { useState, lazy, useMemo } from "react";
-import { StyleEnums } from "@/enums";
+import { storyDefaultState } from "@/constants";
 import { StoryCreationContext } from "@/context";
 
 const TitleAddingStep = lazy(() => import("./components/TitleAddingStep"));
 
 const CreateStoryContent = () => {
   const [step, setStep] = useState(1);
-  const [storyCreationData, setStoryCreationData] = useState({
-    step1: {
-      title: "",
-      background: StyleEnums.storyDefaultColor as string,
-    },
-  });
+  const [storyCreationData, setStoryCreationData] = useState(storyDefaultState);
   //todo need to fetch steps and story data from this component
 
   const currentStepContent = useMemo(() => {

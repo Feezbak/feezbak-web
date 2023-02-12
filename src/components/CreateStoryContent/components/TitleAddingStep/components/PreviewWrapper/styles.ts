@@ -1,7 +1,9 @@
 import styled from "styled-components";
-import { Col } from "antd";
+import { Button, Col } from "antd";
 import { prop } from "@/helpers";
 import { StyleEnums } from "@/enums";
+import Circle from "@uiw/react-color-circle";
+import { motion } from "framer-motion";
 
 export const PreviewFlowWrapper = styled(Col)`
   padding: 4rem 0;
@@ -17,6 +19,7 @@ export const PreviewFlow = styled.div<{ readonly $background: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0.3s;
 `;
 
 export const PoweredByWrapper = styled.div`
@@ -54,4 +57,41 @@ export const TitlePreview = styled.div`
     font-weight: 800;
     text-align: center;
   }
+`;
+
+export const ColorPickerBtn = styled(Button)`
+  background: none;
+  border: none;
+  padding: 0;
+  width: 2.75rem !important;
+  height: 2.75rem;
+  position: absolute;
+  top: 2.5rem;
+  right: 2.5rem;
+`;
+
+export const CircleColorPicker = styled(Circle)`
+  max-width: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  div {
+    margin-left: 0.75rem !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    div {
+      margin-left: 0 !important;
+    }
+  }
+`;
+
+export const ColorPickerWrapper = styled(motion.div)`
+  position: absolute;
+  bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
