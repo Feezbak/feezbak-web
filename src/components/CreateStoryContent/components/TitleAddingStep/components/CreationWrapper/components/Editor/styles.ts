@@ -40,4 +40,19 @@ export const EditorFocusArea = styled.div`
     width: 100%;
     word-break: break-all;
   }
+
+  .color-picker {
+    border-radius: 1rem;
+
+    .rdw-option-wrapper {
+      border-radius: 0.45rem;
+      span {
+        border-radius: 0.45rem;
+      }
+    }
+
+    .rdw-option-active {
+      box-shadow: 0 0 2px 2px ${StyleEnums.primary};
+    }
+  }
 `;
