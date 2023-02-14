@@ -2,6 +2,7 @@ import { createContext } from "react";
 
 export type Step1Type = {
   title: string;
+  titleColor: string;
   background: string;
 };
 

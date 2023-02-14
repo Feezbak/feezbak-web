@@ -6,6 +6,7 @@ import { colorPickerMainColors } from "@/constants";
 import { AnimatePresence } from "framer-motion";
 import { useDebounce } from "@/hooks";
 import DOMPurify from "dompurify";
+import { StyleEnums } from "@/enums";
 import { message } from "antd";
 import {
   PreviewFlowWrapper,
@@ -40,6 +41,7 @@ const PreviewWrapper = () => {
         ...ps,
         step1: {
           title: ps.step1.title,
+          titleColor: ps.step1.titleColor,
           background: debouncedData,
         },
       }));
@@ -55,9 +57,25 @@ const PreviewWrapper = () => {
     }
   }, [debouncedData, setStoryCreationData, storyCreationData]);
 
+  const isSimilarToBackground = useMemo(
+    () => color.toUpperCase() === storyCreationData.step1.titleColor,
+    [storyCreationData, color]
+  );
+  const hasOutline = useMemo(
+    () => color.toUpperCase() === StyleEnums.white,
+    [color]
+  );
+
+  const titleShadowColor = useMemo(() => {
+    //todo need to generate shadow color
+    return storyCreationData.step1.titleColor;
+  }, [storyCreationData]);
+
+  console.log(titleShadowColor, 9999);
+
   return (
     <PreviewFlowWrapper xs={24} sm={24} md={7} lg={7} xl={7} xxl={7}>
-      <PreviewFlow $background={color}>
+      <PreviewFlow $background={color} $hasOutline={hasOutline}>
         <PoweredByWrapper>
           <p>POWERED BY</p>
           <Icon component={FeezbakWhiteIcon} />
@@ -66,7 +84,10 @@ const PreviewWrapper = () => {
           icon={<ColorPickerIcon />}
           onClick={() => setColorPickerState((ps) => !ps)}
         />
-        <TitlePreview dangerouslySetInnerHTML={createMarkup} />
+        <TitlePreview
+          $isSimilarToBackground={isSimilarToBackground}
+          dangerouslySetInnerHTML={createMarkup}
+        />
         <AnimatePresence>
           {isColorPickerOpen && (
             <ColorPickerWrapper
