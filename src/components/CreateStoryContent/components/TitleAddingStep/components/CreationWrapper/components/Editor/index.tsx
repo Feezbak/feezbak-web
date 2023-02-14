@@ -1,23 +1,24 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
+import { message } from "antd";
+import { Editor as TitleEditor } from "react-draft-wysiwyg";
+import draftToHtml from "draftjs-to-html";
+import { useDebounce } from "@/hooks";
+import rgbHex from "rgb-hex";
+import { toolbarOptions, storyEditorConvertedContent } from "@/constants";
+import { StoryCreationContext, StoryCreationDataType } from "@/context";
+import { TitleEditorWrapper, EditorTitle, EditorFocusArea } from "./styles";
 import {
   ContentState,
   EditorState,
   convertFromHTML,
   convertToRaw,
 } from "draft-js";
-import { message } from "antd";
-import { Editor as TitleEditor } from "react-draft-wysiwyg";
-import draftToHtml from "draftjs-to-html";
-import { useDebounce } from "@/hooks";
-import { toolbarOptions } from "@/constants";
-import { StoryCreationContext, StoryCreationDataType } from "@/context";
-import { TitleEditorWrapper, EditorTitle, EditorFocusArea } from "./styles";
 
 const Editor = () => {
   const { storyCreationData, setStoryCreationData } =
     useContext(StoryCreationContext);
   const [convertedContent, setConvertedContent] = useState(
-    storyCreationData.step1.title
+    storyEditorConvertedContent
   );
   const debouncedData = useDebounce(convertedContent, 1000);
   const blocksFromHTML = convertFromHTML(storyCreationData.step1.title);
@@ -42,20 +43,38 @@ const Editor = () => {
     const html = draftToHtml(
       convertToRaw(editorState.getCurrentContent())
     ).trim();
-    if (html.length && html !== "<p></p>") {
-      setConvertedContent(html);
+    let titleColor = storyCreationData.step1.titleColor;
+    const styleList = editorState
+      .getCurrentContent()
+      .getBlockMap()
+      .map((block) => block?.get("characterList"))
+      .toList()
+      .flatten();
+    styleList.forEach((style) => {
+      if (style && style.indexOf("color-") === 0) {
+        titleColor = `#${rgbHex(style.substring(6)).toUpperCase()}`;
+      }
+    });
+    if (
+      titleColor !== storyCreationData.step1.titleColor ||
+      html !== storyCreationData.step1.title
+    ) {
+      setConvertedContent({
+        title: html,
+        titleColor,
+      });
     }
-  }, [editorState]);
+  }, [editorState, storyCreationData]);
 
   useEffect(() => {
-    if (debouncedData !== storyCreationData.step1.title) {
+    if (debouncedData.title !== storyCreationData.step1.title) {
       //todo need to set this to store after sending successful request to back end
       setStoryCreationData(
         (ps: StoryCreationDataType): StoryCreationDataType => ({
           ...ps,
           step1: {
-            title: debouncedData,
             background: ps.step1.background,
+            ...debouncedData,
           },
         })
       );

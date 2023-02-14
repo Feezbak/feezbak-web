@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button, Col } from "antd";
-import { prop } from "@/helpers";
+import { prop, ifProp } from "@/helpers";
 import { StyleEnums } from "@/enums";
 import Circle from "@uiw/react-color-circle";
 import { motion } from "framer-motion";
@@ -10,7 +10,10 @@ export const PreviewFlowWrapper = styled(Col)`
   height: 100%;
 `;
 
-export const PreviewFlow = styled.div<{ readonly $background: string }>`
+export const PreviewFlow = styled.div<{
+  readonly $background: string;
+  readonly $hasOutline: boolean;
+}>`
   background: ${prop("$background")};
   width: 100%;
   height: 100%;
@@ -20,6 +23,7 @@ export const PreviewFlow = styled.div<{ readonly $background: string }>`
   justify-content: center;
   align-items: center;
   transition: 0.3s;
+  box-shadow: ${ifProp("$hasOutline", `0 0 5px ${StyleEnums.gray2}`, "none")};
 `;
 
 export const PoweredByWrapper = styled.div`
@@ -44,18 +48,24 @@ export const PoweredByWrapper = styled.div`
   }
 `;
 
-export const TitlePreview = styled.div`
+export const TitlePreview = styled.div<{
+  readonly $isSimilarToBackground: boolean;
+}>`
   margin: 0 3rem;
   font-size: 2.5rem;
   line-height: 2.5rem;
   letter-spacing: -0.02em;
-  color: ${StyleEnums.white};
   word-break: break-all;
 
   h3 {
-    color: ${StyleEnums.white};
+    color: ${StyleEnums.black};
     font-weight: 800;
     text-align: center;
+    line-height: 3.5rem;
+  }
+
+  p {
+    text-shadow: ${ifProp("$isSimilarToBackground", "0 0 5px black", "none")};
   }
 `;
 
