@@ -1,13 +1,19 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  useCallback,
+} from "react";
 import Icon from "@ant-design/icons";
-import { FeezbakWhiteIcon, ColorPickerIcon } from "@/icons";
+import { FeezbakWhiteIcon, ColorPickerIcon, AnanasOnBikeIcon } from "@/icons";
 import { StoryCreationContext } from "@/context";
 import { colorPickerMainColors } from "@/constants";
 import { AnimatePresence } from "framer-motion";
 import { useDebounce } from "@/hooks";
 import DOMPurify from "dompurify";
 import { StyleEnums } from "@/enums";
-import { message } from "antd";
+import { notification } from "antd";
 import {
   PreviewFlowWrapper,
   PreviewFlow,
@@ -24,6 +30,19 @@ const PreviewWrapper = () => {
     useContext(StoryCreationContext);
   const [color, setColor] = useState(storyCreationData.step1.background);
   const debouncedData = useDebounce(color, 1000);
+  const [api, contextHolder] = notification.useNotification();
+
+  const openNotification = useCallback(() => {
+    api.open({
+      message: "Noticed Some Changes",
+      description:
+        "You currently made some changes and We’re pretty sure that it looks way nicer now!",
+      duration: 1,
+      placement: "topRight",
+      className: "notification-custom-styles",
+      icon: <AnanasOnBikeIcon />,
+    });
+  }, [api]);
 
   const createMarkup = useMemo(() => {
     return {
@@ -45,33 +64,31 @@ const PreviewWrapper = () => {
           background: debouncedData,
         },
       }));
-      const msgKey = Math.random().toString();
 
-      message.open({
-        key: msgKey,
-        type: "success",
-        content: "Your changes have been successfully saved!",
-        duration: 1,
-        onClick: () => message.destroy("msgKey"),
-      });
+      openNotification();
     }
-  }, [debouncedData, setStoryCreationData, storyCreationData]);
+  }, [
+    debouncedData,
+    setStoryCreationData,
+    storyCreationData,
+    openNotification,
+  ]);
 
-  const isSimilarToBackground = useMemo(
-    () => color.toUpperCase() === storyCreationData.step1.titleColor,
-    [storyCreationData, color]
-  );
   const hasOutline = useMemo(
     () => color.toUpperCase() === StyleEnums.white,
     [color]
   );
 
   const titleShadowColor = useMemo(() => {
-    //todo need to generate shadow color
-    return storyCreationData.step1.titleColor;
-  }, [storyCreationData]);
-
-  console.log(titleShadowColor, 9999);
+    if (storyCreationData.step1.titleColor === color.toUpperCase()) {
+      if (color !== (StyleEnums.black as string)) {
+        return StyleEnums.black as string;
+      } else {
+        return StyleEnums.white as string;
+      }
+    }
+    return "transparent";
+  }, [storyCreationData.step1.titleColor, color]);
 
   return (
     <PreviewFlowWrapper xs={24} sm={24} md={7} lg={7} xl={7} xxl={7}>
@@ -85,7 +102,7 @@ const PreviewWrapper = () => {
           onClick={() => setColorPickerState((ps) => !ps)}
         />
         <TitlePreview
-          $isSimilarToBackground={isSimilarToBackground}
+          $titleShadowColor={titleShadowColor}
           dangerouslySetInnerHTML={createMarkup}
         />
         <AnimatePresence>
@@ -105,6 +122,7 @@ const PreviewWrapper = () => {
           )}
         </AnimatePresence>
       </PreviewFlow>
+      {contextHolder}
     </PreviewFlowWrapper>
   );
 };

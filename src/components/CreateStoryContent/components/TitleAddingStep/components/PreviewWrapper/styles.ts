@@ -49,7 +49,7 @@ export const PoweredByWrapper = styled.div`
 `;
 
 export const TitlePreview = styled.div<{
-  readonly $isSimilarToBackground: boolean;
+  readonly $titleShadowColor: string;
 }>`
   margin: 0 3rem;
   font-size: 2.5rem;
@@ -61,11 +61,12 @@ export const TitlePreview = styled.div<{
     color: ${StyleEnums.black};
     font-weight: 800;
     text-align: center;
+    word-break: break-word;
     line-height: 3.5rem;
   }
 
   p {
-    text-shadow: ${ifProp("$isSimilarToBackground", "0 0 5px black", "none")};
+    text-shadow: 0 0 3px ${prop("$titleShadowColor")};
   }
 `;
 
