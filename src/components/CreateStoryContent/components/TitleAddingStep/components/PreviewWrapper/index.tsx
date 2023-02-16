@@ -57,21 +57,22 @@ const PreviewWrapper = () => {
     }
   }, [debouncedData, setStoryCreationData, storyCreationData]);
 
-  const isSimilarToBackground = useMemo(
-    () => color.toUpperCase() === storyCreationData.step1.titleColor,
-    [storyCreationData, color]
-  );
   const hasOutline = useMemo(
     () => color.toUpperCase() === StyleEnums.white,
     [color]
   );
 
   const titleShadowColor = useMemo(() => {
-    //todo need to generate shadow color
-    return storyCreationData.step1.titleColor;
-  }, [storyCreationData]);
-
-  console.log(titleShadowColor, 9999);
+    console.log(storyCreationData.step1.titleColor, color, 777);
+    if (storyCreationData.step1.titleColor === color.toUpperCase()) {
+      if (color !== (StyleEnums.black as string)) {
+        return StyleEnums.black as string;
+      } else {
+        return StyleEnums.white as string;
+      }
+    }
+    return "transparent";
+  }, [storyCreationData.step1.titleColor, color]);
 
   return (
     <PreviewFlowWrapper xs={24} sm={24} md={7} lg={7} xl={7} xxl={7}>
@@ -85,7 +86,7 @@ const PreviewWrapper = () => {
           onClick={() => setColorPickerState((ps) => !ps)}
         />
         <TitlePreview
-          $isSimilarToBackground={isSimilarToBackground}
+          $titleShadowColor={titleShadowColor}
           dangerouslySetInnerHTML={createMarkup}
         />
         <AnimatePresence>
