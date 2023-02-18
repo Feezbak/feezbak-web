@@ -1,21 +1,24 @@
 import React, { useState, lazy, useMemo } from "react";
 import { storyDefaultState } from "@/constants";
 import { StoryCreationContext } from "@/context";
+import { StoryStepEnum } from "@/enums";
 
 const TitleAddingStep = lazy(() => import("./components/TitleAddingStep"));
+const TypeDefiningStep = lazy(() => import("./components/TypeDefiningStep"));
 
 const CreateStoryContent = () => {
-  const [step, setStep] = useState(1);
   const [storyCreationData, setStoryCreationData] = useState(storyDefaultState);
   //todo need to fetch steps and story data from this component
 
   const currentStepContent = useMemo(() => {
-    if (step === 1) {
+    if (storyCreationData.currentStep === StoryStepEnum.TITLE_STEP) {
       return <TitleAddingStep />;
+    } else if (storyCreationData.currentStep === StoryStepEnum.TYPE_STEP) {
+      return <TypeDefiningStep />;
     } else {
       return null;
     }
-  }, [step]);
+  }, [storyCreationData.currentStep]);
 
   return (
     <StoryCreationContext.Provider

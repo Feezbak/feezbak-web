@@ -7,6 +7,7 @@ export type Step1Type = {
 };
 
 export type StoryCreationDataType = {
+  currentStep: number;
   step1: Step1Type;
 };
 export interface StoryCreationContextProps {

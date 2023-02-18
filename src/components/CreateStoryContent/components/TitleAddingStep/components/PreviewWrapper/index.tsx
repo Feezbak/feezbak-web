@@ -14,8 +14,8 @@ import { useDebounce } from "@/hooks";
 import DOMPurify from "dompurify";
 import { StyleEnums } from "@/enums";
 import { notification } from "antd";
+import { PreviewFlowWrapper } from "@components/CreateStoryContent/styles";
 import {
-  PreviewFlowWrapper,
   PreviewFlow,
   PoweredByWrapper,
   TitlePreview,
