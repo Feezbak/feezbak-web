@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { Badge } from "@/shared";
-import { StyleEnums, StoryStatusEnums } from "@/enums";
+import { StyleEnums, StoryEnums } from "@/enums";
 import { EditIconGrayBg, DeleteIconGrayBg, LinkIconGrayBg } from "@/icons";
 import {
   StoryItemStatusAndActions,
@@ -28,7 +28,7 @@ const StoryItem = ({ storyData, handleDelete }: Props) => {
     () => (
       <ActionBtn
         icon={
-          storyData.status === StoryStatusEnums.DRAFT ? (
+          storyData.status === StoryEnums.DRAFT ? (
             <EditIconGrayBg />
           ) : (
             <LinkIconGrayBg />

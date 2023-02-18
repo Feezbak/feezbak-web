@@ -1,14 +1,9 @@
 import styled from "styled-components";
-import { Button, Col } from "antd";
+import { Button } from "antd";
 import { prop, ifProp } from "@/helpers";
 import { StyleEnums } from "@/enums";
 import Circle from "@uiw/react-color-circle";
 import { motion } from "framer-motion";
-
-export const PreviewFlowWrapper = styled(Col)`
-  padding: 4rem 0;
-  height: 100%;
-`;
 
 export const PreviewFlow = styled.div<{
   readonly $background: string;

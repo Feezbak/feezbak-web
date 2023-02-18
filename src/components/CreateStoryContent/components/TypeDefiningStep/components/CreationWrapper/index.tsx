@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
-import Editor from "./components/Editor";
 import { StoryCreationContext } from "@/context";
-import { storyDefaultState } from "@/constants";
-import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
 import { CreationFlowHeader, CreationFlowFooter } from "@/shared";
+import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
 
 const CreationWrapper = () => {
   const { storyCreationData, setStoryCreationData } =
@@ -18,15 +16,14 @@ const CreationWrapper = () => {
 
   return (
     <CreationFlowWrapper xs={24} sm={24} md={12} lg={12} xl={12} xxl={12}>
-      <CreationFlowHeader />
-      <Editor />
+      <CreationFlowHeader
+        actions={{ quantitySelection: true, typeSelection: true }}
+      />
       <CreationFlowFooter
-        currentStep={storyCreationData.currentStep}
         nextBtnActionHandler={handleSubmitStep}
-        isNextActive={
-          storyCreationData.step1.title !== storyDefaultState.step1.title
-        }
-        toolTipTitle="Please provide title text, to be able go to next step!"
+        isNextActive={false}
+        currentStep={storyCreationData.currentStep}
+        toolTipTitle="Please select type for your feedback"
       />
     </CreationFlowWrapper>
   );
