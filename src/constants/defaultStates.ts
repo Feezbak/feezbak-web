@@ -1,4 +1,4 @@
-import { StyleEnums } from "@/enums";
+import { StyleEnums, StoryTypeEnum } from "@/enums";
 
 export const storyDefaultState = {
   currentStep: 1,
@@ -6,6 +6,10 @@ export const storyDefaultState = {
     title: "<p></p>",
     background: StyleEnums.storyDefaultColor1 as string,
     titleColor: StyleEnums.black as string,
+  },
+  step2: {
+    isMultiple: false,
+    type: StoryTypeEnum.IMAGE_VOTING,
   },
 };
 
