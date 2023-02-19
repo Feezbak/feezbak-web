@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="858e8835-88e0-4eee-8a4b-803392729593" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/defaultStates.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/defaultStates.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/context/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums/storyEnums.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/storyEnums.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/CreationFlowHeader/components/HeaderActions/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/CreationFlowHeader/components/HeaderActions/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/CreationFlowHeader/components/HeaderActions/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/CreationFlowHeader/components/HeaderActions/styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/CreationFlowHeader/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/CreationFlowHeader/index.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="858e8835-88e0-4eee-8a4b-803392729593" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,7 +111,7 @@
       <workItem from="1676457711016" duration="13000" />
       <workItem from="1676552550424" duration="8687000" />
       <workItem from="1676731885493" duration="9449000" />
-      <workItem from="1676816462019" duration="6974000" />
+      <workItem from="1676816462019" duration="7246000" />
     </task>
     <servers />
   </component>
