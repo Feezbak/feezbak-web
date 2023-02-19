@@ -6,6 +6,7 @@ import {
   GoBackContentWrapper,
   BackBtn,
 } from "./styles";
+import { StoryTypeEnum } from "@/enums";
 
 export interface ActionsList {
   quantitySelection: boolean;
@@ -14,16 +15,34 @@ export interface ActionsList {
 
 interface Props {
   actions?: ActionsList;
+  handleQuantitySelection?: (value: boolean) => void;
+  quantitySelectionDefaultValue?: boolean;
+  handleTypeSelection?: (value: StoryTypeEnum) => void;
+  typeSelectionDefaultValue?: StoryTypeEnum;
 }
 
-const CreationFlowHeader = ({ actions }: Props) => {
+const CreationFlowHeader = ({
+  actions,
+  handleQuantitySelection,
+  handleTypeSelection,
+  typeSelectionDefaultValue,
+  quantitySelectionDefaultValue,
+}: Props) => {
   return (
     <CreationFlowHeaderWrapper>
       <GoBackContentWrapper>
         <BackBtn icon={<GoBackRoundIcon />} type="link" href="/dashboard" />
         <h3>Creating Story</h3>
       </GoBackContentWrapper>
-      {!!actions && <HeaderActions actions={actions} />}
+      {!!actions && (
+        <HeaderActions
+          actions={actions}
+          handleQuantitySelection={handleQuantitySelection}
+          handleTypeSelection={handleTypeSelection}
+          typeSelectionDefaultValue={typeSelectionDefaultValue}
+          quantitySelectionDefaultValue={quantitySelectionDefaultValue}
+        />
+      )}
     </CreationFlowHeaderWrapper>
   );
 };

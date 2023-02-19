@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import { StoryTypeEnum } from "@/enums";
 
 export type Step1Type = {
   title: string;
@@ -6,9 +7,15 @@ export type Step1Type = {
   background: string;
 };
 
+export type Step2Type = {
+  isMultiple: boolean;
+  type: StoryTypeEnum;
+};
+
 export type StoryCreationDataType = {
   currentStep: number;
   step1: Step1Type;
+  step2: Step2Type;
 };
 export interface StoryCreationContextProps {
   storyCreationData: StoryCreationDataType;
