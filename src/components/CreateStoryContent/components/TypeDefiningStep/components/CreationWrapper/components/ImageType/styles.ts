@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export const ImageTypeWrapper = styled.div`
+export const ImageTypeWrapper = styled(motion.div)`
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -16,6 +17,7 @@ export const ImageTypeTitle = styled.p`
 `;
 
 export const ImageUploadArea = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
