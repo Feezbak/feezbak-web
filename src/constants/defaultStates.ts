@@ -17,3 +17,10 @@ export const storyEditorConvertedContent = {
   title: storyDefaultState.step1.title,
   titleColor: storyDefaultState.step1.titleColor,
 };
+
+export const responseBtnListDefaultState = [
+  {
+    id: "1",
+    text: "I like this one",
+  },
+];

@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 
 export const ImageTypeWrapper = styled(motion.div)`
   width: 100%;
+  height: 100%;
+  margin-top: 1.5rem;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
