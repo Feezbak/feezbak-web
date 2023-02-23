@@ -2,6 +2,7 @@ import React from "react";
 import Modal from "./components/Modal";
 import { Backdrop } from "./styles";
 import { createPortal } from "react-dom";
+import { opacityAnimation } from "@assets/framerAnimations";
 
 interface Props {
   modalIsOpen: boolean;
@@ -25,12 +26,7 @@ const ConfirmModal = ({
 }: Props) => {
   return modalIsOpen
     ? createPortal(
-        <Backdrop
-          onClick={closeModal}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
+        <Backdrop onClick={closeModal} {...opacityAnimation}>
           <Modal
             title={title}
             text={text}

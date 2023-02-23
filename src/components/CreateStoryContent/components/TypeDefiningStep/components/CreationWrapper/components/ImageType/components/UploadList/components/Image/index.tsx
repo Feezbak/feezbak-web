@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { TrashWhiteIcon } from "@/icons";
-import { motion, usePresence, AnimatePresence } from "framer-motion";
+import { usePresence, AnimatePresence } from "framer-motion";
+import { listItemAnimation, opacityAnimation } from "@assets/framerAnimations";
 import { ImageBackgroundWrapper, DeleteBtnWrapper, DeleteBtn } from "./styles";
 
 interface Props {
@@ -16,23 +17,7 @@ const Image = ({ src, id, handleDelete }: Props) => {
     handleDelete(id);
   };
 
-  const animations = {
-    layout: true,
-    initial: "out",
-    animate: isPresent ? "in" : "out",
-    whileTap: "tapped",
-    variants: {
-      in: { scaleY: 1, opacity: 1 },
-      out: { scaleY: 0, opacity: 0, zIndex: -1 },
-      tapped: { scale: 0.98, opacity: 0.5, transition: { duration: 0.1 } },
-    },
-    onAnimationComplete: () => !isPresent && safeToRemove(),
-    transition: { type: "spring", stiffness: 500, damping: 50, mass: 1 },
-  };
-
-  useEffect(() => {
-    console.log(isHovered, 9999);
-  }, [isHovered]);
+  const animations = listItemAnimation(isPresent, () => safeToRemove?.());
 
   return (
     <ImageBackgroundWrapper
@@ -43,11 +28,7 @@ const Image = ({ src, id, handleDelete }: Props) => {
     >
       <AnimatePresence initial={false}>
         {isHovered && (
-          <DeleteBtnWrapper
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
+          <DeleteBtnWrapper {...opacityAnimation}>
             <DeleteBtn onClick={handleDeleteImage} icon={<TrashWhiteIcon />} />
           </DeleteBtnWrapper>
         )}

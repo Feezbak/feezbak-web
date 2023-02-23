@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import UploadArea from "./components/UploadArea";
 import UploadList from "./components/UploadList";
+import Response from "./components/Response";
+import { opacityAnimation } from "@assets/framerAnimations";
 import { ImageTypeWrapper, ImageTypeTitle, ImageUploadArea } from "./styles";
 
 const ImageType = () => {
@@ -11,12 +13,7 @@ const ImageType = () => {
   };
 
   return (
-    <ImageTypeWrapper
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-    >
+    <ImageTypeWrapper {...opacityAnimation} transition={{ duration: 0.3 }}>
       <ImageTypeTitle>
         Include the images you want people to vote
       </ImageTypeTitle>
@@ -24,6 +21,7 @@ const ImageType = () => {
         <UploadArea sendBlobURL={handleBlobURL} />
         <UploadList newFileSrc={newFileSrc} />
       </ImageUploadArea>
+      <Response />
     </ImageTypeWrapper>
   );
 };

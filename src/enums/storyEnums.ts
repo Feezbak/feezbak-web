@@ -12,3 +12,9 @@ export enum StoryTypeEnum {
   IMAGE_VOTING = "Image Voting",
   TEXT_VOTING = "Text Voting",
 }
+
+export enum ResponseTypeEnum {
+  BUTTON_RESPONSE = "Button Response",
+  TEXT_RESPONSE = "Text Response",
+  COMBINED = "Combined",
+}
