@@ -20,7 +20,7 @@ export const storyEditorConvertedContent = {
 
 export const responseBtnListDefaultState = [
   {
-    id: "1",
+    id: "",
     text: "I like this one",
   },
 ];

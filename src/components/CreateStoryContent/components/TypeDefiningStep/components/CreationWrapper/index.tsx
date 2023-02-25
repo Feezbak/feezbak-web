@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { StoryTypeEnum } from "@/enums";
 import { StoryCreationContext } from "@/context";
 import ImageType from "./components/ImageType";
+import TextType from "./components/TextType";
 import { AnimatePresence } from "framer-motion";
 import { CreationFlowFooter, CreationFlowHeader } from "@/shared";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
@@ -49,6 +50,9 @@ const CreationWrapper = () => {
       <AnimatePresence initial={false}>
         {storyCreationData.step2.type === StoryTypeEnum.IMAGE_VOTING && (
           <ImageType />
+        )}
+        {storyCreationData.step2.type === StoryTypeEnum.TEXT_VOTING && (
+          <TextType />
         )}
       </AnimatePresence>
       <CreationFlowFooter
