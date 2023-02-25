@@ -2,6 +2,7 @@ import React, { useState, ChangeEvent } from "react";
 import { listItemAnimation } from "@assets/framerAnimations";
 import { ResponseButtonWrapper, DeleteRespBtn, ResponseInput } from "./styles";
 import { usePresence } from "framer-motion";
+import { TrashWhiteIcon } from "@/icons";
 
 interface Props {
   textContent: string;
@@ -20,10 +21,13 @@ const RespButton = ({ textContent, deleteItem, index }: Props) => {
   const animations = listItemAnimation(isPresent, () => safeToRemove?.());
 
   return (
-    <ResponseButtonWrapper {...animations}>
+    <ResponseButtonWrapper {...animations} transition={{ duration: 0.2 }}>
       <ResponseInput value={btnText} onChange={handleChange} />
       {!!index && (
-        <DeleteRespBtn onClick={() => deleteItem(index)}>Delete</DeleteRespBtn>
+        <DeleteRespBtn
+          onClick={() => deleteItem(index)}
+          icon={<TrashWhiteIcon />}
+        />
       )}
     </ResponseButtonWrapper>
   );

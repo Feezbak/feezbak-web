@@ -18,6 +18,16 @@ export const ResponseButtonWrapper = styled(motion.li)`
 
 export const DeleteRespBtn = styled(Button)`
   margin-left: 0.5rem;
+  border: none;
+  border-radius: 50%;
+  width: 1.25rem !important;
+  height: 1.25rem;
+  padding: 0;
+  svg,
+  path {
+    stroke: ${StyleEnums.black};
+    fill: ${StyleEnums.black};
+  }
 `;
 
 export const ResponseInput = styled(Input)`

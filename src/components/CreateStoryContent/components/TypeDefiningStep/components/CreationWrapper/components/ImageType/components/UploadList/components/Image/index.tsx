@@ -13,6 +13,7 @@ interface Props {
 const Image = ({ src, id, handleDelete }: Props) => {
   const [isPresent, safeToRemove] = usePresence();
   const [isHovered, setHoverState] = useState(false);
+
   const handleDeleteImage = () => {
     handleDelete(id);
   };

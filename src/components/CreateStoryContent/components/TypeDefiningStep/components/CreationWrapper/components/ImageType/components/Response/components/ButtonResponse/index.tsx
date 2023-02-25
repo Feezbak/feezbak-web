@@ -3,6 +3,7 @@ import RespButton from "./components/RespButton";
 import { AnimatePresence } from "framer-motion";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { responseBtnListDefaultState } from "@/constants";
+import uuid from "react-uuid";
 import {
   ResponseBtnList,
   AddNewRespBtn,
@@ -22,11 +23,11 @@ const ButtonResponse = () => {
   };
 
   const handleAddRespBtn = () => {
-    setRespBtnState((ps) => [...ps, { id: "fuck", text: "" }]);
+    setRespBtnState((ps) => [...ps, { id: uuid(), text: "" }]);
   };
 
   return (
-    <ResponseListAndBtnContainer>
+    <ResponseListAndBtnContainer {...opacityAnimation}>
       <ResponseBtnList>
         <AnimatePresence initial={false}>
           {respBtnState.map(({ id, text }, index) => (
@@ -41,7 +42,10 @@ const ButtonResponse = () => {
       </ResponseBtnList>
       <AnimatePresence initial={false}>
         {respBtnState.length < 3 && (
-          <DeleteBtnWrapper {...opacityAnimation}>
+          <DeleteBtnWrapper
+            {...opacityAnimation}
+            transition={{ duration: 0.2 }}
+          >
             <AddNewRespBtn type="primary" onClick={handleAddRespBtn}>
               Add New Response Button
             </AddNewRespBtn>
