@@ -6,16 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="858e8835-88e0-4eee-8a4b-803392729593" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/Response/components/ButtonResponse/components/RespButton/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/Response/components/ButtonResponse/components/RespButton/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/Response/components/ButtonResponse/components/RespButton/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/Response/components/ButtonResponse/components/RespButton/styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/Response/components/ButtonResponse/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/Response/components/ButtonResponse/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/Response/components/ButtonResponse/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/Response/components/ButtonResponse/styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/UploadArea/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/UploadArea/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/UploadList/components/Image/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/UploadList/components/Image/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/UploadList/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/UploadList/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/constants/defaultStates.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/defaultStates.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enums/styleEnums.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/styleEnums.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +130,12 @@
       <workItem from="1677075608206" duration="223000" />
       <workItem from="1677136350087" duration="25000" />
       <workItem from="1677155383983" duration="11894000" />
-      <workItem from="1677342280526" duration="2324000" />
+      <workItem from="1677342280526" duration="2738000" />
+      <workItem from="1677417269532" duration="287000" />
+      <workItem from="1677499641622" duration="338000" />
+      <workItem from="1677585372760" duration="147000" />
+      <workItem from="1677585535584" duration="714000" />
+      <workItem from="1677682248293" duration="3338000" />
     </task>
     <servers />
   </component>
@@ -159,7 +164,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/Response/components/ButtonResponse/index.tsx</url>
           <line>31</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

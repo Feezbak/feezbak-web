@@ -8,6 +8,7 @@ const TypeDefiningStep = lazy(() => import("./components/TypeDefiningStep"));
 
 const CreateStoryContent = () => {
   const [storyCreationData, setStoryCreationData] = useState(storyDefaultState);
+
   //todo need to fetch steps and story data from this component
 
   const currentStepContent = useMemo(() => {

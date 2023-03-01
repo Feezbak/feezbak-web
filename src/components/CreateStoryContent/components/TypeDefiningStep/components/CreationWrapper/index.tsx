@@ -18,12 +18,20 @@ const CreationWrapper = () => {
     }));
   };
 
+  const handleGoToPrevStep = () => {
+    setStoryCreationData((ps) => ({
+      ...ps,
+      currentStep: ps.currentStep - 1,
+    }));
+  };
+
   const handleQuantitySelection = (value: boolean) => {
     setStoryCreationData((ps) => ({
       ...ps,
       step2: {
         isMultiple: value,
         type: ps.step2.type,
+        imageVoting: ps.step2.imageVoting,
       },
     }));
   };
@@ -34,6 +42,7 @@ const CreationWrapper = () => {
       step2: {
         isMultiple: ps.step2.isMultiple,
         type: value,
+        imageVoting: ps.step2.imageVoting,
       },
     }));
   };
@@ -56,6 +65,7 @@ const CreationWrapper = () => {
         )}
       </AnimatePresence>
       <CreationFlowFooter
+        prevBtnActionHandler={handleGoToPrevStep}
         nextBtnActionHandler={handleSubmitStep}
         isNextActive={false}
         currentStep={storyCreationData.currentStep}

@@ -27,6 +27,6 @@ export enum StyleEnums {
   inputPaddingVertical = 10.5,
   buttonBaseHeight = 48,
   dropdownPadding = "0",
-  fontFamily = "Epilogue",
+  fontFamily = "Epilogue, Regular, sans-serif",
   fontWeightStrong = 600,
 }

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Dropzone from "react-dropzone";
 import { UploadFileIcon } from "@/icons";
+import { StoryCreationContext } from "@/context";
 import { UploadWrapper, UploadIconWrapper } from "./styles";
 
 const fileToDataUri = (file: File) =>
@@ -18,15 +19,27 @@ interface Props {
 
 const UploadArea = ({ sendBlobURL }: Props) => {
   const [file, setFile] = useState<File>();
+  const { setStoryCreationData } = useContext(StoryCreationContext);
 
   useEffect(() => {
     if (file) {
       //todo send file to back-end
+
       fileToDataUri(file).then((dataUri) => {
         sendBlobURL(dataUri);
+        setStoryCreationData((ps) => ({
+          ...ps,
+          step2: {
+            ...ps.step2,
+            imageVoting: {
+              ...ps.step2.imageVoting,
+              isImageAttached: true,
+            },
+          },
+        }));
       });
     }
-  }, [file, sendBlobURL]);
+  }, [file, sendBlobURL, setStoryCreationData]);
 
   return (
     <Dropzone

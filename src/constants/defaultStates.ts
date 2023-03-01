@@ -1,4 +1,11 @@
-import { StyleEnums, StoryTypeEnum } from "@/enums";
+import { StyleEnums, StoryTypeEnum, ResponseTypeEnum } from "@/enums";
+
+export const responseBtnListDefaultState = [
+  {
+    id: "",
+    text: "I like this one",
+  },
+];
 
 export const storyDefaultState = {
   currentStep: 1,
@@ -10,6 +17,14 @@ export const storyDefaultState = {
   step2: {
     isMultiple: false,
     type: StoryTypeEnum.IMAGE_VOTING,
+    imageVoting: {
+      isImageAttached: false,
+      selectedImgSrc: "",
+      response: {
+        responseType: ResponseTypeEnum.BUTTON_RESPONSE,
+        responseBtnList: [...responseBtnListDefaultState],
+      },
+    },
   },
 };
 
@@ -17,10 +32,3 @@ export const storyEditorConvertedContent = {
   title: storyDefaultState.step1.title,
   titleColor: storyDefaultState.step1.titleColor,
 };
-
-export const responseBtnListDefaultState = [
-  {
-    id: "",
-    text: "I like this one",
-  },
-];

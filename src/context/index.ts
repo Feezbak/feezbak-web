@@ -1,5 +1,6 @@
 import { createContext } from "react";
-import { StoryTypeEnum } from "@/enums";
+import { responseBtnListDefaultState } from "@/constants";
+import { StoryTypeEnum, ResponseTypeEnum } from "@/enums";
 
 export type Step1Type = {
   title: string;
@@ -10,6 +11,14 @@ export type Step1Type = {
 export type Step2Type = {
   isMultiple: boolean;
   type: StoryTypeEnum;
+  imageVoting: {
+    isImageAttached: boolean;
+    selectedImgSrc: string;
+    response: {
+      responseType: ResponseTypeEnum;
+      responseBtnList: typeof responseBtnListDefaultState;
+    };
+  };
 };
 
 export type StoryCreationDataType = {

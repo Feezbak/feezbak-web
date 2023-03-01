@@ -8,9 +8,10 @@ interface Props {
   src: string;
   id: string;
   handleDelete: (id: string) => void;
+  handleSelect: (src: string) => void;
 }
 
-const Image = ({ src, id, handleDelete }: Props) => {
+const Image = ({ src, id, handleDelete, handleSelect }: Props) => {
   const [isPresent, safeToRemove] = usePresence();
   const [isHovered, setHoverState] = useState(false);
 
@@ -25,6 +26,7 @@ const Image = ({ src, id, handleDelete }: Props) => {
       $srcURL={src}
       onMouseEnter={() => setHoverState(true)}
       onMouseLeave={() => setHoverState(false)}
+      onClick={() => handleSelect(id)}
       {...animations}
     >
       <AnimatePresence initial={false}>
