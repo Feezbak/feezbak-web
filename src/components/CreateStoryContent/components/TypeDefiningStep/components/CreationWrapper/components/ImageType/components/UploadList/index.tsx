@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Image from "./components/Image";
 import { AnimatePresence } from "framer-motion";
+import { StoryCreationContext } from "@/context";
 import { UploadListWrapper } from "./styles";
 
 const fakeImagesData = [
@@ -35,12 +36,41 @@ interface Props {
 }
 
 const UploadList = ({ newFileSrc }: Props) => {
+  const { storyCreationData, setStoryCreationData } =
+    useContext(StoryCreationContext);
   const [images, setImages] = useState(fakeImagesData);
+
+  useEffect(() => {
+    //todo need to fetch images and set in a state
+  }, []);
+
+  const setImgSrcToStore = (imgSrc = "") =>
+    setStoryCreationData((ps) => ({
+      ...ps,
+      step2: {
+        ...ps.step2,
+        imageVoting: {
+          ...ps.step2.imageVoting,
+          selectedImgSrc: imgSrc,
+        },
+      },
+    }));
+
   const handleDelete = (id: string) => {
     const oldImagesArr = Array.from(images);
     const deleteItemIndex = oldImagesArr.findIndex((item) => item.id === id);
+    const deleteItemSrc = oldImagesArr[deleteItemIndex].src;
     oldImagesArr.splice(deleteItemIndex, 1);
     setImages(oldImagesArr);
+    if (
+      deleteItemSrc === storyCreationData?.step2?.imageVoting?.selectedImgSrc
+    ) {
+      setImgSrcToStore();
+    }
+  };
+
+  const handleSelect = (src: string) => {
+    setImgSrcToStore(src);
   };
 
   useEffect(() => {
@@ -59,7 +89,13 @@ const UploadList = ({ newFileSrc }: Props) => {
     <UploadListWrapper>
       <AnimatePresence initial={false}>
         {images.map(({ id, src }) => (
-          <Image key={id} id={id} src={src} handleDelete={handleDelete} />
+          <Image
+            key={id}
+            id={id}
+            src={src}
+            handleDelete={handleDelete}
+            handleSelect={handleSelect}
+          />
         ))}
       </AnimatePresence>
     </UploadListWrapper>

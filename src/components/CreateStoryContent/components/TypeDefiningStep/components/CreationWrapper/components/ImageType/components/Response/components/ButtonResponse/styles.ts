@@ -28,7 +28,7 @@ export const DeleteBtnWrapper = styled(motion.div)`
 `;
 
 export const ResponseListAndBtnContainer = styled(motion.div)`
-  width: 50%;
+  width: 45%;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
