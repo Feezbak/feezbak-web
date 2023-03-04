@@ -23,10 +23,6 @@ export const AddNewRespBtn = styled(Button)`
   background: ${StyleEnums.black};
 `;
 
-export const DeleteBtnWrapper = styled(motion.div)`
-  width: 100%;
-`;
-
 export const ResponseListAndBtnContainer = styled(motion.div)`
   width: 45%;
   display: flex;

@@ -13,6 +13,7 @@ import { AnimatePresence } from "framer-motion";
 import { useDebounce } from "@/hooks";
 import DOMPurify from "dompurify";
 import { StyleEnums } from "@/enums";
+import { opacityAnimation } from "@assets/framerAnimations";
 import { notification } from "antd";
 import { PreviewFlowWrapper } from "@components/CreateStoryContent/styles";
 import {
@@ -24,7 +25,7 @@ import {
   CircleColorPicker,
 } from "./styles";
 
-const PreviewWrapper = () => {
+const Preview = () => {
   const [isColorPickerOpen, setColorPickerState] = useState(false);
   const { storyCreationData, setStoryCreationData } =
     useContext(StoryCreationContext);
@@ -90,13 +91,25 @@ const PreviewWrapper = () => {
     return "transparent";
   }, [storyCreationData.step1.titleColor, color]);
 
+  const coverImgSrc = useMemo(
+    () => storyCreationData.step2.imageVoting.selectedImgSrc,
+    [storyCreationData]
+  );
+  console.log(coverImgSrc, 5555);
+
   return (
-    <PreviewFlowWrapper xs={24} sm={24} md={7} lg={7} xl={7} xxl={7}>
+    <PreviewFlowWrapper xs={24} sm={24} md={9} lg={9} xl={8} xxl={7}>
       <PreviewFlow $background={color} $hasOutline={hasOutline}>
-        <PoweredByWrapper>
-          <p>POWERED BY</p>
-          <Icon component={FeezbakWhiteIcon} />
-        </PoweredByWrapper>
+        <AnimatePresence>
+          <PoweredByWrapper
+            $hasCover={!!coverImgSrc.length}
+            $imgSrc={coverImgSrc}
+            {...opacityAnimation}
+          >
+            <p>POWERED BY</p>
+            <Icon component={FeezbakWhiteIcon} />
+          </PoweredByWrapper>
+        </AnimatePresence>
         <ColorPickerBtn
           icon={<ColorPickerIcon />}
           onClick={() => setColorPickerState((ps) => !ps)}
@@ -127,4 +140,4 @@ const PreviewWrapper = () => {
   );
 };
 
-export default PreviewWrapper;
+export default Preview;

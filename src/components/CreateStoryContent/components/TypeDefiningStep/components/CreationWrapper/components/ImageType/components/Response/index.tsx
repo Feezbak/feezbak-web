@@ -38,9 +38,8 @@ const Response = () => {
       </ResponseTitleAndActions>
       <ResponseTypesWrapper>
         <AnimatePresence initial={false}>
-          {responseType === ResponseTypeEnum.BUTTON_RESPONSE && (
-            <ButtonResponse />
-          )}
+          {(responseType === ResponseTypeEnum.BUTTON_RESPONSE ||
+            responseType === ResponseTypeEnum.COMBINED) && <ButtonResponse />}
         </AnimatePresence>
       </ResponseTypesWrapper>
     </ResponseWrapper>

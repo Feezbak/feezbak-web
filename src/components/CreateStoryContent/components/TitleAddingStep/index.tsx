@@ -1,11 +1,12 @@
 import React from "react";
 import CreationWrapper from "./components/CreationWrapper";
-import PreviewWrapper from "./components/PreviewWrapper";
+import Preview from "@shared/Preview";
+
 const TitleAddingStep = () => {
   return (
     <>
       <CreationWrapper />
-      <PreviewWrapper />
+      <Preview />
     </>
   );
 };

@@ -8,14 +8,21 @@ interface Props {
   textContent: string;
   index: number;
   deleteItem: (index: number) => void;
+  sendTextUpdate: (index: number, updatedText: string) => void;
 }
 
-const RespButton = ({ textContent, deleteItem, index }: Props) => {
+const RespButton = ({
+  textContent,
+  sendTextUpdate,
+  deleteItem,
+  index,
+}: Props) => {
   const [isPresent, safeToRemove] = usePresence();
   const [btnText, setBtnText] = useState(textContent);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setBtnText(e.target.value);
+    setBtnText(e.target.value.trim());
+    sendTextUpdate(index, e.target.value.trim());
   };
 
   const animations = listItemAnimation(isPresent, () => safeToRemove?.());
