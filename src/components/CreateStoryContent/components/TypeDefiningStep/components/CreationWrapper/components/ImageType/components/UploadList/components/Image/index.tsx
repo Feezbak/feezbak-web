@@ -26,7 +26,7 @@ const Image = ({ src, id, handleDelete, handleSelect }: Props) => {
       $srcURL={src}
       onMouseEnter={() => setHoverState(true)}
       onMouseLeave={() => setHoverState(false)}
-      onClick={() => handleSelect(id)}
+      onClick={() => handleSelect(src)}
       {...animations}
     >
       <AnimatePresence initial={false}>

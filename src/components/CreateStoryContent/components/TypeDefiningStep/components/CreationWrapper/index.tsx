@@ -48,7 +48,7 @@ const CreationWrapper = () => {
   };
 
   return (
-    <CreationFlowWrapper xs={24} sm={24} md={12} lg={12} xl={12} xxl={12}>
+    <CreationFlowWrapper xs={24} sm={24} md={13} lg={14} xl={13} xxl={12}>
       <CreationFlowHeader
         actions={{ quantitySelection: true, typeSelection: true }}
         typeSelectionDefaultValue={storyCreationData.step2.type}

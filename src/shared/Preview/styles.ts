@@ -21,19 +21,26 @@ export const PreviewFlow = styled.div<{
   box-shadow: ${ifProp("$hasOutline", `0 0 5px ${StyleEnums.gray2}`, "none")};
 `;
 
-export const PoweredByWrapper = styled.div`
+export const PoweredByWrapper = styled.div<{
+  readonly $hasCover: boolean;
+  readonly $imgSrc: string;
+}>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   position: absolute;
-  top: 2.5rem;
-  left: 0;
-  right: 0;
+  top: 1.25rem;
+  left: 1.25rem;
+  right: 1.25rem;
   margin: 0 auto;
+  height: 95%;
+  border-radius: 2rem;
+  background: url(${ifProp("$hasCover", prop("$imgSrc"), "")}) center;
+  background-size: cover;
 
   p {
-    margin-bottom: 0.15rem;
+    margin: 1.3rem 0 0.15rem 0;
     color: ${StyleEnums.white};
     font-weight: 600;
     font-size: 0.563rem;
@@ -43,7 +50,7 @@ export const PoweredByWrapper = styled.div`
   }
 `;
 
-export const TitlePreview = styled.div<{
+export const TitlePreview = styled(motion.div)<{
   readonly $titleShadowColor: string;
 }>`
   margin: 0 3rem;
@@ -51,6 +58,7 @@ export const TitlePreview = styled.div<{
   line-height: 2.5rem;
   letter-spacing: -0.02em;
   word-break: break-all;
+  z-index: 2;
 
   h3 {
     color: ${StyleEnums.black};
