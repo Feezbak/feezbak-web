@@ -1,28 +1,37 @@
 import React, {
+  useCallback,
   useContext,
   useEffect,
   useMemo,
   useState,
-  useCallback,
 } from "react";
 import Icon from "@ant-design/icons";
-import { FeezbakWhiteIcon, ColorPickerIcon, AnanasOnBikeIcon } from "@/icons";
+import {
+  AnanasOnBikeIcon,
+  ColorPickerIcon,
+  FeezbakWhiteIcon,
+  MakeSquareIcon,
+} from "@/icons";
 import { StoryCreationContext } from "@/context";
 import { colorPickerMainColors } from "@/constants";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import ResponsePreviewBtn from "../ResponsePreviewBtn";
 import { useDebounce } from "@/hooks";
 import DOMPurify from "dompurify";
-import { StyleEnums } from "@/enums";
+import { ResponseTypeEnum, StoryTypeEnum, StyleEnums } from "@/enums";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { notification } from "antd";
 import { PreviewFlowWrapper } from "@components/CreateStoryContent/styles";
 import {
-  PreviewFlow,
-  PoweredByWrapper,
-  TitlePreview,
+  CircleColorPicker,
   ColorPickerBtn,
   ColorPickerWrapper,
-  CircleColorPicker,
+  PoweredByWrapper,
+  PreviewFlow,
+  ResponseTitleWrapper,
+  SquareBtn,
+  Responses,
+  TitlePreview,
 } from "./styles";
 
 const Preview = () => {
@@ -30,6 +39,9 @@ const Preview = () => {
   const { storyCreationData, setStoryCreationData } =
     useContext(StoryCreationContext);
   const [color, setColor] = useState(storyCreationData.step1.background);
+  const [isSquare, setSquareState] = useState(
+    storyCreationData.step2.imageVoting.isSquare
+  );
   const debouncedData = useDebounce(color, 1000);
   const [api, contextHolder] = notification.useNotification();
 
@@ -95,15 +107,54 @@ const Preview = () => {
     () => storyCreationData.step2.imageVoting.selectedImgSrc,
     [storyCreationData]
   );
-  console.log(coverImgSrc, 5555);
+
+  const responseButtons = useMemo(
+    () => storyCreationData.step2.imageVoting.response.responseBtnList,
+    [storyCreationData]
+  );
+
+  const hasButtonsResp = useMemo(
+    () =>
+      storyCreationData.step2.imageVoting.response.responseType ===
+        ResponseTypeEnum.COMBINED ||
+      storyCreationData.step2.imageVoting.response.responseType ===
+        ResponseTypeEnum.BUTTON_RESPONSE,
+    [storyCreationData]
+  );
+
+  const isNotFirstStep = useMemo(
+    () => storyCreationData.currentStep !== 1,
+    [storyCreationData]
+  );
+
+  const isTextType = useMemo(
+    () => storyCreationData.step2.type === StoryTypeEnum.TEXT_VOTING,
+    [storyCreationData]
+  );
 
   return (
     <PreviewFlowWrapper xs={24} sm={24} md={9} lg={9} xl={8} xxl={7}>
-      <PreviewFlow $background={color} $hasOutline={hasOutline}>
+      <PreviewFlow
+        $background={color}
+        $hasOutline={hasOutline}
+        $isSquare={isSquare}
+      >
+        <AnimatePresence>
+          {coverImgSrc && (
+            <motion.div {...opacityAnimation}>
+              <SquareBtn
+                icon={<MakeSquareIcon />}
+                $isActive={isSquare}
+                onClick={() => setSquareState((ps) => !ps)}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
         <AnimatePresence>
           <PoweredByWrapper
             $hasCover={!!coverImgSrc.length}
             $imgSrc={coverImgSrc}
+            $isSquare={isSquare}
             {...opacityAnimation}
           >
             <p>POWERED BY</p>
@@ -114,10 +165,22 @@ const Preview = () => {
           icon={<ColorPickerIcon />}
           onClick={() => setColorPickerState((ps) => !ps)}
         />
-        <TitlePreview
-          $titleShadowColor={titleShadowColor}
-          dangerouslySetInnerHTML={createMarkup}
-        />
+        <ResponseTitleWrapper $isFullHeight={!isNotFirstStep || isTextType}>
+          <TitlePreview
+            $titleShadowColor={titleShadowColor}
+            dangerouslySetInnerHTML={createMarkup}
+          />
+          {!isTextType && isNotFirstStep && (
+            <Responses>
+              <AnimatePresence initial={false}>
+                {hasButtonsResp &&
+                  responseButtons.map((respBtn) => (
+                    <ResponsePreviewBtn key={respBtn.id} text={respBtn.text} />
+                  ))}
+              </AnimatePresence>
+            </Responses>
+          )}
+        </ResponseTitleWrapper>
         <AnimatePresence>
           {isColorPickerOpen && (
             <ColorPickerWrapper

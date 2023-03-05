@@ -29,9 +29,8 @@ const CreationWrapper = () => {
     setStoryCreationData((ps) => ({
       ...ps,
       step2: {
+        ...ps.step2,
         isMultiple: value,
-        type: ps.step2.type,
-        imageVoting: ps.step2.imageVoting,
       },
     }));
   };
@@ -40,9 +39,13 @@ const CreationWrapper = () => {
     setStoryCreationData((ps) => ({
       ...ps,
       step2: {
-        isMultiple: ps.step2.isMultiple,
+        ...ps.step2,
         type: value,
-        imageVoting: ps.step2.imageVoting,
+        imageVoting: {
+          ...ps.step2.imageVoting,
+          isImageAttached: false,
+          selectedImgSrc: "",
+        },
       },
     }));
   };

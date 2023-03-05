@@ -6,18 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="858e8835-88e0-4eee-8a4b-803392729593" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TitleAddingStep/components/CreationWrapper/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TitleAddingStep/components/CreationWrapper/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TitleAddingStep/components/PreviewWrapper/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TitleAddingStep/components/PreviewWrapper/styles.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TitleAddingStep/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TitleAddingStep/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/Response/components/ButtonResponse/components/RespButton/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/Response/components/ButtonResponse/components/RespButton/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/Response/components/ButtonResponse/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/Response/components/ButtonResponse/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/Response/components/ButtonResponse/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/Response/components/ButtonResponse/styles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/Response/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/Response/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/UploadList/components/Image/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/UploadList/components/Image/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/PreviewWrapper/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/defaultStates.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/defaultStates.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/icons/colorPickerIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/colorPickerIcon.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/icons/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/Preview/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Preview/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/Preview/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Preview/styles.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +74,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/shared" />
       <recent name="$PROJECT_DIR$/src/pages" />
     </key>
   </component>
@@ -138,7 +137,8 @@
       <workItem from="1677585372760" duration="147000" />
       <workItem from="1677585535584" duration="714000" />
       <workItem from="1677682248293" duration="4427000" />
-      <workItem from="1677928873009" duration="9281000" />
+      <workItem from="1677928873009" duration="9505000" />
+      <workItem from="1678017990061" duration="11520000" />
     </task>
     <servers />
   </component>

@@ -21,8 +21,8 @@ const RespButton = ({
   const [btnText, setBtnText] = useState(textContent);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setBtnText(e.target.value.trim());
-    sendTextUpdate(index, e.target.value.trim());
+    setBtnText(e.target.value);
+    sendTextUpdate(index, e.target.value);
   };
 
   const animations = listItemAnimation(isPresent, () => safeToRemove?.());
