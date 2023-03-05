@@ -1,13 +1,23 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Button } from "antd";
 import { prop, ifProp } from "@/helpers";
 import { StyleEnums } from "@/enums";
 import Circle from "@uiw/react-color-circle";
 import { motion } from "framer-motion";
 
+export const iconBtnStyles = css`
+  background: none;
+  border: none;
+  padding: 0;
+  width: 2.75rem !important;
+  height: 2.75rem;
+  z-index: 3;
+`;
+
 export const PreviewFlow = styled.div<{
   readonly $background: string;
   readonly $hasOutline: boolean;
+  readonly $isSquare: boolean;
 }>`
   background: ${prop("$background")};
   width: 100%;
@@ -15,7 +25,8 @@ export const PreviewFlow = styled.div<{
   border-radius: 2.75rem;
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  flex-direction: column;
   align-items: center;
   transition: 0.3s;
   box-shadow: ${ifProp("$hasOutline", `0 0 5px ${StyleEnums.gray2}`, "none")};
@@ -23,6 +34,7 @@ export const PreviewFlow = styled.div<{
 
 export const PoweredByWrapper = styled.div<{
   readonly $hasCover: boolean;
+  readonly $isSquare: boolean;
   readonly $imgSrc: string;
 }>`
   display: flex;
@@ -34,9 +46,11 @@ export const PoweredByWrapper = styled.div<{
   left: 1.25rem;
   right: 1.25rem;
   margin: 0 auto;
-  height: 95%;
+  transition: 0.3s;
+  height: ${ifProp("$isSquare", "50%", "95%")};
   border-radius: 2rem;
-  background: url(${ifProp("$hasCover", prop("$imgSrc"), "")}) center;
+  background: url(${ifProp("$hasCover", prop("$imgSrc"), "")})
+    ${ifProp("$isSquare", "top", "center")} no-repeat;
   background-size: cover;
 
   p {
@@ -74,23 +88,22 @@ export const TitlePreview = styled(motion.div)<{
 `;
 
 export const ColorPickerBtn = styled(Button)`
-  background: none;
-  border: none;
-  padding: 0;
-  width: 2.75rem !important;
-  height: 2.75rem;
+  ${iconBtnStyles};
   position: absolute;
   top: 2.5rem;
   right: 2.5rem;
 `;
 
 export const CircleColorPicker = styled(Circle)`
-  max-width: 60%;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 1rem;
+  max-width: 52%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  div {
+  & > div {
+    margin-top: 12px;
     margin-left: 0.75rem !important;
     display: flex;
     justify-content: center;
@@ -108,4 +121,30 @@ export const ColorPickerWrapper = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const SquareBtn = styled(Button)<{ readonly $isActive: boolean }>`
+  ${iconBtnStyles};
+  background: ${ifProp("$isActive", StyleEnums.error, "unset")};
+  position: absolute;
+  top: 2.5rem;
+  left: 2.5rem;
+`;
+
+export const ResponseTitleWrapper = styled.div<{
+  readonly $isFullHeight: boolean;
+}>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: ${ifProp("$isFullHeight", "100%", "35%")};
+`;
+
+export const Responses = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 1.5rem 0 1.25rem 0;
 `;

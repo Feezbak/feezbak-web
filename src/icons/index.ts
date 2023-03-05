@@ -9,3 +9,4 @@ export { ColorPickerIcon } from "./colorPickerIcon";
 export { AnanasOnBikeIcon } from "./ananasOnBikeIcon";
 export { TrashWhiteIcon } from "./trashWhiteIcon";
 export { UploadFileIcon } from "./uploadFileIcon";
+export { MakeSquareIcon } from "./makeSquareIcon";

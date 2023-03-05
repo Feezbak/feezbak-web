@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useMemo } from "react";
 import { Select } from "antd";
 import { ResponseTypeEnum } from "@/enums";
 import { AnimatePresence } from "framer-motion";
@@ -8,14 +8,31 @@ import {
   ResponseTitleAndActions,
   ResponseTypesWrapper,
 } from "./styles";
+import { StoryCreationContext } from "@/context";
 
 const Response = () => {
-  const [responseType, setResponseType] = useState(
-    ResponseTypeEnum.BUTTON_RESPONSE
+  const { storyCreationData, setStoryCreationData } =
+    useContext(StoryCreationContext);
+
+  const responseType = useMemo(
+    () => storyCreationData.step2.imageVoting.response.responseType,
+    [storyCreationData]
   );
 
   const handleChange = (value: string) => {
-    setResponseType(value as ResponseTypeEnum);
+    setStoryCreationData((ps) => ({
+      ...ps,
+      step2: {
+        ...ps.step2,
+        imageVoting: {
+          ...ps.step2.imageVoting,
+          response: {
+            ...ps.step2.imageVoting.response,
+            responseType: value as ResponseTypeEnum,
+          },
+        },
+      },
+    }));
   };
 
   return (

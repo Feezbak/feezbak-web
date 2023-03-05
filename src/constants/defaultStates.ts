@@ -19,6 +19,7 @@ export const storyDefaultState = {
     type: StoryTypeEnum.IMAGE_VOTING,
     imageVoting: {
       isImageAttached: false,
+      isSquare: false,
       selectedImgSrc: "",
       response: {
         responseType: ResponseTypeEnum.BUTTON_RESPONSE,

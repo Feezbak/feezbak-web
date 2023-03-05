@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import RespButton from "./components/RespButton";
 import { AnimatePresence } from "framer-motion";
 import { opacityAnimation } from "@assets/framerAnimations";
-import { responseBtnListDefaultState } from "@/constants";
 import { StoryCreationContext } from "@/context";
 import uuid from "react-uuid";
 import { useDebounce } from "@/hooks";
@@ -13,8 +12,11 @@ import {
 } from "./styles";
 
 const ButtonResponse = () => {
-  const { setStoryCreationData } = useContext(StoryCreationContext);
-  const [respBtnState, setRespBtnState] = useState(responseBtnListDefaultState);
+  const { storyCreationData, setStoryCreationData } =
+    useContext(StoryCreationContext);
+  const [respBtnState, setRespBtnState] = useState(
+    storyCreationData.step2.imageVoting.response.responseBtnList
+  );
   const responses = useDebounce(respBtnState, 1000);
 
   useEffect(() => {

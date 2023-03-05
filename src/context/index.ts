@@ -13,6 +13,7 @@ export type Step2Type = {
   type: StoryTypeEnum;
   imageVoting: {
     isImageAttached: boolean;
+    isSquare: boolean;
     selectedImgSrc: string;
     response: {
       responseType: ResponseTypeEnum;
