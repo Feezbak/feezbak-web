@@ -9,8 +9,3 @@ export const CreationFlowWrapper = styled(Col)`
   align-items: center;
   height: 100%;
 `;
-
-export const PreviewFlowWrapper = styled(Col)`
-  padding: 4rem 0;
-  height: 100%;
-`;

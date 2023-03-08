@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { StoryTypeEnum } from "@/enums";
 import { StoryCreationContext } from "@/context";
 import ImageType from "./components/ImageType";
@@ -50,10 +50,15 @@ const CreationWrapper = () => {
     }));
   };
 
+  const isImageVoting = useMemo(
+    () => storyCreationData.step2.type === StoryTypeEnum.IMAGE_VOTING,
+    [storyCreationData]
+  );
+
   return (
     <CreationFlowWrapper xs={24} sm={24} md={13} lg={14} xl={13} xxl={12}>
       <CreationFlowHeader
-        actions={{ quantitySelection: true, typeSelection: true }}
+        actions={{ quantitySelection: isImageVoting, typeSelection: true }}
         typeSelectionDefaultValue={storyCreationData.step2.type}
         quantitySelectionDefaultValue={storyCreationData.step2.isMultiple}
         handleQuantitySelection={handleQuantitySelection}

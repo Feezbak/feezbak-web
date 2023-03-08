@@ -5,6 +5,16 @@ import { motion } from "framer-motion";
 
 export const AnimationWrapper = styled(motion.div)`
   margin-bottom: 1rem;
+  max-width: 70%;
+  overflow: hidden;
+
+  span {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
 
   &:last-child {
     margin-bottom: 0;
@@ -19,4 +29,5 @@ export const ResponsePreviewButton = styled(Button)`
   font-size: 1.2rem;
   line-height: 1.5rem;
   letter-spacing: -0.02em;
+  width: 100%;
 `;

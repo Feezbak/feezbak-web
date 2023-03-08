@@ -1,12 +1,15 @@
-import React, { useState, lazy, useMemo } from "react";
+import React, { useState, lazy, useMemo, useCallback, useEffect } from "react";
 import { storyDefaultState } from "@/constants";
 import { StoryCreationContext } from "@/context";
 import { StoryStepEnum } from "@/enums";
+import { notification } from "antd";
+import { AnanasOnBikeIcon } from "@/icons";
 
 const TitleAddingStep = lazy(() => import("./components/TitleAddingStep"));
 const TypeDefiningStep = lazy(() => import("./components/TypeDefiningStep"));
 
 const CreateStoryContent = () => {
+  const [api, contextHolder] = notification.useNotification();
   const [storyCreationData, setStoryCreationData] = useState(storyDefaultState);
 
   //todo need to fetch steps and story data from this component
@@ -21,11 +24,32 @@ const CreateStoryContent = () => {
     }
   }, [storyCreationData.currentStep]);
 
+  const openNotification = useCallback(() => {
+    api.open({
+      message: "Noticed Some Changes",
+      description:
+        "You currently made some changes and We’re pretty sure that it looks way nicer now!",
+      duration: 1,
+      placement: "topRight",
+      className: "notification-custom-styles",
+      icon: <AnanasOnBikeIcon />,
+    });
+  }, [api]);
+
+  useEffect(() => {
+    if (storyCreationData?.step1?.title !== storyDefaultState.step1.title) {
+      openNotification();
+    }
+  }, [storyCreationData.step1, storyCreationData.step2]);
+
   return (
     <StoryCreationContext.Provider
       value={{ storyCreationData, setStoryCreationData }}
     >
-      {currentStepContent}
+      <>
+        {currentStepContent}
+        {contextHolder}
+      </>
     </StoryCreationContext.Provider>
   );
 };
