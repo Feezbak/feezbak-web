@@ -1,9 +1,14 @@
 import styled, { css } from "styled-components";
-import { Button } from "antd";
+import { Button, Col } from "antd";
 import { prop, ifProp } from "@/helpers";
 import { StyleEnums } from "@/enums";
 import Circle from "@uiw/react-color-circle";
 import { motion } from "framer-motion";
+
+export const PreviewFlowWrapper = styled(Col)`
+  padding: 4rem 0;
+  height: 100%;
+`;
 
 export const iconBtnStyles = css`
   background: none;
@@ -71,7 +76,6 @@ export const TitlePreview = styled(motion.div)<{
   font-size: 2.5rem;
   line-height: 2.5rem;
   letter-spacing: -0.02em;
-  word-break: break-all;
   z-index: 2;
 
   h3 {
@@ -87,21 +91,30 @@ export const TitlePreview = styled(motion.div)<{
   }
 `;
 
-export const ColorPickerBtn = styled(Button)`
+export const ColorPickerBtn = styled(Button)<{ readonly $isActive: boolean }>`
   ${iconBtnStyles};
+  background: ${ifProp("$isActive", StyleEnums.error, "unset")};
   position: absolute;
   top: 2.5rem;
   right: 2.5rem;
 `;
 
+export const SquareBtn = styled(Button)<{ readonly $isActive: boolean }>`
+  ${iconBtnStyles};
+  background: ${ifProp("$isActive", StyleEnums.error, "unset")};
+  position: absolute;
+  top: 2.5rem;
+  left: 2.5rem;
+`;
+
 export const CircleColorPicker = styled(Circle)`
   background: rgba(255, 255, 255, 0.4);
   border-radius: 1rem;
-  max-width: 52%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   & > div {
     margin-top: 12px;
     margin-left: 0.75rem !important;
@@ -117,18 +130,11 @@ export const CircleColorPicker = styled(Circle)`
 
 export const ColorPickerWrapper = styled(motion.div)`
   position: absolute;
-  bottom: 2rem;
+  top: 6rem;
+  right: 2.2rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-`;
-
-export const SquareBtn = styled(Button)<{ readonly $isActive: boolean }>`
-  ${iconBtnStyles};
-  background: ${ifProp("$isActive", StyleEnums.error, "unset")};
-  position: absolute;
-  top: 2.5rem;
-  left: 2.5rem;
 `;
 
 export const ResponseTitleWrapper = styled.div<{
@@ -142,6 +148,7 @@ export const ResponseTitleWrapper = styled.div<{
 `;
 
 export const Responses = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

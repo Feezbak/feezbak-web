@@ -1,17 +1,5 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import Icon from "@ant-design/icons";
-import {
-  AnanasOnBikeIcon,
-  ColorPickerIcon,
-  FeezbakWhiteIcon,
-  MakeSquareIcon,
-} from "@/icons";
 import { StoryCreationContext } from "@/context";
 import { colorPickerMainColors } from "@/constants";
 import { AnimatePresence, motion } from "framer-motion";
@@ -20,9 +8,9 @@ import { useDebounce } from "@/hooks";
 import DOMPurify from "dompurify";
 import { ResponseTypeEnum, StoryTypeEnum, StyleEnums } from "@/enums";
 import { opacityAnimation } from "@assets/framerAnimations";
-import { notification } from "antd";
-import { PreviewFlowWrapper } from "@components/CreateStoryContent/styles";
+import { ColorPickerIcon, FeezbakWhiteIcon, MakeSquareIcon } from "@/icons";
 import {
+  PreviewFlowWrapper,
   CircleColorPicker,
   ColorPickerBtn,
   ColorPickerWrapper,
@@ -35,6 +23,7 @@ import {
 } from "./styles";
 
 const Preview = () => {
+  const [isHovered, setHoverState] = useState(false);
   const [isColorPickerOpen, setColorPickerState] = useState(false);
   const { storyCreationData, setStoryCreationData } =
     useContext(StoryCreationContext);
@@ -42,20 +31,8 @@ const Preview = () => {
   const [isSquare, setSquareState] = useState(
     storyCreationData.step2.imageVoting.isSquare
   );
-  const debouncedData = useDebounce(color, 1000);
-  const [api, contextHolder] = notification.useNotification();
-
-  const openNotification = useCallback(() => {
-    api.open({
-      message: "Noticed Some Changes",
-      description:
-        "You currently made some changes and We’re pretty sure that it looks way nicer now!",
-      duration: 1,
-      placement: "topRight",
-      className: "notification-custom-styles",
-      icon: <AnanasOnBikeIcon />,
-    });
-  }, [api]);
+  const debouncedColorData = useDebounce(color, 1000);
+  const debouncedIsSquareData = useDebounce(isSquare, 1000);
 
   const createMarkup = useMemo(() => {
     return {
@@ -68,24 +45,30 @@ const Preview = () => {
   }, [storyCreationData]);
 
   useEffect(() => {
-    if (debouncedData !== storyCreationData.step1.background) {
+    if (debouncedColorData !== storyCreationData.step1.background) {
       setStoryCreationData((ps) => ({
         ...ps,
         step1: {
           title: ps.step1.title,
           titleColor: ps.step1.titleColor,
-          background: debouncedData,
+          background: debouncedColorData,
         },
       }));
-
-      openNotification();
     }
-  }, [
-    debouncedData,
-    setStoryCreationData,
-    storyCreationData,
-    openNotification,
-  ]);
+  }, [debouncedColorData, setStoryCreationData, storyCreationData]);
+
+  useEffect(() => {
+    setStoryCreationData((ps) => ({
+      ...ps,
+      step2: {
+        ...ps.step2,
+        imageVoting: {
+          ...ps.step2.imageVoting,
+          isSquare: debouncedIsSquareData,
+        },
+      },
+    }));
+  }, [debouncedIsSquareData, setStoryCreationData]);
 
   const hasOutline = useMemo(
     () => color.toUpperCase() === StyleEnums.white,
@@ -138,10 +121,12 @@ const Preview = () => {
         $background={color}
         $hasOutline={hasOutline}
         $isSquare={isSquare}
+        onMouseLeave={() => setHoverState(false)}
+        onMouseEnter={() => setHoverState(true)}
       >
-        <AnimatePresence>
-          {coverImgSrc && (
-            <motion.div {...opacityAnimation}>
+        <AnimatePresence initial={false}>
+          {((isHovered && coverImgSrc) || isSquare) && (
+            <motion.div {...opacityAnimation} key="1">
               <SquareBtn
                 icon={<MakeSquareIcon />}
                 $isActive={isSquare}
@@ -149,22 +134,26 @@ const Preview = () => {
               />
             </motion.div>
           )}
-        </AnimatePresence>
-        <AnimatePresence>
           <PoweredByWrapper
             $hasCover={!!coverImgSrc.length}
             $imgSrc={coverImgSrc}
             $isSquare={isSquare}
+            key="2"
             {...opacityAnimation}
           >
             <p>POWERED BY</p>
             <Icon component={FeezbakWhiteIcon} />
           </PoweredByWrapper>
+          {(isHovered || isColorPickerOpen) && (
+            <motion.div {...opacityAnimation} key="3">
+              <ColorPickerBtn
+                icon={<ColorPickerIcon />}
+                $isActive={isColorPickerOpen}
+                onClick={() => setColorPickerState((ps) => !ps)}
+              />
+            </motion.div>
+          )}
         </AnimatePresence>
-        <ColorPickerBtn
-          icon={<ColorPickerIcon />}
-          onClick={() => setColorPickerState((ps) => !ps)}
-        />
         <ResponseTitleWrapper $isFullHeight={!isNotFirstStep || isTextType}>
           <TitlePreview
             $titleShadowColor={titleShadowColor}
@@ -198,7 +187,6 @@ const Preview = () => {
           )}
         </AnimatePresence>
       </PreviewFlow>
-      {contextHolder}
     </PreviewFlowWrapper>
   );
 };

@@ -1,16 +1,8 @@
-import React, {
-  useRef,
-  useEffect,
-  useState,
-  useContext,
-  useCallback,
-} from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
 import { Editor as TitleEditor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import { useDebounce } from "@/hooks";
 import rgbHex from "rgb-hex";
-import { notification } from "antd";
-import { AnanasOnBikeIcon } from "@/icons";
 import { toolbarOptions, storyEditorConvertedContent } from "@/constants";
 import { StoryCreationContext, StoryCreationDataType } from "@/context";
 import { TitleEditorWrapper, EditorTitle, EditorFocusArea } from "./styles";
@@ -22,7 +14,6 @@ import {
 } from "draft-js";
 
 const Editor = () => {
-  const [api, contextHolder] = notification.useNotification();
   const editor = useRef(null);
   const { storyCreationData, setStoryCreationData } =
     useContext(StoryCreationContext);
@@ -39,18 +30,6 @@ const Editor = () => {
       )
     )
   );
-
-  const openNotification = useCallback(() => {
-    api.open({
-      message: "Noticed Some Changes",
-      description:
-        "You currently made some changes and We’re pretty sure that it looks way nicer now!",
-      duration: 1,
-      placement: "topRight",
-      className: "notification-custom-styles",
-      icon: <AnanasOnBikeIcon />,
-    });
-  }, [api]);
 
   useEffect(() => {
     const editorCurrent = editor?.current as any;
@@ -98,19 +77,11 @@ const Editor = () => {
           },
         })
       );
-
-      openNotification();
     }
-  }, [
-    debouncedData,
-    storyCreationData,
-    setStoryCreationData,
-    openNotification,
-  ]);
+  }, [debouncedData, storyCreationData, setStoryCreationData]);
 
   return (
     <TitleEditorWrapper>
-      {contextHolder}
       <EditorTitle>Type in the title of your Story</EditorTitle>
       <EditorFocusArea>
         <TitleEditor
