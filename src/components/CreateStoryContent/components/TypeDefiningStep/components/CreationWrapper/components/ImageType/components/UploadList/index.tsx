@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import Image from "./components/Image";
 import { AnimatePresence } from "framer-motion";
 import { StoryCreationContext } from "@/context";
 import { UploadListWrapper } from "./styles";
+import { string } from "joi";
 
 const fakeImagesData = [
   {
@@ -57,7 +58,7 @@ const UploadList = ({ newFileSrc }: Props) => {
     }));
 
   const handleDelete = (id: string) => {
-    const oldImagesArr = Array.from(images);
+    const oldImagesArr = [...images];
     const deleteItemIndex = oldImagesArr.findIndex((item) => item.id === id);
     const deleteItemSrc = oldImagesArr[deleteItemIndex].src;
     oldImagesArr.splice(deleteItemIndex, 1);
@@ -85,11 +86,19 @@ const UploadList = ({ newFileSrc }: Props) => {
     }
   }, [newFileSrc]);
 
+  const isSelected = useCallback(
+    (src: string) => {
+      return src === storyCreationData?.step2?.imageVoting?.selectedImgSrc;
+    },
+    [storyCreationData]
+  );
+
   return (
     <UploadListWrapper>
       <AnimatePresence initial={false}>
         {images.map(({ id, src }) => (
           <Image
+            isSelected={isSelected(src)}
             key={id}
             id={id}
             src={src}

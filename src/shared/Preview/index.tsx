@@ -115,6 +115,11 @@ const Preview = () => {
     [storyCreationData]
   );
 
+  const isFullHeight = useMemo(
+    () => (!isNotFirstStep || isTextType || !hasButtonsResp) && !isSquare,
+    [isNotFirstStep, isSquare, isTextType, hasButtonsResp]
+  );
+
   return (
     <PreviewFlowWrapper xs={24} sm={24} md={9} lg={9} xl={8} xxl={7}>
       <PreviewFlow
@@ -154,7 +159,7 @@ const Preview = () => {
             </motion.div>
           )}
         </AnimatePresence>
-        <ResponseTitleWrapper $isFullHeight={!isNotFirstStep || isTextType}>
+        <ResponseTitleWrapper $isFullHeight={isFullHeight}>
           <TitlePreview
             $titleShadowColor={titleShadowColor}
             dangerouslySetInnerHTML={createMarkup}
