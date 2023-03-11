@@ -41,6 +41,7 @@ export const PoweredByWrapper = styled.div<{
   readonly $hasCover: boolean;
   readonly $isSquare: boolean;
   readonly $imgSrc: string;
+  readonly $hasLayer: boolean;
 }>`
   display: flex;
   flex-direction: column;
@@ -54,8 +55,14 @@ export const PoweredByWrapper = styled.div<{
   transition: 0.3s;
   height: ${ifProp("$isSquare", "50%", "95%")};
   border-radius: 2rem;
-  background: url(${ifProp("$hasCover", prop("$imgSrc"), "")})
-    ${ifProp("$isSquare", "top", "center")} no-repeat;
+  background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, ${ifProp("$hasLayer", "0.65", "0")}) 100%
+    ),
+    url(${ifProp("$hasCover", prop("$imgSrc"), "")});
+  background-position: ${ifProp("$isSquare", "top", "center")};
+  background-repeat: no-repeat;
   background-size: cover;
 
   p {
@@ -140,8 +147,10 @@ export const ColorPickerWrapper = styled(motion.div)`
 export const ResponseTitleWrapper = styled.div<{
   readonly $isFullHeight: boolean;
 }>`
-  width: 100%;
+  transition: 0.3s;
+  width: 80%;
   display: flex;
+  border-radius: 2.5rem;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -149,7 +158,7 @@ export const ResponseTitleWrapper = styled.div<{
 `;
 
 export const Responses = styled.div`
-  width: 100%;
+  width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;

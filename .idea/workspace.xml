@@ -7,10 +7,8 @@
     <list default="true" id="858e8835-88e0-4eee-8a4b-803392729593" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/Response/components/ButtonResponse/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/Response/components/ButtonResponse/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/UploadArea/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/UploadArea/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/UploadList/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/components/ImageType/components/UploadList/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateStoryContent/components/TypeDefiningStep/components/CreationWrapper/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/CreationFlowFooter/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/CreationFlowFooter/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/Preview/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Preview/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/Preview/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Preview/styles.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shared/ResponsePreviewBtn/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/ResponsePreviewBtn/styles.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -140,7 +138,7 @@
       <workItem from="1678443924402" duration="6206000" />
       <workItem from="1678455758548" duration="4877000" />
       <workItem from="1678462458321" duration="645000" />
-      <workItem from="1678533283089" duration="4883000" />
+      <workItem from="1678533283089" duration="9167000" />
     </task>
     <servers />
   </component>

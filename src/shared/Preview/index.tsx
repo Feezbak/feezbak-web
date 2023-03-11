@@ -6,7 +6,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import ResponsePreviewBtn from "../ResponsePreviewBtn";
 import { useDebounce } from "@/hooks";
 import DOMPurify from "dompurify";
-import { ResponseTypeEnum, StoryTypeEnum, StyleEnums } from "@/enums";
+import {
+  ResponseTypeEnum,
+  StoryStepEnum,
+  StoryTypeEnum,
+  StyleEnums,
+} from "@/enums";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { ColorPickerIcon, FeezbakWhiteIcon, MakeSquareIcon } from "@/icons";
 import {
@@ -88,7 +93,10 @@ const Preview = () => {
     [step2]
   );
 
-  const isNotFirstStep = useMemo(() => currentStep !== 1, [currentStep]);
+  const isNotFirstStep = useMemo(
+    () => currentStep !== StoryStepEnum.TITLE_STEP,
+    [currentStep]
+  );
 
   const isTextType = useMemo(
     () => step2.type === StoryTypeEnum.TEXT_VOTING,
@@ -98,6 +106,11 @@ const Preview = () => {
   const isFullHeight = useMemo(
     () => (!isNotFirstStep || isTextType || !hasButtonsResp) && !isSquare,
     [isNotFirstStep, isSquare, isTextType, hasButtonsResp]
+  );
+
+  const hasLayer = useMemo(
+    () => step2.imageVoting.isImageAttached && isNotFirstStep && !isSquare,
+    [step2, isNotFirstStep, isSquare]
   );
 
   return (
@@ -123,6 +136,7 @@ const Preview = () => {
             $hasCover={!!coverImgSrc.length}
             $imgSrc={coverImgSrc}
             $isSquare={isSquare}
+            $hasLayer={hasLayer}
             key="2"
             {...opacityAnimation}
           >

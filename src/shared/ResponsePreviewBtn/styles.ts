@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export const AnimationWrapper = styled(motion.div)`
   margin-bottom: 1rem;
-  max-width: 70%;
+  width: 100%;
   overflow: hidden;
 
   span {
