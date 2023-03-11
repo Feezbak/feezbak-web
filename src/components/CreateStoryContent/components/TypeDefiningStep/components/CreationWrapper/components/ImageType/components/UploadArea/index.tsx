@@ -19,7 +19,7 @@ interface Props {
 
 const UploadArea = ({ sendBlobURL }: Props) => {
   const [file, setFile] = useState<File>();
-  const { setStoryCreationData } = useContext(StoryCreationContext);
+  const { setImageAttached } = useContext(StoryCreationContext);
 
   useEffect(() => {
     if (file) {
@@ -27,19 +27,10 @@ const UploadArea = ({ sendBlobURL }: Props) => {
 
       fileToDataUri(file).then((dataUri) => {
         sendBlobURL(dataUri);
-        setStoryCreationData((ps) => ({
-          ...ps,
-          step2: {
-            ...ps.step2,
-            imageVoting: {
-              ...ps.step2.imageVoting,
-              isImageAttached: true,
-            },
-          },
-        }));
+        setImageAttached(true);
       });
     }
-  }, [file, sendBlobURL, setStoryCreationData]);
+  }, [file, sendBlobURL, setImageAttached]);
 
   return (
     <Dropzone

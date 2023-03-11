@@ -25,50 +25,37 @@ import {
 const Preview = () => {
   const [isHovered, setHoverState] = useState(false);
   const [isColorPickerOpen, setColorPickerState] = useState(false);
-  const { storyCreationData, setStoryCreationData } =
-    useContext(StoryCreationContext);
-  const [color, setColor] = useState(storyCreationData.step1.background);
-  const [isSquare, setSquareState] = useState(
-    storyCreationData.step2.imageVoting.isSquare
-  );
+  const {
+    step1,
+    step2,
+    currentStep,
+    setPreviewBackground,
+    setImageSquareState,
+  } = useContext(StoryCreationContext);
+  const [color, setColor] = useState(step1.background);
+  const [isSquare, setSquareState] = useState(step2.imageVoting.isSquare);
   const debouncedColorData = useDebounce(color, 1000);
   const debouncedIsSquareData = useDebounce(isSquare, 1000);
 
   const createMarkup = useMemo(() => {
     return {
       __html:
-        !storyCreationData.step1.title.length ||
-        storyCreationData.step1.title === "<p></p>"
+        !step1.title.length || step1.title === "<p></p>"
           ? "<h3>Do you like my jacket?</h3>"
-          : DOMPurify.sanitize(storyCreationData.step1.title),
+          : DOMPurify.sanitize(step1.title),
     };
-  }, [storyCreationData]);
+  }, [step1]);
 
   useEffect(() => {
-    if (debouncedColorData !== storyCreationData.step1.background) {
-      setStoryCreationData((ps) => ({
-        ...ps,
-        step1: {
-          title: ps.step1.title,
-          titleColor: ps.step1.titleColor,
-          background: debouncedColorData,
-        },
-      }));
+    if (debouncedColorData !== step1.background) {
+      setPreviewBackground(debouncedColorData);
     }
-  }, [debouncedColorData, setStoryCreationData, storyCreationData]);
+  }, [debouncedColorData, setPreviewBackground, step1]);
 
   useEffect(() => {
-    setStoryCreationData((ps) => ({
-      ...ps,
-      step2: {
-        ...ps.step2,
-        imageVoting: {
-          ...ps.step2.imageVoting,
-          isSquare: debouncedIsSquareData,
-        },
-      },
-    }));
-  }, [debouncedIsSquareData, setStoryCreationData]);
+    setImageSquareState(debouncedIsSquareData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedIsSquareData]);
 
   const hasOutline = useMemo(
     () => color.toUpperCase() === StyleEnums.white,
@@ -76,7 +63,7 @@ const Preview = () => {
   );
 
   const titleShadowColor = useMemo(() => {
-    if (storyCreationData.step1.titleColor === color.toUpperCase()) {
+    if (step1.titleColor === color.toUpperCase()) {
       if (color !== (StyleEnums.black as string)) {
         return StyleEnums.black as string;
       } else {
@@ -84,35 +71,28 @@ const Preview = () => {
       }
     }
     return "transparent";
-  }, [storyCreationData.step1.titleColor, color]);
+  }, [step1.titleColor, color]);
 
-  const coverImgSrc = useMemo(
-    () => storyCreationData.step2.imageVoting.selectedImgSrc,
-    [storyCreationData]
-  );
+  const coverImgSrc = useMemo(() => step2.imageVoting.selectedImgSrc, [step2]);
 
   const responseButtons = useMemo(
-    () => storyCreationData.step2.imageVoting.response.responseBtnList,
-    [storyCreationData]
+    () => step2.imageVoting.response.responseBtnList,
+    [step2]
   );
 
   const hasButtonsResp = useMemo(
     () =>
-      storyCreationData.step2.imageVoting.response.responseType ===
-        ResponseTypeEnum.COMBINED ||
-      storyCreationData.step2.imageVoting.response.responseType ===
+      step2.imageVoting.response.responseType === ResponseTypeEnum.COMBINED ||
+      step2.imageVoting.response.responseType ===
         ResponseTypeEnum.BUTTON_RESPONSE,
-    [storyCreationData]
+    [step2]
   );
 
-  const isNotFirstStep = useMemo(
-    () => storyCreationData.currentStep !== 1,
-    [storyCreationData]
-  );
+  const isNotFirstStep = useMemo(() => currentStep !== 1, [currentStep]);
 
   const isTextType = useMemo(
-    () => storyCreationData.step2.type === StoryTypeEnum.TEXT_VOTING,
-    [storyCreationData]
+    () => step2.type === StoryTypeEnum.TEXT_VOTING,
+    [step2]
   );
 
   const isFullHeight = useMemo(

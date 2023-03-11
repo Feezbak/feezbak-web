@@ -3,36 +3,23 @@ import { Select } from "antd";
 import { ResponseTypeEnum } from "@/enums";
 import { AnimatePresence } from "framer-motion";
 import ButtonResponse from "./components/ButtonResponse";
+import { StoryCreationContext } from "@/context";
 import {
   ResponseWrapper,
   ResponseTitleAndActions,
   ResponseTypesWrapper,
 } from "./styles";
-import { StoryCreationContext } from "@/context";
 
 const Response = () => {
-  const { storyCreationData, setStoryCreationData } =
-    useContext(StoryCreationContext);
+  const { step2, setResponseType } = useContext(StoryCreationContext);
 
   const responseType = useMemo(
-    () => storyCreationData.step2.imageVoting.response.responseType,
-    [storyCreationData]
+    () => step2.imageVoting.response.responseType,
+    [step2]
   );
 
   const handleChange = (value: string) => {
-    setStoryCreationData((ps) => ({
-      ...ps,
-      step2: {
-        ...ps.step2,
-        imageVoting: {
-          ...ps.step2.imageVoting,
-          response: {
-            ...ps.step2.imageVoting.response,
-            responseType: value as ResponseTypeEnum,
-          },
-        },
-      },
-    }));
+    setResponseType(value);
   };
 
   return (

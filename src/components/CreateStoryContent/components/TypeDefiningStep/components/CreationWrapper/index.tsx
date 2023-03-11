@@ -8,75 +8,54 @@ import { CreationFlowFooter, CreationFlowHeader } from "@/shared";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
 
 const CreationWrapper = () => {
-  const { storyCreationData, setStoryCreationData } =
-    useContext(StoryCreationContext);
+  const {
+    currentStep,
+    step2,
+    setNextStep,
+    setPrevStep,
+    setVotingType,
+    setSelectionQuantityState,
+  } = useContext(StoryCreationContext);
 
   const handleSubmitStep = () => {
-    setStoryCreationData((ps) => ({
-      ...ps,
-      currentStep: ps.currentStep + 1,
-    }));
+    setNextStep();
   };
 
   const handleGoToPrevStep = () => {
-    setStoryCreationData((ps) => ({
-      ...ps,
-      currentStep: ps.currentStep - 1,
-    }));
+    setPrevStep();
   };
 
   const handleQuantitySelection = (value: boolean) => {
-    setStoryCreationData((ps) => ({
-      ...ps,
-      step2: {
-        ...ps.step2,
-        isMultiple: value,
-      },
-    }));
+    setSelectionQuantityState(value);
   };
 
   const handleTypeSelection = (value: StoryTypeEnum) => {
-    setStoryCreationData((ps) => ({
-      ...ps,
-      step2: {
-        ...ps.step2,
-        type: value,
-        imageVoting: {
-          ...ps.step2.imageVoting,
-          isImageAttached: false,
-          selectedImgSrc: "",
-        },
-      },
-    }));
+    setVotingType(value);
   };
 
   const isImageVoting = useMemo(
-    () => storyCreationData.step2.type === StoryTypeEnum.IMAGE_VOTING,
-    [storyCreationData]
+    () => step2.type === StoryTypeEnum.IMAGE_VOTING,
+    [step2]
   );
 
   return (
     <CreationFlowWrapper xs={24} sm={24} md={13} lg={14} xl={13} xxl={12}>
       <CreationFlowHeader
         actions={{ quantitySelection: isImageVoting, typeSelection: true }}
-        typeSelectionDefaultValue={storyCreationData.step2.type}
-        quantitySelectionDefaultValue={storyCreationData.step2.isMultiple}
+        typeSelectionDefaultValue={step2.type}
+        quantitySelectionDefaultValue={step2.isMultiple}
         handleQuantitySelection={handleQuantitySelection}
         handleTypeSelection={handleTypeSelection}
       />
       <AnimatePresence initial={false}>
-        {storyCreationData.step2.type === StoryTypeEnum.IMAGE_VOTING && (
-          <ImageType />
-        )}
-        {storyCreationData.step2.type === StoryTypeEnum.TEXT_VOTING && (
-          <TextType />
-        )}
+        {step2.type === StoryTypeEnum.IMAGE_VOTING && <ImageType />}
+        {step2.type === StoryTypeEnum.TEXT_VOTING && <TextType />}
       </AnimatePresence>
       <CreationFlowFooter
         prevBtnActionHandler={handleGoToPrevStep}
         nextBtnActionHandler={handleSubmitStep}
         isNextActive={false}
-        currentStep={storyCreationData.currentStep}
+        currentStep={currentStep}
         toolTipTitle="Please select type for your feedback"
       />
     </CreationFlowWrapper>

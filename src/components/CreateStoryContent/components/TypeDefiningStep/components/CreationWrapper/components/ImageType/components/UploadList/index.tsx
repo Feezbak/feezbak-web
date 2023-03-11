@@ -3,7 +3,6 @@ import Image from "./components/Image";
 import { AnimatePresence } from "framer-motion";
 import { StoryCreationContext } from "@/context";
 import { UploadListWrapper } from "./styles";
-import { string } from "joi";
 
 const fakeImagesData = [
   {
@@ -37,25 +36,14 @@ interface Props {
 }
 
 const UploadList = ({ newFileSrc }: Props) => {
-  const { storyCreationData, setStoryCreationData } =
-    useContext(StoryCreationContext);
+  const { step2, setSelectedImgSrc } = useContext(StoryCreationContext);
   const [images, setImages] = useState(fakeImagesData);
 
   useEffect(() => {
     //todo need to fetch images and set in a state
   }, []);
 
-  const setImgSrcToStore = (imgSrc = "") =>
-    setStoryCreationData((ps) => ({
-      ...ps,
-      step2: {
-        ...ps.step2,
-        imageVoting: {
-          ...ps.step2.imageVoting,
-          selectedImgSrc: imgSrc,
-        },
-      },
-    }));
+  const setImgSrcToStore = (imgSrc = "") => setSelectedImgSrc(imgSrc);
 
   const handleDelete = (id: string) => {
     const oldImagesArr = [...images];
@@ -63,9 +51,7 @@ const UploadList = ({ newFileSrc }: Props) => {
     const deleteItemSrc = oldImagesArr[deleteItemIndex].src;
     oldImagesArr.splice(deleteItemIndex, 1);
     setImages(oldImagesArr);
-    if (
-      deleteItemSrc === storyCreationData?.step2?.imageVoting?.selectedImgSrc
-    ) {
+    if (deleteItemSrc === step2?.imageVoting?.selectedImgSrc) {
       setImgSrcToStore();
     }
   };
@@ -88,9 +74,9 @@ const UploadList = ({ newFileSrc }: Props) => {
 
   const isSelected = useCallback(
     (src: string) => {
-      return src === storyCreationData?.step2?.imageVoting?.selectedImgSrc;
+      return src === step2?.imageVoting?.selectedImgSrc;
     },
-    [storyCreationData]
+    [step2]
   );
 
   return (
