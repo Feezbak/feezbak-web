@@ -38,6 +38,15 @@ const CreationWrapper = () => {
     [step2]
   );
 
+  const isNextActive = useMemo(() => {
+    if (step2.type === StoryTypeEnum.TEXT_VOTING) {
+      return true;
+    } else if (step2.type === StoryTypeEnum.IMAGE_VOTING) {
+      return step2.imageVoting.isImageAttached;
+    }
+    return false;
+  }, [step2]);
+
   return (
     <CreationFlowWrapper xs={24} sm={24} md={13} lg={14} xl={13} xxl={12}>
       <CreationFlowHeader
@@ -54,7 +63,7 @@ const CreationWrapper = () => {
       <CreationFlowFooter
         prevBtnActionHandler={handleGoToPrevStep}
         nextBtnActionHandler={handleSubmitStep}
-        isNextActive={false}
+        isNextActive={isNextActive}
         currentStep={currentStep}
         toolTipTitle="Please select type for your feedback"
       />
