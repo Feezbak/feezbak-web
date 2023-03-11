@@ -22,7 +22,7 @@ const ButtonResponse = () => {
     if (responses.every((respBtn) => respBtn.text.length && respBtn.id)) {
       setResponseButtons(responses);
     }
-    // eslint-disable-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [responses]);
 
   const handleDeleteRespBtn = (index: number) => {
