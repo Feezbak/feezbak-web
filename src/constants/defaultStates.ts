@@ -1,4 +1,4 @@
-import { StyleEnums, StoryTypeEnum, ResponseTypeEnum } from "@/enums";
+import { ResponseTypeEnum, StoryTypeEnum, StyleEnums } from "@/enums";
 
 export const responseBtnListDefaultState = [
   {
@@ -7,7 +7,44 @@ export const responseBtnListDefaultState = [
   },
 ];
 
-export const storyDefaultState = {
+export type Step2Type = {
+  isMultiple: boolean;
+  type: StoryTypeEnum;
+  imageVoting: {
+    isImageAttached: boolean;
+    isSquare: boolean;
+    selectedImgSrc: string;
+    response: {
+      responseType: ResponseTypeEnum;
+      responseBtnList: typeof responseBtnListDefaultState;
+    };
+  };
+};
+
+export type Step1Type = {
+  title: string;
+  titleColor: string;
+  background: string;
+};
+
+export type StoryCreationDataType = {
+  currentStep: number;
+  step1: Step1Type;
+  step2: Step2Type;
+  setNextStep: () => void;
+  setPrevStep: () => void;
+  setTitleData: (data: any) => void;
+  setVotingType: (data: string) => void;
+  setResponseType: (data: string) => void;
+  setImageAttached: (data: boolean) => void;
+  setSelectedImgSrc: (data: string) => void;
+  setResponseButtons: (data: any) => void;
+  setImageSquareState: (data: boolean) => void;
+  setPreviewBackground: (data: string) => void;
+  setSelectionQuantityState: (data: boolean) => void;
+};
+
+export const storyDefaultState: StoryCreationDataType = {
   currentStep: 1,
   step1: {
     title: "<p></p>",
@@ -27,6 +64,17 @@ export const storyDefaultState = {
       },
     },
   },
+  setNextStep: () => {},
+  setPrevStep: () => {},
+  setTitleData: () => {},
+  setVotingType: () => {},
+  setResponseType: () => {},
+  setImageAttached: () => {},
+  setSelectedImgSrc: () => {},
+  setResponseButtons: () => {},
+  setImageSquareState: () => {},
+  setPreviewBackground: () => {},
+  setSelectionQuantityState: () => {},
 };
 
 export const storyEditorConvertedContent = {

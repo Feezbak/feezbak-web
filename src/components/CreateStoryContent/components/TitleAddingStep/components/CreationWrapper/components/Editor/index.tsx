@@ -4,7 +4,7 @@ import draftToHtml from "draftjs-to-html";
 import { useDebounce } from "@/hooks";
 import rgbHex from "rgb-hex";
 import { toolbarOptions, storyEditorConvertedContent } from "@/constants";
-import { StoryCreationContext, StoryCreationDataType } from "@/context";
+import { StoryCreationContext } from "@/context";
 import { TitleEditorWrapper, EditorTitle, EditorFocusArea } from "./styles";
 import {
   ContentState,
@@ -15,13 +15,12 @@ import {
 
 const Editor = () => {
   const editor = useRef(null);
-  const { storyCreationData, setStoryCreationData } =
-    useContext(StoryCreationContext);
+  const { step1, setTitleData } = useContext(StoryCreationContext);
   const [convertedContent, setConvertedContent] = useState(
     storyEditorConvertedContent
   );
   const debouncedData = useDebounce(convertedContent, 1000);
-  const blocksFromHTML = convertFromHTML(storyCreationData.step1.title);
+  const blocksFromHTML = convertFromHTML(step1.title);
   const [editorState, setEditorState] = useState(
     EditorState.createWithContent(
       ContentState.createFromBlockArray(
@@ -42,7 +41,7 @@ const Editor = () => {
     const html = draftToHtml(
       convertToRaw(editorState.getCurrentContent())
     ).trim();
-    let titleColor = storyCreationData.step1.titleColor;
+    let titleColor = step1.titleColor;
     const styleList = editorState
       .getCurrentContent()
       .getBlockMap()
@@ -54,31 +53,20 @@ const Editor = () => {
         titleColor = `#${rgbHex(style.substring(6)).toUpperCase()}`;
       }
     });
-    if (
-      titleColor !== storyCreationData.step1.titleColor ||
-      html !== storyCreationData.step1.title
-    ) {
+    if (titleColor !== step1.titleColor || html !== step1.title) {
       setConvertedContent({
         title: html,
         titleColor,
       });
     }
-  }, [editorState, storyCreationData]);
+  }, [editorState, step1]);
 
   useEffect(() => {
-    if (debouncedData.title !== storyCreationData.step1.title) {
+    if (debouncedData.title !== step1.title) {
       //todo need to set this to store after sending successful request to back end
-      setStoryCreationData(
-        (ps: StoryCreationDataType): StoryCreationDataType => ({
-          ...ps,
-          step1: {
-            background: ps.step1.background,
-            ...debouncedData,
-          },
-        })
-      );
+      setTitleData(debouncedData);
     }
-  }, [debouncedData, storyCreationData, setStoryCreationData]);
+  }, [debouncedData, step1, setTitleData]);
 
   return (
     <TitleEditorWrapper>

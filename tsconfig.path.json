@@ -15,7 +15,8 @@
       "@helpers/*": ["src/helpers/*"],
       "@icons/*": ["src/icons/*"],
       "@constants/*": ["src/constants/*"],
-      "@context/*": ["src/context/*"]
+      "@context/*": ["src/context/*"],
+      "@reducer/*": ["src/reducer/*"]
     }
   }
 }

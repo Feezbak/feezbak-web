@@ -31,7 +31,6 @@ export default function useSignUpByEmailForm(
   const submitForm = handleSubmit(async (data) => {
     try {
       const res = await registerUser("/auth/email/register", data);
-      console.log(res, 999);
       if (res) {
         setAccountState();
       }

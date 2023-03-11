@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import Image from "./components/Image";
 import { AnimatePresence } from "framer-motion";
 import { StoryCreationContext } from "@/context";
@@ -36,35 +36,22 @@ interface Props {
 }
 
 const UploadList = ({ newFileSrc }: Props) => {
-  const { storyCreationData, setStoryCreationData } =
-    useContext(StoryCreationContext);
+  const { step2, setSelectedImgSrc } = useContext(StoryCreationContext);
   const [images, setImages] = useState(fakeImagesData);
 
   useEffect(() => {
     //todo need to fetch images and set in a state
   }, []);
 
-  const setImgSrcToStore = (imgSrc = "") =>
-    setStoryCreationData((ps) => ({
-      ...ps,
-      step2: {
-        ...ps.step2,
-        imageVoting: {
-          ...ps.step2.imageVoting,
-          selectedImgSrc: imgSrc,
-        },
-      },
-    }));
+  const setImgSrcToStore = (imgSrc = "") => setSelectedImgSrc(imgSrc);
 
   const handleDelete = (id: string) => {
-    const oldImagesArr = Array.from(images);
+    const oldImagesArr = [...images];
     const deleteItemIndex = oldImagesArr.findIndex((item) => item.id === id);
     const deleteItemSrc = oldImagesArr[deleteItemIndex].src;
     oldImagesArr.splice(deleteItemIndex, 1);
     setImages(oldImagesArr);
-    if (
-      deleteItemSrc === storyCreationData?.step2?.imageVoting?.selectedImgSrc
-    ) {
+    if (deleteItemSrc === step2?.imageVoting?.selectedImgSrc) {
       setImgSrcToStore();
     }
   };
@@ -85,11 +72,19 @@ const UploadList = ({ newFileSrc }: Props) => {
     }
   }, [newFileSrc]);
 
+  const isSelected = useCallback(
+    (src: string) => {
+      return src === step2?.imageVoting?.selectedImgSrc;
+    },
+    [step2]
+  );
+
   return (
     <UploadListWrapper>
       <AnimatePresence initial={false}>
         {images.map(({ id, src }) => (
           <Image
+            isSelected={isSelected(src)}
             key={id}
             id={id}
             src={src}

@@ -1,20 +1,27 @@
 import styled from "styled-components";
-import { prop } from "@/helpers";
+import { prop, ifProp } from "@/helpers";
 import { Button } from "antd";
 import { motion } from "framer-motion";
+import { StyleEnums } from "@/enums";
 
 export const ImageBackgroundWrapper = styled(motion.div)<{
   readonly $srcURL: string;
+  readonly $isSelected: boolean;
 }>`
   min-width: 11.875rem;
   height: 15.5rem;
-  border-radius: 1rem;
+  border-radius: 1.2rem;
   background: url(${prop("$srcURL")}) no-repeat center;
   background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 1rem;
+  border: ${ifProp(
+    "$isSelected",
+    "2.5px solid " + StyleEnums.storyDefaultColor2,
+    "unset"
+  )};
 
   &:last-child {
     margin: 0;

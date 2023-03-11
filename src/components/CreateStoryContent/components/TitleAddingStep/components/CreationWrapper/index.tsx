@@ -6,14 +6,10 @@ import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
 import { CreationFlowHeader, CreationFlowFooter } from "@/shared";
 
 const CreationWrapper = () => {
-  const { storyCreationData, setStoryCreationData } =
-    useContext(StoryCreationContext);
+  const { currentStep, step1, setNextStep } = useContext(StoryCreationContext);
 
   const handleSubmitStep = () => {
-    setStoryCreationData((ps) => ({
-      ...ps,
-      currentStep: ps.currentStep + 1,
-    }));
+    setNextStep();
   };
 
   return (
@@ -21,11 +17,9 @@ const CreationWrapper = () => {
       <CreationFlowHeader />
       <Editor />
       <CreationFlowFooter
-        currentStep={storyCreationData.currentStep}
+        currentStep={currentStep}
         nextBtnActionHandler={handleSubmitStep}
-        isNextActive={
-          storyCreationData.step1.title !== storyDefaultState.step1.title
-        }
+        isNextActive={step1.title !== storyDefaultState.step1.title}
         toolTipTitle="Please provide title text, to be able go to next step!"
       />
     </CreationFlowWrapper>

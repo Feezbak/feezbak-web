@@ -12,30 +12,17 @@ import {
 } from "./styles";
 
 const ButtonResponse = () => {
-  const { storyCreationData, setStoryCreationData } =
-    useContext(StoryCreationContext);
+  const { step2, setResponseButtons } = useContext(StoryCreationContext);
   const [respBtnState, setRespBtnState] = useState(
-    storyCreationData.step2.imageVoting.response.responseBtnList
+    step2.imageVoting.response.responseBtnList
   );
   const responses = useDebounce(respBtnState, 1000);
 
   useEffect(() => {
     if (responses.every((respBtn) => respBtn.text.length && respBtn.id)) {
-      setStoryCreationData((ps) => ({
-        ...ps,
-        step2: {
-          ...ps.step2,
-          imageVoting: {
-            ...ps.step2.imageVoting,
-            response: {
-              responseType: ps.step2.imageVoting.response.responseType,
-              responseBtnList: responses,
-            },
-          },
-        },
-      }));
+      setResponseButtons(responses);
     }
-  }, [responses, setStoryCreationData]);
+  }, [responses, setResponseButtons]);
 
   const handleDeleteRespBtn = (index: number) => {
     if (respBtnState.length > 1) {

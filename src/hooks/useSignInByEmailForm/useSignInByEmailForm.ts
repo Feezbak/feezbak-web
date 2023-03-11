@@ -25,7 +25,6 @@ export default function useSignInByEmailForm(): UseSignInByEmailFormResult {
   });
 
   const submitForm = handleSubmit((data) => {
-    console.log(data, 888);
     setTimeout(
       () =>
         reset({
