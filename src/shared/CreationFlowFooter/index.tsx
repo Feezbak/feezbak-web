@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import { StoryStepEnum } from "@/enums";
-import { motion } from "framer-motion";
 import { ArrowRightIcon } from "@/icons";
 import { Tooltip } from "antd";
 import {
@@ -29,20 +28,9 @@ const CreationFlowFooter = ({
   const nextBtnContent = useMemo(() => {
     if (isNextActive) {
       return (
-        <motion.div
-          initial={{ opacity: 0, scale: 1.3 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            type: "spring",
-            stiffness: 200,
-            bounce: 400,
-            duration: 4,
-          }}
-        >
-          <StepControlNextBtn type="primary" onClick={nextBtnActionHandler}>
-            Next Step <ArrowRightIcon />
-          </StepControlNextBtn>
-        </motion.div>
+        <StepControlNextBtn type="primary" onClick={nextBtnActionHandler}>
+          Next Step <ArrowRightIcon />
+        </StepControlNextBtn>
       );
     } else {
       return (

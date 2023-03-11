@@ -140,6 +140,7 @@ export const ColorPickerWrapper = styled(motion.div)`
 export const ResponseTitleWrapper = styled.div<{
   readonly $isFullHeight: boolean;
 }>`
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

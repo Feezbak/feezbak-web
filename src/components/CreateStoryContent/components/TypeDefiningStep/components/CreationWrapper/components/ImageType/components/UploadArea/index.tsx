@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import Dropzone from "react-dropzone";
 import { UploadFileIcon } from "@/icons";
 import { StoryCreationContext } from "@/context";
@@ -18,23 +18,24 @@ interface Props {
 }
 
 const UploadArea = ({ sendBlobURL }: Props) => {
-  const [file, setFile] = useState<File>();
-  const { setImageAttached } = useContext(StoryCreationContext);
+  const { setImageAttached, setSelectedImgSrc } =
+    useContext(StoryCreationContext);
 
-  useEffect(() => {
+  const handleUploadedFile = (file: File) => {
     if (file) {
       //todo send file to back-end
 
       fileToDataUri(file).then((dataUri) => {
         sendBlobURL(dataUri);
         setImageAttached(true);
+        setSelectedImgSrc(dataUri as string);
       });
     }
-  }, [file, sendBlobURL, setImageAttached]);
+  };
 
   return (
     <Dropzone
-      onDrop={(acceptedFiles) => setFile(acceptedFiles[0])}
+      onDrop={(acceptedFiles) => handleUploadedFile(acceptedFiles[0])}
       multiple={false}
     >
       {({ getRootProps, getInputProps }) => (
