@@ -1,21 +1,13 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import Image from "./components/Image";
 import { AnimatePresence } from "framer-motion";
 import { StoryCreationContext } from "@/context";
 import { UploadListWrapper } from "./styles";
 
-interface Props {
-  newFileSrc: unknown;
-}
-
-type ImageType = {
-  id: string;
-  src: string;
-};
-
-const UploadList = ({ newFileSrc }: Props) => {
-  const { step2, setSelectedImgSrc } = useContext(StoryCreationContext);
-  const [images, setImages] = useState<ImageType[]>([]);
+const UploadList = () => {
+  const { step2, setSelectedImgSrc, deleteImage } =
+    useContext(StoryCreationContext);
+  const { imageVoting } = step2;
 
   useEffect(() => {
     //todo need to fetch images and set in a state
@@ -24,11 +16,11 @@ const UploadList = ({ newFileSrc }: Props) => {
   const setImgSrcToStore = (imgSrc = "") => setSelectedImgSrc(imgSrc);
 
   const handleDelete = (id: string) => {
-    const oldImagesArr = [...images];
+    const oldImagesArr = [...imageVoting.images];
     const deleteItemIndex = oldImagesArr.findIndex((item) => item.id === id);
     const deleteItemSrc = oldImagesArr[deleteItemIndex].src;
     oldImagesArr.splice(deleteItemIndex, 1);
-    setImages(oldImagesArr);
+    deleteImage(id);
     if (deleteItemSrc === step2?.imageVoting?.selectedImgSrc) {
       setImgSrcToStore();
     }
@@ -37,18 +29,6 @@ const UploadList = ({ newFileSrc }: Props) => {
   const handleSelect = (src: string) => {
     setImgSrcToStore(src);
   };
-
-  useEffect(() => {
-    if (newFileSrc) {
-      setImages((ps) => [
-        {
-          id: ps.length + 1 + "",
-          src: newFileSrc as string,
-        },
-        ...ps,
-      ]);
-    }
-  }, [newFileSrc]);
 
   const isSelected = useCallback(
     (src: string) => {
@@ -60,7 +40,7 @@ const UploadList = ({ newFileSrc }: Props) => {
   return (
     <UploadListWrapper>
       <AnimatePresence initial={false}>
-        {images.map(({ id, src }) => (
+        {imageVoting.images.map(({ id, src }) => (
           <Image
             isSelected={isSelected(src)}
             key={id}

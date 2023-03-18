@@ -3,6 +3,7 @@ import { storyReducer } from "@/reducer";
 import {
   storyDefaultState as initialState,
   storyStateActions,
+  Image,
 } from "@/constants";
 
 export const StoryCreationContext = createContext(initialState);
@@ -58,9 +59,19 @@ export const StoryProvider = ({ children }: Props) => {
     dispatch({ type: storyStateActions.SET_IMAGE_SQUARE_STATE, payload });
   };
 
+  const setNewImage = (payload: Image) => {
+    dispatch({ type: storyStateActions.SET_NEW_IMAGE, payload });
+  };
+
+  const deleteImage = (payload: string) => {
+    dispatch({ type: storyStateActions.DELETE_IMAGE, payload });
+  };
+
   const value = {
     ...state,
     setNextStep,
+    deleteImage,
+    setNewImage,
     setPrevStep,
     setTitleData,
     setVotingType,

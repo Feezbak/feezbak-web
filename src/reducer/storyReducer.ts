@@ -1,5 +1,5 @@
 import { ResponseTypeEnum } from "@/enums";
-import { storyStateActions } from "@/constants";
+import { Image, storyStateActions } from "@/constants";
 
 const storyReducer = (state: any, action: any) => {
   const { type, payload } = action;
@@ -110,6 +110,30 @@ const storyReducer = (state: any, action: any) => {
           imageVoting: {
             ...state.step2.imageVoting,
             isSquare: payload,
+          },
+        },
+      };
+    case storyStateActions.SET_NEW_IMAGE:
+      return {
+        ...state,
+        step2: {
+          ...state.step2,
+          imageVoting: {
+            ...state.step2.imageVoting,
+            images: [payload, ...state.step2.imageVoting.images],
+          },
+        },
+      };
+    case storyStateActions.DELETE_IMAGE:
+      return {
+        ...state,
+        step2: {
+          ...state.step2,
+          imageVoting: {
+            ...state.step2.imageVoting,
+            images: state.step2.imageVoting.images.filter(
+              (image: Image) => image.id !== payload
+            ),
           },
         },
       };
