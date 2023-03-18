@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Dropzone from "react-dropzone";
 import { UploadFileIcon } from "@/icons";
+import uuid from "react-uuid";
 import { StoryCreationContext } from "@/context";
 import { UploadWrapper, UploadIconWrapper } from "./styles";
 
@@ -13,12 +14,8 @@ const fileToDataUri = (file: File) =>
     reader.readAsDataURL(file);
   });
 
-interface Props {
-  sendBlobURL: (url: unknown) => void;
-}
-
-const UploadArea = ({ sendBlobURL }: Props) => {
-  const { setImageAttached, setSelectedImgSrc } =
+const UploadArea = () => {
+  const { setImageAttached, setSelectedImgSrc, setNewImage } =
     useContext(StoryCreationContext);
 
   const handleUploadedFile = (file: File) => {
@@ -26,8 +23,11 @@ const UploadArea = ({ sendBlobURL }: Props) => {
       //todo send file to back-end
 
       fileToDataUri(file).then((dataUri) => {
-        sendBlobURL(dataUri);
         setImageAttached(true);
+        setNewImage({
+          id: uuid(),
+          src: dataUri as string,
+        });
         setSelectedImgSrc(dataUri as string);
       });
     }

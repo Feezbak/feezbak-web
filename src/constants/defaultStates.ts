@@ -7,6 +7,11 @@ export const responseBtnListDefaultState = [
   },
 ];
 
+export type Image = {
+  id: string;
+  src: string;
+};
+
 export type Step2Type = {
   isMultiple: boolean;
   type: StoryTypeEnum;
@@ -14,6 +19,7 @@ export type Step2Type = {
     isImageAttached: boolean;
     isSquare: boolean;
     selectedImgSrc: string;
+    images: Image[];
     response: {
       responseType: ResponseTypeEnum;
       responseBtnList: typeof responseBtnListDefaultState;
@@ -37,11 +43,13 @@ export type StoryCreationDataType = {
   setVotingType: (data: string) => void;
   setResponseType: (data: string) => void;
   setImageAttached: (data: boolean) => void;
+  setNewImage: (data: Image) => void;
   setSelectedImgSrc: (data: string) => void;
   setResponseButtons: (data: any) => void;
   setImageSquareState: (data: boolean) => void;
   setPreviewBackground: (data: string) => void;
   setSelectionQuantityState: (data: boolean) => void;
+  deleteImage: (data: string) => void;
 };
 
 export const storyDefaultState: StoryCreationDataType = {
@@ -58,6 +66,7 @@ export const storyDefaultState: StoryCreationDataType = {
       isImageAttached: false,
       isSquare: false,
       selectedImgSrc: "",
+      images: [],
       response: {
         responseType: ResponseTypeEnum.BUTTON_RESPONSE,
         responseBtnList: [...responseBtnListDefaultState],
@@ -65,11 +74,13 @@ export const storyDefaultState: StoryCreationDataType = {
     },
   },
   setNextStep: () => {},
+  deleteImage: () => {},
   setPrevStep: () => {},
   setTitleData: () => {},
   setVotingType: () => {},
   setResponseType: () => {},
   setImageAttached: () => {},
+  setNewImage: () => {},
   setSelectedImgSrc: () => {},
   setResponseButtons: () => {},
   setImageSquareState: () => {},

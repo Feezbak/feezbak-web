@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
+import { ColorPickerIcon, FeezbakWhiteIcon, MakeSquareIcon } from "@/icons";
 import Icon from "@ant-design/icons";
 import { StoryCreationContext } from "@/context";
-import { colorPickerMainColors } from "@/constants";
+import { colorPickerMainColors, slickSettings } from "@/constants";
 import { AnimatePresence, motion } from "framer-motion";
 import ResponsePreviewBtn from "../ResponsePreviewBtn";
+import PreviewSlide from "./components/PreviewSlide";
+import Slider from "react-slick";
 import { useDebounce } from "@/hooks";
 import DOMPurify from "dompurify";
 import {
@@ -12,16 +15,18 @@ import {
   StoryTypeEnum,
   StyleEnums,
 } from "@/enums";
-import { opacityAnimation } from "@assets/framerAnimations";
-import { ColorPickerIcon, FeezbakWhiteIcon, MakeSquareIcon } from "@/icons";
+import {
+  opacityAnimation,
+  opacityWithScaleAnimation,
+} from "@assets/framerAnimations";
 import {
   PreviewFlowWrapper,
   CircleColorPicker,
   ColorPickerBtn,
   ColorPickerWrapper,
-  PoweredByWrapper,
   PreviewFlow,
   ResponseTitleWrapper,
+  SliderContainer,
   SquareBtn,
   Responses,
   TitlePreview,
@@ -37,6 +42,7 @@ const Preview = () => {
     setPreviewBackground,
     setImageSquareState,
   } = useContext(StoryCreationContext);
+  const { imageVoting } = step2;
   const [color, setColor] = useState(step1.background);
   const [isSquare, setSquareState] = useState(step2.imageVoting.isSquare);
   const debouncedColorData = useDebounce(color, 1000);
@@ -109,7 +115,8 @@ const Preview = () => {
   );
 
   const hasLayer = useMemo(
-    () => step2.imageVoting.isImageAttached && isNotFirstStep && !isSquare,
+    () =>
+      !!step2.imageVoting.selectedImgSrc.length && isNotFirstStep && !isSquare,
     [step2, isNotFirstStep, isSquare]
   );
 
@@ -122,7 +129,7 @@ const Preview = () => {
         onMouseLeave={() => setHoverState(false)}
         onMouseEnter={() => setHoverState(true)}
       >
-        <AnimatePresence initial={false}>
+        <AnimatePresence>
           {((isHovered && coverImgSrc) || isSquare) && (
             <motion.div {...opacityAnimation} key="1">
               <SquareBtn
@@ -132,19 +139,8 @@ const Preview = () => {
               />
             </motion.div>
           )}
-          <PoweredByWrapper
-            $hasCover={!!coverImgSrc.length}
-            $imgSrc={coverImgSrc}
-            $isSquare={isSquare}
-            $hasLayer={hasLayer}
-            key="2"
-            {...opacityAnimation}
-          >
-            <p>POWERED BY</p>
-            <Icon component={FeezbakWhiteIcon} />
-          </PoweredByWrapper>
           {(isHovered || isColorPickerOpen) && (
-            <motion.div {...opacityAnimation} key="3">
+            <motion.div {...opacityAnimation} key="2">
               <ColorPickerBtn
                 icon={<ColorPickerIcon />}
                 $isActive={isColorPickerOpen}
@@ -153,6 +149,26 @@ const Preview = () => {
             </motion.div>
           )}
         </AnimatePresence>
+        {!!imageVoting?.images?.length && (
+          <SliderContainer>
+            <Slider {...slickSettings}>
+              {imageVoting?.images?.map((image) => (
+                <PreviewSlide
+                  hasCover={!!coverImgSrc?.length}
+                  imgSrc={image.src}
+                  isSquare={isSquare}
+                  hasLayer={hasLayer}
+                  key={image.id}
+                >
+                  <>
+                    <p>POWERED BY</p>
+                    <Icon component={FeezbakWhiteIcon} />
+                  </>
+                </PreviewSlide>
+              ))}
+            </Slider>
+          </SliderContainer>
+        )}
         <ResponseTitleWrapper $isFullHeight={isFullHeight}>
           <TitlePreview
             $titleShadowColor={titleShadowColor}
@@ -171,12 +187,7 @@ const Preview = () => {
         </ResponseTitleWrapper>
         <AnimatePresence>
           {isColorPickerOpen && (
-            <ColorPickerWrapper
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0 }}
-              transition={{ duration: 0.2 }}
-            >
+            <ColorPickerWrapper {...opacityWithScaleAnimation}>
               <CircleColorPicker
                 color={color}
                 colors={colorPickerMainColors}

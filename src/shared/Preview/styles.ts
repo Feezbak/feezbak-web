@@ -37,45 +37,6 @@ export const PreviewFlow = styled.div<{
   box-shadow: ${ifProp("$hasOutline", `0 0 5px ${StyleEnums.gray2}`, "none")};
 `;
 
-export const PoweredByWrapper = styled.div<{
-  readonly $hasCover: boolean;
-  readonly $isSquare: boolean;
-  readonly $imgSrc: string;
-  readonly $hasLayer: boolean;
-}>`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  position: absolute;
-  top: 1.25rem;
-  left: 1.25rem;
-  right: 1.25rem;
-  margin: 0 auto;
-  transition: 0.3s;
-  height: ${ifProp("$isSquare", "50%", "95%")};
-  border-radius: 2rem;
-  background-image: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, ${ifProp("$hasLayer", "0.65", "0")}) 100%
-    ),
-    url(${ifProp("$hasCover", prop("$imgSrc"), "")});
-  background-position: ${ifProp("$isSquare", "top", "center")};
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  p {
-    margin: 1.3rem 0 0.15rem 0;
-    color: ${StyleEnums.white};
-    font-weight: 600;
-    font-size: 0.563rem;
-    line-height: 0.75rem;
-    text-align: center;
-    letter-spacing: 0.25rem;
-  }
-`;
-
 export const TitlePreview = styled(motion.div)<{
   readonly $titleShadowColor: string;
 }>`
@@ -154,7 +115,7 @@ export const ResponseTitleWrapper = styled.div<{
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-height: ${ifProp("$isFullHeight", "100%", "35%")};
+  min-height: ${ifProp("$isFullHeight", "100%", "42%")};
 `;
 
 export const Responses = styled.div`
@@ -164,4 +125,38 @@ export const Responses = styled.div`
   align-items: center;
   flex-direction: column;
   margin: 1.5rem 0 1.25rem 0;
+`;
+
+export const SliderContainer = styled.div`
+  position: absolute;
+  height: 95%;
+  top: 1.25rem;
+  left: 1.25rem;
+  right: 1.25rem;
+  margin: 0 auto;
+
+  div {
+    height: 100%;
+  }
+
+  .slick-dots {
+    bottom: 0.85rem;
+
+    li {
+      opacity: 0.4;
+      background: ${StyleEnums.white};
+      border-radius: 50%;
+      &,
+      button,
+      button:before {
+        width: 10px;
+        height: 10px;
+        content: " ";
+      }
+    }
+    li.slick-active {
+      background: ${StyleEnums.white};
+      opacity: 1;
+    }
+  }
 `;
