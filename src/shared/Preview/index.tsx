@@ -1,12 +1,10 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import { ColorPickerIcon, FeezbakWhiteIcon, MakeSquareIcon } from "@/icons";
-import Icon from "@ant-design/icons";
+import { ColorPickerIcon, MakeSquareIcon } from "@/icons";
 import { StoryCreationContext } from "@/context";
-import { colorPickerMainColors, slickSettings } from "@/constants";
+import { colorPickerMainColors } from "@/constants";
 import { AnimatePresence, motion } from "framer-motion";
 import ResponsePreviewBtn from "../ResponsePreviewBtn";
-import PreviewSlide from "./components/PreviewSlide";
-import Slider from "react-slick";
+import PreviewSlider from "./components/PreviewSlider";
 import { useDebounce } from "@/hooks";
 import DOMPurify from "dompurify";
 import {
@@ -26,7 +24,6 @@ import {
   ColorPickerWrapper,
   PreviewFlow,
   ResponseTitleWrapper,
-  SliderContainer,
   SquareBtn,
   Responses,
   TitlePreview,
@@ -150,24 +147,11 @@ const Preview = () => {
           )}
         </AnimatePresence>
         {!!imageVoting?.images?.length && (
-          <SliderContainer>
-            <Slider {...slickSettings}>
-              {imageVoting?.images?.map((image) => (
-                <PreviewSlide
-                  hasCover={!!coverImgSrc?.length}
-                  imgSrc={image.src}
-                  isSquare={isSquare}
-                  hasLayer={hasLayer}
-                  key={image.id}
-                >
-                  <>
-                    <p>POWERED BY</p>
-                    <Icon component={FeezbakWhiteIcon} />
-                  </>
-                </PreviewSlide>
-              ))}
-            </Slider>
-          </SliderContainer>
+          <PreviewSlider
+            hasCover={!!coverImgSrc?.length}
+            hasLayer={hasLayer}
+            isSquare={isSquare}
+          />
         )}
         <ResponseTitleWrapper $isFullHeight={isFullHeight}>
           <TitlePreview

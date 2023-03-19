@@ -14,7 +14,6 @@ export const PoweredByWrapper = styled.div<{
   justify-content: flex-start;
   transition: 0.3s;
   height: ${ifProp("$isSquare", "60%", "100%")} !important;
-  border-radius: 2rem;
   background-image: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0) 0%,

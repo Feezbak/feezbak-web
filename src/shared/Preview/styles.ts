@@ -126,37 +126,3 @@ export const Responses = styled.div`
   flex-direction: column;
   margin: 1.5rem 0 1.25rem 0;
 `;
-
-export const SliderContainer = styled.div`
-  position: absolute;
-  height: 95%;
-  top: 1.25rem;
-  left: 1.25rem;
-  right: 1.25rem;
-  margin: 0 auto;
-
-  div {
-    height: 100%;
-  }
-
-  .slick-dots {
-    bottom: 0.85rem;
-
-    li {
-      opacity: 0.4;
-      background: ${StyleEnums.white};
-      border-radius: 50%;
-      &,
-      button,
-      button:before {
-        width: 10px;
-        height: 10px;
-        content: " ";
-      }
-    }
-    li.slick-active {
-      background: ${StyleEnums.white};
-      opacity: 1;
-    }
-  }
-`;
