@@ -6,11 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="858e8835-88e0-4eee-8a4b-803392729593" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/slickSettings.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/slickSettings.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/Preview/components/PreviewSlide/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Preview/components/PreviewSlider/components/PreviewSlide/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/Preview/components/PreviewSlide/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Preview/components/PreviewSlider/components/PreviewSlide/styles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/Preview/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Preview/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/Preview/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Preview/styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/axiosClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/axiosClient.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignInContent/components/SignInForm/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignInContent/components/SignInForm/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignInContent/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignInContent/styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignUpContent/components/SignUpForm/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUpContent/components/SignUpForm/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SignUpContent/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignUpContent/styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useSignInByEmailForm/useSignInByEmailForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useSignInByEmailForm/useSignInByEmailForm.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useSignUpByEmailForm/useSignUpByEmailForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useSignUpByEmailForm/useSignUpByEmailForm.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/validations/forms/signUp/type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/forms/signUp/type.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/validations/forms/signUp/validation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/forms/signUp/validation.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +147,8 @@
       <workItem from="1678462458321" duration="645000" />
       <workItem from="1678533283089" duration="9355000" />
       <workItem from="1679140344211" duration="14931000" />
-      <workItem from="1679217925403" duration="2230000" />
+      <workItem from="1679217925403" duration="3132000" />
+      <workItem from="1679844941191" duration="3414000" />
     </task>
     <servers />
   </component>
