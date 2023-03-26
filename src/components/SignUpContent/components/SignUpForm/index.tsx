@@ -59,6 +59,46 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
         />
       </FormItem>
       <FormItem
+        name="firstname"
+        validateStatus={formErrors && formErrors["firstname"] ? "error" : ""}
+        help={
+          formErrors.firstname && (
+            <ErrorMessage message={formErrors.firstname.message} />
+          )
+        }
+      >
+        <label htmlFor="firstname">
+          Firstname <sub>*</sub>
+        </label>
+        <Controller
+          render={({ field: { onChange, value } }) => (
+            <Input size="large" onChange={onChange} value={value} />
+          )}
+          name="firstname"
+          control={formControl}
+        />
+      </FormItem>
+      <FormItem
+        name="lastname"
+        validateStatus={formErrors && formErrors["lastname"] ? "error" : ""}
+        help={
+          formErrors.lastname && (
+            <ErrorMessage message={formErrors.lastname.message} />
+          )
+        }
+      >
+        <label htmlFor="lastname">
+          Lastname <sub>*</sub>
+        </label>
+        <Controller
+          render={({ field: { onChange, value } }) => (
+            <Input size="large" onChange={onChange} value={value} />
+          )}
+          name="lastname"
+          control={formControl}
+        />
+      </FormItem>
+      <FormItem
         validateStatus={formErrors && formErrors["password"] ? "error" : ""}
         name="password"
         help={

@@ -3,6 +3,7 @@ import { Controller } from "react-hook-form";
 import { ErrorMessage } from "@/shared";
 import { Input } from "antd";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSignInByEmailForm } from "@hooks/useSignInByEmailForm";
 import {
   SignInFormWrapper,
@@ -13,8 +14,13 @@ import {
 } from "./styles";
 
 const SignInForm = () => {
+  const navigate = useNavigate();
+  const onUserSuccessLogin = () => {
+    navigate("/dashboard");
+  };
+
   const { formErrors, formState, formControl, submitForm } =
-    useSignInByEmailForm();
+    useSignInByEmailForm(onUserSuccessLogin);
 
   return (
     <SignInFormWrapper

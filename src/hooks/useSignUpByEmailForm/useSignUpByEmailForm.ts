@@ -30,22 +30,22 @@ export default function useSignUpByEmailForm(
 
   const submitForm = handleSubmit(async (data) => {
     try {
-      const res = await registerUser("/auth/email/register", data);
+      const res = await registerUser("sign-up", data);
       if (res) {
         setAccountState();
+        setTimeout(
+          () =>
+            reset({
+              password: "",
+              email: "",
+            }),
+          1000
+        );
       }
     } catch (error: unknown) {
       console.error(error);
       message.error("Something went wrong, please try to register a bit later");
     }
-    setTimeout(
-      () =>
-        reset({
-          password: "",
-          email: "",
-        }),
-      1000
-    );
   });
 
   return {
