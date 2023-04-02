@@ -6,6 +6,7 @@ axiosClient.defaults.baseURL = "https://feezbak.mixbox.am/";
 
 axiosClient.defaults.headers.post = {
   "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "*",
   Accept: "application/json",
 };
 
