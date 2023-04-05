@@ -5,9 +5,6 @@ const axiosClient = axios.create();
 axiosClient.defaults.baseURL = "https://feezbak.mixbox.am/";
 
 axiosClient.defaults.headers.post = {
-  "Content-Type": "application/json",
-  "Access-Control-Allow-Origin": "*",
-  mode: "no-cors",
   Accept: "application/json",
 };
 

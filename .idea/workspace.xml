@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="858e8835-88e0-4eee-8a4b-803392729593" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/axiosClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/axiosClient.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +141,7 @@
       <workItem from="1679844941191" duration="3748000" />
       <workItem from="1679854821310" duration="8000" />
       <workItem from="1679854863368" duration="1218000" />
-      <workItem from="1680439461595" duration="1680000" />
+      <workItem from="1680439461595" duration="2254000" />
     </task>
     <servers />
   </component>
