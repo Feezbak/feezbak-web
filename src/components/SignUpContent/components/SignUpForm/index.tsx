@@ -59,42 +59,42 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
         />
       </FormItem>
       <FormItem
-        name="firstname"
-        validateStatus={formErrors && formErrors["firstname"] ? "error" : ""}
+        name="firstName"
+        validateStatus={formErrors && formErrors["firstName"] ? "error" : ""}
         help={
-          formErrors.firstname && (
-            <ErrorMessage message={formErrors.firstname.message} />
+          formErrors.firstName && (
+            <ErrorMessage message={formErrors.firstName.message} />
           )
         }
       >
-        <label htmlFor="firstname">
+        <label htmlFor="firstName">
           Firstname <sub>*</sub>
         </label>
         <Controller
           render={({ field: { onChange, value } }) => (
             <Input size="large" onChange={onChange} value={value} />
           )}
-          name="firstname"
+          name="firstName"
           control={formControl}
         />
       </FormItem>
       <FormItem
         name="lastname"
-        validateStatus={formErrors && formErrors["lastname"] ? "error" : ""}
+        validateStatus={formErrors && formErrors["lastName"] ? "error" : ""}
         help={
-          formErrors.lastname && (
-            <ErrorMessage message={formErrors.lastname.message} />
+          formErrors.lastName && (
+            <ErrorMessage message={formErrors.lastName.message} />
           )
         }
       >
-        <label htmlFor="lastname">
+        <label htmlFor="lastName">
           Lastname <sub>*</sub>
         </label>
         <Controller
           render={({ field: { onChange, value } }) => (
             <Input size="large" onChange={onChange} value={value} />
           )}
-          name="lastname"
+          name="lastName"
           control={formControl}
         />
       </FormItem>

@@ -5,7 +5,7 @@ import { emailSchema, passwordSchema } from "@/validations";
 export const SignUpEmailSchema = Joi.object<SignUpEmailFormInputs>({
   email: emailSchema.label("Email").required(),
   password: passwordSchema.label("Password").required(),
-  firstname: Joi.string().label("Firstname").required(),
-  lastname: Joi.string().label("Lastname").required(),
+  firstName: Joi.string().label("Firstname").required(),
+  lastName: Joi.string().label("Lastname").required(),
   profession: Joi.string().label("Profession").optional(),
 });

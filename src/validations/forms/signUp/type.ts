@@ -3,6 +3,6 @@ export interface SignUpEmailFormInputs {
   password?: string;
   profession?: string;
 
-  firstname?: string;
-  lastname?: string;
+  firstName?: string;
+  lastName?: string;
 }
