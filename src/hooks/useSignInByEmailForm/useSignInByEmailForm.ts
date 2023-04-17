@@ -42,9 +42,9 @@ export default function useSignInByEmailForm(
           1000
         );
       }
-    } catch (error: unknown) {
+    } catch (error: any) {
       console.error(error);
-      message.error("Something went wrong, please try to log in a bit later");
+      message.error(error.response.data.message);
     }
   });
 
