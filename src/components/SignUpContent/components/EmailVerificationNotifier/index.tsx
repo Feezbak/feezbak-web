@@ -33,7 +33,7 @@ const EmailVerificationNotifier = ({ setAccountState }: Props) => {
           <span onClick={handleGoToSignUp}>try another email address</span>
         </p>
       </Footer>
-    </VeVerificationWrapper>
+    </VerificationWrapper>
   );
 };
 
