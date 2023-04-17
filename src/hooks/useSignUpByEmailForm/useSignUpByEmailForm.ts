@@ -42,9 +42,9 @@ export default function useSignUpByEmailForm(
           1000
         );
       }
-    } catch (error: unknown) {
+    } catch (error: any) {
       console.error(error);
-      message.error("Something went wrong, please try to register a bit later");
+      message.error(error.response.data.message);
     }
   });
 

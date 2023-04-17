@@ -22,7 +22,7 @@ const SignUpContent = () => {
   return (
     <SignUpMainWrapper>
       {isAccountCreated ? (
-        <EmailVerificationNotifier />
+        <EmailVerificationNotifier setAccountState={setAccountState} />
       ) : (
         <SignUpFormWrapper>
           <ImageContainer
