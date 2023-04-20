@@ -32,7 +32,7 @@ const UserDataVerificationContent = () => {
             <Spin tip="Loading" size="large" />
           </motion.div>
         )}
-      </AnAnimatePresence>
+      </AnimatePresence>
     </UserDataVerifyWrapper>
   );
 };
