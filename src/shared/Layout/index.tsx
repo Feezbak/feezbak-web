@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
-import { LayoutWrapper } from "./styles";
 import Helmet from "react-helmet";
+import { opacityAnimation } from "@assets/framerAnimations";
+import { LayoutWrapper, AnimateDiv } from "./styles";
 
 interface Props {
   pageTitle: string;
@@ -18,7 +19,7 @@ const Layout = ({ pageTitle, children }: Props) => {
         <meta charSet="utf-8" />
         <title>{pageTitle}</title>
       </Helmet>
-      {children}
+      <AnimateDiv {...opacityAnimation}>{children}</AnimateDiv>
     </LayoutWrapper>
   );
 };
