@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:3000/",
   "dependencies": {
+    "@ahooksjs/use-request": "^2.8.15",
     "@craco/craco": "^6.4.5",
     "@hookform/resolvers": "^2.9.8",
     "@testing-library/jest-dom": "^5.16.4",
