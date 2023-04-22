@@ -12,6 +12,7 @@ import {
   Dashboard,
   Create,
   Auth,
+  ForgotPassword,
 } from "@/pages";
 
 const AnimatedRoutes = () => {
@@ -22,6 +23,11 @@ const AnimatedRoutes = () => {
         <Route caseSensitive path="/sign-in" element={<SignIn />} />
         <Route caseSensitive path="/sign-up" element={<SignUp />} />
         <Route caseSensitive path="/profile" element={<Profile />} />
+        <Route
+          caseSensitive
+          path="/forgot-password"
+          element={<ForgotPassword />}
+        />
         <Route caseSensitive path="/auth/key/:id" element={<Auth />} />
         <Route caseSensitive path="/dashboard" element={<Dashboard />}>
           <Route index element={<Stories />} />

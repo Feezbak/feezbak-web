@@ -11,19 +11,16 @@ const UserDataVerificationContent = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const { loading: isLoading } = useRequest(
-    () => verifyUserById(id ?? ''),
-    {
-      onSuccess: (response) => {
-        console.log(response, 9999);
-//        localStorage.setItem("jwt", response.token);
-      },
-      onError: (error: any) => {
-        setTimeout(() => navigate("/not-found"), 2000);
-        message.error(error.request.responseText);
-      },
-    }
-  );
+  const { loading: isLoading } = useRequest(() => verifyUserById(id ?? ""), {
+    onSuccess: (response) => {
+      console.log(response, 9999);
+      //        localStorage.setItem("jwt", response.token);
+    },
+    onError: (error: any) => {
+      setTimeout(() => navigate("/not-found"), 2000);
+      message.error(error.request.responseText);
+    },
+  });
 
   return (
     <UserDataVerifyWrapper>
