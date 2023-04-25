@@ -15,3 +15,7 @@ export function verifyUserById(id: string) {
 export function forgotPassword(payload: any) {
   return axiosClient.post(`/forgot`, payload).then((response) => response);
 }
+
+export function resetPassword(payload: any) {
+  return axiosClient.post(`/reset`, payload).then((response) => response);
+}
