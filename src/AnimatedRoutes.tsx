@@ -11,8 +11,9 @@ import {
   Profile,
   Dashboard,
   Create,
-  Auth,
+  Verify,
   ForgotPassword,
+  ResetPassword,
 } from "@/pages";
 
 const AnimatedRoutes = () => {
@@ -28,7 +29,12 @@ const AnimatedRoutes = () => {
           path="/forgot-password"
           element={<ForgotPassword />}
         />
-        <Route caseSensitive path="/auth/key/:id" element={<Auth />} />
+        <Route
+          caseSensitive
+          path="/reset-password"
+          element={<ResetPassword />}
+        />
+        <Route caseSensitive path="/verify/:id" element={<Verify />} />
         <Route caseSensitive path="/dashboard" element={<Dashboard />}>
           <Route index element={<Stories />} />
           <Route caseSensitive path="use-cases" element={<UseCases />} />

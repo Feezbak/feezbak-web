@@ -2,7 +2,7 @@ import React from "react";
 import { UserDataVerificationContent } from "@/components";
 import { Layout } from "@/shared";
 
-const Auth = () => {
+const Verify = () => {
   return (
     <Layout pageTitle="Create Story">
       <UserDataVerificationContent />
@@ -10,4 +10,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default Verify;

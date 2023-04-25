@@ -1,0 +1,82 @@
+import React from "react";
+import { Controller } from "react-hook-form";
+import { ErrorMessage } from "@/shared";
+import { Input } from "antd";
+import { useResetPasswordForm } from "@hooks/useResetPasswordForm";
+import {
+  ResetPasswordFormWrapper,
+  FormItem,
+  SubmitButton,
+  BtnWrapper,
+} from "./styles";
+
+const ResetPasswordForm = () => {
+  const onSuccessAction = () => {
+    console.log("Reset Password worked");
+  };
+
+  const { formErrors, formState, formControl, submitForm } =
+    useResetPasswordForm(onSuccessAction);
+
+  return (
+    <ResetPasswordFormWrapper
+      name="resetPasswordForm"
+      onFinish={() => submitForm()}
+      autoComplete="off"
+    >
+      <FormItem
+        validateStatus={formErrors && formErrors["password"] ? "error" : ""}
+        name="password"
+        help={
+          formErrors.password && (
+            <ErrorMessage message={formErrors.password.message} />
+          )
+        }
+      >
+        <label htmlFor="password">
+          Password <sub>*</sub>
+        </label>
+        <Controller
+          render={({ field: { onChange, value } }) => (
+            <Input.Password size="large" onChange={onChange} value={value} />
+          )}
+          name="password"
+          control={formControl}
+        />
+      </FormItem>
+      <FormItem
+        validateStatus={
+          formErrors && formErrors["confirmPassword"] ? "error" : ""
+        }
+        name="confirmPassword"
+        help={
+          formErrors.confirmPassword && (
+            <ErrorMessage message={formErrors.confirmPassword.message} />
+          )
+        }
+      >
+        <label htmlFor="confirmPassword">
+          Confirm Password <sub>*</sub>
+        </label>
+        <Controller
+          render={({ field: { onChange, value } }) => (
+            <Input.Password size="large" onChange={onChange} value={value} />
+          )}
+          name="confirmPassword"
+          control={formControl}
+        />
+      </FormItem>
+      <BtnWrapper>
+        <SubmitButton
+          type="primary"
+          htmlType="submit"
+          disabled={!formState.isDirty || !formState.isValid}
+        >
+          Reset Password
+        </SubmitButton>
+      </BtnWrapper>
+    </ResetPasswordFormWrapper>
+  );
+};
+
+export default ResetPasswordForm;

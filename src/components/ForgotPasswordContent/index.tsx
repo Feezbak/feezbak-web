@@ -11,7 +11,7 @@ import {
   Description,
 } from "./styles";
 
-const SignInContent = () => {
+const ForgotPasswordContent = () => {
   return (
     <ForgotPasswordMainWrapper>
       <ForgotPasswordFormWrapper>
@@ -26,7 +26,7 @@ const SignInContent = () => {
         >
           <img
             src={forgotPasswordImgSrc}
-            alt="forgot password"
+            alt="Forgot password"
             loading="lazy"
           />
         </ImageContainer>
@@ -45,4 +45,4 @@ const SignInContent = () => {
   );
 };
 
-export default SignInContent;
+export default ForgotPasswordContent;
