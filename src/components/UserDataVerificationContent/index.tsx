@@ -12,13 +12,12 @@ const UserDataVerificationContent = () => {
   const navigate = useNavigate();
 
   const { loading: isLoading } = useRequest(() => verifyUserById(id ?? ""), {
-    onSuccess: (response) => {
-      console.log(response, 9999);
-      //        localStorage.setItem("jwt", response.token);
+    onSuccess: () => {
+      navigate("/sign-in");
     },
     onError: (error: any) => {
       setTimeout(() => navigate("/not-found"), 2000);
-      message.error(error.request.responseText);
+      message.error(error?.response?.data?.message ?? "");
     },
   });
 
