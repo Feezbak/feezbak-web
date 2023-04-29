@@ -14,7 +14,7 @@ import {
 } from "./styles";
 
 const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
-  const { formErrors, formState, formControl, submitForm } =
+  const { formErrors, formState, formControl, submitForm, requestLoading } =
     useSignUpByEmailForm(setAccountState);
 
   return (
@@ -122,6 +122,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
         <SubmitButton
           type="primary"
           htmlType="submit"
+          loading={requestLoading}
           disabled={!formState.isDirty || !formState.isValid}
         >
           Create Now

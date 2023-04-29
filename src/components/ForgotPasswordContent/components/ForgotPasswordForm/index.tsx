@@ -10,12 +10,16 @@ import {
   BtnWrapper,
 } from "./styles";
 
-const ForgotPasswordForm = () => {
+interface Props {
+  setEmailSendState: (state: boolean) => void;
+}
+
+const ForgotPasswordForm = ({ setEmailSendState }: Props) => {
   const onSuccessAction = () => {
-    console.log("Forgot Password worked");
+    setEmailSendState(true);
   };
 
-  const { formErrors, formState, formControl, submitForm } =
+  const { formErrors, formState, formControl, submitForm, requestLoading } =
     useForgotPasswordForm(onSuccessAction);
 
   return (
@@ -53,6 +57,7 @@ const ForgotPasswordForm = () => {
         <SubmitButton
           type="primary"
           htmlType="submit"
+          loading={requestLoading}
           disabled={!formState.isDirty || !formState.isValid}
         >
           Reset Password

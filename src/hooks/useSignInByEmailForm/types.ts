@@ -17,6 +17,7 @@ export interface UseSignInByEmailFormResult {
   formState: FormState<SignInEmailFormInputs>;
   getFieldValue: UseFormGetValues<SignInEmailFormInputs>;
   setPassValue: UseFormSetValue<SignInEmailFormInputs>;
+  requestLoading: boolean;
   submitForm: (
     e?: BaseSyntheticEvent<Record<string, unknown>, any, any>
   ) => Promise<void>;

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { forgotPassword } from "@/api";
 import { ForgotPasswordFormInputs, ForgotPasswordSchema } from "@/validations";
 import { message } from "antd";
+import useRequest from "@ahooksjs/use-request";
 
 export default function useForgotPasswordForm(
   onSuccessAction: () => void
@@ -28,23 +29,31 @@ export default function useForgotPasswordForm(
     }),
   });
 
-  const submitForm = handleSubmit(async (data) => {
-    try {
-      const res = await forgotPassword(data);
-      if (res) {
-        onSuccessAction();
-        setTimeout(
-          () =>
-            reset({
-              email: "",
-            }),
-          1000
-        );
-      }
-    } catch (error: any) {
-      console.error(error);
-      message.error(error.response.data.message);
+  const { run: runForgotPassword, loading: requestLoading } = useRequest(
+    (data) => forgotPassword(data),
+    {
+      manual: true,
+      onSuccess: (res) => {
+        if (res) {
+          onSuccessAction();
+          setTimeout(
+            () =>
+              reset({
+                email: "",
+              }),
+            1000
+          );
+        }
+      },
+      onError: (error: any) => {
+        console.error(error);
+        message.error(error.response.data.message);
+      },
     }
+  );
+
+  const submitForm = handleSubmit(async (data) => {
+    runForgotPassword(data);
   });
 
   return {
@@ -55,5 +64,6 @@ export default function useForgotPasswordForm(
     setPassValue,
     getFieldValue,
     submitForm,
+    requestLoading,
   };
 }

@@ -3,6 +3,7 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import { useForm } from "react-hook-form";
 import { registerUser } from "@/api";
 import { message } from "antd";
+import useRequest from "@ahooksjs/use-request";
 import { SignUpEmailFormInputs, SignUpEmailSchema } from "@/validations";
 
 export default function useSignUpByEmailForm(
@@ -28,24 +29,32 @@ export default function useSignUpByEmailForm(
     }),
   });
 
-  const submitForm = handleSubmit(async (data) => {
-    try {
-      const res = await registerUser("sign-up", data);
-      if (res) {
-        setAccountState();
-        setTimeout(
-          () =>
-            reset({
-              password: "",
-              email: "",
-            }),
-          1000
-        );
-      }
-    } catch (error: any) {
-      console.error(error);
-      message.error(error?.response?.responseText ?? "");
+  const { run: runRegisterUser, loading: requestLoading } = useRequest(
+    (data) => registerUser(data),
+    {
+      manual: true,
+      onSuccess: (res) => {
+        if (res) {
+          setAccountState();
+          setTimeout(
+            () =>
+              reset({
+                password: "",
+                email: "",
+              }),
+            1000
+          );
+        }
+      },
+      onError: (error: any) => {
+        console.error(error);
+        message.error(error?.response?.responseText ?? "");
+      },
     }
+  );
+
+  const submitForm = handleSubmit(async (data) => {
+    runRegisterUser(data);
   });
 
   return {
@@ -56,5 +65,6 @@ export default function useSignUpByEmailForm(
     setPassValue,
     getFieldValue,
     submitForm,
+    requestLoading,
   };
 }

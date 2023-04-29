@@ -4,9 +4,11 @@ import { useForm } from "react-hook-form";
 import { resetPassword } from "@/api";
 import { ResetPasswordFormInputs, ResetPasswordSchema } from "@/validations";
 import { message } from "antd";
+import useRequest from "@ahooksjs/use-request";
 
 export default function useResetPasswordForm(
-  onSuccessAction: () => void
+  onSuccessAction: () => void,
+  key: string
 ): UseResetPasswordFormResult {
   const {
     handleSubmit,
@@ -28,23 +30,32 @@ export default function useResetPasswordForm(
     }),
   });
 
-  const submitForm = handleSubmit(async (data) => {
-    try {
-      const res = await resetPassword(data);
-      if (res) {
-        onSuccessAction();
-        setTimeout(
-          () =>
-            reset({
-              password: "",
-            }),
-          1000
-        );
-      }
-    } catch (error: any) {
-      console.error(error);
-      message.error(error.response.data.message);
+  const { run: runResetPassword, loading: requestLoading } = useRequest(
+    (data) => resetPassword(data, key),
+    {
+      manual: true,
+      onSuccess: (res) => {
+        if (res) {
+          onSuccessAction();
+          setTimeout(
+            () =>
+              reset({
+                password: "",
+                confirmPassword: "",
+              }),
+            1000
+          );
+        }
+      },
+      onError: (error: any) => {
+        console.error(error);
+        message.error(error.response.data.message);
+      },
     }
+  );
+
+  const submitForm = handleSubmit(async (data) => {
+    runResetPassword({ password: data.password });
   });
 
   return {
@@ -55,5 +66,6 @@ export default function useResetPasswordForm(
     setValue,
     getFieldValue,
     submitForm,
+    requestLoading,
   };
 }

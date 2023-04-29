@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SignUpForm from "./components/SignUpForm";
 import signUpImgSrc from "@images/sign-up.png";
-import EmailVerificationNotifier from "./components/EmailVerificationNotifier";
+import { EmailVerificationNotifier } from "@/shared";
 import {
   SignUpMainWrapper,
   SignUpFormWrapper,
@@ -22,7 +22,9 @@ const SignUpContent = () => {
   return (
     <SignUpMainWrapper>
       {isAccountCreated ? (
-        <EmailVerificationNotifier setAccountState={setAccountState} />
+        <EmailVerificationNotifier
+          handleGoBackAction={() => setAccountState(false)}
+        />
       ) : (
         <SignUpFormWrapper>
           <ImageContainer

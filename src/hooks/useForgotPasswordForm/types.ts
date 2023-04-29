@@ -17,6 +17,7 @@ export interface UseForgotPasswordFormResult {
   formState: FormState<ForgotPasswordFormInputs>;
   getFieldValue: UseFormGetValues<ForgotPasswordFormInputs>;
   setPassValue: UseFormSetValue<ForgotPasswordFormInputs>;
+  requestLoading: boolean;
   submitForm: (
     e?: BaseSyntheticEvent<Record<string, unknown>, any, any>
   ) => Promise<void>;

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { loginUser } from "@/api";
 import { SignInEmailFormInputs, SignInEmailSchema } from "@/validations";
 import { message } from "antd";
+import useRequest from "@ahooksjs/use-request";
 
 export default function useSignInByEmailForm(
   onUserSuccessLogin: () => void
@@ -28,24 +29,33 @@ export default function useSignInByEmailForm(
     }),
   });
 
-  const submitForm = handleSubmit(async (data) => {
-    try {
-      const res = await loginUser("sign-in", data);
-      if (res) {
-        onUserSuccessLogin();
-        setTimeout(
-          () =>
-            reset({
-              password: "",
-              email: "",
-            }),
-          1000
-        );
-      }
-    } catch (error: any) {
-      console.error(error);
-      message.error(error.response.data.message);
+  const { run: runLoginUser, loading: requestLoading } = useRequest(
+    (data) => loginUser(data),
+    {
+      manual: true,
+      onSuccess: (res) => {
+        if (res) {
+          onUserSuccessLogin();
+          localStorage.setItem("userData", JSON.stringify(res.data));
+          setTimeout(
+            () =>
+              reset({
+                password: "",
+                email: "",
+              }),
+            1000
+          );
+        }
+      },
+      onError: (error: any) => {
+        console.error(error);
+        message.error(error.response.data.message);
+      },
     }
+  );
+
+  const submitForm = handleSubmit(async (data) => {
+    runLoginUser(data);
   });
 
   return {
@@ -56,5 +66,6 @@ export default function useSignInByEmailForm(
     setPassValue,
     getFieldValue,
     submitForm,
+    requestLoading,
   };
 }

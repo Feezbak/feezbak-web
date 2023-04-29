@@ -6,3 +6,4 @@ export { default as Badge } from "./Badge";
 export { default as ConfirmModal } from "./ConfirmModal";
 export { default as CreationFlowHeader } from "./CreationFlowHeader";
 export { default as CreationFlowFooter } from "./CreationFlowFooter";
+export { default as EmailVerificationNotifier } from "./EmailVerificationNotifier";

@@ -31,7 +31,7 @@ const AnimatedRoutes = () => {
         />
         <Route
           caseSensitive
-          path="/reset-password"
+          path="/reset-password/:id"
           element={<ResetPassword />}
         />
         <Route caseSensitive path="/verify/:id" element={<Verify />} />

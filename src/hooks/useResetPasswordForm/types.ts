@@ -17,6 +17,7 @@ export interface UseResetPasswordFormResult {
   formState: FormState<ResetPasswordFormInputs>;
   getFieldValue: UseFormGetValues<ResetPasswordFormInputs>;
   setValue: UseFormSetValue<ResetPasswordFormInputs>;
+  requestLoading: boolean;
   submitForm: (
     e?: BaseSyntheticEvent<Record<string, unknown>, any, any>
   ) => Promise<void>;

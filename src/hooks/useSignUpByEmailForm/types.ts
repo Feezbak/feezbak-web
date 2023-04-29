@@ -17,6 +17,7 @@ export interface UseSignUpByEmailFormResult {
   formState: FormState<SignUpEmailFormInputs>;
   getFieldValue: UseFormGetValues<SignUpEmailFormInputs>;
   setPassValue: UseFormSetValue<SignUpEmailFormInputs>;
+  requestLoading: boolean;
   submitForm: (
     e?: BaseSyntheticEvent<Record<string, unknown>, any, any>
   ) => Promise<void>;

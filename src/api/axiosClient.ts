@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosClient = axios.create();
 
-axiosClient.defaults.baseURL = "http://192.168.88.133:4005/";
+axiosClient.defaults.baseURL = "https://feezbak.mixbox.am/";
 
 axiosClient.defaults.headers.post = {
   Accept: "application/json",
