@@ -84,6 +84,9 @@ const SignInForm = () => {
         <Description>
           If you are new, try to <Link to="/sign-up">Sign up</Link>
         </Description>
+        <Description>
+          Maybe you <Link to="/forgot-password">Forgot your password?</Link>
+        </Description>
       </BtnWrapper>
     </SignInFormWrapper>
   );

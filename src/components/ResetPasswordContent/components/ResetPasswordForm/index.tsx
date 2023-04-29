@@ -2,6 +2,7 @@ import React from "react";
 import { Controller } from "react-hook-form";
 import { ErrorMessage } from "@/shared";
 import { Input } from "antd";
+import { useNavigate } from "react-router-dom";
 import { useResetPasswordForm } from "@hooks/useResetPasswordForm";
 import {
   ResetPasswordFormWrapper,
@@ -11,8 +12,9 @@ import {
 } from "./styles";
 
 const ResetPasswordForm = () => {
+  const navigate = useNavigate();
   const onSuccessAction = () => {
-    console.log("Reset Password worked");
+    navigate("/sign-in");
   };
 
   const { formErrors, formState, formControl, submitForm } =
