@@ -19,7 +19,7 @@ const ForgotPasswordForm = ({ setEmailSendState }: Props) => {
     setEmailSendState(true);
   };
 
-  const { formErrors, formState, formControl, submitForm } =
+  const { formErrors, formState, formControl, submitForm, requestLoading } =
     useForgotPasswordForm(onSuccessAction);
 
   return (
@@ -57,6 +57,7 @@ const ForgotPasswordForm = ({ setEmailSendState }: Props) => {
         <SubmitButton
           type="primary"
           htmlType="submit"
+          loading={requestLoading}
           disabled={!formState.isDirty || !formState.isValid}
         >
           Reset Password

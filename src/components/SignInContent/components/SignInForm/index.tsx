@@ -19,7 +19,7 @@ const SignInForm = () => {
     navigate("/dashboard");
   };
 
-  const { formErrors, formState, formControl, submitForm } =
+  const { formErrors, formState, formControl, submitForm, requestLoading } =
     useSignInByEmailForm(onUserSuccessLogin);
 
   return (
@@ -77,6 +77,7 @@ const SignInForm = () => {
         <SubmitButton
           type="primary"
           htmlType="submit"
+          loading={requestLoading}
           disabled={!formState.isDirty || !formState.isValid}
         >
           Sign In

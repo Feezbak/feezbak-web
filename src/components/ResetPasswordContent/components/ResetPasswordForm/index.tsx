@@ -2,7 +2,7 @@ import React from "react";
 import { Controller } from "react-hook-form";
 import { ErrorMessage } from "@/shared";
 import { Input } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useResetPasswordForm } from "@hooks/useResetPasswordForm";
 import {
   ResetPasswordFormWrapper,
@@ -13,12 +13,13 @@ import {
 
 const ResetPasswordForm = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
   const onSuccessAction = () => {
     navigate("/sign-in");
   };
 
-  const { formErrors, formState, formControl, submitForm } =
-    useResetPasswordForm(onSuccessAction);
+  const { formErrors, formState, formControl, submitForm, requestLoading } =
+    useResetPasswordForm(onSuccessAction, id ?? "");
 
   return (
     <ResetPasswordFormWrapper
@@ -72,6 +73,7 @@ const ResetPasswordForm = () => {
         <SubmitButton
           type="primary"
           htmlType="submit"
+          loading={requestLoading}
           disabled={!formState.isDirty || !formState.isValid}
         >
           Reset Password

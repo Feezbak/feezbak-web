@@ -2,14 +2,31 @@ import React from "react";
 import { Dropdown } from "antd";
 import { MenuItems } from "./utils";
 import { CreatorAvatar } from "./styles";
+import { logOut } from "@/api";
+import useRequest from "@ahooksjs/use-request";
 import { useNavigate } from "react-router-dom";
+import { message } from "antd";
 
 const CreatorDropdownMenu = () => {
   const navigate = useNavigate();
-  const items = MenuItems(
-    () => navigate("/profile"),
-    () => navigate("/")
-  );
+
+  const { run: runLogout } = useRequest((key) => logOut(key ?? ""), {
+    manual: true,
+    onSuccess: () => {
+      localStorage.removeItem("userData");
+      navigate("/sign-in");
+    },
+    onError: (error: any) => {
+      message.error(error?.response?.data?.message ?? "");
+    },
+  });
+
+  const handleLogout = () => {
+    runLogout("someKey");
+  };
+
+  const items = MenuItems(() => navigate("/profile"), handleLogout);
+
   return (
     <Dropdown menu={{ items }} placement="bottom" arrow>
       <CreatorAvatar
