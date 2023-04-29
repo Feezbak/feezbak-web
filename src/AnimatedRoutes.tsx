@@ -1,9 +1,11 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useLayoutEffect } from "react";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import { isAuth } from "@/hooks";
 import UseCases from "@components/DashboardContent/components/UseCases";
 import Stories from "@components/DashboardContent/components/Stories";
 import PageNotFound from "@components/PageNotFound";
+import PrivateRoute from "@components/PrivateRoute";
 import {
   Landing,
   SignIn,
@@ -17,13 +19,38 @@ import {
 } from "@/pages";
 
 const AnimatedRoutes = () => {
+  const authed = isAuth();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  useLayoutEffect(() => {
+    if (
+      authed &&
+      (pathname === "/sign-in" ||
+        pathname === "/sign-up" ||
+        pathname === "/forgot-password" ||
+        pathname === "/reset-password")
+    ) {
+      setTimeout(() => navigate("/dashboard"), 0);
+    }
+  }, [authed, pathname, navigate]);
+
   return (
     <AnimatePresence>
       <Routes>
         <Route caseSensitive path="/" element={<Landing />} />
         <Route caseSensitive path="/sign-in" element={<SignIn />} />
         <Route caseSensitive path="/sign-up" element={<SignUp />} />
-        <Route caseSensitive path="/profile" element={<Profile />} />
+        <Route path="*" element={<PageNotFound />} />
+        <Route
+          caseSensitive
+          path="/profile"
+          element={
+            <PrivateRoute pathName="/profile">
+              <Profile />
+            </PrivateRoute>
+          }
+        />
         <Route
           caseSensitive
           path="/forgot-password"
@@ -35,12 +62,27 @@ const AnimatedRoutes = () => {
           element={<ResetPassword />}
         />
         <Route caseSensitive path="/verify/:id" element={<Verify />} />
-        <Route caseSensitive path="/dashboard" element={<Dashboard />}>
+        <Route
+          caseSensitive
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        >
           <Route index element={<Stories />} />
           <Route caseSensitive path="use-cases" element={<UseCases />} />
         </Route>
-        <Route caseSensitive path="/create-story/:id" element={<Create />} />
-        <Route path="*" element={<PageNotFound />} />
+        <Route
+          caseSensitive
+          path="/create-story/:id"
+          element={
+            <PrivateRoute>
+              <Create />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </AnimatePresence>
   );

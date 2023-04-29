@@ -3,3 +3,4 @@ export { default as useDebounce } from "./useDebounce";
 export * from "./useSignUpByEmailForm";
 export * from "./useSignInByEmailForm";
 export * from "./useForgotPasswordForm";
+export * from "./isAuth";
