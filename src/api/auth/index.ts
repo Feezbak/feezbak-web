@@ -20,7 +20,7 @@ export function resetPassword(payload: any, key: string) {
   return axiosClient
     .post(`/reset`, payload, {
       headers: {
-        header: "Bearer " + key,
+        authorization: "Bearer " + key,
       },
     })
     .then((response) => response);
@@ -30,7 +30,7 @@ export function logOut(key: string) {
   return axiosClient
     .get(`/logout`, {
       headers: {
-        header: "Bearer " + key,
+        authorization: "Bearer " + key,
       },
     })
     .then((response) => response);

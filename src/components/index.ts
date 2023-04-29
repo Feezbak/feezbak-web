@@ -8,3 +8,4 @@ export { default as CreateStoryContent } from "./CreateStoryContent";
 export { default as UserDataVerificationContent } from "./UserDataVerificationContent";
 export { default as ForgotPasswordContent } from "./ForgotPasswordContent";
 export { default as ResetPasswordContent } from "./ResetPasswordContent";
+export { default as PrivateRoute } from "./PrivateRoute";
