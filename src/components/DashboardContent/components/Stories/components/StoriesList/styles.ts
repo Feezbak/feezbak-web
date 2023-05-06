@@ -30,7 +30,7 @@ export const EmptyStoriesWrapper = styled.div`
     text-align: center;
     letter-spacing: -0.03em;
     display: inline-block;
-    max-width: 30rem;
+    max-width: 33rem;
   }
 `;
 
