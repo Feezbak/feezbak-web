@@ -54,7 +54,9 @@
     "build": "craco build",
     "test": "craco test",
     "format": "prettier --write \"**/*.ts\" \"**/*.tsx\" \"**/*.json\"",
-    "lint": "eslint . --ext .ts,.tsx"
+    "lint": "eslint . --ext .ts,.tsx",
+    "prettier-check": "prettier --check '**/*.js' '**/*.jsx' '**/*.ts' '**/*.tsx'",
+    "type-check": "tsc --noEmit"
   },
   "eslintConfig": {
     "extends": [
