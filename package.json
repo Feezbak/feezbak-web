@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "Feedback accumulating and managing web platform",
   "author": "Taron Vardanyan",
-  "homepage": "https://github.com/Feezbak/feezbak-web#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/Feezbak/feezbak-web.git"

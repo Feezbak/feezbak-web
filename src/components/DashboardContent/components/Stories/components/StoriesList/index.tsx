@@ -1,7 +1,12 @@
 import React, { useState } from "react";
-import { StoriesListWrapper } from "./styles";
+import {
+  StoriesListWrapper,
+  EmptyStoriesWrapper,
+  EmptyStoriesImage,
+} from "./styles";
 import StoryItem from "../StoryItem";
 import { ConfirmModal } from "@/shared";
+import emptyStoriesSrc from "@images/empty-stories.png";
 
 const hardcodedData = [
   {
@@ -26,15 +31,26 @@ const StoriesList = () => {
 
   return (
     <>
-      <StoriesListWrapper>
-        {hardcodedData.map((story) => (
-          <StoryItem
-            key={story.id}
-            storyData={story}
-            handleDelete={handleDelete}
-          />
-        ))}
-      </StoriesListWrapper>
+      {!hardcodedData?.length ? (
+        <StoriesListWrapper>
+          {hardcodedData.map((story) => (
+            <StoryItem
+              key={story.id}
+              storyData={story}
+              handleDelete={handleDelete}
+            />
+          ))}
+        </StoriesListWrapper>
+      ) : (
+        <EmptyStoriesWrapper>
+          <EmptyStoriesImage src={emptyStoriesSrc} alt="No stories yet" />
+          <h2>It’s ok not to have stories!</h2>
+          <p>
+            Stories are ways to understand how people think about a certain part
+            of your business or product, create one now.!
+          </p>
+        </EmptyStoriesWrapper>
+      )}
       <ConfirmModal
         title="Why are you deleting."
         text="We’re sorry to hear this but if you already made up your
