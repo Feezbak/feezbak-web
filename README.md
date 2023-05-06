@@ -41,5 +41,5 @@ yarn run test
 👤 **Taron Vardanyan**
 
 * Twitter: [@tarokavardanyan](https://twitter.com/tarokavardanyan)
-* Github: [@Feezbak](https://github.com/Feezbak)
-* LinkedIn: [@Taron Vardanyan](https://linkedin.com/in/Taron Vardanyan)
+* Github: [@Feezbak](https://github.com/TaronVardanyan)
+* LinkedIn: [@Taron Vardanyan](https://www.linkedin.com/in/taron-vardanyan-3a1b85198)
