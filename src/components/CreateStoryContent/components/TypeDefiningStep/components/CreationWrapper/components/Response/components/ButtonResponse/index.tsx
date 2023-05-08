@@ -14,7 +14,7 @@ import {
 const ButtonResponse = () => {
   const { step2, setResponseButtons } = useContext(StoryCreationContext);
   const [respBtnState, setRespBtnState] = useState(
-    step2.imageVoting.response.responseBtnList
+    step2.response.responseBtnList
   );
   const responses = useDebounce(respBtnState, 1000);
 

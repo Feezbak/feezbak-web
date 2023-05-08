@@ -7,25 +7,20 @@ import ResponsePreviewBtn from "../ResponsePreviewBtn";
 import PreviewSlider from "./components/PreviewSlider";
 import { useDebounce } from "@/hooks";
 import DOMPurify from "dompurify";
-import {
-  ResponseTypeEnum,
-  StoryStepEnum,
-  StoryTypeEnum,
-  StyleEnums,
-} from "@/enums";
+import { StoryStepEnum, StoryTypeEnum, StyleEnums } from "@/enums";
 import {
   opacityAnimation,
   opacityWithScaleAnimation,
 } from "@assets/framerAnimations";
 import {
-  PreviewFlowWrapper,
   CircleColorPicker,
   ColorPickerBtn,
   ColorPickerWrapper,
   PreviewFlow,
+  PreviewFlowWrapper,
+  Responses,
   ResponseTitleWrapper,
   SquareBtn,
-  Responses,
   TitlePreview,
 } from "./styles";
 
@@ -84,15 +79,15 @@ const Preview = () => {
   const coverImgSrc = useMemo(() => step2.imageVoting.selectedImgSrc, [step2]);
 
   const responseButtons = useMemo(
-    () => step2.imageVoting.response.responseBtnList,
+    () => step2.response.responseBtnList,
     [step2]
   );
 
   const hasButtonsResp = useMemo(
     () =>
-      step2.imageVoting.response.responseType === ResponseTypeEnum.COMBINED ||
-      step2.imageVoting.response.responseType ===
-        ResponseTypeEnum.BUTTON_RESPONSE,
+      step2.type === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
+      step2.type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP ||
+      step2.type === StoryTypeEnum.COMBINED,
     [step2]
   );
 
@@ -155,18 +150,25 @@ const Preview = () => {
             isSquare={isSquare}
           />
         )}
-        <ResponseTitleWrapper $isFullHeight={isFullHeight}>
+        <ResponseTitleWrapper
+          $isFullHeight={isFullHeight}
+          $isTextTypeWithBtnResp={
+            step2.type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP
+          }
+        >
           <TitlePreview
-            $titleShadowColor={titleShadowColor}
             dangerouslySetInnerHTML={createMarkup}
+            $titleShadowColor={titleShadowColor}
+            $isTextTypeWithBtnResp={
+              step2.type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP
+            }
           />
-          {!isTextType && isNotFirstStep && (
+          {isNotFirstStep && hasButtonsResp && (
             <Responses>
               <AnimatePresence initial={false}>
-                {hasButtonsResp &&
-                  responseButtons.map((respBtn) => (
-                    <ResponsePreviewBtn key={respBtn.id} text={respBtn.text} />
-                  ))}
+                {responseButtons.map((respBtn) => (
+                  <ResponsePreviewBtn key={respBtn.id} text={respBtn.text} />
+                ))}
               </AnimatePresence>
             </Responses>
           )}

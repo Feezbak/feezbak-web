@@ -3,6 +3,7 @@ import { StoryTypeEnum } from "@/enums";
 import { StoryCreationContext } from "@/context";
 import ImageType from "./components/ImageType";
 import TextType from "./components/TextType";
+import Response from "./components/Response";
 import { AnimatePresence } from "framer-motion";
 import { CreationFlowFooter, CreationFlowHeader } from "@/shared";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
@@ -41,6 +42,14 @@ const CreationWrapper = () => {
     [step2]
   );
 
+  const isBtnResponse = useMemo(
+    () =>
+      step2.type === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
+      step2.type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP ||
+      step2.type === StoryTypeEnum.COMBINED,
+    [step2]
+  );
+
   const isNextActive = useMemo(() => {
     if (
       step2.type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP ||
@@ -68,6 +77,9 @@ const CreationWrapper = () => {
       />
       <AnimatePresence initial={false}>
         {isImageVoting ? <ImageType /> : <TextType />}
+      </AnimatePresence>
+      <AnimatePresence initial={false}>
+        {isBtnResponse && <Response />}
       </AnimatePresence>
       <CreationFlowFooter
         prevBtnActionHandler={handleGoToPrevStep}
