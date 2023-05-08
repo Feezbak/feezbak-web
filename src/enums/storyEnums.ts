@@ -9,8 +9,11 @@ export enum StoryStepEnum {
 }
 
 export enum StoryTypeEnum {
-  IMAGE_VOTING = "Image Voting",
-  TEXT_VOTING = "Text Voting",
+  IMAGE_VOTING_ONLY_BUTTON_RESP = "Image voting with button response",
+  IMAGE_VOTING_ONLY_TEXT_RESP = "Image voting with text response",
+  TEXT_VOTING_ONLY_BUTTON_RESP = "Text voting with button response",
+  TEXT_VOTING_ONLY_TEXT_RESP = "Text voting with text response",
+  COMBINED = "Combined",
 }
 
 export enum ResponseTypeEnum {

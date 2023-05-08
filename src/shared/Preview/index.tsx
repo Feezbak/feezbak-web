@@ -102,7 +102,9 @@ const Preview = () => {
   );
 
   const isTextType = useMemo(
-    () => step2.type === StoryTypeEnum.TEXT_VOTING,
+    () =>
+      step2.type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP ||
+      step2.type === StoryTypeEnum.TEXT_VOTING_ONLY_TEXT_RESP,
     [step2]
   );
 

@@ -10,7 +10,7 @@ interface Props {
 const MultipleSelection = ({ onChange, defaultValue }: Props) => {
   return (
     <MultipleSelectionWrapper>
-      <ActionTitle>Multiple Selection</ActionTitle>
+      <ActionTitle>Multiple Answer</ActionTitle>
       <Switch defaultChecked={defaultValue} onChange={onChange} />
     </MultipleSelectionWrapper>
   );

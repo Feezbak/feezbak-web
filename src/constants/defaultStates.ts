@@ -61,7 +61,7 @@ export const storyDefaultState: StoryCreationDataType = {
   },
   step2: {
     isMultiple: false,
-    type: StoryTypeEnum.IMAGE_VOTING,
+    type: StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP,
     imageVoting: {
       isImageAttached: false,
       isSquare: false,
