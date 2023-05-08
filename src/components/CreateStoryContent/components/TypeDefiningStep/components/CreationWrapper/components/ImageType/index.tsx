@@ -1,7 +1,6 @@
 import React from "react";
 import UploadArea from "./components/UploadArea";
 import UploadList from "./components/UploadList";
-import Response from "./components/Response";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { ImageTypeWrapper, ImageTypeTitle, ImageUploadArea } from "./styles";
 
@@ -15,7 +14,6 @@ const ImageType = () => {
         <UploadArea />
         <UploadList />
       </ImageUploadArea>
-      <Response />
     </ImageTypeWrapper>
   );
 };

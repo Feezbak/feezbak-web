@@ -3,6 +3,7 @@ import { StoryTypeEnum } from "@/enums";
 import { StoryCreationContext } from "@/context";
 import ImageType from "./components/ImageType";
 import TextType from "./components/TextType";
+import Response from "./components/Response";
 import { AnimatePresence } from "framer-motion";
 import { CreationFlowFooter, CreationFlowHeader } from "@/shared";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
@@ -34,14 +35,32 @@ const CreationWrapper = () => {
   };
 
   const isImageVoting = useMemo(
-    () => step2.type === StoryTypeEnum.IMAGE_VOTING,
+    () =>
+      step2.type === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
+      step2.type === StoryTypeEnum.IMAGE_VOTING_ONLY_TEXT_RESP ||
+      step2.type === StoryTypeEnum.COMBINED,
+    [step2]
+  );
+
+  const isBtnResponse = useMemo(
+    () =>
+      step2.type === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
+      step2.type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP ||
+      step2.type === StoryTypeEnum.COMBINED,
     [step2]
   );
 
   const isNextActive = useMemo(() => {
-    if (step2.type === StoryTypeEnum.TEXT_VOTING) {
+    if (
+      step2.type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP ||
+      step2.type === StoryTypeEnum.TEXT_VOTING_ONLY_TEXT_RESP
+    ) {
       return true;
-    } else if (step2.type === StoryTypeEnum.IMAGE_VOTING) {
+    } else if (
+      step2.type === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
+      step2.type === StoryTypeEnum.IMAGE_VOTING_ONLY_TEXT_RESP ||
+      step2.type === StoryTypeEnum.COMBINED
+    ) {
       return step2.imageVoting.isImageAttached;
     }
     return false;
@@ -57,8 +76,10 @@ const CreationWrapper = () => {
         handleTypeSelection={handleTypeSelection}
       />
       <AnimatePresence initial={false}>
-        {step2.type === StoryTypeEnum.IMAGE_VOTING && <ImageType />}
-        {step2.type === StoryTypeEnum.TEXT_VOTING && <TextType />}
+        {isImageVoting ? <ImageType /> : <TextType />}
+      </AnimatePresence>
+      <AnimatePresence initial={false}>
+        {isBtnResponse && <Response />}
       </AnimatePresence>
       <CreationFlowFooter
         prevBtnActionHandler={handleGoToPrevStep}

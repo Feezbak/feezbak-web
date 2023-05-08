@@ -39,8 +39,10 @@ export const PreviewFlow = styled.div<{
 
 export const TitlePreview = styled(motion.div)<{
   readonly $titleShadowColor: string;
+  readonly $isTextTypeWithBtnResp: boolean;
 }>`
   margin: 0 3rem;
+  margin-top: ${ifProp("$isTextTypeWithBtnResp", "25rem", "0")};
   font-size: 2.5rem;
   line-height: 2.5rem;
   letter-spacing: -0.02em;
@@ -107,12 +109,18 @@ export const ColorPickerWrapper = styled(motion.div)`
 
 export const ResponseTitleWrapper = styled.div<{
   readonly $isFullHeight: boolean;
+  readonly $isTextTypeWithBtnResp: boolean;
 }>`
   transition: 0.3s;
   width: 80%;
   display: flex;
   border-radius: 2.5rem;
-  justify-content: center;
+  margin-bottom: ${ifProp("$isTextTypeWithBtnResp", "3rem", "0")};
+  justify-content: ${ifProp(
+    "$isTextTypeWithBtnResp",
+    "space-between",
+    "center"
+  )};
   align-items: center;
   flex-direction: column;
   min-height: ${ifProp("$isFullHeight", "100%", "42%")};

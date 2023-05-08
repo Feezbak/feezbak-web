@@ -1,4 +1,4 @@
-import { ResponseTypeEnum, StoryTypeEnum, StyleEnums } from "@/enums";
+import { StoryTypeEnum, StyleEnums } from "@/enums";
 
 export const responseBtnListDefaultState = [
   {
@@ -20,10 +20,9 @@ export type Step2Type = {
     isSquare: boolean;
     selectedImgSrc: string;
     images: Image[];
-    response: {
-      responseType: ResponseTypeEnum;
-      responseBtnList: typeof responseBtnListDefaultState;
-    };
+  };
+  response: {
+    responseBtnList: typeof responseBtnListDefaultState;
   };
 };
 
@@ -41,7 +40,6 @@ export type StoryCreationDataType = {
   setPrevStep: () => void;
   setTitleData: (data: any) => void;
   setVotingType: (data: string) => void;
-  setResponseType: (data: string) => void;
   setImageAttached: (data: boolean) => void;
   setNewImage: (data: Image) => void;
   setSelectedImgSrc: (data: string) => void;
@@ -61,16 +59,15 @@ export const storyDefaultState: StoryCreationDataType = {
   },
   step2: {
     isMultiple: false,
-    type: StoryTypeEnum.IMAGE_VOTING,
+    type: StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP,
     imageVoting: {
       isImageAttached: false,
       isSquare: false,
       selectedImgSrc: "",
       images: [],
-      response: {
-        responseType: ResponseTypeEnum.BUTTON_RESPONSE,
-        responseBtnList: [...responseBtnListDefaultState],
-      },
+    },
+    response: {
+      responseBtnList: [...responseBtnListDefaultState],
     },
   },
   setNextStep: () => {},
@@ -78,7 +75,6 @@ export const storyDefaultState: StoryCreationDataType = {
   setPrevStep: () => {},
   setTitleData: () => {},
   setVotingType: () => {},
-  setResponseType: () => {},
   setImageAttached: () => {},
   setNewImage: () => {},
   setSelectedImgSrc: () => {},

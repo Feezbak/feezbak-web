@@ -23,6 +23,12 @@ const HeaderActions = ({
   return (
     <HeaderActionsWrapper>
       <SpaceWrapper wrap>
+        {actions.quantitySelection && handleQuantitySelection && (
+          <MultipleSelection
+            defaultValue={!!quantitySelectionDefaultValue}
+            onChange={handleQuantitySelection}
+          />
+        )}
         {actions.typeSelection &&
           handleTypeSelection &&
           typeSelectionDefaultValue && (
@@ -31,12 +37,6 @@ const HeaderActions = ({
               defaultValue={typeSelectionDefaultValue}
             />
           )}
-        {actions.quantitySelection && handleQuantitySelection && (
-          <MultipleSelection
-            defaultValue={!!quantitySelectionDefaultValue}
-            onChange={handleQuantitySelection}
-          />
-        )}
       </SpaceWrapper>
     </HeaderActionsWrapper>
   );
