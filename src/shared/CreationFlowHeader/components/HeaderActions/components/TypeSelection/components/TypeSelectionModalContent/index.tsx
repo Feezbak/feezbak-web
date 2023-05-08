@@ -45,8 +45,8 @@ const TypeSelectionModalContent = ({
 
   return (
     <TypeSelectionModalWrapper>
-      {typesModalContent.map((section) => (
-        <>
+      {typesModalContent.map((section, index) => (
+        <React.Fragment key={index}>
           <SectionTitle>{section.sectionTitle}</SectionTitle>
           <SectionWrapper>
             {section?.type1 && (
@@ -68,7 +68,7 @@ const TypeSelectionModalContent = ({
               />
             )}
           </SectionWrapper>
-        </>
+        </React.Fragment>
       ))}
     </TypeSelectionModalWrapper>
   );

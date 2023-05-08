@@ -1,4 +1,3 @@
-import { ResponseTypeEnum } from "@/enums";
 import { Image, storyStateActions } from "@/constants";
 
 const storyReducer = (state: any, action: any) => {
@@ -28,26 +27,9 @@ const storyReducer = (state: any, action: any) => {
         ...state,
         step2: {
           ...state.step2,
-          imageVoting: {
-            ...state.step2.imageVoting,
-            response: {
-              ...state.step2.imageVoting.response,
-              responseBtnList: payload,
-            },
-          },
-        },
-      };
-    case storyStateActions.SET_RESPONSE_TYPE:
-      return {
-        ...state,
-        step2: {
-          ...state.step2,
-          imageVoting: {
-            ...state.step2.imageVoting,
-            response: {
-              ...state.step2.imageVoting.response,
-              responseType: payload as ResponseTypeEnum,
-            },
+          response: {
+            ...state.step2.imageVoting.response,
+            responseBtnList: payload,
           },
         },
       };

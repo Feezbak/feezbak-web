@@ -31,10 +31,6 @@ export const StoryProvider = ({ children }: Props) => {
     dispatch({ type: storyStateActions.SET_RESPONSE_BUTTONS, payload });
   };
 
-  const setResponseType = (payload: any) => {
-    dispatch({ type: storyStateActions.SET_RESPONSE_TYPE, payload });
-  };
-
   const setImageAttached = (payload: boolean) => {
     dispatch({ type: storyStateActions.SET_IMAGE_ATTACHMENT_TYPE, payload });
   };
@@ -75,7 +71,6 @@ export const StoryProvider = ({ children }: Props) => {
     setPrevStep,
     setTitleData,
     setVotingType,
-    setResponseType,
     setImageAttached,
     setSelectedImgSrc,
     setResponseButtons,

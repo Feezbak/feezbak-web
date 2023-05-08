@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export const ResponseWrapper = styled.div`
+export const ResponseWrapper = styled(motion.div)`
   width: 100%;
-  margin-top: 3rem;
+  margin: 1.5rem 0 1.5rem 0;
 `;
 
 export const ResponseTitleAndActions = styled.div`
