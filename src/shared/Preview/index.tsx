@@ -156,7 +156,7 @@ const Preview = () => {
             step2.type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP
           }
         >
-          <ResponseTitleWrapper
+          <TitlePreview
             dangerouslySetInnerHTML={createMarkup}
             $titleShadowColor={titleShadowColor}
             $isTextTypeWithBtnResp={
