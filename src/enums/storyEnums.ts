@@ -6,6 +6,7 @@ export enum StoryEnums {
 export enum StoryStepEnum {
   TITLE_STEP = 1,
   TYPE_STEP = 2,
+  SHARE_SETTINGS_STEP = 3,
 }
 
 export enum StoryTypeEnum {
