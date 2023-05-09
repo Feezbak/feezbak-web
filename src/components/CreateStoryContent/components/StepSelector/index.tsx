@@ -12,6 +12,7 @@ import { StoryCreationContext } from "@/context";
 
 const TitleAddingStep = lazy(() => import("../TitleAddingStep"));
 const TypeDefiningStep = lazy(() => import("../TypeDefiningStep"));
+const ShareSettingsStep = lazy(() => import("../ShareSettingsStep"));
 
 const StepSelector = () => {
   const [api, contextHolder] = notification.useNotification();
@@ -22,6 +23,8 @@ const StepSelector = () => {
       return <TitleAddingStep />;
     } else if (currentStep === StoryStepEnum.TYPE_STEP) {
       return <TypeDefiningStep />;
+    } else if (currentStep === StoryStepEnum.SHARE_SETTINGS_STEP) {
+      return <ShareSettingsStep />;
     } else {
       return null;
     }
