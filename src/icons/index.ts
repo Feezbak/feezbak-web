@@ -11,3 +11,4 @@ export { TrashWhiteIcon } from "./trashWhiteIcon";
 export { UploadFileIcon } from "./uploadFileIcon";
 export { MakeSquareIcon } from "./makeSquareIcon";
 export { ArrowDownIcon } from "./arrowDownIcon";
+export { DragIcon } from "./dragIcon";

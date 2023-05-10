@@ -1,7 +1,14 @@
 import React from "react";
+import ShareSegmentSelection from "./components/ShareSegmentSelection";
+import { ShareSettingsWrapper, ShareSettingsTitle } from "./styles";
 
 const ShareSettings = () => {
-  return <div>Share Settings</div>;
+  return (
+    <ShareSettingsWrapper>
+      <ShareSettingsTitle>Share Settings</ShareSettingsTitle>
+      <ShareSegmentSelection />
+    </ShareSettingsWrapper>
+  );
 };
 
 export default ShareSettings;

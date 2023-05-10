@@ -7,5 +7,5 @@ export const ShareSettingsWrapper = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  margin-top: 3.125rem;
+  margin: 3.125rem 0;
 `;

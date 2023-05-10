@@ -4,3 +4,4 @@ export * from "./breakpointEnums";
 export * from "./breakpoints";
 export * from "./deviceEnums";
 export * from "./storyEnums";
+export * from "./shareEnums";

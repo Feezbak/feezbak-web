@@ -119,7 +119,31 @@ const storyReducer = (state: any, action: any) => {
           },
         },
       };
+    case storyStateActions.SET_SHARE_METHOD:
+      return {
+        ...state,
+        step3: {
+          ...state.step3,
+          shareType: payload,
+        },
+      };
+    case storyStateActions.SET_INFO_COLLECTION:
+      return {
+        ...state,
+        step3: {
+          ...state.step3,
+          isInfoCollectionAllowed: payload,
+        },
+      };
 
+    case storyStateActions.SET_INFO_COLLECTION_FIELDS:
+      return {
+        ...state,
+        step3: {
+          ...state.step3,
+          userInfoFields: payload,
+        },
+      };
     default:
       throw new Error(`No case for type ${type} found in shopReducer.`);
   }

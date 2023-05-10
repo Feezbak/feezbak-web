@@ -1,4 +1,4 @@
-import { StoryTypeEnum, StyleEnums } from "@/enums";
+import { StoryTypeEnum, StyleEnums, LinkShareEnum } from "@/enums";
 
 export const responseBtnListDefaultState = [
   {
@@ -26,6 +26,25 @@ export type Step2Type = {
   };
 };
 
+export type Step3Type = {
+  shareType: string;
+  isInfoCollectionAllowed: boolean;
+  userInfoFields: [
+    {
+      value: boolean;
+      title: "First Name";
+    },
+    {
+      value: boolean;
+      title: "Last Name";
+    },
+    {
+      value: boolean;
+      title: "Email Address";
+    }
+  ];
+};
+
 export type Step1Type = {
   title: string;
   titleColor: string;
@@ -36,12 +55,16 @@ export type StoryCreationDataType = {
   currentStep: number;
   step1: Step1Type;
   step2: Step2Type;
+  step3: Step3Type;
   setNextStep: () => void;
   setPrevStep: () => void;
   setTitleData: (data: any) => void;
   setVotingType: (data: string) => void;
   setImageAttached: (data: boolean) => void;
   setNewImage: (data: Image) => void;
+  setInfoCollection: (data: boolean) => void;
+  setInfoCollectionFields: (data: any) => void;
+  setShareMethod: (data: string) => void;
   setSelectedImgSrc: (data: string) => void;
   setResponseButtons: (data: any) => void;
   setImageSquareState: (data: boolean) => void;
@@ -70,13 +93,34 @@ export const storyDefaultState: StoryCreationDataType = {
       responseBtnList: [...responseBtnListDefaultState],
     },
   },
+  step3: {
+    shareType: LinkShareEnum,
+    isInfoCollectionAllowed: false,
+    userInfoFields: [
+      {
+        value: true,
+        title: "First Name",
+      },
+      {
+        value: true,
+        title: "Last Name",
+      },
+      {
+        value: true,
+        title: "Email Address",
+      },
+    ],
+  },
   setNextStep: () => {},
   deleteImage: () => {},
   setPrevStep: () => {},
   setTitleData: () => {},
   setVotingType: () => {},
   setImageAttached: () => {},
+  setShareMethod: () => {},
   setNewImage: () => {},
+  setInfoCollection: () => {},
+  setInfoCollectionFields: () => {},
   setSelectedImgSrc: () => {},
   setResponseButtons: () => {},
   setImageSquareState: () => {},

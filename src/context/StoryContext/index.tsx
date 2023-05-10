@@ -63,6 +63,18 @@ export const StoryProvider = ({ children }: Props) => {
     dispatch({ type: storyStateActions.DELETE_IMAGE, payload });
   };
 
+  const setShareMethod = (payload: string) => {
+    dispatch({ type: storyStateActions.SET_SHARE_METHOD, payload });
+  };
+
+  const setInfoCollection = (payload: boolean) => {
+    dispatch({ type: storyStateActions.SET_INFO_COLLECTION, payload });
+  };
+
+  const setInfoCollectionFields = (payload: any) => {
+    dispatch({ type: storyStateActions.SET_INFO_COLLECTION_FIELDS, payload });
+  };
+
   const value = {
     ...state,
     setNextStep,
@@ -71,11 +83,14 @@ export const StoryProvider = ({ children }: Props) => {
     setPrevStep,
     setTitleData,
     setVotingType,
+    setShareMethod,
     setImageAttached,
+    setInfoCollection,
     setSelectedImgSrc,
     setResponseButtons,
     setImageSquareState,
     setPreviewBackground,
+    setInfoCollectionFields,
     setSelectionQuantityState,
   };
 
