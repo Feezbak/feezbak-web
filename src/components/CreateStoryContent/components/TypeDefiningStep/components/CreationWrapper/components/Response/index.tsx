@@ -9,7 +9,7 @@ import {
 
 const Response = () => {
   return (
-    <ResponseWrapper {...opacityAnimation} transition={{ duration: 0.3 }}>
+    <ResponseWrapper {...opacityAnimation}>
       <ResponseTitleAndActions>
         <p>Please add min 1 and max 3 preferred responses</p>
       </ResponseTitleAndActions>

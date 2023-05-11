@@ -35,4 +35,5 @@ export const InfoDesc = styled.p`
   font-size: 1rem;
   line-height: 1.25rem;
   letter-spacing: -0.01em;
+  max-width: 80%;
 `;

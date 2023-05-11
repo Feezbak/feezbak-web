@@ -8,7 +8,7 @@ const CreationWrapper = () => {
   const { currentStep, setNextStep, setPrevStep } =
     useContext(StoryCreationContext);
 
-  const handleSubmitStep = () => {
+  const handleFinalize = () => {
     setNextStep();
   };
 
@@ -22,10 +22,11 @@ const CreationWrapper = () => {
       <FeedbackShareAndGetSettings />
       <CreationFlowFooter
         prevBtnActionHandler={handleGoToPrevStep}
-        nextBtnActionHandler={handleSubmitStep}
+        nextBtnActionHandler={handleFinalize}
         isNextActive={false}
+        isLastStep={true}
         currentStep={currentStep}
-        toolTipTitle="Please select type for your feedback"
+        toolTipTitle="Great job!, let's get our Feedback"
       />
     </CreationFlowWrapper>
   );

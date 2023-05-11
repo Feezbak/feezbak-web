@@ -16,6 +16,7 @@ interface Props {
   nextBtnActionHandler?: () => void;
   prevBtnActionHandler?: () => void;
   isNextActive: boolean;
+  isLastStep?: boolean;
 }
 
 const CreationFlowFooter = ({
@@ -24,24 +25,25 @@ const CreationFlowFooter = ({
   isNextActive,
   prevBtnActionHandler,
   nextBtnActionHandler,
+  isLastStep = false,
 }: Props) => {
   const nextBtnContent = useMemo(() => {
-    if (isNextActive) {
+    if (isNextActive || isLastStep) {
       return (
         <StepControlNextBtn type="primary" onClick={nextBtnActionHandler}>
-          Next Step <ArrowRightIcon />
+          {isLastStep ? "Finalize" : "Next Step"} <ArrowRightIcon />
         </StepControlNextBtn>
       );
     } else {
       return (
         <Tooltip title={toolTipTitle}>
           <StepControlNextBtn disabled>
-            Next Step <ArrowRightIcon />
+            {isLastStep ? "Finalize" : "Next Step"} <ArrowRightIcon />
           </StepControlNextBtn>
         </Tooltip>
       );
     }
-  }, [nextBtnActionHandler, isNextActive, toolTipTitle]);
+  }, [nextBtnActionHandler, isNextActive, toolTipTitle, isLastStep]);
 
   return (
     <CreationFlowFooterWrapper>

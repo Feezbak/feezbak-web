@@ -37,6 +37,7 @@ const stepBtnStyles = css`
 export const StepControlNextBtn = styled(Button)`
   ${stepBtnStyles};
   padding-right: 0;
+  transition: 0.3s;
 
   &.ant-btn-primary {
     font-weight: 600;

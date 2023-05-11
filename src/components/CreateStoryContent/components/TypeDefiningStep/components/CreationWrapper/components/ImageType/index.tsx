@@ -6,7 +6,7 @@ import { ImageTypeWrapper, ImageTypeTitle, ImageUploadArea } from "./styles";
 
 const ImageType = () => {
   return (
-    <ImageTypeWrapper {...opacityAnimation} transition={{ duration: 0.3 }}>
+    <ImageTypeWrapper {...opacityAnimation}>
       <ImageTypeTitle>
         Include the images you want people to vote
       </ImageTypeTitle>

@@ -9,12 +9,11 @@ export const InfoFormWrapper = styled(motion.div)`
   align-items: flex-start;
   flex-direction: column;
 
-  & > div {
-    width: 100%;
-    height: 100%;
-  }
-
   ul {
+    height: 100%;
+    max-height: 18rem;
+    overflow-x: hidden;
+    overflow-y: auto;
     padding: 0;
     list-style: none;
   }

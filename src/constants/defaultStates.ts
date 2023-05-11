@@ -29,20 +29,10 @@ export type Step2Type = {
 export type Step3Type = {
   shareType: string;
   isInfoCollectionAllowed: boolean;
-  userInfoFields: [
-    {
-      value: boolean;
-      title: "First Name";
-    },
-    {
-      value: boolean;
-      title: "Last Name";
-    },
-    {
-      value: boolean;
-      title: "Email Address";
-    }
-  ];
+  userInfoFields: {
+    value: string;
+    label: string;
+  }[];
 };
 
 export type Step1Type = {
@@ -98,16 +88,16 @@ export const storyDefaultState: StoryCreationDataType = {
     isInfoCollectionAllowed: false,
     userInfoFields: [
       {
-        value: true,
-        title: "First Name",
+        value: "First Name",
+        label: "First Name",
       },
       {
-        value: true,
-        title: "Last Name",
+        value: "Last Name",
+        label: "Last Name",
       },
       {
-        value: true,
-        title: "Email Address",
+        value: "Email Address",
+        label: "Email Address",
       },
     ],
   },
