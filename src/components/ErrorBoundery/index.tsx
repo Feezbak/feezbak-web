@@ -1,4 +1,12 @@
 import React, { ErrorInfo } from "react";
+import appCrashSrc from "@images/application-crash.png";
+import Prism from "prismjs";
+import {
+  ErrorBounderyWrapper,
+  AppCrashIllustration,
+  Title,
+  ErrorWrapper,
+} from "./styles";
 
 interface ErrorBoundaryProps {
   children: React.ReactNode;
@@ -23,6 +31,14 @@ class ErrorBoundary extends React.Component<
     };
   }
 
+  componentDidMount() {
+    Prism.highlightAll();
+  }
+
+  componentDidUpdate() {
+    Prism.highlightAll();
+  }
+
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     this.setState({
       hasError: true,
@@ -35,11 +51,24 @@ class ErrorBoundary extends React.Component<
     if (this.state.hasError) {
       // You can render a custom error UI or fallback component here
       return (
-        <div>
-          <h2>Oops! Something went wrong.</h2>
-          <p>{this.state.error && this.state.error.toString()}</p>
-          <p>{this.state.errorInfo && this.state.errorInfo.componentStack}</p>
-        </div>
+        <ErrorBounderyWrapper>
+          <AppCrashIllustration
+            src={appCrashSrc}
+            alt="Application was crashed"
+            loading="lazy"
+          />
+          <Title>Oops! Something went wrong.</Title>
+          <ErrorWrapper>
+            <pre>
+              <code className="language-javascript">
+                {this.state.error && this.state.error.toString()}
+              </code>
+              <code className="language-javascript">
+                {this.state.errorInfo && this.state.errorInfo.componentStack}
+              </code>
+            </pre>
+          </ErrorWrapper>
+        </ErrorBounderyWrapper>
       );
     }
     return this.props.children;
