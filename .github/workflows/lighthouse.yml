@@ -6,7 +6,7 @@ jobs:
       runs-on: ubuntu-latest
       steps:
          - uses: actions/checkout@master
-         - name: Lighthouse
+         - name: Lighthouse CI Action
            uses: foo-software/lighthouse-check-action@master
            with:
               urls: 'https://www.foo.software,https://www.google.com'
