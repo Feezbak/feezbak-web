@@ -1,5 +1,5 @@
 <h1 align="center">Welcome to Feezbak 👋</h1>
-<img src="images/repo-cover.png" width="100" />
+<img src="src/assets/images/repo-cover.png" width="100" />
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/Feezbak/feezbak-web#readme" target="_blank">
