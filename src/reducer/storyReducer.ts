@@ -4,6 +4,26 @@ const storyReducer = (state: any, action: any) => {
   const { type, payload } = action;
 
   switch (type) {
+    case storyStateActions.SET_STEP_1:
+      return {
+        ...state,
+        step1: payload,
+      };
+    case storyStateActions.SET_STEP_2:
+      return {
+        ...state,
+        step2: payload,
+      };
+    case storyStateActions.SET_STEP_3:
+      return {
+        ...state,
+        step3: payload,
+      };
+    case storyStateActions.SET_CURRENT_STEP:
+      return {
+        ...state,
+        currentStep: payload,
+      };
     case storyStateActions.SET_NEXT_STEP:
       return {
         ...state,

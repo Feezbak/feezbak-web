@@ -4,6 +4,7 @@ import {
   storyDefaultState as initialState,
   storyStateActions,
   Image,
+  Step1Type,
 } from "@/constants";
 
 export const StoryCreationContext = createContext(initialState);
@@ -15,8 +16,24 @@ interface Props {
 export const StoryProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(storyReducer, initialState);
 
+  const setCurrentStep = (payload: number) => {
+    dispatch({ type: storyStateActions.SET_CURRENT_STEP, payload });
+  };
+
   const setNextStep = () => {
     dispatch({ type: storyStateActions.SET_NEXT_STEP });
+  };
+
+  const setStep1 = (payload: Step1Type) => {
+    dispatch({ type: storyStateActions.SET_STEP_1, payload });
+  };
+
+  const setStep2 = (payload: Step1Type) => {
+    dispatch({ type: storyStateActions.SET_STEP_2, payload });
+  };
+
+  const setStep3 = (payload: Step1Type) => {
+    dispatch({ type: storyStateActions.SET_STEP_3, payload });
   };
 
   const setPrevStep = () => {
@@ -77,7 +94,11 @@ export const StoryProvider = ({ children }: Props) => {
 
   const value = {
     ...state,
+    setCurrentStep,
     setNextStep,
+    setStep1,
+    setStep2,
+    setStep3,
     deleteImage,
     setNewImage,
     setPrevStep,
