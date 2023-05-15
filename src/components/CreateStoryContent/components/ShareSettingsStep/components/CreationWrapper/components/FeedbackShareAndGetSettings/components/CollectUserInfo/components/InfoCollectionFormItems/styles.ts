@@ -11,7 +11,7 @@ export const InfoFormWrapper = styled(motion.div)`
 
   ul {
     height: 100%;
-    max-height: 18rem;
+    max-height: 11.5rem;
     overflow-x: hidden;
     overflow-y: auto;
     padding: 0;
