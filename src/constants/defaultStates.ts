@@ -48,6 +48,9 @@ export type StoryCreationDataType = {
   step3: Step3Type;
   setNextStep: () => void;
   setPrevStep: () => void;
+  setStep1: (data: Step1Type) => void;
+  setStep2: (data: Step2Type) => void;
+  setStep3: (data: Step3Type) => void;
   setTitleData: (data: any) => void;
   setVotingType: (data: string) => void;
   setImageAttached: (data: boolean) => void;
@@ -61,10 +64,11 @@ export type StoryCreationDataType = {
   setPreviewBackground: (data: string) => void;
   setSelectionQuantityState: (data: boolean) => void;
   deleteImage: (data: string) => void;
+  setCurrentStep: (data: number) => void;
 };
 
 export const storyDefaultState: StoryCreationDataType = {
-  currentStep: 1,
+  currentStep: 0,
   step1: {
     title: "<p></p>",
     background: StyleEnums.storyDefaultColor1 as string,
@@ -101,7 +105,11 @@ export const storyDefaultState: StoryCreationDataType = {
       },
     ],
   },
+  setCurrentStep: () => {},
   setNextStep: () => {},
+  setStep1: () => {},
+  setStep2: () => {},
+  setStep3: () => {},
   deleteImage: () => {},
   setPrevStep: () => {},
   setTitleData: () => {},
