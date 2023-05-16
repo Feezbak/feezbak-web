@@ -10,8 +10,11 @@ import { AnanasOnBikeIcon } from "@/icons";
 import { notification, Spin } from "antd";
 import { useParams } from "react-router-dom";
 import { storyDefaultState } from "@/constants";
-import { useManageStepInStorage as manageStepInStorage } from "@/hooks";
 import { StoryCreationContext } from "@/context";
+import {
+  useManageStepInStorage as manageStepInStorage,
+  usePageLeaveDetection,
+} from "@/hooks";
 
 const TitleAddingStep = lazy(() => import("../TitleAddingStep"));
 const TypeDefiningStep = lazy(() => import("../TypeDefiningStep"));
@@ -39,6 +42,7 @@ const StepSelector = () => {
     setStep3,
     setCurrentStep,
   } = useContext(StoryCreationContext);
+  usePageLeaveDetection();
 
   const requestLoading = false;
   const requestFakeData: FakeType | null = {};
@@ -56,7 +60,6 @@ const StepSelector = () => {
       parsedDataFromStorage?.step1 && setStep1(parsedDataFromStorage.step1);
       parsedDataFromStorage?.step2 && setStep2(parsedDataFromStorage.step2);
       parsedDataFromStorage?.step3 && setStep3(parsedDataFromStorage.step3);
-      console.log(999);
       setCurrentStep(lastFinishStep ? lastFinishStep : 1);
     } else {
       //Todo call request to get story steps data.
