@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import Helmet from "react-helmet";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { LayoutWrapper, AnimateDiv } from "./styles";
+import { StyleEnums } from "@/enums";
 
 interface Props {
   pageTitle: string;
@@ -16,6 +17,7 @@ const Layout = ({ pageTitle, children }: Props) => {
           class: "body",
         }}
       >
+        <meta name="theme-color" content={StyleEnums.primary as string} />
         <meta charSet="utf-8" />
         <title>{pageTitle}</title>
       </Helmet>
