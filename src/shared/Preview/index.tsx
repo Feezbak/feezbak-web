@@ -5,6 +5,7 @@ import { colorPickerMainColors } from "@/constants";
 import { AnimatePresence, motion } from "framer-motion";
 import ResponsePreviewBtn from "../ResponsePreviewBtn";
 import PreviewSlider from "./components/PreviewSlider";
+import CredentialsForm from "./components/CredentialsForm";
 import { useDebounce } from "@/hooks";
 import DOMPurify from "dompurify";
 import { StoryStepEnum, StoryTypeEnum, StyleEnums } from "@/enums";
@@ -30,13 +31,16 @@ const Preview = () => {
   const {
     step1,
     step2,
+    step3,
     currentStep,
     setPreviewBackground,
     setImageSquareState,
   } = useContext(StoryCreationContext);
   const { imageVoting } = step2;
+  const { isInfoCollectionAllowed, userInfoFields } = step3;
   const [color, setColor] = useState(step1.background);
   const [isSquare, setSquareState] = useState(step2.imageVoting.isSquare);
+  const [isCredentialDrawerOpen, setCredentialDrawerState] = useState(false);
   const debouncedColorData = useDebounce(color, 1000);
   const debouncedIsSquareData = useDebounce(isSquare, 1000);
 
@@ -48,6 +52,13 @@ const Preview = () => {
           : DOMPurify.sanitize(step1.title),
     };
   }, [step1]);
+
+  useEffect(() => {
+    setCredentialDrawerState(
+      currentStep === StoryStepEnum.SHARE_SETTINGS_STEP &&
+        isInfoCollectionAllowed
+    );
+  }, [currentStep, isInfoCollectionAllowed]);
 
   useEffect(() => {
     if (debouncedColorData !== step1.background) {
@@ -112,6 +123,11 @@ const Preview = () => {
     () =>
       !!step2.imageVoting.selectedImgSrc.length && isNotFirstStep && !isSquare,
     [step2, isNotFirstStep, isSquare]
+  );
+
+  const fields = useMemo(
+    () => userInfoFields.map((userField) => userField.label),
+    [userInfoFields]
   );
 
   return (
@@ -184,6 +200,11 @@ const Preview = () => {
             </ColorPickerWrapper>
           )}
         </AnimatePresence>
+        <CredentialsForm
+          fields={fields}
+          isOpen={isCredentialDrawerOpen}
+          onClose={() => setCredentialDrawerState(false)}
+        />
       </PreviewFlow>
     </PreviewFlowWrapper>
   );
