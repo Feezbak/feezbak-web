@@ -27,6 +27,7 @@ type FakeType = {
 };
 
 const StepSelector = () => {
+  usePageLeaveDetection();
   const { id: storyId } = useParams();
   const stringifyStep1 = JSON.stringify(storyDefaultState.step1);
   const stringifyStep2 = JSON.stringify(storyDefaultState.step2);
@@ -42,7 +43,6 @@ const StepSelector = () => {
     setStep3,
     setCurrentStep,
   } = useContext(StoryCreationContext);
-  usePageLeaveDetection();
 
   const requestLoading = false;
   const requestFakeData: FakeType | null = {};
@@ -67,7 +67,7 @@ const StepSelector = () => {
   }, [storyId]);
 
   //  useEffect(() => {
-  //     //Todo put this feature in useRequest onSuccess body and remove useEffect.
+  //    //Todo put this feature in useRequest onSuccess body and remove useEffect.
   //    if (requestFakeData && !requestLoading) {
   //      const lastFinishStep = Object.keys(requestFakeData).length;
   //      requestFakeData?.step1 && setStep1(requestFakeData.step1);

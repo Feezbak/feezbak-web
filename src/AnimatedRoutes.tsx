@@ -31,7 +31,22 @@ const AnimatedRoutes = () => {
         pathname === "/forgot-password" ||
         pathname === "/reset-password")
     ) {
+      /*
+         Checking when user already authed in system, but manualy changing url.
+       */
       setTimeout(() => navigate("/dashboard"), 0);
+    }
+
+    if (authed && !pathname.includes("/create-story")) {
+      /*
+         removing previusly created and saved story data from Storage.
+       */
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key !== "userData") {
+          localStorage.removeItem(key!);
+        }
+      }
     }
   }, [authed, pathname, navigate]);
 
