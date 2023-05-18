@@ -35,6 +35,10 @@ export const PreviewFlow = styled.div<{
   align-items: center;
   transition: 0.3s;
   box-shadow: ${ifProp("$hasOutline", `0 0 5px ${StyleEnums.gray2}`, "none")};
+
+  .ant-drawer-content-wrapper {
+    box-shadow: unset;
+  }
 `;
 
 export const TitlePreview = styled(motion.div)<{
