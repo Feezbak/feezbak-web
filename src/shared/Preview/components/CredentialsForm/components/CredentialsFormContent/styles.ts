@@ -5,10 +5,15 @@ import { Form, Button, Input } from "antd";
 export const FormWrapper = styled(Form)`
   margin-top: 3rem;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const SubmitBtn = styled(Button)`
   width: 100%;
+  max-width: 23.25rem;
 `;
 
 export const FormItem = styled(Form.Item)`
