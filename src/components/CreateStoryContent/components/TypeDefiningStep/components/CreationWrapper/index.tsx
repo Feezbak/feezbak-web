@@ -1,14 +1,17 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useMemo, useCallback } from "react";
 import { StoryTypeEnum } from "@/enums";
 import { StoryCreationContext } from "@/context";
 import ImageType from "./components/ImageType";
 import TextType from "./components/TextType";
 import Response from "./components/Response";
 import { AnimatePresence } from "framer-motion";
+import { notification } from "antd";
+import { AnanasOnBikeIcon } from "@/icons";
 import { CreationFlowFooter, CreationFlowHeader } from "@/shared";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
 
 const CreationWrapper = () => {
+  const [api, contextHolder] = notification.useNotification();
   const {
     currentStep,
     step2,
@@ -18,8 +21,21 @@ const CreationWrapper = () => {
     setSelectionQuantityState,
   } = useContext(StoryCreationContext);
 
+  const openNotification = useCallback(() => {
+    api.open({
+      message: "Noticed Some Changes",
+      description:
+        "You currently made some changes and We’re pretty sure that it looks way nicer now!",
+      duration: 1,
+      placement: "topRight",
+      className: "notification-custom-styles",
+      icon: <AnanasOnBikeIcon />,
+    });
+  }, [api]);
+
   const handleSubmitStep = () => {
-    setNextStep();
+    openNotification();
+    setTimeout(() => setNextStep(), 1000);
   };
 
   const handleGoToPrevStep = () => {
@@ -88,6 +104,7 @@ const CreationWrapper = () => {
         currentStep={currentStep}
         toolTipTitle="Please select type for your feedback"
       />
+      {contextHolder}
     </CreationFlowWrapper>
   );
 };

@@ -1,13 +1,6 @@
-import React, {
-  lazy,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-} from "react";
+import React, { lazy, useContext, useEffect, useMemo } from "react";
 import { StoryStepEnum } from "@/enums";
-import { AnanasOnBikeIcon } from "@/icons";
-import { notification, Spin } from "antd";
+import { Spin } from "antd";
 import { useParams } from "react-router-dom";
 import { storyDefaultState } from "@/constants";
 import { StoryCreationContext } from "@/context";
@@ -32,7 +25,6 @@ const StepSelector = () => {
   const stringifyStep1 = JSON.stringify(storyDefaultState.step1);
   const stringifyStep2 = JSON.stringify(storyDefaultState.step2);
   const stringifyStep3 = JSON.stringify(storyDefaultState.step3);
-  const [api, contextHolder] = notification.useNotification();
   const {
     currentStep,
     step1,
@@ -91,18 +83,6 @@ const StepSelector = () => {
     }
   }, [currentStep]);
 
-  const openNotification = useCallback(() => {
-    api.open({
-      message: "Noticed Some Changes",
-      description:
-        "You currently made some changes and We’re pretty sure that it looks way nicer now!",
-      duration: 1,
-      placement: "topRight",
-      className: "notification-custom-styles",
-      icon: <AnanasOnBikeIcon />,
-    });
-  }, [api]);
-
   useEffect(() => {
     if (!requestLoading && storyId) {
       manageStepInStorage(step1, stringifyStep1, "step1", storyId);
@@ -121,16 +101,7 @@ const StepSelector = () => {
     }
   }, [step3, storyId, stringifyStep3, requestLoading]);
 
-  useEffect(() => {
-    currentStep && currentStep !== 1 && openNotification();
-  }, [currentStep, openNotification]);
-
-  return (
-    <>
-      {currentStepContent}
-      {contextHolder}
-    </>
-  );
+  return currentStepContent;
 };
 
 export default StepSelector;
