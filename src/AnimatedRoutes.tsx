@@ -14,6 +14,7 @@ import {
   Dashboard,
   Create,
   Verify,
+  StoryDetails,
   ForgotPassword,
   ResetPassword,
 } from "@/pages";
@@ -95,6 +96,15 @@ const AnimatedRoutes = () => {
           element={
             <PrivateRoute>
               <Create />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          caseSensitive
+          path="/story-details/:id"
+          element={
+            <PrivateRoute>
+              <StoryDetails />
             </PrivateRoute>
           }
         />
