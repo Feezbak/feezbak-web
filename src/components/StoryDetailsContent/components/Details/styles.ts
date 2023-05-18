@@ -4,7 +4,7 @@ import { StyleEnums } from "@/enums";
 
 export const DetailsWrapper = styled(motion.div)`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   width: 100%;

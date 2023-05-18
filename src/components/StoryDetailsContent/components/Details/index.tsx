@@ -1,4 +1,5 @@
 import React from "react";
+import ShareSettings from "./components/ShareSettings";
 import { DetailsWrapper } from "./styles";
 
 const Details = () => {
@@ -8,7 +9,7 @@ const Details = () => {
       animate={{ y: 0 }}
       transition={{ type: "spring", duration: 1, stiffness: 200 }}
     >
-      Details
+      <ShareSettings />
     </DetailsWrapper>
   );
 };
