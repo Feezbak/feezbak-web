@@ -9,3 +9,4 @@ export { default as UserDataVerificationContent } from "./UserDataVerificationCo
 export { default as ForgotPasswordContent } from "./ForgotPasswordContent";
 export { default as ResetPasswordContent } from "./ResetPasswordContent";
 export { default as PrivateRoute } from "./PrivateRoute";
+export { default as StoryDetailsContent } from "./StoryDetailsContent";

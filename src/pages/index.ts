@@ -7,3 +7,4 @@ export { default as Create } from "./Create";
 export { default as Verify } from "./Verify";
 export { default as ForgotPassword } from "./ForgotPassword";
 export { default as ResetPassword } from "./ResetPassword";
+export { default as StoryDetails } from "./StoryDetails";
