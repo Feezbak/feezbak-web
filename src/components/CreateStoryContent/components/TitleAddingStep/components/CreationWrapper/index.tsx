@@ -12,7 +12,6 @@ const CreationWrapper = () => {
   const { currentStep, step1, setNextStep } = useContext(StoryCreationContext);
 
   const openNotification = useCallback(() => {
-    console.log(3333);
     api.open({
       message: "Noticed Some Changes",
       description:
