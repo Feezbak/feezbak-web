@@ -1,5 +1,5 @@
 import React from "react";
-import { TrashWhiteIcon } from "@/icons";
+import { TrashBlackIcon } from "@/icons";
 import { ItemWrapper, EmailSpan, DeleteEmailBtn } from "./styles";
 
 interface Props {
@@ -20,7 +20,7 @@ const EmailItem = ({ id, email, handleDeleteEmail }: Props) => {
       <EmailSpan>{email}</EmailSpan>
       <DeleteEmailBtn
         onClick={() => handleDeleteEmail(id)}
-        icon={<TrashWhiteIcon />}
+        icon={<TrashBlackIcon />}
       />
     </ItemWrapper>
   );

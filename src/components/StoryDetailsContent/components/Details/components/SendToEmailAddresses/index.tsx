@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import uuid from "react-uuid";
+import { message } from "antd";
 import TitleDescriptionPair from "../TitleDescriptionPair";
 import AddEmailAddress from "./components/AddEmailAddress";
 import EmailsList from "./components/EmailsList";
@@ -19,17 +21,27 @@ const SendToEmailAddresses = () => {
     setEmail(newEmails);
   };
 
+  const handleAddNewEmail = (email: string) => {
+    if (email) {
+      const oldEmails = [...emails];
+      const hasAlreadyProvided = oldEmails.find((item) => item.email === email);
+      if (!hasAlreadyProvided) {
+        setEmail((ps) => [{ email, id: uuid() }, ...ps]);
+      } else {
+        message.info("Email Address was already provided!");
+      }
+    }
+  };
+
   return (
     <SendEmailAddressesWrapper>
       <TitleDescriptionPair
         title="Send Via Email"
         text="Your friends will receive a link to this feedback"
       />
-      <AddEmailAddress />
-      {!!emails?.length && (
-        <EmailsList listData={emails} handleDeleteEmail={handleDeleteEmail} />
-      )}
-      <SendEmailsFooter />
+      <AddEmailAddress handleAddNewEmail={handleAddNewEmail} />
+      <EmailsList listData={emails} handleDeleteEmail={handleDeleteEmail} />
+      <SendEmailsFooter isDisabled={!emails.length} />
     </SendEmailAddressesWrapper>
   );
 };

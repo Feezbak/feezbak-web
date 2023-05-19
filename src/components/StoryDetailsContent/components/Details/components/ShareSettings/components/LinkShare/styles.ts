@@ -6,6 +6,7 @@ import { StyleEnums, BreakpointEnums } from "@/enums";
 
 export const LinkShareWrapper = styled(motion.div)`
   width: 100%;
+  min-height: 8.5rem;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -43,7 +44,7 @@ export const LinkContainer = styled.div`
     overflow: hidden;                                     
    
    p {
-     max-width: 14rem;                                   
+     max-width: 18rem;
      font-size: 0.938rem;
      line-height: 1.25rem;
      letter-spacing: -0.02em

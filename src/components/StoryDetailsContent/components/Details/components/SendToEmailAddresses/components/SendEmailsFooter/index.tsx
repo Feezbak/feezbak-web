@@ -1,13 +1,19 @@
 import React from "react";
 import { EmailFooterWrapper, Description, SendEmailsBtn } from "./styles";
 
-const SendEmailsFooter = () => {
+interface Props {
+  isDisabled: boolean;
+}
+
+const SendEmailsFooter = ({ isDisabled }: Props) => {
   return (
     <EmailFooterWrapper>
       <Description>
         Feezbak link will be sent to the emails you added above.
       </Description>
-      <SendEmailsBtn type="primary">Send Email</SendEmailsBtn>
+      <SendEmailsBtn type="primary" disabled={isDisabled}>
+        Send Email
+      </SendEmailsBtn>
     </EmailFooterWrapper>
   );
 };

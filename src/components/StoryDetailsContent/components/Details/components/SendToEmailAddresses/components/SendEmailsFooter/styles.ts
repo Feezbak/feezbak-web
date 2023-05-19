@@ -3,7 +3,8 @@ import { Button, Space } from "antd";
 import { StyleEnums } from "@/enums";
 
 export const EmailFooterWrapper = styled(Space)`
-  width: 100%;
+  width: 94%;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,6 +13,10 @@ export const EmailFooterWrapper = styled(Space)`
   box-shadow: 0px 3px 4px rgba(99, 81, 148, 0.04);
   border-radius: 1.25rem;
   padding: 1rem;
+  position: absolute;
+  bottom: 1.1rem;
+  right: 0;
+  left: 0;
 `;
 
 export const Description = styled.p`
