@@ -3,13 +3,15 @@ import { StoryCreationContext } from "@/context";
 import { CreationFlowFooter, CreationFlowHeader } from "@/shared";
 import { notification } from "antd";
 import { AnanasOnBikeIcon } from "@/icons";
+import { useParams, useNavigate } from "react-router-dom";
 import FeedbackShareAndGetSettings from "./components/FeedbackShareAndGetSettings";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
 
 const CreationWrapper = () => {
+  const { id: storyId } = useParams();
+  const navigate = useNavigate();
   const [api, contextHolder] = notification.useNotification();
-  const { currentStep, setNextStep, setPrevStep } =
-    useContext(StoryCreationContext);
+  const { currentStep, setPrevStep } = useContext(StoryCreationContext);
 
   const openNotification = useCallback(() => {
     api.open({
@@ -25,7 +27,7 @@ const CreationWrapper = () => {
 
   const handleFinalize = () => {
     openNotification();
-    setTimeout(() => setNextStep(), 1000);
+    setTimeout(() => navigate(`/story-details/${storyId}`), 1000);
   };
 
   const handleGoToPrevStep = () => {
