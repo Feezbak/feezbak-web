@@ -1,4 +1,5 @@
 <h1 align="center">Welcome to Feezbak 👋</h1>
+<h2 align="center">Scam masters and PO's are not allowed! 🤬</h2>
 <img src="src/assets/images/repo-cover.png" width="500" />
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
