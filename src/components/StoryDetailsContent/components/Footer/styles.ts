@@ -27,6 +27,7 @@ export const FooterTextWithLink = styled.p`
   letter-spacing: -0.01em;
 
   span {
+    white-space: nowrap;
     cursor: pointer;
     color: ${StyleEnums.primary};
     border-bottom: 1px solid ${StyleEnums.primary};
