@@ -8,9 +8,9 @@ const DashboardContent = () => {
   //Todo need to send request from here to get Story data by Id
 
   return (
-    <StoryDetailsContentWrapper xs={20} sm={20} md={16} lg={14} xl={7} xxl={7}>
+    <StoryDetailsContentWrapper xs={18} sm={15} md={12} lg={10} xl={7} xxl={6}>
       <Header />
-      <Details />
+      <Details link={"https://dev.to/taronvardanyan"} />
       <Footer />
     </StoryDetailsContentWrapper>
   );
