@@ -1,10 +1,9 @@
 import styled from "styled-components";
+import { FlexBoxEnum } from "@/enums";
 
 export const UploadListWrapper = styled.ul`
   width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  ${FlexBoxEnum.JustifyStartHorizontal}
   list-style: none;
   padding: 0;
   margin: 0;
