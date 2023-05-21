@@ -8,7 +8,7 @@ export enum FlexBoxEnum {
   JustifyEndHorizontal = "display: flex; justify-content: flex-end; align-items: center; flex-direction: row;",
   JustifyStartVertical = "display: flex; justify-content: center; align-items: flex-start; flex-direction: column;",
   StartCenterVertical = "display: flex; justify-content: flex-start; align-items: center; flex-direction:column;",
-  JustifyEndVertical = "display: flex; justify-content: center; align-items: flex-end; flex-direction: column;",
+  EndCenterVertical = "display: flex; justify-content: flex-end; align-items: center; flex-direction: column;",
   ReverseHorizontal = "display: flex; justify-content: center; align-items: center; flex-direction: row-reverse;",
   ReverseVertical = "display: flex; justify-content: center; align-items: center; flex-direction: column-reverse;",
   SpaceEvenlyHorizontal = "display: flex; justify-content: space-evenly; align-items: center; flex-direction: row;",

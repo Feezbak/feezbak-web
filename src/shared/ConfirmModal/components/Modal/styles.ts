@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 import { Row, Col, Button } from "antd";
 
 export const ModalWrapper = styled(motion.div)`
@@ -39,9 +39,7 @@ export const Img = styled.img`
 
 export const Actions = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
 `;
 
 export const ActionBtn = styled(Button)`
