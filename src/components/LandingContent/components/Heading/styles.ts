@@ -1,14 +1,11 @@
 import styled from "styled-components";
 import { prop } from "@/helpers";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 
 export const HeadingWrapper = styled.section<{ readonly $url: string }>`
   width: 100%;
   height: 97vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+  ${FlexBoxEnum.EndCenterVertical}
   background: url(${prop("$url")});
   background-repeat: no-repeat;
   background-size: cover;

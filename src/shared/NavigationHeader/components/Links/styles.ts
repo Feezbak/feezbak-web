@@ -1,14 +1,12 @@
 import styled from "styled-components";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 import { NavLink } from "react-router-dom";
 
 export const LinksWrapper = styled.ul`
   margin: 0 0 0 3.75rem;
   list-style: none;
   padding: 0;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  ${FlexBoxEnum.JustifyStartHorizontal}
 `;
 
 export const LinkItem = styled(NavLink)`

@@ -1,30 +1,22 @@
 import styled from "styled-components";
 import { inLessThan } from "@/helpers";
-import { BreakpointEnums } from "@/enums";
+import { BreakpointEnums, FlexBoxEnum } from "@/enums";
 
 export const HowToUseWrapper = styled.section`
   width: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
   margin-top: 9.375rem;
+  ${FlexBoxEnum.AlignStartVertical}
   ${inLessThan(BreakpointEnums.mobile)`
      margin-top: 3.5rem;
   `};
 `;
 
 export const TitleWrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
+  ${FlexBoxEnum.StartStartVertical}
 `;
 
 export const CardsWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  ${FlexBoxEnum.SpaceBetweenStartVertical}
   flex-wrap: wrap;
   width: 100%;
   margin-top: 5rem;

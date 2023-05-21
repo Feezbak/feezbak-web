@@ -1,15 +1,12 @@
 import styled, { css } from "styled-components";
 import { inGreaterThan, inLessThan, prop } from "@/helpers";
-import { BreakpointEnums, StyleEnums } from "@/enums";
+import { BreakpointEnums, StyleEnums, FlexBoxEnum } from "@/enums";
 
 export const LandingContainer = styled.div`
   width: 100%;
   min-height: 100vh;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
   position: relative;
+  ${FlexBoxEnum.StartCenterVertical}
 `;
 
 const titleStyles = css`
@@ -65,11 +62,9 @@ export const Description = styled.p`
 `;
 
 export const SectionWrapper = styled.section<{ readonly $bkg?: string }>`
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
   width: 80vw;
-  display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
   margin-top: 9.375rem;
   border-radius: 5rem;
   background: ${prop("$bkg")};

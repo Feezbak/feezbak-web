@@ -1,11 +1,10 @@
 import styled from "styled-components";
+import { FlexBoxEnum } from "@/enums";
 
 export const ShareSettingsWrapper = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 3rem;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
 `;
 
 export const ShareSettingsTitle = styled.h3`

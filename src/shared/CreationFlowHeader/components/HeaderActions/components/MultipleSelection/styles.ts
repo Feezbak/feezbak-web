@@ -1,9 +1,8 @@
 import styled from "styled-components";
+import { FlexBoxEnum } from "@/enums";
 
 export const MultipleSelectionWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${FlexBoxEnum.CenterHorizontal}
 `;
 
 export const ActionTitle = styled.span`

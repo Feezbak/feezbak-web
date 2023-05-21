@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import { Col } from "antd";
+import { FlexBoxEnum } from "@/enums";
 
 export const DashboardContentWrapper = styled(Col)`
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: stretch;
+  ${FlexBoxEnum.SpaceBetweenColumnStretch}
   flex: 1;
   height: 100%;
 `;

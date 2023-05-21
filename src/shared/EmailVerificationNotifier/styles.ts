@@ -1,20 +1,14 @@
 import styled from "styled-components";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 
 export const VerificationWrapper = styled.div`
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  ${FlexBoxEnum.SpaceBetweenCenterVertical}
 `;
 
 export const IllustrationWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin-top: 70%;
+  ${FlexBoxEnum.CenterVertical}
 `;
 
 export const Title = styled.h3`
@@ -38,11 +32,8 @@ export const VerifyImg = styled.img`
 `;
 
 export const Footer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin-bottom: 4rem;
+  ${FlexBoxEnum.CenterVertical}
 
   p {
     max-width: 20rem;

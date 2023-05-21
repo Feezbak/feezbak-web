@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { prop, ifProp } from "@/helpers";
 import { Button } from "antd";
 import { motion } from "framer-motion";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 
 export const ImageBackgroundWrapper = styled(motion.div)<{
   readonly $srcURL: string;
@@ -13,9 +13,7 @@ export const ImageBackgroundWrapper = styled(motion.div)<{
   border-radius: 1.2rem;
   background: url(${prop("$srcURL")}) no-repeat center;
   background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${FlexBoxEnum.CenterHorizontal}
   margin-right: 1rem;
   border: ${ifProp(
     "$isSelected",

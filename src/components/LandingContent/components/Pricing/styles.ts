@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { inLessThan } from "@/helpers";
-import { BreakpointEnums } from "@/enums";
+import { BreakpointEnums, FlexBoxEnum } from "@/enums";
 
 export const PricingList = styled.ul`
   list-style: none;
@@ -13,10 +13,8 @@ export const PricingList = styled.ul`
 
 export const PaddingWrapper = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
   flex-wrap: wrap;
-  align-items: center;
   padding: 5.5rem;
 
   ${inLessThan(BreakpointEnums.mobile)`

@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import { Col } from "antd";
+import { FlexBoxEnum } from "@/enums";
 
 export const CreationFlowWrapper = styled(Col)`
   padding: 4rem 4rem 4rem 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   height: 100%;
+  ${FlexBoxEnum.SpaceBetweenCenterVertical}
 `;

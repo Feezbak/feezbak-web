@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 import { Button, Col, Row } from "antd";
 
 export const StoriesWelcomeBannerWrapper = styled(Col)`
@@ -32,9 +32,7 @@ export const TextContent = styled(Col)`
 `;
 
 export const BecomeProAdvice = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  ${FlexBoxEnum.JustifyStartHorizontal}
 
   p {
     font-weight: 600;
@@ -53,9 +51,7 @@ export const BecomeProBtn = styled(Button)`
 `;
 
 export const ImageWrapper = styled(Col)`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  ${FlexBoxEnum.JustifyEndHorizontal}
 `;
 
 export const Img = styled.img`

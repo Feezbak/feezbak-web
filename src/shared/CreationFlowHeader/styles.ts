@@ -1,18 +1,15 @@
 import styled from "styled-components";
 import { Button } from "antd";
+import { FlexBoxEnum } from "@/enums";
 
 export const CreationFlowHeaderWrapper = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
 `;
 
 export const GoBackContentWrapper = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  ${FlexBoxEnum.JustifyStartHorizontal}
 
   h3 {
     font-weight: 800;
