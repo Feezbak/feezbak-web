@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FlexBoxEnum } from "@/enums";
 
 export const SectionTitle = styled.h3`
   font-weight: 600;
@@ -13,17 +14,12 @@ export const SectionTitle = styled.h3`
 `;
 
 export const TypeSelectionModalWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: column;
+  ${FlexBoxEnum.AlignStartVertical}
 `;
 
 export const SectionWrapper = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
 
   section:nth-of-type(1) {
     margin-right: 2rem;

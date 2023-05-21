@@ -1,12 +1,10 @@
 import styled from "styled-components";
 import { Button, Select } from "antd";
+import { FlexBoxEnum } from "@/enums";
 
 export const SelectActionWrapper = styled.div`
   padding: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  ${FlexBoxEnum.CenterVertical}
 
   &.ant-space-item {
     padding: 0.5rem;
