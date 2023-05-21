@@ -1,13 +1,11 @@
 import styled from "styled-components";
 import { Button, Space } from "antd";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 
 export const EmailFooterWrapper = styled(Space)`
   width: 94%;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
   background: ${StyleEnums.white};
   border: 1px solid ${StyleEnums.gray5};
   box-shadow: 0px 3px 4px rgba(99, 81, 148, 0.04);

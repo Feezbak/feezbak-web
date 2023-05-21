@@ -2,22 +2,17 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Button, Space } from "antd";
 import { inLessThan } from "@/helpers";
-import { StyleEnums, BreakpointEnums } from "@/enums";
+import { StyleEnums, BreakpointEnums, FlexBoxEnum } from "@/enums";
 
 export const LinkShareWrapper = styled(motion.div)`
   width: 100%;
   min-height: 8.5rem;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
+  ${FlexBoxEnum.StartStartVertical}
 `;
 
 export const CopyToClipboardWrapper = styled(Space)`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
   flex-wrap: wrap;
   ${inLessThan(BreakpointEnums.mobile)`
      flex-direction: column;
@@ -26,22 +21,18 @@ export const CopyToClipboardWrapper = styled(Space)`
    
      .ant-space-item {
      width: 100%;
-     display: flex;
-     justify-content: flex-end;
-     align-items: flex-end;
+     ${FlexBoxEnum.EndEndHorizontal}
       }
    `};
 `;
 
 export const LinkContainer = styled.div`
    width: 100%;
-   display: flex;
-   justify-content: flex-start;
-   align-items: center;
    padding: 0.625rem 1.5rem;
    background: ${StyleEnums.gray4};
    border-radius: 0.75rem;
-    overflow: hidden;                                     
+   overflow: hidden;
+   ${FlexBoxEnum.JustifyStartHorizontal}
    
    p {
      max-width: 18rem;
@@ -58,7 +49,5 @@ export const CopyBtn = styled(Button)`
   font-size: 0.938rem;
   padding: 0 1rem;
   height: 2.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${FlexBoxEnum.CenterHorizontal}
 `;
