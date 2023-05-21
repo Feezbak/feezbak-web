@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { FlexBoxEnum } from "@/enums";
 
 export const ResponseWrapper = styled(motion.div)`
   width: 100%;
@@ -8,9 +9,7 @@ export const ResponseWrapper = styled(motion.div)`
 
 export const ResponseTitleAndActions = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
 
   p {
     font-size: 1rem;

@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { FlexBoxEnum } from "@/enums";
 
 export const ErrorBounderyWrapper = styled(motion.div)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  ${FlexBoxEnum.CenterVertical}
 `;
 
 export const Title = styled.h2`
