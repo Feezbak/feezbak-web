@@ -1,5 +1,5 @@
 export enum FlexBoxEnum {
-  CenterHorizontal = "display: flex; justify-content: center; align-items: center; flex-direction: row",
+  CenterHorizontal = "display: flex; justify-content: center; align-items: center;",
   CenterVertical = "display: flex; justify-content: center; align-items: center; flex-direction: column",
   CenterBoth = "display: flex; justify-content: center; align-items: center; flex-direction: row; flex-wrap: wrap",
   AlignStartHorizontal = "display: flex; justify-content: flex-start; align-items: center; flex-direction: row",
@@ -17,7 +17,9 @@ export enum FlexBoxEnum {
   SpaceAroundHorizontal = "display: flex; justify-content: space-around; align-items: center; flex-direction: row",
   SpaceAroundVertical = "display: flex; justify-content: center; align-items: space-around; flex-direction: column",
   SpaceBetweenHorizontal = "display: flex; justify-content: space-between; align-items: center; flex-direction: row",
+  SpaceBetweenCenterVertical = "display: flex; justify-content: space-between; align-items: center; flex-direction: column",
   SpaceBetweenVertical = "display: flex; justify-content: center; align-items: space-between; flex-direction: column",
   WrapHorizontal = "display: flex; justify-content: center; align-items: center; flex-direction: row; flex-wrap: wrap",
   WrapVertical = "display: flex; justify-content: center; align-items: center; flex-direction: column; flex-wrap: wrap",
+  StartStartVertical = "display: flex; justify-content: flex-start; align-items: flex-start; flex-direction: column",
 }

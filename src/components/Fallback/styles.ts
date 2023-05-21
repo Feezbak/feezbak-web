@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { FlexBoxEnum } from "@/enums";
 
 export const FallbackWrapper = styled(motion.div)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
+  ${FlexBoxEnum.CenterHorizontal}
 `;
