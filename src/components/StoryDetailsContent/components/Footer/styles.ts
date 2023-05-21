@@ -1,11 +1,8 @@
 import styled from "styled-components";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 
 export const DetailsFooterWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  ${FlexBoxEnum.CenterVertical}
   width: 100%;
   max-width: 25rem;
   margin-top: 1.5rem;

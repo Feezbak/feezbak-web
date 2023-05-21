@@ -1,13 +1,11 @@
 import styled from "styled-components";
 import { Form, Button, Space } from "antd";
+import { FlexBoxEnum } from "@/enums";
 
 export const AddingWrapper = styled(Form)`
   width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: flex-start;
   margin-bottom: 1rem;
+  ${FlexBoxEnum.AlignStartVertical}
 `;
 
 export const SubmitButton = styled(Button)`
@@ -18,10 +16,7 @@ export const SubmitButton = styled(Button)`
 `;
 
 export const FormItem = styled(Form.Item)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  ${FlexBoxEnum.CenterVertical}
   width: 100%;
   margin: 0;
 
@@ -32,9 +27,7 @@ export const FormItem = styled(Form.Item)`
 
 export const FormSpace = styled(Space)`
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
 
   & div:nth-of-type(1) {
     width: 100%;

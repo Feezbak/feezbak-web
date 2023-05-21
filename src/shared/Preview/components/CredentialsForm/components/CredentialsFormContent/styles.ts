@@ -1,14 +1,11 @@
 import styled from "styled-components";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 import { Form, Button, Input } from "antd";
 
 export const FormWrapper = styled(Form)`
   margin-top: 3rem;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  ${FlexBoxEnum.CenterVertical}
 `;
 
 export const SubmitBtn = styled(Button)`
@@ -17,12 +14,9 @@ export const SubmitBtn = styled(Button)`
 `;
 
 export const FormItem = styled(Form.Item)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   max-width: 23.25rem;
   width: 100%;
+  ${FlexBoxEnum.CenterVertical}
 
   .ant-form-item-row {
     width: 100%;
