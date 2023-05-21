@@ -1,14 +1,12 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { inLessThan } from "@/helpers";
-import { BreakpointEnums } from "@/enums";
+import { BreakpointEnums, FlexBoxEnum } from "@/enums";
 
 export const IncomesImgWrapper = styled.div`
   width: 50%;
   height: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  ${FlexBoxEnum.JustifyEndHorizontal}
   ${inLessThan(BreakpointEnums.mobile)`
     display: none;
   `}

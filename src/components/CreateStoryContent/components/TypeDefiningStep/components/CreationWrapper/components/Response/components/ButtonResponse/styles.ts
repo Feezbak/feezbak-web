@@ -1,17 +1,14 @@
 import styled from "styled-components";
 import { Button } from "antd";
 import { motion } from "framer-motion";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 
 export const ResponseBtnList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
   width: 100%;
+  ${FlexBoxEnum.StartStartVertical}
 `;
 
 export const AddNewRespBtn = styled(Button)`
@@ -25,8 +22,5 @@ export const AddNewRespBtn = styled(Button)`
 
 export const ResponseListAndBtnContainer = styled(motion.div)`
   width: 45%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
+  ${FlexBoxEnum.StartStartVertical}
 `;
