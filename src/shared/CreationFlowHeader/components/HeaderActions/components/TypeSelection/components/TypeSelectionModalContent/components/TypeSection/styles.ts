@@ -1,11 +1,9 @@
 import styled from "styled-components";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 import { ifProp } from "@/helpers";
 
 export const SectionBody = styled.section<{ readonly $isActive: boolean }>`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
   cursor: pointer;
   transition: 0.3s;
   padding: 0.5rem;
@@ -38,9 +36,6 @@ export const TypeDescription = styled.p`
 `;
 
 export const TypeInfo = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: column;
+  ${FlexBoxEnum.JustifyStartVertical}
   max-width: 12.813rem;
 `;
