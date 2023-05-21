@@ -2,7 +2,6 @@ export enum FlexBoxEnum {
   CenterHorizontal = "display: flex; justify-content: center; align-items: center;",
   CenterVertical = "display: flex; justify-content: center; align-items: center; flex-direction: column;",
   CenterBoth = "display: flex; justify-content: center; align-items: center; flex-direction: row; flex-wrap: wrap;",
-  AlignStartHorizontal = "display: flex; justify-content: flex-start; align-items: center; flex-direction: row;",
   AlignEndHorizontal = "display: flex; justify-content: flex-end; align-items: center; flex-direction: row;",
   AlignStartVertical = "display: flex; justify-content: center; align-items: flex-start; flex-direction: column;",
   AlignEndVertical = "display: flex; justify-content: center; align-items: flex-end; flex-direction: column;",

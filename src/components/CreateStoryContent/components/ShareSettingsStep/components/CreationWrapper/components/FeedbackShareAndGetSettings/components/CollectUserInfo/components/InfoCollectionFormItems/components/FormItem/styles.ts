@@ -1,10 +1,8 @@
 import styled from "styled-components";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 
 export const FormItemWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
   padding: 0.75rem 1rem;
   border: 1px solid ${StyleEnums.gray4};
   border-radius: 0.75rem;
@@ -13,9 +11,7 @@ export const FormItemWrapper = styled.div`
 `;
 
 export const Content = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
 `;
 
 export const FieldName = styled.p`

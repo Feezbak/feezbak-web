@@ -1,23 +1,17 @@
 import styled from "styled-components";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 import { Form, Button } from "antd";
 
 export const ForgotPasswordFormWrapper = styled(Form)`
   margin-top: 3rem;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  ${FlexBoxEnum.CenterVertical}
 `;
 
 export const FormItem = styled(Form.Item)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   max-width: 23.25rem;
   width: 100%;
+  ${FlexBoxEnum.CenterVertical}
 
   .ant-form-item-row {
     width: 100%;
@@ -43,9 +37,6 @@ export const SubmitButton = styled(Button)`
 
 export const BtnWrapper = styled.div`
   width: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
   max-width: 23.25rem;
+  ${FlexBoxEnum.AlignStartVertical}
 `;

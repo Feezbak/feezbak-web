@@ -1,12 +1,10 @@
 import styled from "styled-components";
 import { inLessThan } from "@/helpers";
-import { BreakpointEnums } from "@/enums";
+import { BreakpointEnums, FlexBoxEnum } from "@/enums";
 
 export const ContactsWrapper = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
   flex-wrap: wrap;
   padding: 0 10%;
   margin-top: 6.25rem;
@@ -19,9 +17,7 @@ export const ContactsWrapper = styled.div`
 `;
 
 export const SocialLinksWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${FlexBoxEnum.CenterHorizontal}
   flex-wrap: wrap;
 
   ${inLessThan(BreakpointEnums.mobile)`
