@@ -1,14 +1,12 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { FlexBoxEnum } from "@/enums";
 
 export const ImageTypeWrapper = styled(motion.div)`
   width: 100%;
   height: 100%;
   margin-top: 1.5rem;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
+  ${FlexBoxEnum.StartStartVertical}
 `;
 
 export const ImageTypeTitle = styled.p`
@@ -20,7 +18,5 @@ export const ImageTypeTitle = styled.p`
 
 export const ImageUploadArea = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
 `;

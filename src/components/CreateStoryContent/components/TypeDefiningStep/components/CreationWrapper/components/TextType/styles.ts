@@ -1,12 +1,10 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { FlexBoxEnum } from "@/enums";
 
 export const TextTypeWrapper = styled(motion.div)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   width: 100%;
+  ${FlexBoxEnum.CenterVertical}
 
   h3 {
     font-weight: 600;

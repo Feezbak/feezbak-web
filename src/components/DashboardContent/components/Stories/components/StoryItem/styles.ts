@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 import { Button, Row, Col } from "antd";
 
 export const StoryListItemWrapper = styled(Row)`
@@ -8,9 +8,7 @@ export const StoryListItemWrapper = styled(Row)`
   padding: 1rem 1.5rem;
   border-radius: 1rem;
   margin-bottom: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
 
   &:last-child {
     margin-bottom: 0;
@@ -18,16 +16,11 @@ export const StoryListItemWrapper = styled(Row)`
 `;
 
 export const StoryItemInfo = styled(Col)`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  ${FlexBoxEnum.JustifyStartHorizontal}
 `;
 
 export const StoryInfoContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
+  ${FlexBoxEnum.StartStartVertical}
   h3 {
     font-size: 1rem;
     line-height: 1.5rem;
@@ -44,10 +37,7 @@ export const StoryInfoContainer = styled.div`
 `;
 
 export const StoryStatusContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
+  ${FlexBoxEnum.StartStartVertical}
 
   p {
     font-size: 1rem;
@@ -56,10 +46,8 @@ export const StoryStatusContainer = styled.div`
   }
 `;
 export const StoryActionsContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-left: 3.5rem;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
 
   button {
     &:last-child {
@@ -76,7 +64,5 @@ export const ActionBtn = styled(Button)`
 `;
 
 export const StoryItemStatusAndActions = styled(Col)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
 `;

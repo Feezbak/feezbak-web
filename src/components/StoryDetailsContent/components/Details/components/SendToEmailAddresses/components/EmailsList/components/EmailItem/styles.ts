@@ -1,17 +1,15 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 import { Button } from "antd";
 
 export const ItemWrapper = styled(motion.li)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
   padding: 0.75rem 0;
   margin-bottom: 0.625rem;
   background: ${StyleEnums.gray5};
   border-radius: 0.75rem;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
 `;
 
 export const EmailSpan = styled.span`

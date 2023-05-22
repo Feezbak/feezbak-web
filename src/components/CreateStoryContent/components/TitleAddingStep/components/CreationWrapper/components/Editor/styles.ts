@@ -1,12 +1,9 @@
 import styled from "styled-components";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 
 export const TitleEditorWrapper = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  ${FlexBoxEnum.StartStartVertical}
 `;
 
 export const EditorTitle = styled.p`

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { Button, Col } from "antd";
 import { prop, ifProp } from "@/helpers";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 import Circle from "@uiw/react-color-circle";
 import { motion } from "framer-motion";
 
@@ -29,10 +29,7 @@ export const PreviewFlow = styled.div<{
   height: 100%;
   border-radius: 2.75rem;
   position: relative;
-  display: flex;
-  justify-content: flex-end;
-  flex-direction: column;
-  align-items: center;
+  ${FlexBoxEnum.EndCenterVertical}
   transition: 0.3s;
   box-shadow: ${ifProp("$hasOutline", `0 0 5px ${StyleEnums.gray2}`, "none")};
 
@@ -84,17 +81,12 @@ export const SquareBtn = styled(Button)<{ readonly $isActive: boolean }>`
 export const CircleColorPicker = styled(Circle)`
   background: rgba(255, 255, 255, 0.4);
   border-radius: 1rem;
-  display: flex;
+  ${FlexBoxEnum.CenterVertical}
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   & > div {
     margin-top: 12px;
     margin-left: 0.75rem !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    ${FlexBoxEnum.CenterHorizontal}
 
     div {
       margin-left: 0 !important;
@@ -106,9 +98,7 @@ export const ColorPickerWrapper = styled(motion.div)`
   position: absolute;
   top: 6rem;
   right: 2.2rem;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  ${FlexBoxEnum.JustifyEndHorizontal}
 `;
 
 export const ResponseTitleWrapper = styled.div<{
@@ -132,9 +122,6 @@ export const ResponseTitleWrapper = styled.div<{
 
 export const Responses = styled.div`
   width: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   margin: 1.5rem 0 1.25rem 0;
+  ${FlexBoxEnum.CenterVertical}
 `;

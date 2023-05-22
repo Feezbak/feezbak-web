@@ -1,13 +1,10 @@
 import styled from "styled-components";
-import { StyleEnums, BreakpointEnums } from "@/enums";
+import { StyleEnums, BreakpointEnums, FlexBoxEnum } from "@/enums";
 import { inLessThan } from "@/helpers";
 import { Link } from "react-router-dom";
 
 export const HowToContactWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  ${FlexBoxEnum.CenterVertical}
   margin-top: 8.75rem;
 
   ${inLessThan(BreakpointEnums.mobile)`
@@ -42,9 +39,7 @@ export const Description = styled.p`
 `;
 
 export const ContactTypes = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
   flex-wrap: wrap;
 
   ${inLessThan(BreakpointEnums.mobile)`

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 
 export const UploadWrapper = styled.div`
   cursor: pointer;
@@ -8,10 +8,7 @@ export const UploadWrapper = styled.div`
   margin-right: 1rem;
   border: 1.2px dashed ${StyleEnums.gray3};
   border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  ${FlexBoxEnum.CenterVertical}
 
   span {
     font-size: 1rem;

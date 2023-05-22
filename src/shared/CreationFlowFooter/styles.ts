@@ -1,14 +1,12 @@
 import styled, { css } from "styled-components";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 import { Button } from "antd";
 
 export const CreationFlowFooterWrapper = styled.div`
   width: 100%;
   padding-top: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   border-top: 1px solid ${StyleEnums.gray4};
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
 `;
 
 export const StepsText = styled.span`
@@ -20,18 +18,14 @@ export const StepsText = styled.span`
 `;
 
 export const StepsControlWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
 `;
 
 const stepBtnStyles = css`
   height: 3rem;
   padding-top: 0;
   padding-bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${FlexBoxEnum.CenterHorizontal}
 `;
 
 export const StepControlNextBtn = styled(Button)`

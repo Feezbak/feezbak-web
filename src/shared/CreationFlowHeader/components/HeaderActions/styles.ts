@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import { Space } from "antd";
+import { FlexBoxEnum } from "@/enums";
 
 export const HeaderActionsWrapper = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  ${FlexBoxEnum.JustifyEndHorizontal}
 `;
 
 export const SpaceWrapper = styled(Space)`

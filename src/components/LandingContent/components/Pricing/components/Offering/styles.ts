@@ -1,13 +1,10 @@
 import styled from "styled-components";
 import { inLessThan } from "@/helpers";
-import { BreakpointEnums } from "@/enums";
+import { BreakpointEnums, FlexBoxEnum } from "@/enums";
 
 export const OfferingWrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
   margin-top: 4.5rem;
+  ${FlexBoxEnum.StartStartVertical}
   ${inLessThan(BreakpointEnums.mobile)`
     margin: 1rem 0 2rem 0;
   `};
@@ -25,9 +22,7 @@ export const Text = styled.p`
 `;
 
 export const SelectionTypes = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  ${FlexBoxEnum.JustifyStartHorizontal}
 `;
 
 export const Type = styled.span`

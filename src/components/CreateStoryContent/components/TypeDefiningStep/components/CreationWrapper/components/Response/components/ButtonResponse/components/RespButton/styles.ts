@@ -1,12 +1,10 @@
 import styled from "styled-components";
 import { Button, Input } from "antd";
 import { motion } from "framer-motion";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 
 export const ResponseButtonWrapper = styled(motion.li)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${FlexBoxEnum.CenterHorizontal}
   border-radius: 0.75rem;
   width: 100%;
   margin-bottom: 0.5rem;

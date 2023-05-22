@@ -1,13 +1,11 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { FlexBoxEnum } from "@/enums";
 
 export const InfoFormWrapper = styled(motion.div)`
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
+  ${FlexBoxEnum.StartStartVertical}
 
   ul {
     height: 100%;

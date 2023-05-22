@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { StyleEnums, BreakpointEnums } from "@/enums";
+import { StyleEnums, BreakpointEnums, FlexBoxEnum } from "@/enums";
 import { inLessThan } from "@/helpers";
 import { Button } from "antd";
 
@@ -8,10 +8,7 @@ export const FooterWrapper = styled.footer`
   padding: 5.25rem 0 1.75rem 0;
   margin-top: 15vh;
   background-color: ${StyleEnums.pink};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  ${FlexBoxEnum.CenterVertical}
 
   ${inLessThan(BreakpointEnums.mobile)`
      margin-top: 4rem;

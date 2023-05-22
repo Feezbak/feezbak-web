@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 
 export const NavMenuWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
   height: 4rem;
   padding: 0 0.75rem;
   border-radius: 50rem;

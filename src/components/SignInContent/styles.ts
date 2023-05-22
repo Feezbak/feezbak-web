@@ -1,19 +1,16 @@
 import styled from "styled-components";
 import { Row, Col } from "antd";
+import { FlexBoxEnum } from "@/enums";
 
 export const SignInMainWrapper = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${FlexBoxEnum.CenterHorizontal}
 `;
 
 export const SignInFormWrapper = styled(Row)`
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${FlexBoxEnum.CenterHorizontal}
 `;
 
 export const ImageContainer = styled(Col)`
@@ -22,18 +19,12 @@ export const ImageContainer = styled(Col)`
 `;
 
 export const Content = styled(Col)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  ${FlexBoxEnum.CenterVertical}
   padding: 1rem 1.5rem;
 `;
 
 export const TitleWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  ${FlexBoxEnum.StartStartVertical}
 `;
 
 export const Description = styled.p`

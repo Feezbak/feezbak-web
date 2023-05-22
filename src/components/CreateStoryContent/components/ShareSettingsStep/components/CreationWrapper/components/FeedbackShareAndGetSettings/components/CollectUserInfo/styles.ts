@@ -1,26 +1,19 @@
 import styled from "styled-components";
+import { FlexBoxEnum } from "@/enums";
 
 export const UserDataCollectWrapper = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 1.5rem;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
 `;
 
 export const DataCollectionWrapper = styled.div`
   height: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
+  ${FlexBoxEnum.StartStartVertical}
 `;
 
 export const InfoWrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
+  ${FlexBoxEnum.StartStartVertical}
 `;
 
 export const InfoTitle = styled.p`

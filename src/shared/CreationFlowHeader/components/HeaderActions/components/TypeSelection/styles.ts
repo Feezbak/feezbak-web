@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import { Button, Modal } from "antd";
+import { FlexBoxEnum } from "@/enums";
 
 export const TypeSelectionBtn = styled(Button)`
   width: 14.438rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
 `;
 
 export const TypeModal = styled(Modal)`

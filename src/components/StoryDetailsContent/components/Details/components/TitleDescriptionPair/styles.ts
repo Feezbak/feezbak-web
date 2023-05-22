@@ -1,13 +1,10 @@
 import styled from "styled-components";
-import { StyleEnums } from "@/enums";
+import { StyleEnums, FlexBoxEnum } from "@/enums";
 
 export const TextPairWrapper = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
   margin-bottom: 1.25rem;
+  ${FlexBoxEnum.StartStartVertical}
 `;
 
 export const Title = styled.h4`
