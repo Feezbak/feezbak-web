@@ -11,14 +11,20 @@ export const FormItemWrapper = styled.div`
 `;
 
 export const Content = styled.div`
-  ${FlexBoxEnum.SpaceBetweenHorizontal}
+  width: 100%;
+  ${FlexBoxEnum.JustifyStartHorizontal}
 `;
 
 export const FieldName = styled.p`
   font-size: 1rem;
   line-height: 1.5rem;
-  text-align: right;
+  text-align: left;
   letter-spacing: -0.02em;
   margin-left: 0.625rem;
   margin-top: 0.2rem;
+  max-width: 80%;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `;
