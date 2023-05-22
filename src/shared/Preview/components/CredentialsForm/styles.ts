@@ -6,6 +6,7 @@ import { FlexBoxEnum } from "@/enums";
 export const FormDrawer = styled(Drawer)`
   background: rgba(255, 255, 255, 0.9) !important;
   border-radius: 2.75rem;
+  z-index: 2;
 `;
 
 export const CredTitle = styled.h3`

@@ -5,6 +5,7 @@ import { FlexBoxEnum } from "@/enums";
 
 export const LayoutWrapper = styled(Row)`
   width: 100%;
+  flex-wrap: wrap;
 `;
 
 export const AnimateDiv = styled(motion.div)`
