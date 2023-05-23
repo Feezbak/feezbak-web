@@ -26,3 +26,8 @@ export const BackBtn = styled(Button)`
   border-radius: 50%;
   border: 0;
 `;
+
+export const DemoBtn = styled(Button)`
+  margin-left: 25%;
+  border-radius: 50%;
+`;

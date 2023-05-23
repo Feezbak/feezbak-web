@@ -1,12 +1,14 @@
 import React from "react";
 import { GoBackRoundIcon } from "@/icons";
 import HeaderActions from "./components/HeaderActions";
+import { StoryTypeEnum } from "@/enums";
+import { useResponsive } from "@/hooks";
 import {
   CreationFlowHeaderWrapper,
   GoBackContentWrapper,
+  DemoBtn,
   BackBtn,
 } from "./styles";
-import { StoryTypeEnum } from "@/enums";
 
 export interface ActionsList {
   quantitySelection: boolean;
@@ -19,20 +21,25 @@ interface Props {
   quantitySelectionDefaultValue?: boolean;
   handleTypeSelection?: (value: StoryTypeEnum) => void;
   typeSelectionDefaultValue?: StoryTypeEnum;
+  handleDemo?: () => void;
 }
 
 const CreationFlowHeader = ({
   actions,
+  handleDemo,
   handleQuantitySelection,
   handleTypeSelection,
   typeSelectionDefaultValue,
   quantitySelectionDefaultValue,
 }: Props) => {
+  const { isMobile } = useResponsive();
   return (
     <CreationFlowHeaderWrapper>
       <GoBackContentWrapper>
         <BackBtn icon={<GoBackRoundIcon />} type="link" href="/dashboard" />
         <h3>Creating Story</h3>
+
+        {isMobile && <DemoBtn onClick={handleDemo}>gg</DemoBtn>}
       </GoBackContentWrapper>
       {!!actions && (
         <HeaderActions
