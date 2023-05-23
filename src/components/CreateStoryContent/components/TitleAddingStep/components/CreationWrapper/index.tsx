@@ -7,7 +7,11 @@ import { notification } from "antd";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
 import { CreationFlowHeader, CreationFlowFooter } from "@/shared";
 
-const CreationWrapper = () => {
+interface Props {
+  handleDemo: () => void;
+}
+
+const CreationWrapper = ({ handleDemo }: Props) => {
   const [api, contextHolder] = notification.useNotification();
   const { currentStep, step1, setNextStep } = useContext(StoryCreationContext);
 
@@ -30,7 +34,7 @@ const CreationWrapper = () => {
 
   return (
     <CreationFlowWrapper xs={24} sm={24} md={13} lg={14} xl={13} xxl={12}>
-      <CreationFlowHeader />
+      <CreationFlowHeader handleDemo={handleDemo} />
       <Editor />
       <CreationFlowFooter
         currentStep={currentStep}

@@ -13,3 +13,4 @@ export { UploadFileIcon } from "./uploadFileIcon";
 export { MakeSquareIcon } from "./makeSquareIcon";
 export { ArrowDownIcon } from "./arrowDownIcon";
 export { DragIcon } from "./dragIcon";
+export { MobileDeviseIcon } from "./mobileDeviseIcon";

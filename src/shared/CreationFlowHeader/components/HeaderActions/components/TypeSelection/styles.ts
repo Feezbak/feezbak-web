@@ -1,10 +1,14 @@
 import styled from "styled-components";
 import { Button, Modal } from "antd";
-import { FlexBoxEnum } from "@/enums";
+import { inLessThan } from "@/helpers";
+import { FlexBoxEnum, BreakpointEnums } from "@/enums";
 
 export const TypeSelectionBtn = styled(Button)`
   width: 14.438rem;
   ${FlexBoxEnum.SpaceBetweenHorizontal}
+  ${inLessThan(BreakpointEnums.mobile)`
+     width: auto;
+  `}
 `;
 
 export const TypeModal = styled(Modal)`

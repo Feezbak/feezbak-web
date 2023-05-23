@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { Button, Col } from "antd";
-import { prop, ifProp } from "@/helpers";
-import { StyleEnums, FlexBoxEnum } from "@/enums";
+import { prop, ifProp, inLessThan } from "@/helpers";
+import { StyleEnums, FlexBoxEnum, BreakpointEnums } from "@/enums";
 import Circle from "@uiw/react-color-circle";
 import { motion } from "framer-motion";
 
@@ -58,8 +58,13 @@ export const TitlePreview = styled(motion.div)<{
   }
 
   p {
+    word-break: break-word;
     text-shadow: 0 0 3px ${prop("$titleShadowColor")};
   }
+
+  ${inLessThan(BreakpointEnums.mobile)`
+    margin: 0 1.5rem;
+  `}
 `;
 
 export const ColorPickerBtn = styled(Button)<{ readonly $isActive: boolean }>`

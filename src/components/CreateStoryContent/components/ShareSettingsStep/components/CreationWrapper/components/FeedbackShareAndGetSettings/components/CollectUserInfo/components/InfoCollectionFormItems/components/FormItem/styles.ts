@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { StyleEnums, FlexBoxEnum } from "@/enums";
+import { inLessThan } from "@/helpers";
+import { StyleEnums, FlexBoxEnum, BreakpointEnums } from "@/enums";
 
 export const FormItemWrapper = styled.div`
   ${FlexBoxEnum.SpaceBetweenHorizontal}
@@ -8,6 +9,10 @@ export const FormItemWrapper = styled.div`
   border-radius: 0.75rem;
   width: 22.6rem;
   background: ${StyleEnums.white};
+
+  ${inLessThan(BreakpointEnums.mobile)`
+     width: 90%;
+  `}
 `;
 
 export const Content = styled.div`

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { Button } from "antd";
 import { motion } from "framer-motion";
-import { StyleEnums, FlexBoxEnum } from "@/enums";
+import { inLessThan } from "@/helpers";
+import { StyleEnums, FlexBoxEnum, BreakpointEnums } from "@/enums";
 
 export const ResponseBtnList = styled.ul`
   list-style: none;
@@ -23,4 +24,8 @@ export const AddNewRespBtn = styled(Button)`
 export const ResponseListAndBtnContainer = styled(motion.div)`
   width: 45%;
   ${FlexBoxEnum.StartStartVertical}
+
+  ${inLessThan(BreakpointEnums.mobile)`
+      width: 100%;
+  `}
 `;

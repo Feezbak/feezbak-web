@@ -7,7 +7,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import FeedbackShareAndGetSettings from "./components/FeedbackShareAndGetSettings";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
 
-const CreationWrapper = () => {
+interface Props {
+  handleDemo: () => void;
+}
+
+const CreationWrapper = ({ handleDemo }: Props) => {
   const { id: storyId } = useParams();
   const navigate = useNavigate();
   const [api, contextHolder] = notification.useNotification();
@@ -36,7 +40,7 @@ const CreationWrapper = () => {
 
   return (
     <CreationFlowWrapper xs={24} sm={24} md={13} lg={14} xl={13} xxl={12}>
-      <CreationFlowHeader />
+      <CreationFlowHeader handleDemo={handleDemo} />
       <FeedbackShareAndGetSettings />
       <CreationFlowFooter
         prevBtnActionHandler={handleGoToPrevStep}

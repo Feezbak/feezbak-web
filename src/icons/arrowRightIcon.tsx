@@ -2,54 +2,15 @@ import React from "react";
 
 export const ArrowRightIcon = () => (
   <svg
-    width="32"
-    height="32"
-    viewBox="0 0 32 32"
+    width="10"
+    height="14"
+    viewBox="0 0 10 14"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g filter="url(#filter0_d_753_2058)">
-      <path
-        d="M13.2 22.9333C12.4 22.9333 11.8667 22.4 11.8667 21.6C11.8667 21.2 12 20.9333 12.2667 20.6667L16.9334 16L12.2667 11.3333C11.7334 10.8 11.7334 9.99998 12.2667 9.46665C12.8 8.93332 13.6 8.93332 14.1334 9.46665L19.7334 15.0667C20.2667 15.6 20.2667 16.4 19.7334 16.9333L14.1334 22.5333C13.8667 22.8 13.4667 22.9333 13.2 22.9333Z"
-        fill="#06060C"
-      />
-    </g>
-    <defs>
-      <filter
-        id="filter0_d_753_2058"
-        x="-4"
-        y="0"
-        width="40"
-        height="40"
-        filterUnits="userSpaceOnUse"
-        colorInterpolationFilters="sRGB"
-      >
-        <feFlood floodOpacity="0" result="BackgroundImageFix" />
-        <feColorMatrix
-          in="SourceAlpha"
-          type="matrix"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-          result="hardAlpha"
-        />
-        <feOffset dy="4" />
-        <feGaussianBlur stdDeviation="2" />
-        <feComposite in2="hardAlpha" operator="out" />
-        <feColorMatrix
-          type="matrix"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
-        />
-        <feBlend
-          mode="normal"
-          in2="BackgroundImageFix"
-          result="effect1_dropShadow_753_2058"
-        />
-        <feBlend
-          mode="normal"
-          in="SourceGraphic"
-          in2="effect1_dropShadow_753_2058"
-          result="shape"
-        />
-      </filter>
-    </defs>
+    <path
+      d="M2.20003 13.9336C1.40003 13.9336 0.866699 13.4002 0.866699 12.6002C0.866699 12.2002 1.00003 11.9336 1.2667 11.6669L5.93337 7.00023L1.2667 2.33356C0.733366 1.80023 0.733366 1.00023 1.2667 0.466895C1.80003 -0.0664388 2.60003 -0.0664388 3.13337 0.466895L8.73337 6.0669C9.2667 6.60023 9.2667 7.40023 8.73337 7.93356L3.13337 13.5336C2.8667 13.8002 2.4667 13.9336 2.20003 13.9336Z"
+      fill="#06060C"
+    />
   </svg>
 );
