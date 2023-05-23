@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { FlexBoxEnum } from "@/enums";
+import { inLessThan } from "@/helpers";
+import { FlexBoxEnum, BreakpointEnums } from "@/enums";
 
 export const InfoFormWrapper = styled(motion.div)`
   width: 100%;
@@ -14,6 +15,10 @@ export const InfoFormWrapper = styled(motion.div)`
     overflow-y: auto;
     padding: 0;
     list-style: none;
+    ${inLessThan(BreakpointEnums.mobile)`
+        width: 100%;
+         max-height: 15rem;
+     `}
   }
   li {
     margin-bottom: 0.75rem;

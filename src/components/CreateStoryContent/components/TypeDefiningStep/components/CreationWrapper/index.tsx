@@ -10,7 +10,11 @@ import { AnanasOnBikeIcon } from "@/icons";
 import { CreationFlowFooter, CreationFlowHeader } from "@/shared";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
 
-const CreationWrapper = () => {
+interface Props {
+  handleDemo: () => void;
+}
+
+const CreationWrapper = ({ handleDemo }: Props) => {
   const [api, contextHolder] = notification.useNotification();
   const {
     currentStep,
@@ -85,6 +89,7 @@ const CreationWrapper = () => {
   return (
     <CreationFlowWrapper xs={24} sm={24} md={13} lg={14} xl={13} xxl={12}>
       <CreationFlowHeader
+        handleDemo={handleDemo}
         actions={{ quantitySelection: isImageVoting, typeSelection: true }}
         typeSelectionDefaultValue={step2.type}
         quantitySelectionDefaultValue={step2.isMultiple}

@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { StyleEnums, FlexBoxEnum } from "@/enums";
+import { inLessThan } from "@/helpers";
+import { StyleEnums, FlexBoxEnum, BreakpointEnums } from "@/enums";
 
 export const TitleEditorWrapper = styled.div`
   width: 100%;
@@ -20,8 +21,14 @@ export const EditorFocusArea = styled.div`
   .public-DraftEditorPlaceholder-root {
     font-size: 5.5rem;
     font-weight: 900;
+    word-break: break-word;
     line-height: 6.5rem;
     color: ${StyleEnums.gray4};
+
+    ${inLessThan(BreakpointEnums.mobile)`
+      font-size: 3rem;
+      line-height: 3.8rem;
+    `}
   }
 
   .wrapper-class {

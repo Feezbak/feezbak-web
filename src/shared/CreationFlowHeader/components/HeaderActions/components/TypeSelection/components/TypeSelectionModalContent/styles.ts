@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { FlexBoxEnum } from "@/enums";
+import { FlexBoxEnum, BreakpointEnums } from "@/enums";
+import { inLessThan } from "@/helpers";
 
 export const SectionTitle = styled.h3`
   font-weight: 600;
@@ -15,13 +16,25 @@ export const SectionTitle = styled.h3`
 
 export const TypeSelectionModalWrapper = styled.div`
   ${FlexBoxEnum.AlignStartVertical}
+
+  ${inLessThan(BreakpointEnums.mobile)`
+      justify-content: flex-start
+  `}
 `;
 
 export const SectionWrapper = styled.div`
   width: 100%;
   ${FlexBoxEnum.SpaceBetweenHorizontal}
 
+  ${inLessThan(BreakpointEnums.mobile)`
+      flex-direction: column;
+      justify-content: flex-start;
+   `}
+
   section:nth-of-type(1) {
     margin-right: 2rem;
+    ${inLessThan(BreakpointEnums.mobile)`
+      margin: 0 0 1rem 0;
+    `}
   }
 `;

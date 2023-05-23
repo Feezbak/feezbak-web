@@ -12,4 +12,5 @@ export const AnimateDiv = styled(motion.div)`
   width: 100%;
   height: 100%;
   ${FlexBoxEnum.CenterHorizontal}
+  flex-wrap: wrap;
 `;
