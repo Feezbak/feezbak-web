@@ -40,7 +40,11 @@ const CreationFlowHeader = ({
         <h3>Creating Story</h3>
 
         {isMobile && (
-          <DemoBtn onClick={handleDemo} icon={<MobileDeviseIcon />} />
+          <DemoBtn
+            type="primary"
+            onClick={handleDemo}
+            icon={<MobileDeviseIcon />}
+          />
         )}
       </GoBackContentWrapper>
       {!!actions && (
