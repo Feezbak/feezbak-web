@@ -1,5 +1,5 @@
 import React from "react";
-import { GoBackRoundIcon } from "@/icons";
+import { GoBackRoundIcon, MobileDeviseIcon } from "@/icons";
 import HeaderActions from "./components/HeaderActions";
 import { StoryTypeEnum } from "@/enums";
 import { useResponsive } from "@/hooks";
@@ -39,7 +39,9 @@ const CreationFlowHeader = ({
         <BackBtn icon={<GoBackRoundIcon />} type="link" href="/dashboard" />
         <h3>Creating Story</h3>
 
-        {isMobile && <DemoBtn onClick={handleDemo}>gg</DemoBtn>}
+        {isMobile && (
+          <DemoBtn onClick={handleDemo} icon={<MobileDeviseIcon />} />
+        )}
       </GoBackContentWrapper>
       {!!actions && (
         <HeaderActions

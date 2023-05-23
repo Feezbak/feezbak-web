@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
 import { StoryStepEnum } from "@/enums";
 import { ArrowRightIcon } from "@/icons";
-import { Tooltip } from "antd";
 import {
   CreationFlowFooterWrapper,
   StepsText,
+  NextBtnTooltip,
   StepsControlWrapper,
   StepControlPrevBtn,
   StepControlNextBtn,
@@ -36,11 +36,11 @@ const CreationFlowFooter = ({
       );
     } else {
       return (
-        <Tooltip title={toolTipTitle}>
+        <NextBtnTooltip title={toolTipTitle}>
           <StepControlNextBtn disabled>
             {isLastStep ? "Finalize" : "Next Step"} <ArrowRightIcon />
           </StepControlNextBtn>
-        </Tooltip>
+        </NextBtnTooltip>
       );
     }
   }, [nextBtnActionHandler, isNextActive, toolTipTitle, isLastStep]);

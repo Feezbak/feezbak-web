@@ -30,4 +30,5 @@ export const BackBtn = styled(Button)`
 export const DemoBtn = styled(Button)`
   margin-left: 25%;
   border-radius: 50%;
+  outline: none;
 `;
