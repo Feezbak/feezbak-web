@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { FlexBoxEnum } from "@/enums";
+import { inLessThan } from "@/helpers";
+import { FlexBoxEnum, BreakpointEnums } from "@/enums";
 
 export const ImageTypeWrapper = styled(motion.div)`
   width: 100%;
@@ -14,6 +15,10 @@ export const ImageTypeTitle = styled.p`
   line-height: 1.5rem;
   letter-spacing: -0.02em;
   margin-bottom: 2.25rem;
+
+  ${inLessThan(BreakpointEnums.mobile)`
+     margin-bottom: 1rem;
+  `}
 `;
 
 export const ImageUploadArea = styled.div`

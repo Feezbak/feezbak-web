@@ -1,10 +1,15 @@
 import styled from "styled-components";
 import { Button } from "antd";
-import { FlexBoxEnum } from "@/enums";
+import { inLessThan } from "@/helpers";
+import { FlexBoxEnum, BreakpointEnums } from "@/enums";
 
 export const CreationFlowHeaderWrapper = styled.div`
   width: 100%;
   ${FlexBoxEnum.SpaceBetweenHorizontal}
+
+  ${inLessThan(BreakpointEnums.mobile)`
+     flex-direction: column;
+  `}
 `;
 
 export const GoBackContentWrapper = styled.div`
