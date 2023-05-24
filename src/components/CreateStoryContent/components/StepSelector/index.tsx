@@ -58,16 +58,16 @@ const StepSelector = () => {
     }
   }, [storyId]);
 
-  //            useEffect(() => {
-  //              //Todo put this feature in useRequest onSuccess body and remove useEffect.
-  //              if (requestFakeData && !requestLoading) {
-  //                const lastFinishStep = Object.keys(requestFakeData).length;
-  //                requestFakeData?.step1 && setStep1(requestFakeData.step1);
-  //                requestFakeData?.step2 && setStep2(requestFakeData.step2);
-  //                requestFakeData?.step3 && setStep3(requestFakeData.step3);
-  //                setCurrentStep(lastFinishStep ? lastFinishStep : 1);
-  //              }
-  //            }, [requestLoading]);
+  //  useEffect(() => {
+  //    //Todo put this feature in useRequest onSuccess body and remove useEffect.
+  //    if (requestFakeData && !requestLoading) {
+  //      const lastFinishStep = Object.keys(requestFakeData).length;
+  //      requestFakeData?.step1 && setStep1(requestFakeData.step1);
+  //      requestFakeData?.step2 && setStep2(requestFakeData.step2);
+  //      requestFakeData?.step3 && setStep3(requestFakeData.step3);
+  //      setCurrentStep(lastFinishStep ? lastFinishStep : 1);
+  //    }
+  //  }, [requestLoading]);
 
   const currentStepContent = useMemo(() => {
     if (currentStep === StoryStepEnum.TITLE_STEP) {

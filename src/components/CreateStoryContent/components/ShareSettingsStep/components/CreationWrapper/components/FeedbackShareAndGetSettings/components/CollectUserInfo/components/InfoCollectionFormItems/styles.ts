@@ -16,7 +16,7 @@ export const InfoFormWrapper = styled(motion.div)`
     padding: 0;
     list-style: none;
     ${inLessThan(BreakpointEnums.mobile)`
-        width: 100%;
+         width: 100%;
          max-height: 15rem;
      `}
   }

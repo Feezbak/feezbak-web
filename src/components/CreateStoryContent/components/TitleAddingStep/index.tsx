@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import CreationWrapper from "./components/CreationWrapper";
-import Preview from "@shared/Preview";
+import { Preview, PreviewMobileDrawer } from "@/shared";
 import { useResponsive } from "@/hooks";
-import { Drawer } from "antd";
 
 const TitleAddingStep = () => {
   const [isDemoDrawerOpen, setDemoDrawerState] = useState(false);
@@ -16,15 +15,13 @@ const TitleAddingStep = () => {
     <>
       <CreationWrapper handleDemo={handleDemo} />
       {isMobile ? (
-        <Drawer
-          mask={false}
+        <PreviewMobileDrawer
           title="Here you can check all of the changes that you have made!"
           onClose={() => setDemoDrawerState(false)}
-          width="100%"
-          open={isDemoDrawerOpen}
+          isOpen={isDemoDrawerOpen}
         >
           <Preview />
-        </Drawer>
+        </PreviewMobileDrawer>
       ) : (
         <Preview />
       )}
