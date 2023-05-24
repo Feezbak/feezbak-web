@@ -1,5 +1,5 @@
 import React from "react";
-import { BadgeWrapper } from "@shared/Badge/styles";
+import { BadgeWrapper } from "./styles";
 
 interface Props {
   text: string;

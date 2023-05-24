@@ -9,7 +9,7 @@ import {
   Img,
   Actions,
   ActionBtn,
-} from "@shared/ConfirmModal/components/Modal/styles";
+} from "./styles";
 
 interface Props {
   title?: string;
