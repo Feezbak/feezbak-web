@@ -36,10 +36,11 @@ const Preview = () => {
     setPreviewBackground,
     setImageSquareState,
   } = useContext(StoryCreationContext);
-  const { imageVoting } = step2;
+  const { background, title, titleColor } = step1;
+  const { imageVoting, type, response } = step2;
   const { isInfoCollectionAllowed, userInfoFields } = step3;
-  const [color, setColor] = useState(step1.background);
-  const [isSquare, setSquareState] = useState(step2.imageVoting.isSquare);
+  const [color, setColor] = useState(background);
+  const [isSquare, setSquareState] = useState(imageVoting.isSquare);
   const [isCredentialDrawerOpen, setCredentialDrawerState] = useState(false);
   const debouncedColorData = useDebounce(color, 1000);
   const debouncedIsSquareData = useDebounce(isSquare, 1000);
@@ -47,11 +48,11 @@ const Preview = () => {
   const createMarkup = useMemo(() => {
     return {
       __html:
-        !step1.title.length || step1.title === "<p></p>"
+        !title.length || title === "<p></p>"
           ? "<h3>Do you like my jacket?</h3>"
-          : DOMPurify.sanitize(step1.title),
+          : DOMPurify.sanitize(title),
     };
-  }, [step1]);
+  }, [title]);
 
   useEffect(() => {
     setCredentialDrawerState(
@@ -61,10 +62,10 @@ const Preview = () => {
   }, [currentStep, isInfoCollectionAllowed]);
 
   useEffect(() => {
-    if (debouncedColorData !== step1.background) {
+    if (debouncedColorData !== background) {
       setPreviewBackground(debouncedColorData);
     }
-  }, [debouncedColorData, setPreviewBackground, step1]);
+  }, [debouncedColorData, setPreviewBackground, background]);
 
   useEffect(() => {
     setImageSquareState(debouncedIsSquareData);
@@ -77,7 +78,7 @@ const Preview = () => {
   );
 
   const titleShadowColor = useMemo(() => {
-    if (step1.titleColor === color.toUpperCase()) {
+    if (titleColor === color.toUpperCase()) {
       if (color !== (StyleEnums.black as string)) {
         return StyleEnums.black as string;
       } else {
@@ -85,21 +86,18 @@ const Preview = () => {
       }
     }
     return "transparent";
-  }, [step1.titleColor, color]);
+  }, [titleColor, color]);
 
-  const coverImgSrc = useMemo(() => step2.imageVoting.selectedImgSrc, [step2]);
+  const coverImgSrc = useMemo(() => imageVoting.selectedImgSrc, [imageVoting]);
 
-  const responseButtons = useMemo(
-    () => step2.response.responseBtnList,
-    [step2]
-  );
+  const responseButtons = useMemo(() => response.responseBtnList, [response]);
 
   const hasButtonsResp = useMemo(
     () =>
-      step2.type === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
-      step2.type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP ||
-      step2.type === StoryTypeEnum.COMBINED,
-    [step2]
+      type === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
+      type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP ||
+      type === StoryTypeEnum.COMBINED,
+    [type]
   );
 
   const isNotFirstStep = useMemo(
@@ -109,9 +107,9 @@ const Preview = () => {
 
   const isTextType = useMemo(
     () =>
-      step2.type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP ||
-      step2.type === StoryTypeEnum.TEXT_VOTING_ONLY_TEXT_RESP,
-    [step2]
+      type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP ||
+      type === StoryTypeEnum.TEXT_VOTING_ONLY_TEXT_RESP,
+    [type]
   );
 
   const isFullHeight = useMemo(
@@ -120,9 +118,8 @@ const Preview = () => {
   );
 
   const hasLayer = useMemo(
-    () =>
-      !!step2.imageVoting.selectedImgSrc.length && isNotFirstStep && !isSquare,
-    [step2, isNotFirstStep, isSquare]
+    () => !!imageVoting.selectedImgSrc.length && isNotFirstStep && !isSquare,
+    [imageVoting, isNotFirstStep, isSquare]
   );
 
   const fields = useMemo(
@@ -133,12 +130,12 @@ const Preview = () => {
   const dynamicFontSize = useMemo(() => {
     const baseFontSize = 40;
     const maxLength = 60;
-    const length = step1.title.length;
+    const length = title.length;
     const percentage = (length / maxLength) * 100;
     const fontSize = baseFontSize - percentage * 0.1;
 
     return `${fontSize / 16}`;
-  }, [step1.title]);
+  }, [title]);
 
   return (
     <PreviewFlowWrapper xs={24} sm={24} md={9} lg={9} xl={8} xxl={7}>
@@ -179,7 +176,7 @@ const Preview = () => {
         <ResponseTitleWrapper
           $isFullHeight={isFullHeight}
           $isTextTypeWithBtnResp={
-            step2.type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP
+            type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP
           }
         >
           <TitlePreview
@@ -187,7 +184,7 @@ const Preview = () => {
             $fontSize={dynamicFontSize}
             $titleShadowColor={titleShadowColor}
             $isTextTypeWithBtnResp={
-              step2.type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP
+              type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP
             }
           />
           {isNotFirstStep && hasButtonsResp && (
