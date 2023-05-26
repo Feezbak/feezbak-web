@@ -24,7 +24,7 @@ const TypeSection = ({
 }: Props) => {
   return (
     <SectionBody onClick={handleSendSelection} $isActive={isActive}>
-      <TypeImage src={imgSrc} />
+      <TypeImage src={imgSrc} loading="lazy" />
       <TypeInfo>
         <TypeTitle>{typeTitle}</TypeTitle>
         <TypeDescription>{typeDescription}</TypeDescription>

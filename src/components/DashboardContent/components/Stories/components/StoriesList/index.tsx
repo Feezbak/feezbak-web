@@ -43,7 +43,11 @@ const StoriesList = () => {
         </StoriesListWrapper>
       ) : (
         <EmptyStoriesWrapper>
-          <EmptyStoriesImage src={emptyStoriesSrc} alt="No stories yet" />
+          <EmptyStoriesImage
+            src={emptyStoriesSrc}
+            alt="No stories yet"
+            loading="lazy"
+          />
           <h2>It’s ok not to have stories!</h2>
           <p>
             Stories are ways to understand how people think about a certain part

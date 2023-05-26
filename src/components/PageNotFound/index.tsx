@@ -14,6 +14,7 @@ const PageNotFound = () => {
   return (
     <NotFoundWrapper>
       <NotFoundIllustration
+        loading="lazy"
         src={notFoundPageSrc}
         alt="Page not found"
         title="Page not found"
