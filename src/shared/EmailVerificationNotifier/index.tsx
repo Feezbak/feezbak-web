@@ -17,7 +17,11 @@ const EmailVerificationNotifier = ({ handleGoBackAction }: Props) => {
   return (
     <VerificationWrapper>
       <IllustrationWrapper>
-        <VerifyImg src={emailVerifySrc} alt="Please check your email" />
+        <VerifyImg
+          src={emailVerifySrc}
+          alt="Please check your email"
+          loading="lazy"
+        />
         <Title>Time to check your E-mail</Title>
         <Description>
           Please check your Email, We have just sent you an email verification.

@@ -37,7 +37,7 @@ const Modal = ({
     >
       <ModalContent align="middle" justify="space-between" wrap>
         <ImgWrapper xs={24} sm={24} md={6} lg={6} xl={6} xxl={6}>
-          <Img src={confirmModalSrc} alt="Confirm Image" />
+          <Img src={confirmModalSrc} alt="Confirm Image" loading="lazy" />
         </ImgWrapper>
         <ActionsAndTextWrapper xs={24} sm={24} md={14} lg={14} xl={14} xxl={14}>
           {title?.length && <h4>{title}</h4>}
