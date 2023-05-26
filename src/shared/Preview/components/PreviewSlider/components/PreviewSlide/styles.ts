@@ -10,7 +10,7 @@ export const PoweredByWrapper = styled.div<{
 }>`
   ${FlexBoxEnum.StartCenterVertical}
   transition: 0.3s;
-  height: ${ifProp("$isSquare", "60%", "100%")} !important;
+  height: ${ifProp("$isSquare", "50%", "100%")} !important;
   background-image: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0) 0%,

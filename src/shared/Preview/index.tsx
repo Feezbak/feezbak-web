@@ -130,6 +130,16 @@ const Preview = () => {
     [userInfoFields]
   );
 
+  const dinamicFontSize = useMemo(() => {
+    const baseFontSize = 40;
+    const maxLength = 60;
+    const length = step1.title.length;
+    const percentage = (length / maxLength) * 100;
+    const fontSize = baseFontSize - percentage * 0.1;
+
+    return `${fontSize / 16}`;
+  }, [step1.title]);
+
   return (
     <PreviewFlowWrapper xs={24} sm={24} md={9} lg={9} xl={8} xxl={7}>
       <PreviewFlow
@@ -174,6 +184,7 @@ const Preview = () => {
         >
           <TitlePreview
             dangerouslySetInnerHTML={createMarkup}
+            $fontSize={dinamicFontSize}
             $titleShadowColor={titleShadowColor}
             $isTextTypeWithBtnResp={
               step2.type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP
