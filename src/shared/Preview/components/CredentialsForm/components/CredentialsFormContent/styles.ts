@@ -8,7 +8,7 @@ export const FormWrapper = styled(Form)`
   max-height: 30rem;
   overflow-x: hidden;
   overflow-y: auto;
-  ${FlexBoxEnum.StartStartVertical}
+  ${FlexBoxEnum.StartCenterVertical}
 `;
 
 export const SubmitBtn = styled(Button)`

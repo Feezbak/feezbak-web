@@ -41,17 +41,17 @@ export const PreviewFlow = styled.div<{
 export const TitlePreview = styled(motion.div)<{
   readonly $titleShadowColor: string;
   readonly $isTextTypeWithBtnResp: boolean;
+  readonly $fontSize: string;
 }>`
-  margin: 0 3rem;
   margin-top: ${ifProp("$isTextTypeWithBtnResp", "25rem", "0")};
-  font-size: 2.5rem;
-  line-height: 2.5rem;
+  font-size: ${prop("$fontSize")}rem;
+  line-height: ${prop("$fontSize")}rem;
   letter-spacing: -0.02em;
   z-index: 2;
 
   h3 {
     color: ${StyleEnums.black};
-    font-weight: 800;
+    font-weight: bolder;
     text-align: center;
     word-break: break-word;
     line-height: 3.5rem;
@@ -89,7 +89,7 @@ export const CircleColorPicker = styled(Circle)`
   ${FlexBoxEnum.CenterVertical}
   flex-wrap: wrap;
   & > div {
-    margin-top: 12px;
+    margin-top: 0.75rem;
     margin-left: 0.75rem !important;
     ${FlexBoxEnum.CenterHorizontal}
 
@@ -122,7 +122,7 @@ export const ResponseTitleWrapper = styled.div<{
   )};
   align-items: center;
   flex-direction: column;
-  min-height: ${ifProp("$isFullHeight", "100%", "42%")};
+  min-height: ${ifProp("$isFullHeight", "100%", "55%")};
 `;
 
 export const Responses = styled.div`
