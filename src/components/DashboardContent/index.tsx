@@ -1,6 +1,6 @@
 import React from "react";
 import { NavigationHeader } from "@/shared";
-import { links } from "@components/DashboardContent/utils";
+import { links } from "./utils";
 import { Outlet } from "react-router-dom";
 import { DashboardContentWrapper } from "./styles";
 
