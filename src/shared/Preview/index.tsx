@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { ColorPickerIcon, MakeSquareIcon } from "@/icons";
 import { StoryCreationContext } from "@/context";
+import { dynamicFontSizeHelpers } from "@helpers/dynamicFontSizeHelpers";
 import { colorPickerMainColors } from "@/constants";
 import { AnimatePresence, motion } from "framer-motion";
 import ResponsePreviewBtn from "../ResponsePreviewBtn";
@@ -128,13 +129,7 @@ const Preview = () => {
   );
 
   const dynamicFontSize = useMemo(() => {
-    const baseFontSize = 40;
-    const maxLength = 60;
-    const length = title.length;
-    const percentage = (length / maxLength) * 100;
-    const fontSize = baseFontSize - percentage * 0.1;
-
-    return `${fontSize / 16}`;
+    return dynamicFontSizeHelpers(40, 60, title, "rem");
   }, [title]);
 
   return (
