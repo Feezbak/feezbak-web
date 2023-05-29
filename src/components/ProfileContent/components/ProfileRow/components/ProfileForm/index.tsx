@@ -3,7 +3,7 @@ import { FormWrapper } from "./styles";
 
 const ProfileForm = () => {
   return (
-    <FormWrapper xs={20} sm={20} md={20} lg={4} xl={4} xxl={4}>
+    <FormWrapper xs={20} sm={20} md={18} lg={18} xl={18} xxl={18}>
       Form
     </FormWrapper>
   );
