@@ -1,16 +1,15 @@
-import React, { lazy } from "react";
+import React, { lazy, useState } from "react";
 import { ProfileRowWrapper } from "./styles";
 
-const ProfileFormSelector = lazy(
-  () => import("./components/ProfileFormSelector")
-);
+const Selector = lazy(() => import("./components/ProfileFormSelector"));
 const ProfileForm = lazy(() => import("./components/ProfileForm"));
 //const PasswordForm = lazy(() => import("./components/PasswordForm"));
 
 const ProfileRow = () => {
+  const [activeForm, setActiveForm] = useState(0);
   return (
     <ProfileRowWrapper>
-      <ProfileFormSelector />
+      <Selector active={activeForm} setActive={setActiveForm} />
       <ProfileForm />
     </ProfileRowWrapper>
   );
