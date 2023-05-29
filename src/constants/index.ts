@@ -6,3 +6,4 @@ export * from "./colorPickerMainColors";
 export * from "./storyStateActions";
 export * from "./slickSettings";
 export * from "./shareChoises";
+export * from "./userProfileTabs";

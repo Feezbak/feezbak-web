@@ -14,3 +14,5 @@ export { MakeSquareIcon } from "./makeSquareIcon";
 export { ArrowDownIcon } from "./arrowDownIcon";
 export { DragIcon } from "./dragIcon";
 export { MobileDeviseIcon } from "./mobileDeviseIcon";
+export { UserIcon } from "./userIcon";
+export { LockIcon } from "./lockIcon";

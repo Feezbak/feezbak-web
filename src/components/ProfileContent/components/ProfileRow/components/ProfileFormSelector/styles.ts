@@ -9,7 +9,6 @@ export const SelectorWrapper = styled(Col)`
 `;
 
 export const SelectorContainer = styled.ul`
-  width: 100%;
   ${FlexBoxEnum.StartCenterVertical}
   list-style: none;
   box-shadow: 0px 4px 6px rgba(66, 39, 101, 0.06);
@@ -22,11 +21,17 @@ export const SelectionItem = styled.li<{ readonly $isActive: boolean }>`
   width: 100%;
   transition: 0.3s;
   padding: 0.75rem;
+  cursor: pointer;
+  ${FlexBoxEnum.JustifyStartHorizontal}
   color: ${ifProp("$isActive", StyleEnums.primary, StyleEnums.black)};
   background: ${ifProp("$isActive", StyleEnums.gray4, StyleEnums.white)};
   margin-bottom: 0.5rem;
 
   &:last-child {
     margin: 0;
+  }
+
+  svg > path {
+    stroke: ${ifProp("$isActive", StyleEnums.primary, StyleEnums.black)};
   }
 `;
