@@ -1,9 +1,14 @@
 import React from "react";
 import { opacityAnimation } from "@assets/framerAnimations";
-import { Form } from "./styles";
+import { FormContainer } from "./styles";
+import UpdateProfileForm from "./components/UpdateProfileForm";
 
 const ProfileForm = () => {
-  return <Form {...opacityAnimation}>Form</Form>;
+  return (
+    <FormContainer {...opacityAnimation}>
+      <UpdateProfileForm />
+    </FormContainer>
+  );
 };
 
 export default ProfileForm;

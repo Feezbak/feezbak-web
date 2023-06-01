@@ -1,9 +1,9 @@
 import React from "react";
 import { opacityAnimation } from "@assets/framerAnimations";
-import { Form } from "./styles";
+import { FormContainer } from "./styles";
 
 const PasswordForm = () => {
-  return <Form {...opacityAnimation}>Password</Form>;
+  return <FormContainer {...opacityAnimation}>Password</FormContainer>;
 };
 
 export default PasswordForm;
