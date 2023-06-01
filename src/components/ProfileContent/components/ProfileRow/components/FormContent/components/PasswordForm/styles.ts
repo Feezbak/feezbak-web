@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Col } from "antd";
 import { FlexBoxEnum } from "@/enums";
+import { motion } from "framer-motion";
 
-export const FormWrapper = styled(Col)`
+export const FormContainer = styled(motion.div)`
   ${FlexBoxEnum.AlignStartVertical}
 `;
