@@ -1,7 +1,29 @@
 import React from "react";
+import { FormHeadingWrapper, DescriptionContainer, SubmitBtn } from "./styles";
 
-const Heading = () => {
-  return <div>Heading</div>;
+interface Props {
+  loading: boolean;
+  isDirty: boolean;
+  isValid: boolean;
+}
+
+const Heading = ({ loading, isDirty, isValid }: Props) => {
+  return (
+    <FormHeadingWrapper>
+      <DescriptionContainer>
+        <h3>Profile Settings</h3>
+        <p>All your personal information are found here.</p>
+      </DescriptionContainer>
+      <SubmitBtn
+        type="primary"
+        htmlType="submit"
+        loading={loading}
+        disabled={!isDirty || !isValid}
+      >
+        Save Changes
+      </SubmitBtn>
+    </FormHeadingWrapper>
+  );
 };
 
 export default Heading;
