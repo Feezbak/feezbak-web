@@ -8,6 +8,11 @@ import { UpdateProfileFormInputs, UpdateProfileSchema } from "@/validations";
 export default function useProfileUpdateForm(
   onSuccessAction: () => void
 ): UseUpdateProfileFormResult {
+  const userStorageData = localStorage.getItem("userData");
+  const userParsedData = JSON.parse(userStorageData!);
+
+  console.log(userParsedData, 444);
+
   const {
     handleSubmit,
     formState: { errors: formErrors },
@@ -26,9 +31,16 @@ export default function useProfileUpdateForm(
       },
       abortEarly: false,
     }),
+    defaultValues: {
+      firstName: userParsedData.firstName,
+      lastName: userParsedData.lastName,
+      email: userParsedData.email,
+      profession: userParsedData.profession,
+    },
   });
 
   const submitForm = handleSubmit(async (data) => {
+    console.log(data, "Updated data");
     onSuccessAction();
   });
 
