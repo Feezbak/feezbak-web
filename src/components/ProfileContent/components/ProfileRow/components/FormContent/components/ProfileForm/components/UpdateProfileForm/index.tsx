@@ -8,14 +8,20 @@ const UpdateProfileForm = () => {
     alert("Success Update");
   };
 
-  const { submitForm } = useProfileUpdateForm(onProfileSuccessUpdate);
+  const { submitForm, formState, requestLoading } = useProfileUpdateForm(
+    onProfileSuccessUpdate
+  );
   return (
     <UpdateForm
       name="updateForm"
       onFinish={() => submitForm()}
       autoComplete="off"
     >
-      <Heading />
+      <Heading
+        loading={requestLoading}
+        isDirty={formState.isDirty}
+        isValid={formState.isValid}
+      />
     </UpdateForm>
   );
 };
