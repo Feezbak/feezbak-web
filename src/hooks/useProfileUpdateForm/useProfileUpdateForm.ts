@@ -11,8 +11,6 @@ export default function useProfileUpdateForm(
   const userStorageData = localStorage.getItem("userData");
   const userParsedData = JSON.parse(userStorageData!);
 
-  console.log(userParsedData, 444);
-
   const {
     handleSubmit,
     formState: { errors: formErrors },
