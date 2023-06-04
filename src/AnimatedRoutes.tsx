@@ -4,16 +4,16 @@ import { AnimatePresence } from "framer-motion";
 import { isAuth } from "@/hooks";
 import UseCases from "@components/DashboardContent/components/UseCases";
 import Stories from "@components/DashboardContent/components/Stories";
-import PageNotFound from "@components/PageNotFound";
-import PrivateRoute from "@components/PrivateRoute";
+import { PageNotFound, PrivateRoute } from "@/components";
 import {
-  Landing,
+  Story,
   SignIn,
   SignUp,
-  Profile,
-  Dashboard,
   Create,
   Verify,
+  Profile,
+  Landing,
+  Dashboard,
   StoryDetails,
   ForgotPassword,
   ResetPassword,
@@ -72,6 +72,7 @@ const AnimatedRoutes = () => {
           path="/forgot-password"
           element={<ForgotPassword />}
         />
+        <Route caseSensitive path="/story/:id" element={<Story />} />
         <Route
           caseSensitive
           path="/reset-password/:id"
