@@ -1,6 +1,7 @@
 import React from "react";
 import logoFeezbak from "@images/product_logo.svg";
 import { Link } from "react-router-dom";
+import FeedbackerNavBar from "./components/FeedbackerNavBar";
 import { HeaderWrapper, ProductLogo } from "./styles";
 
 const Header = () => {
@@ -9,6 +10,7 @@ const Header = () => {
       <Link to="/dashboard">
         <ProductLogo src={logoFeezbak} alt="logo" loading="lazy" />
       </Link>
+      <FeedbackerNavBar />
     </HeaderWrapper>
   );
 };
