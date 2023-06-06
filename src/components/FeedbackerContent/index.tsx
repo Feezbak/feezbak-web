@@ -1,7 +1,26 @@
 import React from "react";
+import { useResponsive } from "@/hooks";
+import Header from "./components/Header";
+//import {useParams} from "react-router-dom";
+import { FeedbackerContentWrapper } from "./styles";
+
+//const  fakeData = {
+//
+//}
 
 const FeedbackerContent = () => {
-  return <div>Feedback Content</div>;
+  //   const { id } = useParams();
+  const { isLessThanSm } = useResponsive();
+
+  //ToDo request a data of particular story by id
+
+  return isLessThanSm ? (
+    <div>Mobile View</div>
+  ) : (
+    <FeedbackerContentWrapper>
+      <Header />
+    </FeedbackerContentWrapper>
+  );
 };
 
 export default FeedbackerContent;
