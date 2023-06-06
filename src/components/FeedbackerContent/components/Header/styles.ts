@@ -6,3 +6,7 @@ export const HeaderWrapper = styled.div`
   padding: 1.5rem 2rem;
   ${FlexBoxEnum.SpaceBetweenHorizontal}
 `;
+
+export const ProductLogo = styled.img`
+  cursor: pointer;
+`;

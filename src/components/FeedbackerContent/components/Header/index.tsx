@@ -1,8 +1,16 @@
 import React from "react";
-import { HeaderWrapper } from "./styles";
+import logoFeezbak from "@images/product_logo.svg";
+import { Link } from "react-router-dom";
+import { HeaderWrapper, ProductLogo } from "./styles";
 
 const Header = () => {
-  return <HeaderWrapper>Header Component</HeaderWrapper>;
+  return (
+    <HeaderWrapper>
+      <Link to="/dashboard">
+        <ProductLogo src={logoFeezbak} alt="logo" loading="lazy" />
+      </Link>
+    </HeaderWrapper>
+  );
 };
 
 export default Header;
