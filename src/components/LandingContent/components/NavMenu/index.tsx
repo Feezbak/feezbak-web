@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "antd";
-import logoFeezbak from "@images/feezbak-logo-black.svg";
+import logoFeezbak from "@images/product_logo.svg";
 import { NavMenuWrapper, NavLink, Nav } from "./styles";
 
 const NavMenu = () => {
