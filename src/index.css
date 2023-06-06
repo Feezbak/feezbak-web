@@ -19,6 +19,10 @@
   font-weight: medium;
 }
 
+div, input, button {
+   box-sizing: border-box;
+}
+
 body {
   font-family: "Epilogue, Regular", serif;
   margin: 0;

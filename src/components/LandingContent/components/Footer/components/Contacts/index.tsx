@@ -1,11 +1,11 @@
 import React from "react";
+import logoFeezbak from "@images/product_logo.svg";
 import {
   ContactsWrapper,
   SocialLink,
   SocialLinksWrapper,
   TermsText,
 } from "./styles";
-import logoFeezbak from "@images/feezbak-logo-black.svg";
 
 const Contacts = () => {
   return (
