@@ -2,7 +2,7 @@ import React from "react";
 import { useResponsive } from "@/hooks";
 import Header from "./components/Header";
 //import {useParams} from "react-router-dom";
-import { FeedbackerContentWrapper } from "./styles";
+import { FeedbackerContentWrapper, PreviewFlowWrapper } from "./styles";
 
 //const  fakeData = {
 //
@@ -19,6 +19,7 @@ const FeedbackerContent = () => {
   ) : (
     <FeedbackerContentWrapper>
       <Header />
+      <PreviewFlowWrapper>Preview Wrapper</PreviewFlowWrapper>
     </FeedbackerContentWrapper>
   );
 };

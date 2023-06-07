@@ -7,3 +7,7 @@ export const FeedbackerContentWrapper = styled.div`
   background: ${StyleEnums.storyDefaultColor1};
   ${FlexBoxEnum.StartCenterVertical}
 `;
+
+export const PreviewFlowWrapper = styled.div`
+  margin-top: -3rem;
+`;
