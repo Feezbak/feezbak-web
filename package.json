@@ -62,10 +62,12 @@
     "lint": "eslint . --ext .ts,.tsx",
     "prettier-check": "prettier --check \"**/*.ts\" \"**/*.tsx\" \"**/*.json\"",
     "type-check": "tsc --noEmit",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "commit": "git-cz"
   },
   "husky": {
     "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
       "pre-commit": "lint-staged"
     }
   },
@@ -101,6 +103,7 @@
     "@types/zxcvbn": "^4.4.1",
     "@typescript-eslint/eslint-plugin": "^5.32.0",
     "@typescript-eslint/parser": "^5.32.0",
+    "commitizen": "^4.3.0",
     "craco-alias": "^3.0.1",
     "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
