@@ -61,7 +61,13 @@
     "format": "prettier --write \"**/*.ts\" \"**/*.tsx\" \"**/*.json\"",
     "lint": "eslint . --ext .ts,.tsx",
     "prettier-check": "prettier --check \"**/*.ts\" \"**/*.tsx\" \"**/*.json\"",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -104,6 +110,8 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
     "prettier": "^2.7.1"
   }
 }
