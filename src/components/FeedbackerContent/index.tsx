@@ -20,7 +20,6 @@ const FeedbackerContent = () => {
     <FeedbackerContentWrapper>
       <Header />
       <PreviewFlowWrapper>Preview Wrapper</PreviewFlowWrapper>
-      <div>fff</div>
     </FeedbackerContentWrapper>
   );
 };
