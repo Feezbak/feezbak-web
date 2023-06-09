@@ -55,6 +55,7 @@
     "zxcvbn": "^4.4.2"
   },
   "scripts": {
+    "feezy": "docker run -p 3000:3000 -v $PWD:/app feezbak-web",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
