@@ -2,10 +2,10 @@ name: Firebase CI
 'on':
    push:
       branches:
-         - develop
+         - master
    pull_request:
       branches:
-         - develop
+         - master
 jobs:
    build:
       runs-on: ubuntu-latest
