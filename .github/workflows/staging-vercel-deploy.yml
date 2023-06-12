@@ -15,10 +15,7 @@ jobs:
          - name: Checkout code
            uses: actions/checkout@v2
 
-         - name: Install Vercel CLI
-           run: yarn global add vercel
-
          - name: Deploy to Vercel
-           env:
-              VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-           run: vercel --token $VERCEL_TOKEN
+           uses: vercel/github-action@v21
+           with:
+             vercel_token: ${{ secrets.VERCEL_TOKEN }}
