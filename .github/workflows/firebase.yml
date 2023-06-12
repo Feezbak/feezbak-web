@@ -7,11 +7,9 @@
 
 name: Firebase CI
 
-workflow_run:
-   workflows:
-      - Docker Build
-   types:
-      - completed
+on:
+  push:
+    branches: [ develop ]
 
 jobs:
    build:
