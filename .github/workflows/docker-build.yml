@@ -25,10 +25,3 @@ jobs:
 
          - name: Push Docker image to Docker Hub
            run: docker push taronvardanyan/feezbak-web:latest
-         - name: Trigger Vercel deployment
-           uses: amondnet/vercel-action@v20
-           with:
-             vercel-token: ${{ secrets.VERCEL_TOKEN }}
-             vercel-org-id: your-vercel-org-id
-             vercel-project-id: your-vercel-project-id
-             args: --prod
