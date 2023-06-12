@@ -58,7 +58,6 @@
     "feezy": "docker run -p 3000:3000 -v $PWD:/app feezbak-web",
     "start": "craco start",
     "build": "craco build",
-    "deploy": "firebase deploy --only hosting",
     "test": "craco test",
     "format": "prettier --write \"**/*.ts\" \"**/*.tsx\" \"**/*.json\"",
     "lint": "eslint . --ext .ts,.tsx",
