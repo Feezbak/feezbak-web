@@ -19,7 +19,7 @@ const FeedbackerContent = () => {
   ) : (
     <FeedbackerContentWrapper>
       <Header />
-      <PreviewFlowWrapper>Preview Wrapper Test 111</PreviewFlowWrapper>
+      <PreviewFlowWrapper>Preview Wrapper Test</PreviewFlowWrapper>
     </FeedbackerContentWrapper>
   );
 };
