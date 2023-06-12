@@ -1,9 +1,9 @@
 name: Deploy to firebase
 
 on:
-  release:
-    types:
-      - published
+   pull_request:
+      branches:
+         - develop
 
 jobs:
   deploy:
