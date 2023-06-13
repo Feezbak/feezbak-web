@@ -29,4 +29,4 @@ jobs:
            with:
              vercel-token: ${{ secrets.VERCEL_TOKEN }}
              vercel-org-id: FMcNE7a39oljK9Xk5831hJt3
-             vercel-project-id: prj_xXjKu1KILrGi6fb5Qp7jXvvKFxV3 # Replace with your Vercel project ID
+             vercel-project-id: prj_xXjKu1KILrGi6fb5Qp7jXvvKFxV3
