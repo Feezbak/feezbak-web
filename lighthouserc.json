@@ -1,0 +1,15 @@
+{
+  "ci": {
+    "collect": {
+      "url": ["http://localhost:3000/"],
+      "startServerCommand": "serve:lhci",
+      "startServerReadyPattern": "Accepting connections at http://localhost:3000",
+      "settings": {
+        "onlyCategories": ["accessibility", "performance"]
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}
