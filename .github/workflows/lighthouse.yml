@@ -7,39 +7,23 @@ on:
 jobs:
    lighthouse:
       runs-on: ubuntu-latest
+
       steps:
-         - uses: actions/checkout@v2
+         - name: Checkout code
+           uses: actions/checkout@v2
 
-         - name: Lighthouse CI Action
-           uses: foo-software/lighthouse-check-action@master
+         - name: Install dependencies
+           run: npm ci
+
+         - name: Run Lighthouse
+           run: npm run lighthouse -- --output=json
+
+         - name: Comment on pull request
+           uses: peter-evans/create-or-update-comment@v1
            with:
-             urls: 'https://www.foo.software,https://www.google.com'
-
-         - name: Get Lighthouse results
-           id: get-lighthouse-results
-           run: |
-             if [ -s results.json ]; then
-               echo "::set-output name=json::$(cat results.json)"
-             else
-               echo "::set-output name=json::null"
-             fi
-
-         - name: Comment on GitHub conversation
-           uses: actions/github-script@v4
-           env:
-              RESULTS_JSON: ${{ steps.get-lighthouse-results.outputs.json }}
-           with:
-             script: |
-              const results = JSON.parse(process.env.RESULTS_JSON);
-               if (results !== null) {
-                 const commentBody = `Lighthouse Results:\n\n${JSON.stringify(results, null, 2)}`;
-                 const payload = {
-                 issue_number: context.issue.number,
-                 owner: context.repo.owner,
-                 repo: context.repo.repo,
-                 body: commentBody
-               };
-                await github.issues.createComment(payload);
-               } else {
-                 console.log('No Lighthouse results found.');
-               }
+             issue-number: ${{ github.event.pull_request.number }}
+             body: |
+             Lighthouse Audit Results:
+              ```json
+              ${{ steps.lighthouse.outputs.stdout }}
+              ```
