@@ -17,13 +17,11 @@ jobs:
              node-version: '14.x'
          - name: prepare application
            run: |
-             yarn install
-             yarn run build
-             yarn cache clean
+             npm install
+             npm run build
          - name: run Lighthouse CI
            run: |
-             yarn cache clean
-             yarn add -g @lhci/cli@0.8.x
+             npm install -g @lhci/cli@0.8.x
              lhci autorun
            env:
              LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
