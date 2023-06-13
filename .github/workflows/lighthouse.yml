@@ -15,8 +15,8 @@ jobs:
          - name: Lighthouse CI Action
            uses: foo-software/lighthouse-check-action@master
            with:
-              urls: 'https://www.foo.software,https://www.google.com'
-              format: json
+             urls: 'https://www.foo.software,https://www.google.com'
+             format: json
 
          - name: Read Report File
            id: read-report
@@ -24,16 +24,14 @@ jobs:
 
          - name: Create Comment
            if: steps.read-report.outputs.report != ''
-           uses: actions/github-script@v4
-           with:
-             github-token: ${{ secrets.GITHUB_TOKEN }}
-             script: |
-               const report = JSON.parse('${{ steps.read-report.outputs.report }}');
-               const reportContent = report ? JSON.stringify(report, null, 2) : 'No Lighthouse report available.';
-               const payload = {
-                 owner: context.repo.owner,
-                 repo: context.repo.repo,
-                 issue_number: context.issue.number,
-                 body: 'Lighthouse Report:\n\n```json\n' + reportContent + '\n```'
-               };
-               await github.rest.issues.createComment(payload);
+           env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              PR_NUMBER: ${{ github.event.pull_request.number }}
+           run: |
+             echo ${{ steps.read-report.outputs.report }} > report.json
+             |
+             curl -X POST \
+               -H "Authorization: Bearer $GITHUB_TOKEN" \
+               -H "Content-Type: application/json" \
+               -d @report.json \
+               "https://api.github.com/repos/${{ github.repository }}/issues/${PR_NUMBER}/comments"
