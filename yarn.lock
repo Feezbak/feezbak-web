@@ -4120,6 +4120,11 @@ craco-alias@^3.0.1:
   resolved "https://registry.npmjs.org/craco-alias/-/craco-alias-3.0.1.tgz"
   integrity sha512-N+Qaf/Gr/f3o5ZH2TQjMu5NhR9PnT1ZYsfejpNvZPpB0ujdrhsSr4Ct6GVjnV5ostCVquhTKJpIVBKyL9qDQYA==
 
+create-or-update-comment@^1.0.0:
+  version "0.0.1-security"
+  resolved "https://registry.yarnpkg.com/create-or-update-comment/-/create-or-update-comment-0.0.1-security.tgz#97eeca2e5f6fd0b8336d5d4ab78ffb8b53d2c565"
+  integrity sha512-3ObZ/FRP1EpHtTeR3kraPp38p9spGbI3HTsRHWyQfnmR6jtYeQYkDkx8DFCjzPF2vBROgA/BF3ODQxhK1W9RRA==
+
 create-require@^1.1.0:
   version "1.1.1"
   resolved "https://registry.npmjs.org/create-require/-/create-require-1.1.1.tgz"
