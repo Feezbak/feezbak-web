@@ -13,11 +13,11 @@ const TitleAddingStep = lazy(() => import("../TitleAddingStep"));
 const TypeDefiningStep = lazy(() => import("../TypeDefiningStep"));
 const ShareSettingsStep = lazy(() => import("../ShareSettingsStep"));
 
-type FakeType = {
-  step1?: typeof storyDefaultState.step1;
-  step2?: typeof storyDefaultState.step2;
-  step3?: typeof storyDefaultState.step3;
-};
+//type FakeType = {
+//  step1?: typeof storyDefaultState.step1;
+//  step2?: typeof storyDefaultState.step2;
+//  step3?: typeof storyDefaultState.step3;
+//};
 
 const StepSelector = () => {
   usePageLeaveDetection();
@@ -37,7 +37,7 @@ const StepSelector = () => {
   } = useContext(StoryCreationContext);
 
   const requestLoading = false;
-  const requestFakeData: FakeType | null = {};
+  //  const requestFakeData: FakeType | null = {};
 
   useEffect(() => {
     let storageDataById;
@@ -56,6 +56,7 @@ const StepSelector = () => {
     } else {
       //Todo call request to get story steps data.
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storyId]);
 
   //      useEffect(() => {
