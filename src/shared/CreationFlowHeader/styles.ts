@@ -33,7 +33,7 @@ export const BackBtn = styled(Button)`
 `;
 
 export const DemoBtn = styled(Button)`
-  margin-left: 25%;
+  margin-left: auto;
   border-radius: 50%;
   outline: none;
 `;

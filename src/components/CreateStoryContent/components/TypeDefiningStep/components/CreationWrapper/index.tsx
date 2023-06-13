@@ -87,7 +87,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
   }, [step2]);
 
   return (
-    <CreationFlowWrapper xs={24} sm={24} md={13} lg={14} xl={13} xxl={12}>
+    <CreationFlowWrapper xs={24} sm={24} md={24} lg={14} xl={13} xxl={12}>
       <CreationFlowHeader
         handleDemo={handleDemo}
         actions={{ quantitySelection: isImageVoting, typeSelection: true }}
