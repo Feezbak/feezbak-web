@@ -8,7 +8,7 @@ export const CreationFlowWrapper = styled(Col)`
   height: 100%;
   ${FlexBoxEnum.SpaceBetweenCenterVertical}
 
-  ${inLessThan(BreakpointEnums.mobile)`
+  ${inLessThan(BreakpointEnums.tablet)`
     padding: 1.5rem 1rem;
   `}
 `;

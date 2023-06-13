@@ -37,7 +37,7 @@ const UploadList = () => {
     [step2]
   );
 
-  return (
+  return imageVoting.images.length ? (
     <UploadListWrapper>
       <AnimatePresence initial={false}>
         {imageVoting.images.map(({ id, src }) => (
@@ -52,7 +52,7 @@ const UploadList = () => {
         ))}
       </AnimatePresence>
     </UploadListWrapper>
-  );
+  ) : null;
 };
 
 export default UploadList;
