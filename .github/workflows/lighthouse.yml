@@ -1,37 +1,15 @@
-name: Lighthouse Report Comment
-
+name: Lighthouse
 on:
-   pull_request:
-      branches:
-         - develop
+ pull_request:
+       branches:
+          - develop
 
 jobs:
    lighthouse:
       runs-on: ubuntu-latest
-
       steps:
-         - uses: actions/checkout@v2
-
+         - uses: actions/checkout@master
          - name: Lighthouse CI Action
            uses: foo-software/lighthouse-check-action@master
            with:
-             urls: 'https://www.foo.software,https://www.google.com'
-             format: json
-
-         - name: Read Report File
-           id: read-report
-           run: echo "::set-output name=report::$(cat .lighthouseci/lighthouse/*.json)"
-
-         - name: Create Comment
-           if: steps.read-report.outputs.report != ''
-           env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              PR_NUMBER: ${{ github.event.pull_request.number }}
-           run: |
-             echo ${{ steps.read-report.outputs.report }} > report.json
-             |
-             curl -X POST \
-               -H "Authorization: Bearer $GITHUB_TOKEN" \
-               -H "Content-Type: application/json" \
-               -d @report.json \
-               "https://api.github.com/repos/${{ github.repository }}/issues/${PR_NUMBER}/comments"
+              urls: 'https://www.foo.software,https://www.google.com'
