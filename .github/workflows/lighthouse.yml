@@ -19,8 +19,10 @@ jobs:
            run: |
              npm install
              npm run build
+             yarn cache clean
          - name: run Lighthouse CI
            run: |
+             yarn cache clean
              npm install -g @lhci/cli@0.8.x
              lhci autorun
            env:
