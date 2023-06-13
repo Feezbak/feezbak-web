@@ -59,6 +59,8 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
+    "serve": "serve -s build",
+    "serve:prod": "NODE_ENV=production npm run serve",
     "serve:lhci": "yarn run serve:prod",
     "format": "prettier --write \"**/*.ts\" \"**/*.tsx\" \"**/*.json\"",
     "lint": "eslint . --ext .ts,.tsx",
