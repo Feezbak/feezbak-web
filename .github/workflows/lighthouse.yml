@@ -18,20 +18,28 @@ jobs:
          - name: Get Lighthouse results
            id: get-lighthouse-results
            run: |
-             echo "::set-output name=json::$(cat results.json)"
+             if [ -s results.json ]; then
+               echo "::set-output name=json::$(cat results.json)"
+             else
+               echo "::set-output name=json::null"
+             fi
 
          - name: Comment on GitHub conversation
            uses: actions/github-script@v4
            env:
-             RESULTS_JSON: ${{ steps.get-lighthouse-results.outputs.json }}
+              RESULTS_JSON: ${{ steps.get-lighthouse-results.outputs.json }}
            with:
              script: |
-               const results = JSON.parse(process.env.RESULTS_JSON);
-               const commentBody = `Lighthouse Results:\n\n${JSON.stringify(results, null, 2)}`;
-               const payload = {
+              const results = JSON.parse(process.env.RESULTS_JSON);
+               if (results !== null) {
+                 const commentBody = `Lighthouse Results:\n\n${JSON.stringify(results, null, 2)}`;
+                 const payload = {
                  issue_number: context.issue.number,
                  owner: context.repo.owner,
                  repo: context.repo.repo,
                  body: commentBody
                };
-               await github.issues.createComment(payload);
+                await github.issues.createComment(payload);
+               } else {
+                 console.log('No Lighthouse results found.');
+               }
