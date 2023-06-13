@@ -1,8 +1,12 @@
-name: Lighthouse
+name: Lighthouse Audit
+
 on:
    pull_request:
       branches:
          - develop
+      types:
+         - opened
+         - synchronize
 
 jobs:
    lighthouse:
@@ -25,5 +29,5 @@ jobs:
              body: |
              Lighthouse Audit Results:
               ```json
-              ${{ steps.lighthouse.outputs.stdout }}
+               ${{ steps.lighthouse.outputs.stdout }}
               ```
