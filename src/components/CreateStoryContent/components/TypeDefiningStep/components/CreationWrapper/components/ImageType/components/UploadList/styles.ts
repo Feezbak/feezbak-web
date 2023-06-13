@@ -7,7 +7,7 @@ export const UploadListWrapper = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
-  overflow: scroll;
+  overflow: auto;
   overflow-y: hidden;
   cursor: grabbing;
 `;
