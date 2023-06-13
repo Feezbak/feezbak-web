@@ -1,33 +1,33 @@
-name: Lighthouse Audit
+name: Lighthouse Report Comment
 
 on:
    pull_request:
       branches:
          - develop
-      types:
-         - opened
-         - synchronize
 
 jobs:
    lighthouse:
       runs-on: ubuntu-latest
 
       steps:
-         - name: Checkout code
-           uses: actions/checkout@v2
+         - uses: actions/checkout@v2
 
-         - name: Install dependencies
-           run: npm ci
-
-         - name: Run Lighthouse
-           run: npm run lighthouse -- --output=json
-
-         - name: Comment on pull request
-           uses: peter-evans/create-or-update-comment@v1
+         - name: Lighthouse CI Action
+           uses: foo-software/lighthouse-check-action@master
            with:
-             issue-number: ${{ github.event.pull_request.number }}
-             body: |
-             Lighthouse Audit Results:
-              ```json
-               ${{ steps.lighthouse.outputs.stdout }}
-              ```
+             urls: 'https://www.foo.software,https://www.google.com'
+
+         - name: Create Comment
+           uses: actions/github-script@v4
+           with:
+             github-token: ${{ secrets.GITHUB_TOKEN }}
+             script: |
+               const fs = require('fs');
+               const report = fs.readFileSync('.lighthouseci/lighthouse/report.html', 'utf8');
+               const payload = {
+                 owner: context.repo.owner,
+                 repo: context.repo.repo,
+                 issue_number: context.issue.number,
+                 body: 'Lighthouse Report:\n\n' + report
+               };
+               await github.rest.issues.createComment(payload);
