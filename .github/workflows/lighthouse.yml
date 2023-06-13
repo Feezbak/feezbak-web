@@ -5,24 +5,21 @@ on:
           - develop
 
 jobs:
-   lighthouse:
-      name: Audit accessibility with Lighthouse
-      runs-on: ubuntu-latest
-      steps:
-         - uses: actions/checkout@v2
-           with:
-             ref: ${{ github.event.pull_request.head.sha }}
-         - uses: actions/setup-node@v2
-           with:
-             node-version: '14.x'
-         - name: prepare application
-           run: |
-             npm install
-             npm run build
-         - name: run Lighthouse CI
-           run: |
-             npm install -g @lhci/cli@0.8.x
-             npm config set scripts-prepend-node-path true
-             lhci autorun
-           env:
-             LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+    lighthouse:
+       runs-on: ubuntu-latest
+       steps:
+          - uses: actions/checkout@v2
+
+          - name: Setup node
+            uses: actions/setup-node@v1
+            with:
+              node-version: "14.x"
+
+          - name: Install
+            run: npm ci && npm i -g http-server @lhci/cli
+
+          - name: Build
+            run: npm run build
+
+          - name: LighthouseCI
+            run: lhci autorun
