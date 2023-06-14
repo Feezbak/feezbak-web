@@ -5,7 +5,12 @@
       "startServerCommand": "serve:lhci",
       "startServerReadyPattern": "Accepting connections at http://localhost:3000",
       "settings": {
-         "onlyCategories": ["performance", "seo"]
+        "onlyCategories": [
+          "performance",
+          "seo",
+          "best practice",
+          "accessibility"
+        ]
       }
     },
     "upload": {
