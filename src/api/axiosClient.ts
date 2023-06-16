@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosClient = axios.create();
 
-axiosClient.defaults.baseURL = "https://feezbak.mixbox.am/";
+axiosClient.defaults.baseURL = "https://feezbak-api.vercel.app/";
 
 axiosClient.defaults.headers.post = {
   Accept: "application/json",
