@@ -30,7 +30,28 @@ Overall, a feedback accumulation application empowers businesses and organizatio
 
 ### ✨ [Demo](https://web-feezbak.mixbox.am/)
 
+## Docker
+
 To use a Docker image for your project during development, you'll need to follow these general steps:
+
+1. Install Docker: If you haven't already, install Docker on your development machine. Docker provides installation instructions for various operating systems on their website.
+2. Pull the Docker image from Docker Hub or private repositories. Use the docker pull command to download the image you want to use. For example:
+
+```sh
+docker pull taronvardanyan/feezbak-web:latest
+```
+3. Create a container: Use the docker run command to create and start a container based on the image you pulled.
+
+```sh
+docker run -it -p 8080:80 -v /path/to/local/code:/app taronvardanyan/feezbak-web:latest
+```
+4. Access the container: Once the container starts, you can access it using a shell or terminal inside the container. Run the following command to access a shell:
+
+```sh
+docker exec -it feezbak-web /bin/bash
+```
+
+5. Develop inside the container: Now that you're inside the container, you can navigate to the appropriate directory and start developing your project. You should have access to all the dependencies and tools installed in the Docker image.
 
 ## Install
 
