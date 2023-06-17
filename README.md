@@ -30,6 +30,8 @@ Overall, a feedback accumulation application empowers businesses and organizatio
 
 ### ✨ [Demo](https://web-feezbak.mixbox.am/)
 
+To use a Docker image for your project during development, you'll need to follow these general steps:
+
 ## Install
 
 ```sh
