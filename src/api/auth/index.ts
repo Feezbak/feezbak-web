@@ -16,14 +16,8 @@ export function forgotPassword(payload: any) {
   return axiosClient.post(`/forgot`, payload).then((response) => response);
 }
 
-export function resetPassword(payload: any, key: string) {
-  return axiosClient
-    .post(`/reset`, payload, {
-      headers: {
-        authorization: "Bearer " + key,
-      },
-    })
-    .then((response) => response);
+export function resetPassword(payload: any) {
+  return axiosClient.post(`/reset`, payload).then((response) => response);
 }
 
 export function logOut(key: string) {

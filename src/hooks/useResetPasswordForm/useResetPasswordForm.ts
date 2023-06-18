@@ -31,7 +31,7 @@ export default function useResetPasswordForm(
   });
 
   const { run: runResetPassword, loading: requestLoading } = useRequest(
-    (data) => resetPassword(data, key),
+    (data) => resetPassword(data),
     {
       manual: true,
       onSuccess: (res) => {
@@ -55,7 +55,7 @@ export default function useResetPasswordForm(
   );
 
   const submitForm = handleSubmit(async (data) => {
-    runResetPassword({ password: data.password });
+    await runResetPassword({ password: data.password, key: key });
   });
 
   return {
