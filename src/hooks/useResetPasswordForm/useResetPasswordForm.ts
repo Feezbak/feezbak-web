@@ -55,7 +55,7 @@ export default function useResetPasswordForm(
   );
 
   const submitForm = handleSubmit(async (data) => {
-    runResetPassword({ password: data.password, key: key });
+    await runResetPassword({ password: data.password, key: key });
   });
 
   return {
