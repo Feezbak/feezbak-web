@@ -24,14 +24,16 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
       autoComplete="off"
     >
       <FormItem name="profession">
-        <label htmlFor="profession">I am a</label>
-        <Controller
-          render={({ field: { onChange, value } }) => (
-            <SelectWithAdd value={value} onChange={onChange} />
-          )}
-          name="profession"
-          control={formControl}
-        />
+        <>
+          <label htmlFor="profession">I am a</label>
+          <Controller
+            render={({ field: { onChange, value } }) => (
+              <SelectWithAdd value={value} onChange={onChange} />
+            )}
+            name="profession"
+            control={formControl}
+          />
+        </>
       </FormItem>
       <FormItem
         name="email"
@@ -42,21 +44,23 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
           )
         }
       >
-        <label htmlFor="email">
-          Email <sub>*</sub>
-        </label>
-        <Controller
-          render={({ field: { onChange, value } }) => (
-            <Input
-              type="email"
-              size="large"
-              onChange={onChange}
-              value={value}
-            />
-          )}
-          name="email"
-          control={formControl}
-        />
+        <>
+          <label htmlFor="email">
+            Email <sub>*</sub>
+          </label>
+          <Controller
+            render={({ field: { onChange, value } }) => (
+              <Input
+                type="email"
+                size="large"
+                onChange={onChange}
+                value={value}
+              />
+            )}
+            name="email"
+            control={formControl}
+          />
+        </>
       </FormItem>
       <FormItem
         name="firstName"
@@ -67,16 +71,18 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
           )
         }
       >
-        <label htmlFor="firstName">
-          Firstname <sub>*</sub>
-        </label>
-        <Controller
-          render={({ field: { onChange, value } }) => (
-            <Input size="large" onChange={onChange} value={value} />
-          )}
-          name="firstName"
-          control={formControl}
-        />
+        <>
+          <label htmlFor="firstName">
+            Firstname <sub>*</sub>
+          </label>
+          <Controller
+            render={({ field: { onChange, value } }) => (
+              <Input size="large" onChange={onChange} value={value} />
+            )}
+            name="firstName"
+            control={formControl}
+          />
+        </>
       </FormItem>
       <FormItem
         name="lastname"
@@ -87,16 +93,18 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
           )
         }
       >
-        <label htmlFor="lastName">
-          Lastname <sub>*</sub>
-        </label>
-        <Controller
-          render={({ field: { onChange, value } }) => (
-            <Input size="large" onChange={onChange} value={value} />
-          )}
-          name="lastName"
-          control={formControl}
-        />
+        <>
+          <label htmlFor="lastName">
+            Lastname <sub>*</sub>
+          </label>
+          <Controller
+            render={({ field: { onChange, value } }) => (
+              <Input size="large" onChange={onChange} value={value} />
+            )}
+            name="lastName"
+            control={formControl}
+          />
+        </>
       </FormItem>
       <FormItem
         validateStatus={formErrors && formErrors["password"] ? "error" : ""}
@@ -107,16 +115,18 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
           )
         }
       >
-        <label htmlFor="password">
-          Password <sub>*</sub>
-        </label>
-        <Controller
-          render={({ field: { onChange, value } }) => (
-            <Input.Password size="large" onChange={onChange} value={value} />
-          )}
-          name="password"
-          control={formControl}
-        />
+        <>
+          <label htmlFor="password">
+            Password <sub>*</sub>
+          </label>
+          <Controller
+            render={({ field: { onChange, value } }) => (
+              <Input.Password size="large" onChange={onChange} value={value} />
+            )}
+            name="password"
+            control={formControl}
+          />
+        </>
       </FormItem>
       <BtnWrapper>
         <SubmitButton

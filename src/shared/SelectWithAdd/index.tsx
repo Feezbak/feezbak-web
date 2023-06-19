@@ -1,11 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { ChangeEvent, useRef, useState } from "react";
 import { Divider, Input, InputRef, Select } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { SelectActionWrapper, ItemAddButton, CustomSelect } from "./styles";
 
 interface Props {
   value?: string;
-  onChange: () => void;
+  onChange: (event: string | undefined | ChangeEvent<Element>) => void;
 }
 
 const { Option } = Select;
