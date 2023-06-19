@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosClient = axios.create();
 
-axiosClient.defaults.baseURL = "https://feezbak-api.vercel.app/";
+axiosClient.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 axiosClient.defaults.headers.post = {
   Accept: "application/json",
