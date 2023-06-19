@@ -37,21 +37,23 @@ const ForgotPasswordForm = ({ setEmailSendState }: Props) => {
           )
         }
       >
-        <label htmlFor="email">
-          Email <sub>*</sub>
-        </label>
-        <Controller
-          render={({ field: { onChange, value } }) => (
-            <Input
-              type="email"
-              size="large"
-              onChange={onChange}
-              value={value}
-            />
-          )}
-          name="email"
-          control={formControl}
-        />
+        <>
+          <label htmlFor="email">
+            Email <sub>*</sub>
+          </label>
+          <Controller
+            render={({ field: { onChange, value } }) => (
+              <Input
+                type="email"
+                size="large"
+                onChange={onChange}
+                value={value}
+              />
+            )}
+            name="email"
+            control={formControl}
+          />
+        </>
       </FormItem>
       <BtnWrapper>
         <SubmitButton

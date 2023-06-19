@@ -3,27 +3,14 @@ import { Dropdown } from "antd";
 import { MenuItems } from "./utils";
 import { CreatorAvatar } from "./styles";
 import { UserOutlined } from "@ant-design/icons";
-import { logOut } from "@/api";
-import useRequest from "@ahooksjs/use-request";
 import { useNavigate } from "react-router-dom";
-import { message } from "antd";
 
 const CreatorDropdownMenu = () => {
   const navigate = useNavigate();
 
-  const { run: runLogout } = useRequest((key) => logOut(key ?? ""), {
-    manual: true,
-    onSuccess: () => {
-      localStorage.removeItem("userData");
-      navigate("/sign-in");
-    },
-    onError: (error: any) => {
-      message.error(error?.response?.data?.message ?? "");
-    },
-  });
-
   const handleLogout = () => {
-    runLogout("someKey");
+    localStorage.removeItem("userData");
+    navigate("/sign-in");
   };
 
   const items = MenuItems(() => navigate("/profile"), handleLogout);

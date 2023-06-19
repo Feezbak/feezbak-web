@@ -37,21 +37,23 @@ const SignInForm = () => {
           )
         }
       >
-        <label htmlFor="email">
-          Email <sub>*</sub>
-        </label>
-        <Controller
-          render={({ field: { onChange, value } }) => (
-            <Input
-              type="email"
-              size="large"
-              onChange={onChange}
-              value={value}
-            />
-          )}
-          name="email"
-          control={formControl}
-        />
+        <>
+          <label htmlFor="email">
+            Email <sub>*</sub>
+          </label>
+          <Controller
+            render={({ field: { onChange, value } }) => (
+              <Input
+                type="email"
+                size="large"
+                onChange={onChange}
+                value={value}
+              />
+            )}
+            name="email"
+            control={formControl}
+          />
+        </>
       </FormItem>
       <FormItem
         validateStatus={formErrors && formErrors["password"] ? "error" : ""}
@@ -62,16 +64,18 @@ const SignInForm = () => {
           )
         }
       >
-        <label htmlFor="password">
-          Password <sub>*</sub>
-        </label>
-        <Controller
-          render={({ field: { onChange, value } }) => (
-            <Input.Password size="large" onChange={onChange} value={value} />
-          )}
-          name="password"
-          control={formControl}
-        />
+        <>
+          <label htmlFor="password">
+            Password <sub>*</sub>
+          </label>
+          <Controller
+            render={({ field: { onChange, value } }) => (
+              <Input.Password size="large" onChange={onChange} value={value} />
+            )}
+            name="password"
+            control={formControl}
+          />
+        </>
       </FormItem>
       <BtnWrapper>
         <SubmitButton
