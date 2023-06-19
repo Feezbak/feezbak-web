@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { StyleEnums, FlexBoxEnum } from "@/enums";
-import { Form, Button } from "antd";
+import { Form, Button, Input } from "antd";
 
 export const SignUpFormWrapper = styled(Form)`
   margin-top: 3rem;
@@ -31,6 +31,14 @@ export const FormItem = styled(Form.Item)`
   }
 `;
 
+export const CustomisedInput = styled(Input)`
+  height: 3rem;
+`;
+
+export const PasswordInput = styled(Input.Password)`
+  height: 3rem;
+`;
+
 export const SubmitButton = styled(Button)`
   width: 100%;
 `;
@@ -45,4 +53,8 @@ export const Description = styled.p`
   font-size: 0.938rem;
   line-height: 1.25rem;
   margin: 1rem 0 0 0;
+
+  a {
+    color: ${StyleEnums.primary};
+  }
 `;
