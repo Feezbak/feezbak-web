@@ -1,16 +1,17 @@
 import React from "react";
 import { Controller } from "react-hook-form";
 import { ErrorMessage } from "@/shared";
-import { Input } from "antd";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useSignInByEmailForm } from "@hooks/useSignInByEmailForm";
 import {
   SignInFormWrapper,
-  FormItem,
+  CustomisedInput,
+  PasswordInput,
   SubmitButton,
-  BtnWrapper,
   Description,
+  BtnWrapper,
+  FormItem,
 } from "./styles";
 
 const SignInForm = () => {
@@ -43,7 +44,7 @@ const SignInForm = () => {
           </label>
           <Controller
             render={({ field: { onChange, value } }) => (
-              <Input
+              <CustomisedInput
                 type="email"
                 size="large"
                 onChange={onChange}
@@ -70,7 +71,7 @@ const SignInForm = () => {
           </label>
           <Controller
             render={({ field: { onChange, value } }) => (
-              <Input.Password size="large" onChange={onChange} value={value} />
+              <PasswordInput size="large" onChange={onChange} value={value} />
             )}
             name="password"
             control={formControl}
