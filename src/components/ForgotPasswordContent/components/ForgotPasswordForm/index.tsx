@@ -5,9 +5,10 @@ import { Input } from "antd";
 import { useForgotPasswordForm } from "@hooks/useForgotPasswordForm";
 import {
   ForgotPasswordFormWrapper,
-  FormItem,
+  CustomisedInput,
   SubmitButton,
   BtnWrapper,
+  FormItem,
 } from "./styles";
 
 interface Props {
@@ -43,7 +44,7 @@ const ForgotPasswordForm = ({ setEmailSendState }: Props) => {
           </label>
           <Controller
             render={({ field: { onChange, value } }) => (
-              <Input
+              <CustomisedInput
                 type="email"
                 size="large"
                 onChange={onChange}

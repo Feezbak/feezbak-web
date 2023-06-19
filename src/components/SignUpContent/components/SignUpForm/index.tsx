@@ -1,16 +1,17 @@
 import React from "react";
 import { Controller } from "react-hook-form";
 import { ErrorMessage, SelectWithAdd } from "@/shared";
-import { Input } from "antd";
 import { Link } from "react-router-dom";
 import { SignUpFormProps } from "./types";
 import { useSignUpByEmailForm } from "@hooks/useSignUpByEmailForm";
 import {
   SignUpFormWrapper,
-  FormItem,
+  CustomisedInput,
+  PasswordInput,
   SubmitButton,
-  BtnWrapper,
   Description,
+  BtnWrapper,
+  FormItem,
 } from "./styles";
 
 const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
@@ -50,7 +51,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
           </label>
           <Controller
             render={({ field: { onChange, value } }) => (
-              <Input
+              <CustomisedInput
                 type="email"
                 size="large"
                 onChange={onChange}
@@ -77,7 +78,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
           </label>
           <Controller
             render={({ field: { onChange, value } }) => (
-              <Input size="large" onChange={onChange} value={value} />
+              <CustomisedInput size="large" onChange={onChange} value={value} />
             )}
             name="firstName"
             control={formControl}
@@ -99,7 +100,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
           </label>
           <Controller
             render={({ field: { onChange, value } }) => (
-              <Input size="large" onChange={onChange} value={value} />
+              <CustomisedInput size="large" onChange={onChange} value={value} />
             )}
             name="lastName"
             control={formControl}
@@ -121,7 +122,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
           </label>
           <Controller
             render={({ field: { onChange, value } }) => (
-              <Input.Password size="large" onChange={onChange} value={value} />
+              <PasswordInput size="large" onChange={onChange} value={value} />
             )}
             name="password"
             control={formControl}

@@ -1,14 +1,14 @@
 import React from "react";
 import { Controller } from "react-hook-form";
 import { ErrorMessage } from "@/shared";
-import { Input } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { useResetPasswordForm } from "@hooks/useResetPasswordForm";
 import {
   ResetPasswordFormWrapper,
-  FormItem,
+  PasswordInput,
   SubmitButton,
   BtnWrapper,
+  FormItem,
 } from "./styles";
 
 const ResetPasswordForm = () => {
@@ -41,7 +41,7 @@ const ResetPasswordForm = () => {
         </label>
         <Controller
           render={({ field: { onChange, value } }) => (
-            <Input.Password size="large" onChange={onChange} value={value} />
+            <PasswordInput size="large" onChange={onChange} value={value} />
           )}
           name="password"
           control={formControl}
@@ -63,7 +63,7 @@ const ResetPasswordForm = () => {
         </label>
         <Controller
           render={({ field: { onChange, value } }) => (
-            <Input.Password size="large" onChange={onChange} value={value} />
+            <PasswordInput size="large" onChange={onChange} value={value} />
           )}
           name="confirmPassword"
           control={formControl}
