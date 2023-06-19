@@ -31,7 +31,7 @@ const SelectWithAdd = ({ value = "", onChange }: Props) => {
   return (
     <CustomSelect
       size="large"
-      onChange={onChange}
+      onChange={onChange as () => void}
       value={value}
       dropdownRender={(menu) => (
         <>
