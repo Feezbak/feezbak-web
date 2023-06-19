@@ -1,7 +1,6 @@
 import React from "react";
 import { Controller } from "react-hook-form";
 import { ErrorMessage } from "@/shared";
-import { Input } from "antd";
 import { useForgotPasswordForm } from "@hooks/useForgotPasswordForm";
 import {
   ForgotPasswordFormWrapper,
