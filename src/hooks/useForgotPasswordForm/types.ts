@@ -8,6 +8,7 @@ import {
   UseFormGetValues,
   UseFormSetValue,
   UseFormReset,
+  UseFormTrigger,
 } from "react-hook-form";
 
 export interface UseForgotPasswordFormResult {
@@ -18,6 +19,7 @@ export interface UseForgotPasswordFormResult {
   getFieldValue: UseFormGetValues<ForgotPasswordFormInputs>;
   setPassValue: UseFormSetValue<ForgotPasswordFormInputs>;
   requestLoading: boolean;
+  trigger: UseFormTrigger<ForgotPasswordFormInputs>;
   submitForm: (
     e?: BaseSyntheticEvent<Record<string, unknown>, any, any>
   ) => Promise<void>;

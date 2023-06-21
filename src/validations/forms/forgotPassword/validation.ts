@@ -3,5 +3,5 @@ import { ForgotPasswordFormInputs } from "./type";
 import { emailSchema } from "@/validations";
 
 export const ForgotPasswordSchema = Joi.object<ForgotPasswordFormInputs>({
-  email: emailSchema.label("Email").required(),
+  forgotEmail: emailSchema.label("Email").required(),
 });
