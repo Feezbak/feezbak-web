@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Controller } from "react-hook-form";
 import { ErrorMessage } from "@/shared";
 import { useForgotPasswordForm } from "@hooks/useForgotPasswordForm";
@@ -19,26 +19,37 @@ const ForgotPasswordForm = ({ setEmailSendState }: Props) => {
     setEmailSendState(true);
   };
 
-  const { formErrors, formState, formControl, submitForm, requestLoading } =
-    useForgotPasswordForm(onSuccessAction);
+  const {
+    formErrors,
+    formState,
+    formControl,
+    trigger,
+    submitForm,
+    requestLoading,
+  } = useForgotPasswordForm(onSuccessAction);
+
+  useEffect(() => {
+    if (formState.isDirty) {
+      trigger("forgotEmail");
+    }
+  }, [formState.isDirty, trigger]);
 
   return (
     <ForgotPasswordFormWrapper
       name="forgotPasswordForm"
       onFinish={() => submitForm()}
-      autoComplete="off"
     >
       <FormItem
-        name="email"
-        validateStatus={formErrors && formErrors["email"] ? "error" : ""}
+        name="forgotEmail"
+        validateStatus={formErrors?.["forgotEmail"] ? "error" : ""}
         help={
-          formErrors.email && (
-            <ErrorMessage message={formErrors.email.message} />
+          formErrors.forgotEmail && (
+            <ErrorMessage message={formErrors.forgotEmail.message} />
           )
         }
       >
         <>
-          <label htmlFor="email">
+          <label htmlFor="forgotEmail">
             Email <sub>*</sub>
           </label>
           <Controller
@@ -46,11 +57,11 @@ const ForgotPasswordForm = ({ setEmailSendState }: Props) => {
               <CustomisedInput
                 type="email"
                 size="large"
-                onChange={onChange}
                 value={value}
+                onChange={onChange}
               />
             )}
-            name="email"
+            name="forgotEmail"
             control={formControl}
           />
         </>
