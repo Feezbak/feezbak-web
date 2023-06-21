@@ -15,6 +15,7 @@ export default function useForgotPasswordForm(
     control: formControl,
     formState,
     reset,
+    trigger,
     setValue: setPassValue,
     getValues: getFieldValue,
   } = useForm<ForgotPasswordFormInputs>({
@@ -25,7 +26,7 @@ export default function useForgotPasswordForm(
           label: "",
         },
       },
-      abortEarly: false,
+      abortEarly: true,
     }),
   });
 
@@ -39,7 +40,7 @@ export default function useForgotPasswordForm(
           setTimeout(
             () =>
               reset({
-                email: "",
+                forgotEmail: "",
               }),
             1000
           );
@@ -64,6 +65,7 @@ export default function useForgotPasswordForm(
     setPassValue,
     getFieldValue,
     submitForm,
+    trigger,
     requestLoading,
   };
 }
