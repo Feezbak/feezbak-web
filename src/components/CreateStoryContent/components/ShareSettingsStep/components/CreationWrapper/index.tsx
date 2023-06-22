@@ -1,9 +1,11 @@
 import React, { useContext, useCallback } from "react";
 import { StoryCreationContext } from "@/context";
 import { CreationFlowFooter, CreationFlowHeader } from "@/shared";
-import { notification } from "antd";
+import { notification, message } from "antd";
 import { AnanasOnBikeIcon } from "@/icons";
+import useRequest from "@ahooksjs/use-request";
 import { useParams, useNavigate } from "react-router-dom";
+import { saveStoryFields } from "@/api";
 import FeedbackShareAndGetSettings from "./components/FeedbackShareAndGetSettings";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
 
@@ -15,7 +17,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
   const { id: storyId } = useParams();
   const navigate = useNavigate();
   const [api, contextHolder] = notification.useNotification();
-  const { currentStep, setPrevStep } = useContext(StoryCreationContext);
+  const { currentStep, setPrevStep, step3 } = useContext(StoryCreationContext);
 
   const openNotification = useCallback(() => {
     api.open({
@@ -29,13 +31,28 @@ const CreationWrapper = ({ handleDemo }: Props) => {
     });
   }, [api]);
 
-  const handleFinalize = () => {
-    openNotification();
-    setTimeout(() => navigate(`/story-details/${storyId}`), 1000);
-  };
+  const { run: runSaveStoryFields, loading: isLoading } = useRequest(
+    (payload) => saveStoryFields(payload),
+    {
+      manual: true,
+      onSuccess: (resp) => {
+        if (resp?.data) {
+          openNotification();
+          setTimeout(() => navigate(`/story-details/${storyId}`), 1000);
+        }
+      },
+      onError: (error: any) => {
+        message.error(error?.response?.data?.message);
+      },
+    }
+  );
 
   const handleGoToPrevStep = () => {
     setPrevStep();
+  };
+
+  const handleFinalize = () => {
+    runSaveStoryFields({ id: storyId, ...step3 });
   };
 
   return (
@@ -43,6 +60,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
       <CreationFlowHeader handleDemo={handleDemo} />
       <FeedbackShareAndGetSettings />
       <CreationFlowFooter
+        nextLoading={isLoading}
         prevBtnActionHandler={handleGoToPrevStep}
         nextBtnActionHandler={handleFinalize}
         isNextActive={false}

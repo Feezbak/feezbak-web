@@ -1,9 +1,11 @@
 import React, { lazy, useContext, useEffect, useMemo } from "react";
 import { StoryStepEnum } from "@/enums";
-import { Spin } from "antd";
+import { Spin, message } from "antd";
 import { useParams } from "react-router-dom";
 import { storyDefaultState } from "@/constants";
 import { StoryCreationContext } from "@/context";
+import { getStoryById } from "@/api";
+import useRequest from "@ahooksjs/use-request";
 import {
   useManageStepInStorage as manageStepInStorage,
   usePageLeaveDetection,
@@ -12,12 +14,6 @@ import {
 const TitleAddingStep = lazy(() => import("../TitleAddingStep"));
 const TypeDefiningStep = lazy(() => import("../TypeDefiningStep"));
 const ShareSettingsStep = lazy(() => import("../ShareSettingsStep"));
-
-//type FakeType = {
-//  step1?: typeof storyDefaultState.step1;
-//  step2?: typeof storyDefaultState.step2;
-//  step3?: typeof storyDefaultState.step3;
-//};
 
 const StepSelector = () => {
   usePageLeaveDetection();
@@ -36,8 +32,18 @@ const StepSelector = () => {
     setCurrentStep,
   } = useContext(StoryCreationContext);
 
-  const requestLoading = false;
-  //  const requestFakeData: FakeType | null = {};
+  const { run: getStoryData, loading: requestLoading } = useRequest(
+    () => getStoryById(storyId ?? ""),
+    {
+      manual: true,
+      onSuccess: (resp) => {
+        console.log(resp.data, 4444);
+      },
+      onError: (error: any) => {
+        message.error(error.response.data.message);
+      },
+    }
+  );
 
   useEffect(() => {
     let storageDataById;
@@ -54,7 +60,7 @@ const StepSelector = () => {
       parsedDataFromStorage?.step3 && setStep3(parsedDataFromStorage.step3);
       setCurrentStep(lastFinishStep ? lastFinishStep : 1);
     } else {
-      //Todo call request to get story steps data.
+      getStoryData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storyId]);

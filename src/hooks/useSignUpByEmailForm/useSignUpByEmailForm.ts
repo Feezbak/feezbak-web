@@ -48,7 +48,7 @@ export default function useSignUpByEmailForm(
       },
       onError: (error: any) => {
         console.error(error);
-        message.error(error?.response?.responseText ?? "");
+        message.error(error.response.data.message);
       },
     }
   );

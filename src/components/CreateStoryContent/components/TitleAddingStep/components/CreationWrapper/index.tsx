@@ -3,7 +3,10 @@ import Editor from "./components/Editor";
 import { AnanasOnBikeIcon } from "@/icons";
 import { StoryCreationContext } from "@/context";
 import { storyDefaultState } from "@/constants";
-import { notification } from "antd";
+import { notification, message } from "antd";
+import { saveStoryFields } from "@/api";
+import { useParams } from "react-router-dom";
+import useRequest from "@ahooksjs/use-request";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
 import { CreationFlowHeader, CreationFlowFooter } from "@/shared";
 
@@ -12,6 +15,7 @@ interface Props {
 }
 
 const CreationWrapper = ({ handleDemo }: Props) => {
+  const { id: storyId } = useParams();
   const [api, contextHolder] = notification.useNotification();
   const { currentStep, step1, setNextStep } = useContext(StoryCreationContext);
 
@@ -27,9 +31,24 @@ const CreationWrapper = ({ handleDemo }: Props) => {
     });
   }, [api]);
 
+  const { run: runSaveStoryFields, loading: isLoading } = useRequest(
+    (payload) => saveStoryFields(payload),
+    {
+      manual: true,
+      onSuccess: (resp) => {
+        if (resp?.data) {
+          openNotification();
+          setTimeout(() => setNextStep(), 1000);
+        }
+      },
+      onError: (error: any) => {
+        message.error(error?.response?.data?.message);
+      },
+    }
+  );
+
   const handleSubmitStep = () => {
-    openNotification();
-    setTimeout(() => setNextStep(), 1000);
+    runSaveStoryFields({ id: storyId, ...step1 });
   };
 
   return (
@@ -37,6 +56,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
       <CreationFlowHeader handleDemo={handleDemo} />
       <Editor />
       <CreationFlowFooter
+        nextLoading={isLoading}
         currentStep={currentStep}
         nextBtnActionHandler={handleSubmitStep}
         isNextActive={step1.title !== storyDefaultState.step1.title}

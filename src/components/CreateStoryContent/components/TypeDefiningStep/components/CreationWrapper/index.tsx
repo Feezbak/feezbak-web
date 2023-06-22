@@ -5,8 +5,11 @@ import ImageType from "./components/ImageType";
 import TextType from "./components/TextType";
 import Response from "./components/Response";
 import { AnimatePresence } from "framer-motion";
-import { notification } from "antd";
+import { notification, message } from "antd";
 import { AnanasOnBikeIcon } from "@/icons";
+import useRequest from "@ahooksjs/use-request";
+import { saveStoryFields } from "@/api";
+import { useParams } from "react-router-dom";
 import { CreationFlowFooter, CreationFlowHeader } from "@/shared";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
 
@@ -15,6 +18,7 @@ interface Props {
 }
 
 const CreationWrapper = ({ handleDemo }: Props) => {
+  const { id: storyId } = useParams();
   const [api, contextHolder] = notification.useNotification();
   const {
     currentStep,
@@ -37,9 +41,24 @@ const CreationWrapper = ({ handleDemo }: Props) => {
     });
   }, [api]);
 
+  const { run: runSaveStoryFields, loading: isLoading } = useRequest(
+    (payload) => saveStoryFields(payload),
+    {
+      manual: true,
+      onSuccess: (resp) => {
+        if (resp?.data) {
+          openNotification();
+          setTimeout(() => setNextStep(), 1000);
+        }
+      },
+      onError: (error: any) => {
+        message.error(error?.response?.data?.message);
+      },
+    }
+  );
+
   const handleSubmitStep = () => {
-    openNotification();
-    setTimeout(() => setNextStep(), 1000);
+    runSaveStoryFields({ id: storyId, ...step2 });
   };
 
   const handleGoToPrevStep = () => {
@@ -103,6 +122,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
         {isBtnResponse && <Response />}
       </AnimatePresence>
       <CreationFlowFooter
+        nextLoading={isLoading}
         prevBtnActionHandler={handleGoToPrevStep}
         nextBtnActionHandler={handleSubmitStep}
         isNextActive={isNextActive}
