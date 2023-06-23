@@ -58,7 +58,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
   );
 
   const handleSubmitStep = () => {
-    runSaveStoryFields({ id: storyId, ...step2 });
+    runSaveStoryFields({ id: storyId, progress: "step2", ...step2 });
   };
 
   const handleGoToPrevStep = () => {

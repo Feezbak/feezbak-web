@@ -7,6 +7,7 @@ import { StoryCreationContext } from "@/context";
 import { getStoryById } from "@/api";
 import { AnimatePresence } from "framer-motion";
 import useRequest from "@ahooksjs/use-request";
+import { setStoryDataToStore } from "./utils";
 import {
   useManageStepInStorage as manageStepInStorage,
   usePageLeaveDetection,
@@ -39,16 +40,20 @@ const StepSelector = () => {
     {
       manual: true,
       onSuccess: (resp) => {
-        console.log(resp.data, 4444);
-        //        const lastFinishStep = Object.keys(requestFakeData).length;
-        //          requestFakeData?.step1 && setStep1(requestFakeData.step1);
-        //          requestFakeData?.step2 && setStep2(requestFakeData.step2);
-        //          requestFakeData?.step3 && setStep3(requestFakeData.step3);
-        //          setCurrentStep(lastFinishStep ? lastFinishStep : 1);
+        console.log(2222);
+        if (resp?.data) {
+          setStoryDataToStore(
+            resp.data,
+            setStep1,
+            setStep2,
+            setStep3,
+            setCurrentStep
+          );
+        }
       },
       onError: (error: any) => {
         setTimeout(() => navigate("/not-found"), 2000);
-        message.error(error.response.data.message);
+        message.error(error?.response?.data?.message);
       },
     }
   );

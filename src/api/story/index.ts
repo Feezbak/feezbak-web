@@ -13,3 +13,7 @@ export function saveStoryFields(payload: any) {
     .post("/story/add-fields", payload)
     .then((response) => response);
 }
+
+export function getStories() {
+  return axiosClient.get(`/story`).then((response) => response);
+}
