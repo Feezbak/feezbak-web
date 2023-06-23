@@ -1,10 +1,11 @@
 import React, { lazy, useContext, useEffect, useMemo } from "react";
 import { StoryStepEnum } from "@/enums";
 import { Spin, message } from "antd";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { storyDefaultState } from "@/constants";
 import { StoryCreationContext } from "@/context";
 import { getStoryById } from "@/api";
+import { AnimatePresence } from "framer-motion";
 import useRequest from "@ahooksjs/use-request";
 import {
   useManageStepInStorage as manageStepInStorage,
@@ -17,6 +18,7 @@ const ShareSettingsStep = lazy(() => import("../ShareSettingsStep"));
 
 const StepSelector = () => {
   usePageLeaveDetection();
+  const navigate = useNavigate();
   const { id: storyId } = useParams();
   const stringifyStep1 = JSON.stringify(storyDefaultState.step1);
   const stringifyStep2 = JSON.stringify(storyDefaultState.step2);
@@ -38,8 +40,14 @@ const StepSelector = () => {
       manual: true,
       onSuccess: (resp) => {
         console.log(resp.data, 4444);
+        //        const lastFinishStep = Object.keys(requestFakeData).length;
+        //          requestFakeData?.step1 && setStep1(requestFakeData.step1);
+        //          requestFakeData?.step2 && setStep2(requestFakeData.step2);
+        //          requestFakeData?.step3 && setStep3(requestFakeData.step3);
+        //          setCurrentStep(lastFinishStep ? lastFinishStep : 1);
       },
       onError: (error: any) => {
+        setTimeout(() => navigate("/not-found"), 2000);
         message.error(error.response.data.message);
       },
     }
@@ -64,17 +72,6 @@ const StepSelector = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storyId]);
-
-  //      useEffect(() => {
-  //        //Todo put this feature in useRequest onSuccess body and remove useEffect.
-  //        if (requestFakeData && !requestLoading) {
-  //          const lastFinishStep = Object.keys(requestFakeData).length;
-  //          requestFakeData?.step1 && setStep1(requestFakeData.step1);
-  //          requestFakeData?.step2 && setStep2(requestFakeData.step2);
-  //          requestFakeData?.step3 && setStep3(requestFakeData.step3);
-  //          setCurrentStep(lastFinishStep ? lastFinishStep : 1);
-  //        }
-  //      }, [requestLoading]);
 
   const currentStepContent = useMemo(() => {
     if (currentStep === StoryStepEnum.TITLE_STEP) {
@@ -108,7 +105,9 @@ const StepSelector = () => {
     }
   }, [step3, storyId, stringifyStep3, requestLoading]);
 
-  return currentStepContent;
+  return (
+    <AnimatePresence initial={false}>{currentStepContent}</AnimatePresence>
+  );
 };
 
 export default StepSelector;

@@ -38,6 +38,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
       onSuccess: (resp) => {
         if (resp?.data) {
           openNotification();
+          localStorage.removeItem(storyId!);
           setTimeout(() => navigate(`/story-details/${storyId}`), 1000);
         }
       },
