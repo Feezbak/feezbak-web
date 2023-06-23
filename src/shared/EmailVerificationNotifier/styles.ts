@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import { StyleEnums, FlexBoxEnum } from "@/enums";
 
-export const VerificationWrapper = styled.div`
+export const VerificationWrapper = styled(motion.div)`
   height: 100%;
   ${FlexBoxEnum.SpaceBetweenCenterVertical}
 `;

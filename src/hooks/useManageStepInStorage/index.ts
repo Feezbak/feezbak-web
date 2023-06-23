@@ -11,7 +11,7 @@ function useManageStepInStorage(
 ) {
   const stringifyStoreStep = JSON.stringify(step);
   const dataOfStorage = localStorage.getItem(storyId);
-  if (stringifyStoreStep !== stringifyDefaultStep || stepSelector === "step3") {
+  if (stringifyStoreStep !== stringifyDefaultStep) {
     if (dataOfStorage) {
       const parsedStorage = JSON.parse(dataOfStorage);
       const newStorageData = {
