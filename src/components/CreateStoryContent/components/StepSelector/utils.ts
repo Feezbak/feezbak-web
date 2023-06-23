@@ -18,6 +18,7 @@ export function setStoryDataToStore(
     type,
     imageVoting,
     response,
+    isMultiple,
   } = responseData;
   if (responseData.progress === "step1") {
     setStep1({
@@ -34,7 +35,7 @@ export function setStoryDataToStore(
     });
     setStep2({
       type,
-      isMultiple: true,
+      isMultiple,
       imageVoting,
       response,
     });
@@ -47,7 +48,7 @@ export function setStoryDataToStore(
     });
     setStep2({
       type,
-      isMultiple: true,
+      isMultiple,
       imageVoting,
       response,
     });

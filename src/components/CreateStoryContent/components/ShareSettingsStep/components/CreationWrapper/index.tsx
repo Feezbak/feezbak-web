@@ -53,7 +53,12 @@ const CreationWrapper = ({ handleDemo }: Props) => {
   };
 
   const handleFinalize = () => {
-    runSaveStoryFields({ id: storyId, progress: "step3", ...step3 });
+    const stepInfoBody = {
+      id: storyId,
+      progress: "step3",
+      ...step3,
+    };
+    runSaveStoryFields(stepInfoBody);
   };
 
   return (

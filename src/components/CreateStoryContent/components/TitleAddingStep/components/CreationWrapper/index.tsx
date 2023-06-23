@@ -48,7 +48,18 @@ const CreationWrapper = ({ handleDemo }: Props) => {
   );
 
   const handleSubmitStep = () => {
-    runSaveStoryFields({ id: storyId, progress: "step1", ...step1 });
+    const storageStepsData = localStorage.getItem(storyId!);
+    const parsedData = JSON.parse(storageStepsData!);
+    const stepInfoBody = {
+      id: storyId,
+      progress: parsedData?.step3
+        ? "step3"
+        : parsedData?.step2
+        ? "step2"
+        : "step1",
+      ...step1,
+    };
+    runSaveStoryFields(stepInfoBody);
   };
 
   return (
