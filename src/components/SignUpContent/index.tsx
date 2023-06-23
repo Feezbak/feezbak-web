@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import SignUpForm from "./components/SignUpForm";
 import signUpImgSrc from "@images/sign-up.png";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { EmailVerificationNotifier } from "@/shared";
 import { opacityAnimation } from "@assets/framerAnimations";
 import {
   SignUpMainWrapper,
   SignUpFormWrapper,
+  AnimatedWrapper,
   ImageContainer,
   TitleWrapper,
   Description,
@@ -29,7 +30,7 @@ const SignUpContent = () => {
             handleGoBackAction={() => setAccountState(false)}
           />
         ) : (
-          <motion.div {...opacityAnimation}>
+          <AnimatedWrapper {...opacityAnimation}>
             <SignUpFormWrapper>
               <ImageContainer
                 xs={0}
@@ -50,7 +51,7 @@ const SignUpContent = () => {
                 <SignUpForm setAccountState={handleChangeAccountState} />
               </Content>
             </SignUpFormWrapper>
-          </motion.div>
+          </AnimatedWrapper>
         )}
       </AnimatePresence>
     </SignUpMainWrapper>

@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import ForgotPasswordForm from "./components/ForgotPasswordForm";
 import { EmailVerificationNotifier } from "@/shared";
 import forgotPasswordImgSrc from "@images/forgot-pass.png";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { opacityAnimation } from "@assets/framerAnimations";
 import {
   ForgotPasswordMainWrapper,
   ForgotPasswordFormWrapper,
   ImageContainer,
+  AnimatedWrapper,
   TitleWrapper,
   Description,
   Content,
@@ -25,7 +26,7 @@ const ForgotPasswordContent = () => {
             handleGoBackAction={() => setEmailSendState(false)}
           />
         ) : (
-          <motion.div {...opacityAnimation}>
+          <AnimatedWrapper {...opacityAnimation}>
             <ForgotPasswordFormWrapper>
               <ImageContainer
                 xs={0}
@@ -53,7 +54,7 @@ const ForgotPasswordContent = () => {
                 <ForgotPasswordForm setEmailSendState={setEmailSendState} />
               </Content>
             </ForgotPasswordFormWrapper>
-          </motion.div>
+          </AnimatedWrapper>
         )}
       </AnimatePresence>
     </ForgotPasswordMainWrapper>
