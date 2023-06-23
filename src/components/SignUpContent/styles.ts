@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Row, Col } from "antd";
+import { motion } from "framer-motion";
 import { FlexBoxEnum } from "@/enums";
 
 export const SignUpMainWrapper = styled.div`
@@ -38,4 +39,8 @@ export const Description = styled.p`
   font-size: 0.938rem;
   line-height: 1.25rem;
   margin-bottom: 0;
+`;
+
+export const AnimatedWrapper = styled(motion.div)`
+  width: 100%;
 `;

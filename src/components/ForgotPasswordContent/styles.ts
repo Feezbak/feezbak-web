@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Row, Col } from "antd";
+import { motion } from "framer-motion";
 import { FlexBoxEnum } from "@/enums";
 
 export const ForgotPasswordMainWrapper = styled.div`
@@ -43,4 +44,8 @@ export const Title3 = styled.h3`
   line-height: 2rem;
   font-weight: bolder;
   margin-bottom: 0;
+`;
+
+export const AnimatedWrapper = styled(motion.div)`
+  width: 100%;
 `;
