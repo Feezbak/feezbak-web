@@ -13,6 +13,7 @@ export const StoriesListWrapper = styled(motion.ul)`
 
 export const EmptyStoriesWrapper = styled(motion.div)`
   ${FlexBoxEnum.CenterVertical}
+  margin-bottom: 2rem;
 
   h2 {
     font-weight: 700;
@@ -41,4 +42,10 @@ export const SkeletonsWrapper = styled(motion.div)`
   ${FlexBoxEnum.CenterVertical}
 `;
 
-export const StorySkeleton = styled(Skeleton)``;
+export const StorySkeleton = styled(Skeleton.Input)`
+  margin-bottom: 1rem;
+
+  span {
+    height: 6rem !important;
+  }
+`;

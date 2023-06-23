@@ -15,38 +15,6 @@ import {
 } from "./styles";
 import { opacityAnimation } from "@assets/framerAnimations";
 
-const hardcodedData = [
-  {
-    id: "1",
-    question: "Which Shoes should I buy?",
-    type: "Image Voting",
-    status: "draft",
-  },
-  {
-    id: "2",
-    question: "Interior for my new shop",
-    type: "Image Voting",
-    status: "submitted",
-  },
-  {
-    id: "3",
-    question: "Interior for my new shop",
-    type: "Image Voting",
-    status: "submitted",
-  },
-  {
-    id: "4",
-    question: "Interior for my new shop",
-    type: "Image Voting",
-    status: "submitted",
-  },
-  {
-    id: "5",
-    question: "Interior for my new shop",
-    type: "Image Voting",
-    status: "submitted",
-  },
-];
 const StoriesList = () => {
   const [removeId, setRemoveIdState] = useState("");
 
@@ -54,10 +22,7 @@ const StoriesList = () => {
     setRemoveIdState(id);
   };
 
-  const { loading: isLoading } = useRequest(() => getStories(), {
-    onSuccess: (resp) => {
-      console.log(resp, 4444);
-    },
+  const { data: stories, loading: isLoading } = useRequest(() => getStories(), {
     onError: (error: any) => {
       message.error(error?.response?.data?.message ?? "");
     },
@@ -68,13 +33,18 @@ const StoriesList = () => {
       <AnimatePresence initial={false}>
         {isLoading ? (
           <SkeletonsWrapper>
-            {[1, 2, 3].map((item) => (
-              <StorySkeleton key={item} />
+            {[1, 2].map((item) => (
+              <StorySkeleton
+                key={item}
+                active={true}
+                size="large"
+                block={true}
+              />
             ))}
           </SkeletonsWrapper>
-        ) : hardcodedData?.length ? (
+        ) : stories?.data?.length ? (
           <StoriesListWrapper {...opacityAnimation}>
-            {hardcodedData.map((story) => (
+            {stories.data.map((story: any) => (
               <StoryItem
                 key={story.id}
                 storyData={story}
