@@ -1,13 +1,14 @@
 import React from "react";
-import {
-  Title,
-  Description,
-  VerificationWrapper,
-  VerifyImg,
-  IllustrationWrapper,
-  Footer,
-} from "./styles";
+import { opacityAnimation } from "@assets/framerAnimations";
 import emailVerifySrc from "@images/email-verification.png";
+import {
+  VerificationWrapper,
+  IllustrationWrapper,
+  Description,
+  VerifyImg,
+  Footer,
+  Title,
+} from "./styles";
 
 interface Props {
   handleGoBackAction: () => void;
@@ -15,7 +16,7 @@ interface Props {
 
 const EmailVerificationNotifier = ({ handleGoBackAction }: Props) => {
   return (
-    <VerificationWrapper>
+    <VerificationWrapper {...opacityAnimation}>
       <IllustrationWrapper>
         <VerifyImg
           src={emailVerifySrc}

@@ -18,7 +18,7 @@ export const TextContent = styled(Col)`
   h3 {
     font-weight: 700;
     font-size: 2rem;
-    line-height: 2.25;
+    line-height: 2.25rem;
     letter-spacing: -0.02em;
     margin-bottom: 0.75rem;
   }

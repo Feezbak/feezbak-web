@@ -54,7 +54,7 @@ export default function useForgotPasswordForm(
   );
 
   const submitForm = handleSubmit(async (data) => {
-    runForgotPassword(data);
+    runForgotPassword({ email: data.forgotEmail });
   });
 
   return {

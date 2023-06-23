@@ -1,16 +1,19 @@
 import styled from "styled-components";
 import { FlexBoxEnum } from "@/enums";
+import { motion } from "framer-motion";
+import { Skeleton } from "antd";
 
-export const StoriesListWrapper = styled.ul`
+export const StoriesListWrapper = styled(motion.ul)`
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 4rem 0;
   width: 100%;
   ${FlexBoxEnum.CenterVertical}
 `;
 
-export const EmptyStoriesWrapper = styled.div`
+export const EmptyStoriesWrapper = styled(motion.div)`
   ${FlexBoxEnum.CenterVertical}
+  margin-bottom: 2rem;
 
   h2 {
     font-weight: 700;
@@ -32,4 +35,17 @@ export const EmptyStoriesWrapper = styled.div`
 export const EmptyStoriesImage = styled.img`
   width: 15rem;
   margin-bottom: 1rem;
+`;
+
+export const SkeletonsWrapper = styled(motion.div)`
+  width: 100%;
+  ${FlexBoxEnum.CenterVertical}
+`;
+
+export const StorySkeleton = styled(Skeleton.Input)`
+  margin-bottom: 1rem;
+
+  span {
+    height: 6rem !important;
+  }
 `;

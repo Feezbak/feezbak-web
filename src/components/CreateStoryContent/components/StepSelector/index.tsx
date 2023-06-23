@@ -1,9 +1,13 @@
 import React, { lazy, useContext, useEffect, useMemo } from "react";
 import { StoryStepEnum } from "@/enums";
-import { Spin } from "antd";
-import { useParams } from "react-router-dom";
+import { Spin, message } from "antd";
+import { useNavigate, useParams } from "react-router-dom";
 import { storyDefaultState } from "@/constants";
 import { StoryCreationContext } from "@/context";
+import { getStoryById } from "@/api";
+import { AnimatePresence } from "framer-motion";
+import useRequest from "@ahooksjs/use-request";
+import { setStoryDataToStore } from "./utils";
 import {
   useManageStepInStorage as manageStepInStorage,
   usePageLeaveDetection,
@@ -13,14 +17,9 @@ const TitleAddingStep = lazy(() => import("../TitleAddingStep"));
 const TypeDefiningStep = lazy(() => import("../TypeDefiningStep"));
 const ShareSettingsStep = lazy(() => import("../ShareSettingsStep"));
 
-//type FakeType = {
-//  step1?: typeof storyDefaultState.step1;
-//  step2?: typeof storyDefaultState.step2;
-//  step3?: typeof storyDefaultState.step3;
-//};
-
 const StepSelector = () => {
   usePageLeaveDetection();
+  const navigate = useNavigate();
   const { id: storyId } = useParams();
   const stringifyStep1 = JSON.stringify(storyDefaultState.step1);
   const stringifyStep2 = JSON.stringify(storyDefaultState.step2);
@@ -36,8 +35,28 @@ const StepSelector = () => {
     setCurrentStep,
   } = useContext(StoryCreationContext);
 
-  const requestLoading = false;
-  //  const requestFakeData: FakeType | null = {};
+  const { run: getStoryData, loading: requestLoading } = useRequest(
+    () => getStoryById(storyId ?? ""),
+    {
+      manual: true,
+      onSuccess: (resp) => {
+        console.log(2222);
+        if (resp?.data) {
+          setStoryDataToStore(
+            resp.data,
+            setStep1,
+            setStep2,
+            setStep3,
+            setCurrentStep
+          );
+        }
+      },
+      onError: (error: any) => {
+        setTimeout(() => navigate("/not-found"), 2000);
+        message.error(error?.response?.data?.message);
+      },
+    }
+  );
 
   useEffect(() => {
     let storageDataById;
@@ -54,21 +73,10 @@ const StepSelector = () => {
       parsedDataFromStorage?.step3 && setStep3(parsedDataFromStorage.step3);
       setCurrentStep(lastFinishStep ? lastFinishStep : 1);
     } else {
-      //Todo call request to get story steps data.
+      getStoryData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storyId]);
-
-  //      useEffect(() => {
-  //        //Todo put this feature in useRequest onSuccess body and remove useEffect.
-  //        if (requestFakeData && !requestLoading) {
-  //          const lastFinishStep = Object.keys(requestFakeData).length;
-  //          requestFakeData?.step1 && setStep1(requestFakeData.step1);
-  //          requestFakeData?.step2 && setStep2(requestFakeData.step2);
-  //          requestFakeData?.step3 && setStep3(requestFakeData.step3);
-  //          setCurrentStep(lastFinishStep ? lastFinishStep : 1);
-  //        }
-  //      }, [requestLoading]);
 
   const currentStepContent = useMemo(() => {
     if (currentStep === StoryStepEnum.TITLE_STEP) {
@@ -102,7 +110,9 @@ const StepSelector = () => {
     }
   }, [step3, storyId, stringifyStep3, requestLoading]);
 
-  return currentStepContent;
+  return (
+    <AnimatePresence initial={false}>{currentStepContent}</AnimatePresence>
+  );
 };
 
 export default StepSelector;
