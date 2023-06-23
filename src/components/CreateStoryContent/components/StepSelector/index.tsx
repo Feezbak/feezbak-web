@@ -40,7 +40,6 @@ const StepSelector = () => {
     {
       manual: true,
       onSuccess: (resp) => {
-        console.log(2222);
         if (resp?.data) {
           setStoryDataToStore(
             resp.data,
