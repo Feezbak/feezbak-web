@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import StoryItem from "../StoryItem";
 import { ConfirmModal } from "@/shared";
 import useRequest from "@ahooksjs/use-request";
@@ -6,7 +6,7 @@ import { getStories, deleteStory } from "@/api";
 import { message } from "antd";
 import { AnimatePresence } from "framer-motion";
 import emptyStoriesSrc from "@images/empty-stories.png";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { opacityAnimation } from "@assets/framerAnimations";
 import StoriesPagination from "./components/StoriesPagination";
 import {
@@ -31,6 +31,7 @@ interface StoriesListI {
 }
 
 const StoriesList = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const page = searchParams.get("page");
@@ -40,9 +41,8 @@ const StoriesList = () => {
   const [removeId, setRemoveIdState] = useState("");
 
   const { run: getStoriesPaginatedData, loading: isLoading } = useRequest(
-    (page) => getStories(page),
+    (page) => getStories(page ? page : currentPage),
     {
-      manual: true,
       onSuccess: (resp) => {
         resp?.data && setStoriesPaginatedData(resp.data);
       },
@@ -56,7 +56,13 @@ const StoriesList = () => {
     manual: true,
     onSuccess: async () => {
       try {
-        const updatedPageData = await getStories(currentPage);
+        let page = currentPage;
+        if (storiesPaginatedData!.total % 5 === 1) {
+          page = !!(currentPage - 1) ? currentPage - 1 : 1;
+          navigate(`?page=${page}`);
+          setCurrentPage(page);
+        }
+        const updatedPageData = await getStories(page);
         updatedPageData?.data && setStoriesPaginatedData(updatedPageData.data);
       } catch (error: any) {
         message.error(error?.response?.data?.message);
@@ -71,13 +77,14 @@ const StoriesList = () => {
     setRemoveIdState(id);
   };
 
-  useEffect(() => {
-    (() => getStoriesPaginatedData(currentPage))();
-  }, [currentPage, getStoriesPaginatedData]);
-
   const handleRunDelete = () => {
     (() => runDeleteStory(removeId))();
     setRemoveIdState("");
+  };
+
+  const handleSetCurrentPage = async (page: number) => {
+    setCurrentPage(page);
+    await getStoriesPaginatedData(page);
   };
 
   return (
@@ -109,7 +116,7 @@ const StoriesList = () => {
             {storiesPaginatedData.total > storiesPaginatedData.limit && (
               <StoriesPagination
                 currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
+                setCurrentPage={handleSetCurrentPage}
                 pageSize={storiesPaginatedData.limit}
                 total={storiesPaginatedData.total}
               />
