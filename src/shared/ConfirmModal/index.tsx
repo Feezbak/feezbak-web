@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Modal from "./components/Modal";
 import { Backdrop } from "./styles";
 import { createPortal } from "react-dom";
@@ -24,6 +24,17 @@ const ConfirmModal = ({
   positiveBtnText,
   negativeBtnText,
 }: Props) => {
+  useEffect(() => {
+    if (modalIsOpen) {
+      document.body.classList.add("disable-scroll");
+    } else {
+      document.body.classList.remove("disable-scroll");
+    }
+    return () => {
+      document.body.classList.remove("disable-scroll");
+    };
+  }, [modalIsOpen]);
+
   return modalIsOpen
     ? createPortal(
         <Backdrop onClick={closeModal} {...opacityAnimation}>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import StoryItem from "../StoryItem";
 import { ConfirmModal } from "@/shared";
 import useRequest from "@ahooksjs/use-request";
-import { getStories } from "@/api";
+import { getStories, deleteStory } from "@/api";
 import { message } from "antd";
 import { AnimatePresence } from "framer-motion";
 import emptyStoriesSrc from "@images/empty-stories.png";
@@ -39,11 +39,6 @@ const StoriesList = () => {
     useState<StoriesListI | null>(null);
   const [removeId, setRemoveIdState] = useState("");
 
-  const handleDelete = (id: string) => {
-    console.log(id, 77777);
-    setRemoveIdState(id);
-  };
-
   const { run: getStoriesPaginatedData, loading: isLoading } = useRequest(
     (page) => getStories(page),
     {
@@ -57,9 +52,33 @@ const StoriesList = () => {
     }
   );
 
+  const { run: runDeleteStory } = useRequest((id) => deleteStory(id), {
+    manual: true,
+    onSuccess: async () => {
+      try {
+        const updatedPageData = await getStories(currentPage);
+        updatedPageData?.data && setStoriesPaginatedData(updatedPageData.data);
+      } catch (error: any) {
+        message.error(error?.response?.data?.message);
+      }
+    },
+    onError: (error: any) => {
+      message.error(error?.response?.data?.message);
+    },
+  });
+
+  const handleDelete = (id: string) => {
+    setRemoveIdState(id);
+  };
+
   useEffect(() => {
     (() => getStoriesPaginatedData(currentPage))();
   }, [currentPage, getStoriesPaginatedData]);
+
+  const handleRunDelete = () => {
+    (() => runDeleteStory(removeId))();
+    setRemoveIdState("");
+  };
 
   return (
     <>
@@ -117,7 +136,7 @@ const StoriesList = () => {
         text="We’re sorry to hear this but if you already made up your
               mind, It’s Ok"
         negativeBtnAction={() => setRemoveIdState("")}
-        positiveBtnAction={() => setRemoveIdState("")}
+        positiveBtnAction={handleRunDelete}
         negativeBtnText="Cancel"
         positiveBtnText="Yes Delete"
         modalIsOpen={!!removeId}
