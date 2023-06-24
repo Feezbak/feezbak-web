@@ -40,6 +40,7 @@ const StoriesList = () => {
   const [removeId, setRemoveIdState] = useState("");
 
   const handleDelete = (id: string) => {
+    console.log(id, 77777);
     setRemoveIdState(id);
   };
 
