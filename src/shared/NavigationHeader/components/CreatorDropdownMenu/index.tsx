@@ -4,12 +4,16 @@ import { MenuItems } from "./utils";
 import { CreatorAvatar } from "./styles";
 import { UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { useResetRecoilState } from "recoil";
+import { userData } from "@/recoil";
 
 const CreatorDropdownMenu = () => {
+  const resetUserStore = useResetRecoilState(userData);
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("userData");
+    localStorage.removeItem("token");
+    resetUserStore();
     navigate("/sign-in");
   };
 

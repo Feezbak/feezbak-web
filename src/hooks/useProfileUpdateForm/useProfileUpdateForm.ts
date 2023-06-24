@@ -1,6 +1,8 @@
 import { UseUpdateProfileFormResult } from "./types";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { useForm } from "react-hook-form";
+import { useRecoilValue } from "recoil";
+import { userData } from "@/recoil";
 import { UpdateProfileFormInputs, UpdateProfileSchema } from "@/validations";
 //import { message } from "antd";
 //import useRequest from "@ahooksjs/use-request";
@@ -8,8 +10,7 @@ import { UpdateProfileFormInputs, UpdateProfileSchema } from "@/validations";
 export default function useProfileUpdateForm(
   onSuccessAction: () => void
 ): UseUpdateProfileFormResult {
-  const userStorageData = localStorage.getItem("userData");
-  const userParsedData = JSON.parse(userStorageData!);
+  const userRecoilData = useRecoilValue(userData);
 
   const {
     handleSubmit,
@@ -30,10 +31,10 @@ export default function useProfileUpdateForm(
       abortEarly: false,
     }),
     defaultValues: {
-      firstName: userParsedData.user.firstName,
-      lastName: userParsedData.user.lastName,
-      email: userParsedData.user.email,
-      profession: userParsedData.user.profession,
+      firstName: userRecoilData.firstName,
+      lastName: userRecoilData.lastName,
+      email: userRecoilData.email,
+      profession: userRecoilData.profession,
     },
   });
 

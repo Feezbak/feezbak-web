@@ -4,11 +4,14 @@ import { useForm } from "react-hook-form";
 import { loginUser } from "@/api";
 import { SignInEmailFormInputs, SignInEmailSchema } from "@/validations";
 import { message } from "antd";
+import { useSetRecoilState } from "recoil";
+import { userData } from "@/recoil";
 import useRequest from "@ahooksjs/use-request";
 
 export default function useSignInByEmailForm(
   onUserSuccessLogin: () => void
 ): UseSignInByEmailFormResult {
+  const setUserData = useSetRecoilState(userData);
   const {
     handleSubmit,
     formState: { errors: formErrors },
@@ -36,7 +39,8 @@ export default function useSignInByEmailForm(
       onSuccess: (res) => {
         if (res) {
           onUserSuccessLogin();
-          localStorage.setItem("userData", JSON.stringify(res.data));
+          setUserData(res.data.user);
+          localStorage.setItem("token", JSON.stringify(res.data.accessToken));
           setTimeout(
             () =>
               reset({
