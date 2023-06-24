@@ -14,6 +14,12 @@ export function saveStoryFields(payload: any) {
     .then((response) => response);
 }
 
-export function getStories() {
-  return axiosClient.get(`/story`).then((response) => response);
+export function getStories(currentPage: number) {
+  return axiosClient
+    .get(`/story`, {
+      params: {
+        currentPage,
+      },
+    })
+    .then((response) => response);
 }

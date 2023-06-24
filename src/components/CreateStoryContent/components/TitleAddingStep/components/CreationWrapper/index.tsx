@@ -59,7 +59,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
         : "step1",
       ...step1,
     };
-    runSaveStoryFields(stepInfoBody);
+    (() => runSaveStoryFields(stepInfoBody))();
   };
 
   return (

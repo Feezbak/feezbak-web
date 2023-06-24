@@ -1,6 +1,6 @@
 export enum StoryEnums {
   DRAFT = "draft",
-  SUBMITTED = "submitted",
+  COMPLETED = "completed",
 }
 
 export enum StoryStepEnum {
