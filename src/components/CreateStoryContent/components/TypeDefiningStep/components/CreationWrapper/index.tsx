@@ -65,7 +65,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
       progress: parsedData?.step3 ? "step3" : "step2",
       ...step2,
     };
-    runSaveStoryFields(stepInfoBody);
+    (() => runSaveStoryFields(stepInfoBody))();
   };
 
   const handleGoToPrevStep = () => {
