@@ -16,7 +16,8 @@
       "@icons/*": ["src/icons/*"],
       "@constants/*": ["src/constants/*"],
       "@context/*": ["src/context/*"],
-      "@reducer/*": ["src/reducer/*"]
+      "@reducer/*": ["src/reducer/*"],
+      "@recoil/*": ["src/recoil/*"]
     }
   }
 }

@@ -1,16 +1,12 @@
 import axiosClient from "@/api/axiosClient";
 
 export const isAuth = () => {
-  const userDataStorageData = localStorage.getItem("userData");
-  const parsedUserData = userDataStorageData
-    ? JSON.parse(userDataStorageData)
-    : "";
+  const tokenStorageData = localStorage.getItem("token");
+  const token = tokenStorageData ? JSON.parse(tokenStorageData) : "";
 
-  if (!!parsedUserData?.accessToken?.length) {
-    axiosClient.defaults.headers.common[
-      "Authorization"
-    ] = `Bearer ${parsedUserData.accessToken}`;
+  if (!!token?.length) {
+    axiosClient.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }
 
-  return !!parsedUserData?.accessToken?.length;
+  return !!token?.length;
 };

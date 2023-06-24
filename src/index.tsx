@@ -5,6 +5,7 @@ import App from "./App";
 import ErrorBoundery from "@components/ErrorBoundery";
 import reportWebVitals from "./reportWebVitals";
 import { antdStyles } from "@/constants";
+import { RecoilRoot } from "recoil";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./index.css";
 
@@ -15,7 +16,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <ConfigProvider theme={antdStyles}>
     <ErrorBoundery>
-      <App />
+      <RecoilRoot>
+        <App />
+      </RecoilRoot>
     </ErrorBoundery>
   </ConfigProvider>
 );
