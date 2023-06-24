@@ -5,9 +5,11 @@ import useRequest from "@ahooksjs/use-request";
 import { useNavigate } from "react-router-dom";
 import { createStory } from "@/api";
 import { Button, message } from "antd";
+import { useResponsive } from "@/hooks";
 import { StoriesListHeader, StoriesContent, StoriesWrapper } from "./styles";
 
 const Stories = () => {
+  const { isLessThanSm } = useResponsive();
   const navigate = useNavigate();
 
   const { run: createNewStory, loading: isLoading } = useRequest(
@@ -29,7 +31,7 @@ const Stories = () => {
 
   return (
     <StoriesWrapper align="stretch" justify="space-between" wrap>
-      <StoriesWelcomeBanner />
+      {!isLessThanSm && <StoriesWelcomeBanner />}
       <StoriesContent xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
         <StoriesListHeader>
           <h3>Your Feedback Stories</h3>

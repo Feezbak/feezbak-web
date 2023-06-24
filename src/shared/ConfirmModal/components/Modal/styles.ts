@@ -9,7 +9,7 @@ export const ModalWrapper = styled(motion.div)`
   border: 1px solid #f5f5f5;
   box-shadow: 0 17px 40px rgba(74, 68, 143, 0.06);
   border-radius: 1.25rem;
-  width: 30rem;
+  width: 32rem;
 `;
 
 export const ModalContent = styled(Row)`
@@ -44,4 +44,5 @@ export const Actions = styled.div`
 
 export const ActionBtn = styled(Button)`
   width: 7.875rem;
+  font-weight: bold;
 `;

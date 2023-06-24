@@ -14,11 +14,15 @@ export function saveStoryFields(payload: any) {
     .then((response) => response);
 }
 
-export function getStories(currentPage: number) {
+export function deleteStory(id: string) {
+  return axiosClient.post(`/story/${id}`).then((response) => response);
+}
+
+export function getStories(page: number) {
   return axiosClient
     .get(`/story`, {
       params: {
-        currentPage,
+        page,
       },
     })
     .then((response) => response);
