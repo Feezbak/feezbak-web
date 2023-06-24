@@ -15,7 +15,7 @@ import {
 
 interface Props {
   storyData: {
-    id: string;
+    _id: string;
     title: string;
     progress: string;
   };
@@ -25,7 +25,7 @@ interface Props {
 
 const StoryItem = ({ storyData, handleDelete, storyId }: Props) => {
   const navigate = useNavigate();
-  const { title, progress } = storyData ?? {};
+  const { title, progress, _id: id } = storyData ?? {};
 
   const handleEdit = useCallback(() => {
     if (!title) localStorage.setItem(storyId, JSON.stringify({}));
@@ -84,7 +84,7 @@ const StoryItem = ({ storyData, handleDelete, storyId }: Props) => {
           {conditionalAction}
           <ActionBtn
             icon={<DeleteIconGrayBg />}
-            onClick={() => handleDelete(storyData.id)}
+            onClick={() => handleDelete(id)}
           />
         </StoryActionsContainer>
       </StoryItemStatusAndActions>
