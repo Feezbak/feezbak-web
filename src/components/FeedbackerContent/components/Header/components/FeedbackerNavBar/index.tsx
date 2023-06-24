@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FeedbackerNavWrapper, LinkTxt, SignUpButton } from "./styles";
 
 const FeedbackerNavBar = () => {
-  const userData = localStorage.getItem("userData");
+  const token = localStorage.getItem("token");
   return (
     <FeedbackerNavWrapper>
       <LinkTxt>
@@ -12,7 +12,7 @@ const FeedbackerNavBar = () => {
       <LinkTxt>
         <Link to="/blog">Blog</Link>
       </LinkTxt>
-      {!userData && (
+      {!token && (
         <>
           <LinkTxt>
             <Link to="/sign-in">Sign In</Link>

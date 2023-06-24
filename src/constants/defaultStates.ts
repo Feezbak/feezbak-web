@@ -126,6 +126,36 @@ export const storyDefaultState: StoryCreationDataType = {
   setSelectionQuantityState: () => {},
 };
 
+export type userDataType = {
+  accountVerificationCode: undefined | string;
+  changePasswordId: undefined | string;
+  createdAt: undefined | string;
+  email: undefined | string;
+  firstName: undefined | string;
+  lastName: undefined | string;
+  profession: undefined | string;
+  stories: undefined | string[];
+  updatedAt: undefined | string;
+  verified: undefined | boolean;
+  __v: undefined | number;
+  _id: undefined | string;
+};
+
+export const userDefaultData: userDataType = {
+  accountVerificationCode: undefined,
+  changePasswordId: undefined,
+  createdAt: undefined,
+  email: undefined,
+  firstName: undefined,
+  lastName: undefined,
+  profession: undefined,
+  stories: undefined,
+  updatedAt: undefined,
+  verified: undefined,
+  __v: undefined,
+  _id: undefined,
+};
+
 export const storyEditorConvertedContent = {
   title: storyDefaultState.step1.title,
   titleColor: storyDefaultState.step1.titleColor,
