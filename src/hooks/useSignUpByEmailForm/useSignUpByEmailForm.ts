@@ -54,7 +54,7 @@ export default function useSignUpByEmailForm(
   );
 
   const submitForm = handleSubmit(async (data) => {
-    runRegisterUser(data);
+    await runRegisterUser(data);
   });
 
   return {

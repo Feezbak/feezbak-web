@@ -58,7 +58,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
       progress: "step3",
       ...step3,
     };
-    runSaveStoryFields(stepInfoBody);
+    (() => runSaveStoryFields(stepInfoBody))();
   };
 
   return (

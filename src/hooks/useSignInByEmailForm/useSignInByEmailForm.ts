@@ -55,7 +55,7 @@ export default function useSignInByEmailForm(
   );
 
   const submitForm = handleSubmit(async (data) => {
-    runLoginUser(data);
+    await runLoginUser(data);
   });
 
   return {

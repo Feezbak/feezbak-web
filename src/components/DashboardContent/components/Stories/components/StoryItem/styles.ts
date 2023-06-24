@@ -24,7 +24,6 @@ export const StoryInfoContainer = styled.div`
   h3 {
     font-size: 1rem;
     line-height: 1.5rem;
-    margin: 0 0 0.25rem 0;
     white-space: nowrap;
   }
 

@@ -6,7 +6,6 @@ import { Skeleton } from "antd";
 export const StoriesListWrapper = styled(motion.ul)`
   list-style: none;
   padding: 0;
-  margin: 0 0 4rem 0;
   width: 100%;
   ${FlexBoxEnum.CenterVertical}
 `;
@@ -46,6 +45,6 @@ export const StorySkeleton = styled(Skeleton.Input)`
   margin-bottom: 1rem;
 
   span {
-    height: 6rem !important;
+    height: 4rem !important;
   }
 `;

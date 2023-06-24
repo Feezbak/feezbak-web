@@ -1,5 +1,6 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { Badge } from "@/shared";
+import { useNavigate } from "react-router-dom";
 import { StyleEnums, StoryEnums } from "@/enums";
 import { EditIconGrayBg, DeleteIconGrayBg, LinkIconGrayBg } from "@/icons";
 import {
@@ -15,43 +16,66 @@ import {
 interface Props {
   storyData: {
     id: string;
-    question: string;
-    type: string;
-    status: string;
+    title: string;
+    progress: string;
   };
+  storyId: string;
   handleDelete: (id: string) => void;
 }
-const StoryItem = ({ storyData, handleDelete }: Props) => {
-  const { question, type, status } = storyData ?? {};
+
+const StoryItem = ({ storyData, handleDelete, storyId }: Props) => {
+  const navigate = useNavigate();
+  const { title, progress } = storyData ?? {};
+
+  const handleEdit = useCallback(() => {
+    if (!title) localStorage.setItem(storyId, JSON.stringify({}));
+    navigate(`/create-story/${storyId}`);
+  }, [storyId, navigate, title]);
+
+  const handleShareDetails = useCallback(() => {
+    navigate(`/story-details/${storyId}`);
+  }, [storyId, navigate]);
 
   const conditionalAction = useMemo(
     () => (
       <ActionBtn
-        icon={
-          storyData.status === StoryEnums.DRAFT ? (
-            <EditIconGrayBg />
-          ) : (
-            <LinkIconGrayBg />
-          )
-        }
+        onClick={progress !== "step3" ? handleEdit : handleShareDetails}
+        icon={progress !== "step3" ? <EditIconGrayBg /> : <LinkIconGrayBg />}
       />
     ),
-    [storyData]
+    [progress, handleEdit, handleShareDetails]
   );
+
+  const status = useMemo(() => {
+    return progress !== "step3" ? StoryEnums.DRAFT : StoryEnums.COMPLETED;
+  }, [progress]);
+
+  const bgColor = useMemo(() => {
+    return progress !== "step3" ? StyleEnums.error : StyleEnums.success;
+  }, [progress]);
+
+  const titleText = useMemo(() => {
+    const element = title;
+    if (!element) {
+      return "Story was't completed! 😔";
+    }
+    const tempElement = document.createElement("div");
+    tempElement.innerHTML = element;
+    return tempElement.textContent;
+  }, [title]);
 
   return (
     <StoryListItemWrapper wrap>
       <StoryItemInfo xs={24} sm={24} md={12} lg={12} xl={12} xxl={12}>
         <StoryInfoContainer>
-          <h3>{question}</h3>
-          <p>{type}</p>
+          <h3>{titleText}</h3>
         </StoryInfoContainer>
       </StoryItemInfo>
       <StoryItemStatusAndActions xs={24} sm={24} md={8} lg={8} xl={8} xxl={6}>
         <StoryStatusContainer>
           <p>Status</p>
           <Badge
-            bgColor={StyleEnums.success as string}
+            bgColor={bgColor as string}
             textColor={StyleEnums.white as string}
             text={status}
           />

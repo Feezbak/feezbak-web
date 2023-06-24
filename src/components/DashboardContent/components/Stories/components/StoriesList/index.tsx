@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StoryItem from "../StoryItem";
 import { ConfirmModal } from "@/shared";
 import useRequest from "@ahooksjs/use-request";
@@ -6,6 +6,9 @@ import { getStories } from "@/api";
 import { message } from "antd";
 import { AnimatePresence } from "framer-motion";
 import emptyStoriesSrc from "@images/empty-stories.png";
+import { useLocation } from "react-router-dom";
+import { opacityAnimation } from "@assets/framerAnimations";
+import StoriesPagination from "./components/StoriesPagination";
 import {
   EmptyStoriesWrapper,
   StoriesListWrapper,
@@ -13,27 +16,56 @@ import {
   SkeletonsWrapper,
   StorySkeleton,
 } from "./styles";
-import { opacityAnimation } from "@assets/framerAnimations";
+
+type StoryListItem = {
+  id: string;
+  title: string;
+  progress: string;
+};
+
+interface StoriesListI {
+  limit: number;
+  offset: null;
+  total: 1;
+  stories: StoryListItem[];
+}
 
 const StoriesList = () => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const page = searchParams.get("page");
+  const [currentPage, setCurrentPage] = useState(page ? +page : 1);
+  const [storiesPaginatedData, setStoriesPaginatedData] =
+    useState<StoriesListI | null>(null);
   const [removeId, setRemoveIdState] = useState("");
 
   const handleDelete = (id: string) => {
     setRemoveIdState(id);
   };
 
-  const { data: stories, loading: isLoading } = useRequest(() => getStories(), {
-    onError: (error: any) => {
-      message.error(error?.response?.data?.message ?? "");
-    },
-  });
+  const { run: getStoriesPaginatedData, loading: isLoading } = useRequest(
+    (page) => getStories(page),
+    {
+      manual: true,
+      onSuccess: (resp) => {
+        resp?.data && setStoriesPaginatedData(resp.data);
+      },
+      onError: (error: any) => {
+        message.error(error?.response?.data?.message);
+      },
+    }
+  );
+
+  useEffect(() => {
+    (() => getStoriesPaginatedData(currentPage))();
+  }, [currentPage, getStoriesPaginatedData]);
 
   return (
     <>
       <AnimatePresence initial={false}>
         {isLoading ? (
           <SkeletonsWrapper>
-            {[1, 2].map((item) => (
+            {[1, 2, 3].map((item) => (
               <StorySkeleton
                 key={item}
                 active={true}
@@ -42,16 +74,27 @@ const StoriesList = () => {
               />
             ))}
           </SkeletonsWrapper>
-        ) : stories?.data?.length ? (
-          <StoriesListWrapper {...opacityAnimation}>
-            {stories.data.map((story: any) => (
-              <StoryItem
-                key={story.id}
-                storyData={story}
-                handleDelete={handleDelete}
+        ) : storiesPaginatedData && storiesPaginatedData?.total >= 1 ? (
+          <>
+            <StoriesListWrapper {...opacityAnimation}>
+              {storiesPaginatedData?.stories?.map((story: any) => (
+                <StoryItem
+                  storyId={story._id}
+                  key={story._id}
+                  storyData={story}
+                  handleDelete={handleDelete}
+                />
+              ))}
+            </StoriesListWrapper>
+            {storiesPaginatedData.total > storiesPaginatedData.limit && (
+              <StoriesPagination
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                pageSize={storiesPaginatedData.limit}
+                total={storiesPaginatedData.total}
               />
-            ))}
-          </StoriesListWrapper>
+            )}
+          </>
         ) : (
           <EmptyStoriesWrapper {...opacityAnimation}>
             <EmptyStoriesImage
