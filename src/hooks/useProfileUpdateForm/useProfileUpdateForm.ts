@@ -30,10 +30,10 @@ export default function useProfileUpdateForm(
       abortEarly: false,
     }),
     defaultValues: {
-      firstName: userParsedData.firstName,
-      lastName: userParsedData.lastName,
-      email: userParsedData.email,
-      profession: userParsedData.profession,
+      firstName: userParsedData.user.firstName,
+      lastName: userParsedData.user.lastName,
+      email: userParsedData.user.email,
+      profession: userParsedData.user.profession,
     },
   });
 

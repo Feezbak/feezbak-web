@@ -11,7 +11,11 @@ import {
   FormItem,
 } from "./styles";
 
-const ResetPasswordForm = () => {
+interface Props {
+  isAuth?: boolean;
+}
+
+const ResetPasswordForm = ({ isAuth = true }: Props) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const onSuccessAction = () => {
@@ -26,6 +30,7 @@ const ResetPasswordForm = () => {
       name="resetPasswordForm"
       onFinish={() => submitForm()}
       autoComplete="off"
+      $isAuth={isAuth}
     >
       <FormItem
         validateStatus={formErrors && formErrors["password"] ? "error" : ""}
