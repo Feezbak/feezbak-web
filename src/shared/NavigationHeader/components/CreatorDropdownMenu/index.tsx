@@ -1,11 +1,11 @@
 import React from "react";
 import { Dropdown } from "antd";
 import { MenuItems } from "./utils";
-import { CreatorAvatar } from "./styles";
 import { UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useResetRecoilState } from "recoil";
 import { userData } from "@/recoil";
+import { CreatorAvatar } from "./styles";
 
 const CreatorDropdownMenu = () => {
   const resetUserStore = useResetRecoilState(userData);
