@@ -2,7 +2,11 @@ import axiosClient from "@/api/axiosClient";
 
 export function uploadImagesToStory(storyId: string, payload: any) {
   return axiosClient
-    .post(`/upload/images/${storyId}`, payload)
+    .post(`/upload/images/${storyId}`, payload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
     .then((response) => response);
 }
 
