@@ -13,3 +13,7 @@ export const UserContainer = styled.div``;
 export const NavigationContainer = styled.div`
   ${FlexBoxEnum.JustifyStartHorizontal}
 `;
+
+export const Logo = styled.img`
+  width: 9rem;
+`;

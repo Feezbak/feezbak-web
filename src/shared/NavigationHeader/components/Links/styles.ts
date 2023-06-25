@@ -23,4 +23,8 @@ export const LinkItem = styled(NavLink)`
   &.active {
     border-bottom: 2px solid ${StyleEnums.primary};
   }
+
+  &:hover {
+    color: ${StyleEnums.primary};
+  }
 `;
