@@ -22,7 +22,7 @@ const CreatorDropdownMenu = () => {
   return (
     <Dropdown menu={{ items }} placement="bottom" arrow>
       <CreatorAvatar
-        size={{ xs: 20, sm: 22, md: 30, lg: 40, xl: 48, xxl: 48 }}
+        size={{ xs: 40, sm: 40, md: 48, lg: 48, xl: 48, xxl: 48 }}
         icon={<UserOutlined />}
       />
     </Dropdown>
