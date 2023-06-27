@@ -1,28 +1,42 @@
-import React, { useCallback, useContext, useEffect } from "react";
+import React, { useCallback, useContext } from "react";
 import Image from "./components/Image";
 import { AnimatePresence } from "framer-motion";
+import { message } from "antd";
 import { StoryCreationContext } from "@/context";
+import { deleteUploadedImgById } from "@/api";
+import useRequest from "@ahooksjs/use-request";
+import { useParams } from "react-router-dom";
 import { UploadListWrapper } from "./styles";
 
 const UploadList = () => {
   const { step2, setSelectedImgSrc, deleteImage } =
     useContext(StoryCreationContext);
   const { imageVoting } = step2;
+  const { id: storyId } = useParams();
 
-  useEffect(() => {
-    //todo need to fetch images and set in a state
-  }, []);
+  const { run: runDeleteImgById } = useRequest(
+    (id) => deleteUploadedImgById(storyId!, id),
+    {
+      manual: true,
+      onError: (error: any) => {
+        message.error(error?.response?.data?.message);
+      },
+    }
+  );
 
   const setImgSrcToStore = (imgSrc = "") => setSelectedImgSrc(imgSrc);
 
-  const handleDelete = (id: string) => {
-    const oldImagesArr = [...imageVoting.images];
-    const deleteItemIndex = oldImagesArr.findIndex((item) => item.id === id);
-    const deleteItemSrc = oldImagesArr[deleteItemIndex].src;
-    oldImagesArr.splice(deleteItemIndex, 1);
-    deleteImage(id);
-    if (deleteItemSrc === step2?.imageVoting?.selectedImgSrc) {
-      setImgSrcToStore();
+  const handleDelete = async (id: string) => {
+    const resp = await runDeleteImgById(id);
+    if (resp) {
+      const oldImagesArr = [...imageVoting.images];
+      const deleteItemIndex = oldImagesArr.findIndex((item) => item.id === id);
+      const deleteItemSrc = oldImagesArr[deleteItemIndex].src;
+      oldImagesArr.splice(deleteItemIndex, 1);
+      deleteImage(id);
+      if (deleteItemSrc === step2?.imageVoting?.selectedImgSrc) {
+        setImgSrcToStore();
+      }
     }
   };
 
