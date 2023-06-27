@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Dropzone from "react-dropzone";
 import { UploadFileIcon } from "@/icons";
 import uuid from "react-uuid";
@@ -20,6 +20,7 @@ const fileToDataUri = (file: File) =>
 
 const UploadArea = () => {
   const { id: storyId } = useParams();
+  const [dataBlobUri, setDataBlobUri] = useState<unknown>();
   const { setImageAttached, setSelectedImgSrc, setNewImage } =
     useContext(StoryCreationContext);
 
@@ -27,8 +28,13 @@ const UploadArea = () => {
     (payload) => uploadImageToStory(storyId!, payload),
     {
       manual: true,
-      onSuccess: (resp) => {
-        console.log(resp, 4444);
+      onSuccess: (resp: any) => {
+        setImageAttached(true);
+        setNewImage({
+          id: resp.data.id,
+          src: resp.data.src,
+        });
+        setSelectedImgSrc(resp.src);
       },
       onError: (error: any) => {
         message.error(error?.response?.data?.message);
@@ -36,16 +42,16 @@ const UploadArea = () => {
     }
   );
 
+  useEffect(() => {
+    if (dataBlobUri) {
+      uploadToServer(dataBlobUri);
+    }
+  }, [dataBlobUri, uploadToServer]);
+
   const handleUploadedFile = (file: File) => {
     if (file) {
       fileToDataUri(file).then((dataUri) => {
-        uploadToServer(dataUri);
-        setImageAttached(true);
-        setNewImage({
-          id: uuid(),
-          src: dataUri as string,
-        });
-        setSelectedImgSrc(dataUri as string);
+        setDataBlobUri(dataUri);
       });
     }
   };

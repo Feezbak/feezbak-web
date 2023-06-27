@@ -17,7 +17,7 @@ export function uploadImageToStory(storyId: string, payload: any) {
   const formdata = new FormData();
   formdata.append("images", dataURLtoBlob(payload), "aaaaaaa.png");
 
-  axiosClient
+  return axiosClient
     .post(`/upload/images/${storyId}`, formdata)
     .then((response) => response);
 }
