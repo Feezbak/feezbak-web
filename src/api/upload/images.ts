@@ -13,9 +13,9 @@ function dataURLtoBlob(dataURL: string) {
 
   return new Blob([arrayBuffer], { type: contentType });
 }
-export function uploadImagesToStory(storyId: string, payload: any) {
+export function uploadImageToStory(storyId: string, payload: any) {
   const formdata = new FormData();
-  formdata.append("images", dataURLtoBlob(payload.images[0]), "aaaaaaa.png");
+  formdata.append("images", dataURLtoBlob(payload), "aaaaaaa.png");
 
   axiosClient
     .post(`/upload/images/${storyId}`, formdata)

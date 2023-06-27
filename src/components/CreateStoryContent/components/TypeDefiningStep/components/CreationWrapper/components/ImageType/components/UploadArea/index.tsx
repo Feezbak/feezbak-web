@@ -4,7 +4,7 @@ import { UploadFileIcon } from "@/icons";
 import uuid from "react-uuid";
 import { StoryCreationContext } from "@/context";
 import { message } from "antd";
-import { uploadImagesToStory } from "@/api";
+import { uploadImageToStory } from "@/api";
 import useRequest from "@ahooksjs/use-request";
 import { useParams } from "react-router-dom";
 import { UploadWrapper, UploadIconWrapper } from "./styles";
@@ -24,7 +24,7 @@ const UploadArea = () => {
     useContext(StoryCreationContext);
 
   const { run: uploadToServer } = useRequest(
-    (payload) => uploadImagesToStory(storyId!, payload),
+    (payload) => uploadImageToStory(storyId!, payload),
     {
       manual: true,
       onSuccess: (resp) => {
@@ -39,9 +39,7 @@ const UploadArea = () => {
   const handleUploadedFile = (file: File) => {
     if (file) {
       fileToDataUri(file).then((dataUri) => {
-        uploadToServer({
-          images: [dataUri],
-        });
+        uploadToServer(dataUri);
         setImageAttached(true);
         setNewImage({
           id: uuid(),
