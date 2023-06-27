@@ -1,8 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Dropzone from "react-dropzone";
 import { UploadFileIcon } from "@/icons";
 import uuid from "react-uuid";
 import { StoryCreationContext } from "@/context";
+import { message } from "antd";
+import { uploadImageToStory } from "@/api";
+import useRequest from "@ahooksjs/use-request";
+import { useParams } from "react-router-dom";
 import { UploadWrapper, UploadIconWrapper } from "./styles";
 
 const fileToDataUri = (file: File) =>
@@ -15,20 +19,39 @@ const fileToDataUri = (file: File) =>
   });
 
 const UploadArea = () => {
+  const { id: storyId } = useParams();
+  const [dataBlobUri, setDataBlobUri] = useState<unknown>();
   const { setImageAttached, setSelectedImgSrc, setNewImage } =
     useContext(StoryCreationContext);
 
-  const handleUploadedFile = (file: File) => {
-    if (file) {
-      //todo send file to back-end
-
-      fileToDataUri(file).then((dataUri) => {
+  const { run: uploadToServer } = useRequest(
+    (payload) => uploadImageToStory(storyId!, payload),
+    {
+      manual: true,
+      onSuccess: (resp: any) => {
         setImageAttached(true);
         setNewImage({
-          id: uuid(),
-          src: dataUri as string,
+          id: resp.data.id,
+          src: resp.data.src,
         });
-        setSelectedImgSrc(dataUri as string);
+        setSelectedImgSrc(resp.src);
+      },
+      onError: (error: any) => {
+        message.error(error?.response?.data?.message);
+      },
+    }
+  );
+
+  useEffect(() => {
+    if (dataBlobUri) {
+      uploadToServer(dataBlobUri);
+    }
+  }, [dataBlobUri, uploadToServer]);
+
+  const handleUploadedFile = (file: File) => {
+    if (file) {
+      fileToDataUri(file).then((dataUri) => {
+        setDataBlobUri(dataUri);
       });
     }
   };
