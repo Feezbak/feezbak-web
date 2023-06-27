@@ -15,7 +15,7 @@ export function saveStoryFields(payload: any) {
 }
 
 export function deleteStory(id: string) {
-  return axiosClient.post(`/story/${id}`).then((response) => response);
+  return axiosClient.delete(`/story/${id}`).then((response) => response);
 }
 
 export function getStories(page: number) {
