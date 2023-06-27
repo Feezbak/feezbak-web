@@ -28,7 +28,7 @@ const UploadList = () => {
 
   const handleDelete = async (id: string) => {
     const resp = await runDeleteImgById(id);
-    if (resp) {
+    if (resp?.data?.id === id) {
       const oldImagesArr = [...imageVoting.images];
       const deleteItemIndex = oldImagesArr.findIndex((item) => item.id === id);
       const deleteItemSrc = oldImagesArr[deleteItemIndex].src;
@@ -59,7 +59,7 @@ const UploadList = () => {
             isSelected={isSelected(src)}
             key={id}
             id={id}
-            src={src}
+            src={`${process.env.REACT_APP_API_URL}/${src}`}
             handleDelete={handleDelete}
             handleSelect={handleSelect}
           />
