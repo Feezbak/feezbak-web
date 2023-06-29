@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import Dropzone from "react-dropzone";
 import { UploadFileIcon } from "@/icons";
-import uuid from "react-uuid";
 import { StoryCreationContext } from "@/context";
-import { message } from "antd";
+import { message, Spin } from "antd";
 import { uploadImageToStory } from "@/api";
 import useRequest from "@ahooksjs/use-request";
 import { useParams } from "react-router-dom";
@@ -24,17 +23,17 @@ const UploadArea = () => {
   const { setImageAttached, setSelectedImgSrc, setNewImage } =
     useContext(StoryCreationContext);
 
-  const { run: uploadToServer } = useRequest(
+  const { run: uploadToServer, loading: uploadLoading } = useRequest(
     (payload) => uploadImageToStory(storyId!, payload),
     {
       manual: true,
       onSuccess: (resp: any) => {
         setImageAttached(true);
+        setSelectedImgSrc(`${process.env.REACT_APP_API_URL}/${resp.data.src}`);
         setNewImage({
           id: resp.data.id,
-          src: resp.data.src,
+          src: `${process.env.REACT_APP_API_URL}/${resp.data.src}`,
         });
-        setSelectedImgSrc(resp.src);
       },
       onError: (error: any) => {
         message.error(error?.response?.data?.message);
@@ -65,7 +64,7 @@ const UploadArea = () => {
         <UploadWrapper {...getRootProps()}>
           <input {...getInputProps()} />
           <UploadIconWrapper>
-            <UploadFileIcon />
+            {uploadLoading ? <Spin size="default" /> : <UploadFileIcon />}
           </UploadIconWrapper>
           <span>Images</span>
           <p>Add more Images</p>

@@ -119,7 +119,7 @@ const Preview = () => {
   );
 
   const hasLayer = useMemo(
-    () => !!imageVoting.selectedImgSrc.length && isNotFirstStep && !isSquare,
+    () => !!imageVoting.selectedImgSrc?.length && isNotFirstStep && !isSquare,
     [imageVoting, isNotFirstStep, isSquare]
   );
 

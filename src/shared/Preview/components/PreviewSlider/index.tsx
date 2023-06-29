@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, memo } from "react";
 import { SliderContainer } from "./styles";
 import Slider from "react-slick";
 import { slickSettings } from "@/constants";
@@ -39,4 +39,4 @@ const PreviewSlider = ({ hasCover, isSquare, hasLayer }: Props) => {
   );
 };
 
-export default PreviewSlider;
+export default memo(PreviewSlider);
