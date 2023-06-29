@@ -23,7 +23,7 @@ const PreviewSlider = ({ hasCover, isSquare, hasLayer }: Props) => {
         {imageVoting?.images?.map((image) => (
           <PreviewSlide
             hasCover={hasCover}
-            imgSrc={image.src}
+            imgSrc={`${process.env.REACT_APP_API_URL}/${image.src}`}
             isSquare={isSquare}
             hasLayer={hasLayer}
             key={image.id}
