@@ -29,10 +29,10 @@ const UploadArea = () => {
       manual: true,
       onSuccess: (resp: any) => {
         setImageAttached(true);
-        setSelectedImgSrc(`${process.env.REACT_APP_API_URL}/${resp.data.src}`);
+        setSelectedImgSrc(`${resp.data.src}`);
         setNewImage({
           id: resp.data.id,
-          src: `${process.env.REACT_APP_API_URL}/${resp.data.src}`,
+          src: resp.data.src,
         });
       },
       onError: (error: any) => {

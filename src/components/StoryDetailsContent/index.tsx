@@ -33,12 +33,12 @@ const DashboardContent = () => {
   return (
     <>
       <StoryDetailsContentWrapper
-        xs={18}
-        sm={15}
-        md={12}
-        lg={10}
-        xl={7}
-        xxl={6}
+        xs={22}
+        sm={20}
+        md={15}
+        lg={12}
+        xl={9}
+        xxl={7}
       >
         <Header />
         <Details link={"https://dev.to/taronvardanyan"} />
