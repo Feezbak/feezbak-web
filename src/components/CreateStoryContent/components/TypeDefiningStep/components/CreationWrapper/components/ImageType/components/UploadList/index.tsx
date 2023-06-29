@@ -28,7 +28,7 @@ const UploadList = () => {
 
   const handleDelete = async (id: string) => {
     const resp = await runDeleteImgById(id);
-    if (resp?.data?.id === id) {
+    if (resp?.data === id) {
       const oldImagesArr = [...imageVoting.images];
       const deleteItemIndex = oldImagesArr.findIndex((item) => item.id === id);
       const deleteItemSrc = oldImagesArr[deleteItemIndex].src;

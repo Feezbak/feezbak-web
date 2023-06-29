@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, memo } from "react";
 import { SliderContainer } from "./styles";
 import Slider from "react-slick";
 import { slickSettings } from "@/constants";
@@ -23,7 +23,7 @@ const PreviewSlider = ({ hasCover, isSquare, hasLayer }: Props) => {
         {imageVoting?.images?.map((image) => (
           <PreviewSlide
             hasCover={hasCover}
-            imgSrc={image.src}
+            imgSrc={`${process.env.REACT_APP_API_URL}/${image.src}`}
             isSquare={isSquare}
             hasLayer={hasLayer}
             key={image.id}
@@ -39,4 +39,4 @@ const PreviewSlider = ({ hasCover, isSquare, hasLayer }: Props) => {
   );
 };
 
-export default PreviewSlider;
+export default memo(PreviewSlider);
