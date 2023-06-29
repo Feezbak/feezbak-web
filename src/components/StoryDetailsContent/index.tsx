@@ -4,11 +4,31 @@ import Details from "./components/Details";
 import Footer from "./components/Footer";
 import Confetti from "react-confetti";
 import { useWindowSize } from "@/hooks";
+import useRequest from "@ahooksjs/use-request";
+import { getStoryById } from "@/api";
+import { message } from "antd";
+import { useNavigate, useParams } from "react-router-dom";
 import { StoryDetailsContentWrapper } from "./styles";
 
 const DashboardContent = () => {
-  //Todo need to send request from here to get Story data by Id
+  const { id: storyId } = useParams();
+  const navigate = useNavigate();
   const { width, height } = useWindowSize();
+
+  const { loading: storyDataLoading } = useRequest(
+    () => getStoryById(storyId!),
+    {
+      onSuccess: (resp) => {
+        if (resp?.data) {
+          console.log(resp.data, 4444);
+        }
+      },
+      onError: (error: any) => {
+        setTimeout(() => navigate("/not-found"), 2000);
+        message.error(error?.response?.data?.message);
+      },
+    }
+  );
 
   return (
     <>
