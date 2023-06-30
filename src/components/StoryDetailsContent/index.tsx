@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Header from "./components/Header";
 import Details from "./components/Details";
 import Footer from "./components/Footer";
@@ -8,27 +8,44 @@ import useRequest from "@ahooksjs/use-request";
 import { getStoryById } from "@/api";
 import { message } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
+import dayjs from "dayjs";
+import duration from "dayjs/plugin/duration";
 import { StoryDetailsContentWrapper } from "./styles";
+
+dayjs.extend(duration);
 
 const DashboardContent = () => {
   const { id: storyId } = useParams();
   const navigate = useNavigate();
   const { width, height } = useWindowSize();
 
-  const { loading: storyDataLoading } = useRequest(
+  const { data: story, loading: storyDataLoading } = useRequest(
     () => getStoryById(storyId!),
     {
-      onSuccess: (resp) => {
-        if (resp?.data) {
-          console.log(resp.data, 4444);
-        }
-      },
       onError: (error: any) => {
-        setTimeout(() => navigate("/not-found"), 2000);
+        setTimeout(() => navigate("/expired-feedback"), 2000);
         message.error(error?.response?.data?.message);
       },
     }
   );
+
+  const isNewCreated = useMemo(() => {
+    if (story?.data) {
+      const currentDate = dayjs();
+      const lastUpdateDate = dayjs(story.data.updatedAt);
+      const durationInMinutes = dayjs
+        .duration(currentDate.diff(lastUpdateDate))
+        .asMinutes();
+      return durationInMinutes < 1;
+    }
+    return false;
+  }, [story]);
+
+  const shareableLink = useMemo(() => {
+    return story?.data
+      ? `${process.env.REACT_APP_API_URL}/feedback/${story.data._id}`
+      : "";
+  }, [story]);
 
   return (
     <>
@@ -41,15 +58,17 @@ const DashboardContent = () => {
         xxl={7}
       >
         <Header />
-        <Details link={"https://dev.to/taronvardanyan"} />
+        <Details link={shareableLink} />
         <Footer />
       </StoryDetailsContentWrapper>
-      <Confetti
-        width={width}
-        height={height}
-        recycle={false}
-        numberOfPieces={1200}
-      />
+      {story?.data && !storyDataLoading && isNewCreated && (
+        <Confetti
+          width={width}
+          height={height}
+          recycle={false}
+          numberOfPieces={1200}
+        />
+      )}
     </>
   );
 };

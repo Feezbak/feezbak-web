@@ -6,7 +6,7 @@ import UseCases from "@components/DashboardContent/components/UseCases";
 import Stories from "@components/DashboardContent/components/Stories";
 import { PageNotFound, PrivateRoute } from "@/components";
 import {
-  Story,
+  Feedback,
   SignIn,
   SignUp,
   Create,
@@ -72,7 +72,7 @@ const AnimatedRoutes = () => {
           path="/forgot-password"
           element={<ForgotPassword />}
         />
-        <Route caseSensitive path="/story/:id" element={<Story />} />
+        <Route caseSensitive path="/feedback/:id" element={<Feedback />} />
         <Route
           caseSensitive
           path="/reset-password/:id"

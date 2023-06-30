@@ -8,4 +8,4 @@ export { default as SignIn } from "./SignIn";
 export { default as SignUp } from "./SignUp";
 export { default as Create } from "./Create";
 export { default as Verify } from "./Verify";
-export { default as Story } from "./Story";
+export { default as Feedback } from "./Feedback";
