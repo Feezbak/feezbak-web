@@ -6,9 +6,16 @@ interface Props {
   email: string;
   handleDeleteEmail: (id: string) => void;
   id: string;
+  isDeleteDisabled: boolean;
 }
 
-const EmailItem = ({ id, email, handleDeleteEmail }: Props) => {
+const EmailItem = ({
+  id,
+  email,
+  isDeleteDisabled,
+  handleDeleteEmail,
+}: Props) => {
+  console.log(isDeleteDisabled, 5555);
   return (
     <ItemWrapper
       key={id}
@@ -18,10 +25,12 @@ const EmailItem = ({ id, email, handleDeleteEmail }: Props) => {
       transition={{ duration: 0.3 }}
     >
       <EmailSpan>{email}</EmailSpan>
-      <DeleteEmailBtn
-        onClick={() => handleDeleteEmail(id)}
-        icon={<TrashBlackIcon />}
-      />
+      {!isDeleteDisabled && (
+        <DeleteEmailBtn
+          onClick={() => handleDeleteEmail(id)}
+          icon={<TrashBlackIcon />}
+        />
+      )}
     </ItemWrapper>
   );
 };

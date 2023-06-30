@@ -10,7 +10,7 @@ import { message } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
-import { StoryDetailsContentWrapper } from "./styles";
+import { StoryDetailsContentWrapper, DetailsSkeleton } from "./styles";
 
 dayjs.extend(duration);
 
@@ -23,7 +23,7 @@ const DashboardContent = () => {
     () => getStoryById(storyId!),
     {
       onError: (error: any) => {
-        setTimeout(() => navigate("/expired-feedback"), 2000);
+        setTimeout(() => navigate("/not-found"), 2000);
         message.error(error?.response?.data?.message);
       },
     }
@@ -55,10 +55,17 @@ const DashboardContent = () => {
         md={15}
         lg={12}
         xl={9}
-        xxl={7}
+        xxl={8}
       >
         <Header />
-        <Details link={shareableLink} />
+        {!storyDataLoading && story?.data ? (
+          <Details
+            link={shareableLink}
+            emailsDefault={story?.data?.invitedFriendsEmails}
+          />
+        ) : (
+          <DetailsSkeleton active={true} />
+        )}
         <Footer />
       </StoryDetailsContentWrapper>
       {story?.data && !storyDataLoading && isNewCreated && (
