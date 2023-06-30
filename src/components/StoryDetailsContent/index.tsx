@@ -1,14 +1,51 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Header from "./components/Header";
 import Details from "./components/Details";
 import Footer from "./components/Footer";
 import Confetti from "react-confetti";
 import { useWindowSize } from "@/hooks";
-import { StoryDetailsContentWrapper } from "./styles";
+import useRequest from "@ahooksjs/use-request";
+import { getStoryById } from "@/api";
+import { message } from "antd";
+import { useNavigate, useParams } from "react-router-dom";
+import dayjs from "dayjs";
+import duration from "dayjs/plugin/duration";
+import { StoryDetailsContentWrapper, DetailsSkeleton } from "./styles";
+
+dayjs.extend(duration);
 
 const DashboardContent = () => {
-  //Todo need to send request from here to get Story data by Id
+  const { id: storyId } = useParams();
+  const navigate = useNavigate();
   const { width, height } = useWindowSize();
+
+  const { data: story, loading: storyDataLoading } = useRequest(
+    () => getStoryById(storyId!),
+    {
+      onError: (error: any) => {
+        setTimeout(() => navigate("/not-found"), 2000);
+        message.error(error?.response?.data?.message);
+      },
+    }
+  );
+
+  const isNewCreated = useMemo(() => {
+    if (story?.data) {
+      const currentDate = dayjs();
+      const lastUpdateDate = dayjs(story.data.updatedAt);
+      const durationInMinutes = dayjs
+        .duration(currentDate.diff(lastUpdateDate))
+        .asMinutes();
+      return durationInMinutes < 1;
+    }
+    return false;
+  }, [story]);
+
+  const shareableLink = useMemo(() => {
+    return story?.data
+      ? `${process.env.REACT_APP_API_URL}/feedback/${story.data._id}`
+      : "";
+  }, [story]);
 
   return (
     <>
@@ -18,18 +55,27 @@ const DashboardContent = () => {
         md={15}
         lg={12}
         xl={9}
-        xxl={7}
+        xxl={8}
       >
         <Header />
-        <Details link={"https://dev.to/taronvardanyan"} />
+        {!storyDataLoading && story?.data ? (
+          <Details
+            link={shareableLink}
+            emailsDefault={story?.data?.invitedFriendsEmails}
+          />
+        ) : (
+          <DetailsSkeleton active={true} />
+        )}
         <Footer />
       </StoryDetailsContentWrapper>
-      <Confetti
-        width={width}
-        height={height}
-        recycle={false}
-        numberOfPieces={1200}
-      />
+      {story?.data && !storyDataLoading && isNewCreated && (
+        <Confetti
+          width={width}
+          height={height}
+          recycle={false}
+          numberOfPieces={1200}
+        />
+      )}
     </>
   );
 };

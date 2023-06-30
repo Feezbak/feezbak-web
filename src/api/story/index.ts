@@ -20,10 +20,16 @@ export function deleteStory(id: string) {
 
 export function getStories(page: number) {
   return axiosClient
-    .get(`/story`, {
+    .get("/story", {
       params: {
         page,
       },
     })
+    .then((response) => response);
+}
+
+export function sendLinkByEmailAddresses(id: string, payload: string[]) {
+  return axiosClient
+    .post(`/story/${id}/send-link`, payload)
     .then((response) => response);
 }

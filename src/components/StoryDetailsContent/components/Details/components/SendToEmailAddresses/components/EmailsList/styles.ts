@@ -8,6 +8,6 @@ export const List = styled.ul`
   width: 100%;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 4rem 0;
   ${FlexBoxEnum.StartStartVertical}
 `;

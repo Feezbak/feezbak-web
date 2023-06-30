@@ -5,9 +5,10 @@ import { DetailsWrapper } from "./styles";
 
 interface Props {
   link: string;
+  emailsDefault?: string[];
 }
 
-const Details = ({ link }: Props) => {
+const Details = ({ link, emailsDefault = [] }: Props) => {
   return (
     <DetailsWrapper
       initial={{ y: -100 }}
@@ -15,7 +16,7 @@ const Details = ({ link }: Props) => {
       transition={{ type: "spring", duration: 1, stiffness: 200 }}
     >
       <ShareSettings link={link} />
-      <SendEmailAddresses />
+      <SendEmailAddresses emailsDefault={emailsDefault} />
     </DetailsWrapper>
   );
 };
