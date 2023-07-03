@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import uuid from "react-uuid";
 import { message } from "antd";
+import { sendLinkByEmailAddresses } from "@/api";
+import useRequest from "@ahooksjs/use-request";
+import { useParams } from "react-router-dom";
 import TitleDescriptionPair from "../TitleDescriptionPair";
 import AddEmailAddress from "./components/AddEmailAddress";
 import EmailsList from "./components/EmailsList";
@@ -12,8 +15,33 @@ export type EmailsListType = {
   id: string;
 };
 
-const SendToEmailAddresses = () => {
+interface Props {
+  emailsDefault: string[];
+}
+
+const SendToEmailAddresses = ({ emailsDefault }: Props) => {
+  const { id: storyId } = useParams();
   const [emails, setEmail] = useState<EmailsListType[]>([]);
+
+  const { run: shareToEmailAddresses, loading: sendEmailsLoading } = useRequest(
+    (payload) => sendLinkByEmailAddresses(storyId!, payload),
+    {
+      manual: true,
+      onSuccess: (resp) => {
+        message.success("Your Story was succesfuly shared!");
+        setEmail(resp.data.map((email: string) => ({ email, id: uuid() })));
+      },
+      onError: (error: any) => {
+        message.error(error?.response?.data?.message);
+      },
+    }
+  );
+
+  useEffect(() => {
+    if (emailsDefault) {
+      setEmail(emailsDefault.map((email: string) => ({ email, id: uuid() })));
+    }
+  }, [emailsDefault]);
 
   const handleDeleteEmail = (id: string) => {
     const oldEmails = [...emails];
@@ -33,6 +61,20 @@ const SendToEmailAddresses = () => {
     }
   };
 
+  const newEmailAddresses = useMemo(() => {
+    return emails.filter((item) => !emailsDefault.includes(item.email));
+  }, [emails, emailsDefault]);
+
+  const handleShareViaEmail = async () => {
+    console.log(newEmailAddresses, 4444);
+    if (newEmailAddresses.length) {
+      const payload = {
+        emails: newEmailAddresses.map((address) => address.email),
+      };
+      await shareToEmailAddresses(payload);
+    }
+  };
+
   return (
     <SendEmailAddressesWrapper>
       <TitleDescriptionPair
@@ -40,8 +82,16 @@ const SendToEmailAddresses = () => {
         text="Your friends will receive a link to this feedback"
       />
       <AddEmailAddress handleAddNewEmail={handleAddNewEmail} />
-      <EmailsList listData={emails} handleDeleteEmail={handleDeleteEmail} />
-      <SendEmailsFooter isDisabled={!emails.length} />
+      <EmailsList
+        emailsDefault={emailsDefault}
+        listData={emails}
+        handleDeleteEmail={handleDeleteEmail}
+      />
+      <SendEmailsFooter
+        isDisabled={!newEmailAddresses.length}
+        loading={sendEmailsLoading}
+        shareViaEmail={handleShareViaEmail}
+      />
     </SendEmailAddressesWrapper>
   );
 };

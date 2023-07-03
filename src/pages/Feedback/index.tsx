@@ -2,7 +2,7 @@ import React from "react";
 import { FeedbackerContent } from "@/components";
 import { Layout } from "@/shared";
 
-const Story = () => {
+const Feedback = () => {
   return (
     <Layout pageTitle="Story | Give your feedback">
       <FeedbackerContent />
@@ -10,4 +10,4 @@ const Story = () => {
   );
 };
 
-export default Story;
+export default Feedback;
