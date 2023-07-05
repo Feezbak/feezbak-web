@@ -19,3 +19,11 @@ export function forgotPassword(payload: any) {
 export function resetPassword(payload: any) {
   return axiosClient.post(`/reset`, payload).then((response) => response);
 }
+
+export function updateToken(refreshToken: any) {
+  return axiosClient
+    .post(`/refresh-token`, {
+      refreshToken,
+    })
+    .then((response) => response);
+}

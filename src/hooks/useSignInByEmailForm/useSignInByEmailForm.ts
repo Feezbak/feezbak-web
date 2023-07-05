@@ -41,6 +41,10 @@ export default function useSignInByEmailForm(
           onUserSuccessLogin();
           setUserData(res.data.user);
           localStorage.setItem("token", JSON.stringify(res.data.accessToken));
+          localStorage.setItem(
+            "refreshToken",
+            JSON.stringify(res.data.refreshToken)
+          );
           setTimeout(
             () =>
               reset({
