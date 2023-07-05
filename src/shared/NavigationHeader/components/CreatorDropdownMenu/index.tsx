@@ -13,6 +13,7 @@ const CreatorDropdownMenu = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("refreshToken");
     resetUserStore();
     navigate("/sign-in");
   };
