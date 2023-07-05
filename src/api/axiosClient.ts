@@ -61,7 +61,7 @@ async function refreshAccessToken(config: any) {
       headers: {
         refresh: refreshToken ? JSON.parse(refreshToken) : "",
         authorization: existingAccessToken
-          ? JSON.parse(existingAccessToken)
+          ? `Bearer ${JSON.parse(existingAccessToken)}`
           : "",
       },
     });
@@ -73,6 +73,7 @@ async function refreshAccessToken(config: any) {
     localStorage.setItem("refreshToken", newRefreshToken);
 
     // Update the headers with the new access token
+    config.headers["Authorization"] = `Bearer ${accessToken}`;
 
     return config;
   } catch (error) {
