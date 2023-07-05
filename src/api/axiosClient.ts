@@ -54,11 +54,15 @@ function isTokenExpired(token: string) {
 async function refreshAccessToken(config: any) {
   try {
     const refreshToken = localStorage.getItem("refreshToken");
+    const existingAccessToken = localStorage.getItem("token");
 
     // Send a request to your backend to refresh the access token
     const response = await axios.get("/refresh-token", {
       headers: {
         refresh: refreshToken ? JSON.parse(refreshToken) : "",
+        authorization: existingAccessToken
+          ? JSON.parse(existingAccessToken)
+          : "",
       },
     });
 
@@ -69,7 +73,6 @@ async function refreshAccessToken(config: any) {
     localStorage.setItem("refreshToken", newRefreshToken);
 
     // Update the headers with the new access token
-    config.headers["Authorization"] = `Bearer ${accessToken}`;
 
     return config;
   } catch (error) {
