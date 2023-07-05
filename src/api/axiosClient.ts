@@ -1,5 +1,4 @@
 import axios from "axios";
-
 const axiosClient = axios.create();
 
 axiosClient.defaults.baseURL = process.env.REACT_APP_API_URL;
@@ -8,31 +7,63 @@ axiosClient.defaults.headers.post = {
   Accept: "application/json",
 };
 
-axiosClient.interceptors.request.use(async (config) => {
-  const accessToken = localStorage.getItem("token");
-
-  // Skip token refreshing for the login request
-  if (config.url === "/sign-in") {
-    return Promise.resolve(config);
-  }
-
-  if (accessToken) {
-    const isExpired = isTokenExpired(accessToken);
-
-    if (isExpired) {
-      try {
-        await refreshAccessToken(config);
-      } catch (error) {
-        // Handle the refresh token error
-        console.error("Failed to refresh access token: ", error);
-        // Redirect to the login page or show an error message
-        throw error;
-      }
+axiosClient.interceptors.request.use(
+  (config) => {
+    // Check if the access token exists and is not expired
+    const accessToken = localStorage.getItem("token");
+    if (accessToken && !isTokenExpired(accessToken) && config) {
+      // Set the Authorization header with the access token
+      config!.headers!["Authorization"] = `Bearer ${accessToken}`;
     }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
   }
+);
 
-  return config;
-});
+// Axios response interceptor
+axiosClient.interceptors.response.use(
+  (response) => {
+    // No need to update the access token if the request was successful
+    return response;
+  },
+  (error) => {
+    const originalRequest = error.config;
+
+    // Check if the error status code is 401 (unauthorized) and there is no ongoing token refresh request
+    if (error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      const refreshToken = localStorage.getItem("refreshToken");
+
+      // Perform the token refresh request to get a new access token
+      return axiosClient
+        .post("/refresh-token", {
+          refreshToken: refreshToken ? JSON.parse(refreshToken) : "",
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            // Update the access token in the local storage
+            localStorage.setItem("token", response.data.accessToken);
+
+            // Modify the original request to include the new access token
+            originalRequest.headers.Authorization = `Bearer ${response.data.accessToken}`;
+
+            // Retry the original request
+            return axiosClient(originalRequest);
+          }
+        })
+        .catch((error) => {
+          // Handle the token refresh error
+          // For example, redirect to the login page or show an error message
+          console.log("Token refresh failed:", error);
+        });
+    }
+
+    return Promise.reject(error);
+  }
+);
 
 function isTokenExpired(token: string) {
   const base64Url = token.split(".")[1];
@@ -49,44 +80,6 @@ function isTokenExpired(token: string) {
   const expirationDate = data.exp;
   const currentDate = new Date().getTime() / 1000;
   return currentDate >= expirationDate;
-}
-
-async function refreshAccessToken(config: any) {
-  try {
-    const refreshToken = localStorage.getItem("refreshToken");
-    const existingAccessToken = localStorage.getItem("token");
-
-    // Send a request to your backend to refresh the access token
-    const response = await axios.post(
-      "/refresh-token",
-      {
-        refreshToken: refreshToken ? JSON.parse(refreshToken) : "",
-      },
-      {
-        headers: {
-          authorization: existingAccessToken
-            ? `Bearer ${JSON.parse(existingAccessToken)}`
-            : "",
-        },
-      }
-    );
-
-    const { accessToken, newRefreshToken } = response.data;
-
-    // Update the access token and refresh token in the storage
-    localStorage.setItem("token", accessToken);
-    localStorage.setItem("refreshToken", newRefreshToken);
-
-    // Update the headers with the new access token
-    config.headers["Authorization"] = `Bearer ${accessToken}`;
-
-    return config;
-  } catch (error) {
-    // Handle the refresh token error
-    console.error("Failed to refresh access token: ", error);
-    // Redirect to the login page or show an error message
-    throw error;
-  }
 }
 
 //All request will wait 2 seconds before timeout
