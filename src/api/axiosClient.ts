@@ -57,9 +57,19 @@ async function refreshAccessToken(config: any) {
     const existingAccessToken = localStorage.getItem("token");
 
     // Send a request to your backend to refresh the access token
-    const response = await axios.post("/refresh-token", {
-      refreshToken: refreshToken ? JSON.parse(refreshToken) : "",
-    });
+    const response = await axios.post(
+      "/refresh-token",
+      {
+        refreshToken: refreshToken ? JSON.parse(refreshToken) : "",
+      },
+      {
+        headers: {
+          authorization: existingAccessToken
+            ? `Bearer ${JSON.parse(existingAccessToken)}`
+            : "",
+        },
+      }
+    );
 
     const { accessToken, newRefreshToken } = response.data;
 
