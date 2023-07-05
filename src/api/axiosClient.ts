@@ -11,9 +11,9 @@ axiosClient.interceptors.request.use(
   (config) => {
     // Check if the access token exists and is not expired
     const accessToken = localStorage.getItem("token");
-    if (accessToken && !isTokenExpired(accessToken) && config) {
+    if (accessToken && !isTokenExpired(JSON.parse(accessToken)) && config) {
       // Set the Authorization header with the access token
-      config!.headers!["Authorization"] = `Bearer ${accessToken}`;
+      config!.headers!["Authorization"] = `Bearer ${JSON.parse(accessToken)}`;
     }
     return config;
   },
@@ -28,7 +28,7 @@ axiosClient.interceptors.response.use(
     // No need to update the access token if the request was successful
     return response;
   },
-  (error) => {
+  async (error) => {
     const originalRequest = error.config;
 
     // Check if the error status code is 401 (unauthorized) and there is no ongoing token refresh request
@@ -36,16 +36,32 @@ axiosClient.interceptors.response.use(
       originalRequest._retry = true;
 
       const refreshToken = localStorage.getItem("refreshToken");
+      const oldAccess = localStorage.getItem("token");
 
       // Perform the token refresh request to get a new access token
       return axiosClient
-        .post("/refresh-token", {
-          refreshToken: refreshToken ? JSON.parse(refreshToken) : "",
-        })
+        .post(
+          "/refresh-token",
+          {
+            refresh: refreshToken ? JSON.parse(refreshToken) : "",
+          },
+          {
+            headers: {
+              Authorization: oldAccess ? `Bearer ${JSON.parse(oldAccess)}` : "",
+            },
+          }
+        )
         .then((response) => {
-          if (response.status === 200) {
+          if (response.status === 200 || response.status === 201) {
             // Update the access token in the local storage
-            localStorage.setItem("token", response.data.accessToken);
+            localStorage.setItem(
+              "token",
+              JSON.stringify(response.data["accessToken"])
+            );
+            localStorage.setItem(
+              "refreshToken",
+              JSON.stringify(response.data["refreshToken"])
+            );
 
             // Modify the original request to include the new access token
             originalRequest.headers.Authorization = `Bearer ${response.data.accessToken}`;
