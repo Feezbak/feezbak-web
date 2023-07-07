@@ -6,7 +6,7 @@ import { ChangePasswordFormInputs, ChangePasswordSchema } from "@/validations";
 import { message } from "antd";
 import useRequest from "@ahooksjs/use-request";
 
-export default function useResetPasswordForm(): UseChangePasswordFormResult {
+export default function useChangePasswordForm(): UseChangePasswordFormResult {
   const {
     handleSubmit,
     formState: { errors: formErrors },
