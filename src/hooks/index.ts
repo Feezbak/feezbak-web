@@ -8,4 +8,6 @@ export * from "./useProfileUpdateForm";
 export * from "./useAddEmailAddressForm";
 export * from "./useSignInByEmailForm";
 export * from "./useForgotPasswordForm";
+export * from "./useChangePasswordForm";
+export * from "./useResetPasswordForm";
 export * from "./isAuth";
