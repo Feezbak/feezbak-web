@@ -2,7 +2,7 @@ import React from "react";
 import { Controller } from "react-hook-form";
 import { ErrorMessage } from "@/shared";
 import { useNavigate, useParams } from "react-router-dom";
-import { useResetPasswordForm } from "@hooks/useResetPasswordForm";
+import { useResetPasswordForm } from "@/hooks";
 import {
   ResetPasswordFormWrapper,
   PasswordInput,
@@ -11,11 +11,7 @@ import {
   FormItem,
 } from "./styles";
 
-interface Props {
-  isAuth?: boolean;
-}
-
-const ResetPasswordForm = ({ isAuth = true }: Props) => {
+const ResetPasswordForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const onSuccessAction = () => {
@@ -30,7 +26,6 @@ const ResetPasswordForm = ({ isAuth = true }: Props) => {
       name="resetPasswordForm"
       onFinish={() => submitForm()}
       autoComplete="off"
-      $isAuth={isAuth}
     >
       <FormItem
         validateStatus={formErrors && formErrors["password"] ? "error" : ""}

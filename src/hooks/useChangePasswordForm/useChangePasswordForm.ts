@@ -1,18 +1,12 @@
-import { UseUpdateProfileFormResult } from "./types";
+import { UseChangePasswordFormResult } from "./types";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { useForm } from "react-hook-form";
-import { useRecoilValue } from "recoil";
-import { userData } from "@/recoil";
-import { UpdateProfileFormInputs, UpdateProfileSchema } from "@/validations";
+import { changePassword } from "@/api";
+import { ChangePasswordFormInputs, ChangePasswordSchema } from "@/validations";
 import { message } from "antd";
-import { updateProfile } from "@/api";
 import useRequest from "@ahooksjs/use-request";
 
-export default function useProfileUpdateForm(
-  onSuccessAction: () => void
-): UseUpdateProfileFormResult {
-  const userRecoilData = useRecoilValue(userData);
-
+export default function useChangePasswordForm(): UseChangePasswordFormResult {
   const {
     handleSubmit,
     formState: { errors: formErrors },
@@ -21,9 +15,9 @@ export default function useProfileUpdateForm(
     reset,
     setValue,
     getValues: getFieldValue,
-  } = useForm<UpdateProfileFormInputs>({
+  } = useForm<ChangePasswordFormInputs>({
     mode: "all",
-    resolver: joiResolver(UpdateProfileSchema, {
+    resolver: joiResolver(ChangePasswordSchema, {
       errors: {
         wrap: {
           label: "",
@@ -31,21 +25,15 @@ export default function useProfileUpdateForm(
       },
       abortEarly: false,
     }),
-    defaultValues: {
-      firstName: userRecoilData.firstName,
-      lastName: userRecoilData.lastName,
-      email: userRecoilData.email,
-      profession: userRecoilData.profession,
-    },
   });
 
-  const { run: runUpdateProfile, loading: requestLoading } = useRequest(
-    (data) => updateProfile(data),
+  const { run: runChangePassword, loading: requestLoading } = useRequest(
+    (data) => changePassword(data),
     {
       manual: true,
       onSuccess: (res) => {
         if (res) {
-          onSuccessAction();
+          message.success("Password was successfuly changed!");
         }
       },
       onError: (error: any) => {
@@ -56,7 +44,7 @@ export default function useProfileUpdateForm(
   );
 
   const submitForm = handleSubmit(async (data) => {
-    await runUpdateProfile(data);
+    await runChangePassword(data);
   });
 
   return {
