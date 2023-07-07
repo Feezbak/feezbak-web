@@ -4,8 +4,9 @@ import { useForm } from "react-hook-form";
 import { useRecoilValue } from "recoil";
 import { userData } from "@/recoil";
 import { UpdateProfileFormInputs, UpdateProfileSchema } from "@/validations";
-//import { message } from "antd";
-//import useRequest from "@ahooksjs/use-request";
+import { message } from "antd";
+import { updateProfile } from "@/api";
+import useRequest from "@ahooksjs/use-request";
 
 export default function useProfileUpdateForm(
   onSuccessAction: () => void
@@ -38,9 +39,24 @@ export default function useProfileUpdateForm(
     },
   });
 
+  const { run: runUpdateProfile, loading: requestLoading } = useRequest(
+    (data) => updateProfile(data),
+    {
+      manual: true,
+      onSuccess: (res) => {
+        if (res) {
+          onSuccessAction();
+        }
+      },
+      onError: (error: any) => {
+        console.error(error);
+        message.error(error.response.data.message);
+      },
+    }
+  );
+
   const submitForm = handleSubmit(async (data) => {
-    console.log(data, "Updated data");
-    onSuccessAction();
+    await runUpdateProfile(data);
   });
 
   return {
@@ -51,6 +67,6 @@ export default function useProfileUpdateForm(
     setValue,
     getFieldValue,
     submitForm,
-    requestLoading: false,
+    requestLoading,
   };
 }

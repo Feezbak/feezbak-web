@@ -1,12 +1,9 @@
 import styled from "styled-components";
 import { StyleEnums, FlexBoxEnum } from "@/enums";
-import { ifProp } from "@/helpers";
 import { Form, Button, Input } from "antd";
 
-export const ResetPasswordFormWrapper = styled(Form)<{
-  readonly $isAuth: boolean;
-}>`
-  margin-top: ${ifProp("$isAuth", 3, 0)}rem;
+export const ResetPasswordFormWrapper = styled(Form)`
+  margin-top: 3rem;
   width: 100%;
   ${FlexBoxEnum.CenterVertical}
 `;
