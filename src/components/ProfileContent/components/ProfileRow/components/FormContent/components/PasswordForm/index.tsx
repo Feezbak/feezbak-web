@@ -2,7 +2,7 @@ import React from "react";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { Controller } from "react-hook-form";
 import { ErrorMessage } from "@/shared";
-import { useChangePasswordForm } from "@hooks/useResetPasswordForm";
+import { useChangePasswordForm } from "@/hooks";
 import {
   FormContainer,
   ChangePasswordFormWrapper,
@@ -41,7 +41,7 @@ const PasswordForm = () => {
             render={({ field: { onChange, value } }) => (
               <PasswordInput size="large" onChange={onChange} value={value} />
             )}
-            name="password"
+            name="currentPassword"
             control={formControl}
           />
         </FormItem>
