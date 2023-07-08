@@ -29,6 +29,16 @@ axiosClient.interceptors.response.use(
     return response;
   },
   async (error) => {
+    const endpoint = error.config.url;
+    if (
+      endpoint === "/sign-in" ||
+      endpoint === "/sign-up" ||
+      endpoint === "/forgot" ||
+      endpoint === "/reset" ||
+      endpoint.includes("/verify")
+    ) {
+      return Promise.reject(error);
+    }
     const originalRequest = error.config;
 
     // Check if the error status code is 401 (unauthorized) and there is no ongoing token refresh request
@@ -64,7 +74,7 @@ axiosClient.interceptors.response.use(
             );
 
             // Modify the original request to include the new access token
-            originalRequest.headers.Authorization = `Bearer ${response.data.accessToken}`;
+            originalRequest.headers.Authorization = `Bearer ${response.data["accessToken"]}`;
 
             // Retry the original request
             return axiosClient(originalRequest);

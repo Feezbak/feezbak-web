@@ -1,7 +1,12 @@
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { isAuth } from "@/hooks";
+import { message } from "antd";
+import { useRecoilState } from "recoil";
+import { userData } from "@/recoil";
+import useRequest from "@ahooksjs/use-request";
+import { getMyProfile } from "@/api";
 import UseCases from "@components/DashboardContent/components/UseCases";
 import Stories from "@components/DashboardContent/components/Stories";
 import { PageNotFound, PrivateRoute } from "@/components";
@@ -23,6 +28,17 @@ const AnimatedRoutes = () => {
   const authed = isAuth();
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const [user, setUserData] = useRecoilState(userData);
+
+  const { run: getProfileData } = useRequest(() => getMyProfile(), {
+    manual: true,
+    onSuccess: (resp) => {
+      setUserData(resp.data);
+    },
+    onError: (error: any) => {
+      message.error(error?.response?.data?.message ?? "");
+    },
+  });
 
   useLayoutEffect(() => {
     if (
@@ -50,6 +66,15 @@ const AnimatedRoutes = () => {
       }
     }
   }, [authed, pathname, navigate]);
+
+  useEffect(() => {
+    if (authed) {
+      if (!user?.firstName) {
+        (async () => await getProfileData())();
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authed, user]);
 
   return (
     <AnimatePresence>

@@ -39,7 +39,7 @@ export default function useSignInByEmailForm(
       onSuccess: (res) => {
         if (res) {
           onUserSuccessLogin();
-          setUserData(res.data.user);
+          setUserData(res?.data?.user);
           localStorage.setItem("token", JSON.stringify(res.data.accessToken));
           localStorage.setItem(
             "refreshToken",
@@ -56,7 +56,6 @@ export default function useSignInByEmailForm(
         }
       },
       onError: (error: any) => {
-        console.error(error);
         message.error(error?.response?.data?.message);
       },
     }
