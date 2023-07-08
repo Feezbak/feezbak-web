@@ -6,8 +6,8 @@ export function updateProfile(payload: any) {
     .then((response) => response);
 }
 
-export function getProfile(id: string) {
-  return axiosClient.get(`/profile/${id}`).then((response) => response);
+export function getMyProfile() {
+  return axiosClient.get("get-me").then((response) => response);
 }
 
 export function changePassword(payload: any) {

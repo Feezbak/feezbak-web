@@ -2,12 +2,13 @@ import React from "react";
 import Heading from "./components/Heading";
 import { useProfileUpdateForm } from "@/hooks";
 import { Controller } from "react-hook-form";
+import { message } from "antd";
 import { ErrorMessage, SelectWithAdd } from "@/shared";
 import { UpdateForm, FieldsSection, FormItem, CustomisedInput } from "./styles";
 
 const UpdateProfileForm = () => {
   const onProfileSuccessUpdate = () => {
-    alert("Success Update");
+    message.success("Your profile was successfuly updated!");
   };
 
   const { submitForm, formState, requestLoading, formControl, formErrors } =
@@ -33,16 +34,22 @@ const UpdateProfileForm = () => {
             )
           }
         >
-          <label htmlFor="firstName">
-            Firstname <sub>*</sub>
-          </label>
-          <Controller
-            render={({ field: { onChange, value } }) => (
-              <CustomisedInput size="large" onChange={onChange} value={value} />
-            )}
-            name="firstName"
-            control={formControl}
-          />
+          <>
+            <label htmlFor="firstName">
+              Firstname <sub>*</sub>
+            </label>
+            <Controller
+              render={({ field: { onChange, value } }) => (
+                <CustomisedInput
+                  size="large"
+                  onChange={onChange}
+                  value={value}
+                />
+              )}
+              name="firstName"
+              control={formControl}
+            />
+          </>
         </FormItem>
         <FormItem
           name="lastname"
@@ -53,16 +60,22 @@ const UpdateProfileForm = () => {
             )
           }
         >
-          <label htmlFor="lastName">
-            Lastname <sub>*</sub>
-          </label>
-          <Controller
-            render={({ field: { onChange, value } }) => (
-              <CustomisedInput size="large" onChange={onChange} value={value} />
-            )}
-            name="lastName"
-            control={formControl}
-          />
+          <>
+            <label htmlFor="lastName">
+              Lastname <sub>*</sub>
+            </label>
+            <Controller
+              render={({ field: { onChange, value } }) => (
+                <CustomisedInput
+                  size="large"
+                  onChange={onChange}
+                  value={value}
+                />
+              )}
+              name="lastName"
+              control={formControl}
+            />
+          </>
         </FormItem>
       </FieldsSection>
       <FieldsSection size="large">
@@ -75,31 +88,35 @@ const UpdateProfileForm = () => {
             )
           }
         >
-          <label htmlFor="email">
-            Email <sub>*</sub>
-          </label>
-          <Controller
-            render={({ field: { onChange, value } }) => (
-              <CustomisedInput
-                type="email"
-                size="large"
-                onChange={onChange}
-                value={value}
-              />
-            )}
-            name="email"
-            control={formControl}
-          />
+          <>
+            <label htmlFor="email">
+              Email <sub>*</sub>
+            </label>
+            <Controller
+              render={({ field: { onChange, value } }) => (
+                <CustomisedInput
+                  type="email"
+                  size="large"
+                  onChange={onChange}
+                  value={value}
+                />
+              )}
+              name="email"
+              control={formControl}
+            />
+          </>
         </FormItem>
         <FormItem name="profession">
-          <label htmlFor="profession">I am a</label>
-          <Controller
-            render={({ field: { onChange, value } }) => (
-              <SelectWithAdd value={value} onChange={onChange} />
-            )}
-            name="profession"
-            control={formControl}
-          />
+          <>
+            <label htmlFor="profession">I am a</label>
+            <Controller
+              render={({ field: { onChange, value } }) => (
+                <SelectWithAdd value={value} onChange={onChange} />
+              )}
+              name="profession"
+              control={formControl}
+            />
+          </>
         </FormItem>
       </FieldsSection>
     </UpdateForm>

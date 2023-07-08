@@ -3,10 +3,9 @@ import { ChangePasswordFormInputs } from "./type";
 import { passwordSchema } from "@/validations";
 
 export const ChangePasswordSchema = Joi.object<ChangePasswordFormInputs>({
-  currentPassword: passwordSchema.label("password").required(),
+  currentPassword: passwordSchema.label("Current Password").required(),
   newPassword: passwordSchema
-    .label("password")
-    .valid(Joi.ref("currentPassword"))
-    .invalid(Joi.ref("currentPassword"))
-    .required(),
+    .required()
+    .label("New Password")
+    .options({ messages: { "any.only": "{{#label}} should not match" } }),
 });

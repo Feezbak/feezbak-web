@@ -34,16 +34,18 @@ const PasswordForm = () => {
             )
           }
         >
-          <label htmlFor="currentPassword">
-            Current Password <sub>*</sub>
-          </label>
-          <Controller
-            render={({ field: { onChange, value } }) => (
-              <PasswordInput size="large" onChange={onChange} value={value} />
-            )}
-            name="currentPassword"
-            control={formControl}
-          />
+          <>
+            <label htmlFor="currentPassword">
+              Current Password <sub>*</sub>
+            </label>
+            <Controller
+              render={({ field: { onChange, value } }) => (
+                <PasswordInput size="large" onChange={onChange} value={value} />
+              )}
+              name="currentPassword"
+              control={formControl}
+            />
+          </>
         </FormItem>
         <FormItem
           validateStatus={
@@ -56,16 +58,18 @@ const PasswordForm = () => {
             )
           }
         >
-          <label htmlFor="newPassword">
-            New Password <sub>*</sub>
-          </label>
-          <Controller
-            render={({ field: { onChange, value } }) => (
-              <PasswordInput size="large" onChange={onChange} value={value} />
-            )}
-            name="newPassword"
-            control={formControl}
-          />
+          <>
+            <label htmlFor="newPassword">
+              New Password <sub>*</sub>
+            </label>
+            <Controller
+              render={({ field: { onChange, value } }) => (
+                <PasswordInput size="large" onChange={onChange} value={value} />
+              )}
+              name="newPassword"
+              control={formControl}
+            />
+          </>
         </FormItem>
         <BtnWrapper>
           <SubmitButton
