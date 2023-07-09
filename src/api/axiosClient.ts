@@ -109,6 +109,6 @@ function isTokenExpired(token: string) {
 }
 
 //All request will wait 2 seconds before timeout
-axiosClient.defaults.timeout = 2000;
+axiosClient.defaults.timeout = 20000;
 
 export default axiosClient;
