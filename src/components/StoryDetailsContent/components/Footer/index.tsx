@@ -1,4 +1,8 @@
 import React from "react";
+import useRequest from "@ahooksjs/use-request";
+import { message } from "antd";
+import { createStory } from "@/api";
+import { useNavigate } from "react-router-dom";
 import {
   DetailsFooterWrapper,
   FooterTextWithLink,
@@ -6,8 +10,20 @@ import {
 } from "./styles";
 
 const Footer = () => {
-  const handleCreateStory = () => {
-    //Todo send request to get id of new story intent
+  const navigate = useNavigate();
+
+  const { run: createNewStory } = useRequest(() => createStory(), {
+    manual: true,
+    onSuccess: (resp) => {
+      localStorage.setItem(resp.data._id, JSON.stringify({}));
+      navigate(`/create-story/${resp.data._id}`);
+    },
+    onError: (error: any) => {
+      message.error(error?.response?.data?.message);
+    },
+  });
+  const handleCreateStory = async () => {
+    await createNewStory();
   };
 
   return (

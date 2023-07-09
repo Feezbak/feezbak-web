@@ -4,9 +4,8 @@ import { motion } from "framer-motion";
 import { Form, Button, Input } from "antd";
 
 export const ChangePasswordFormWrapper = styled(Form)`
-  margin-top: 3rem;
   width: 100%;
-  ${FlexBoxEnum.CenterVertical}
+  ${FlexBoxEnum.StartStartVertical}
 `;
 
 export const FormContainer = styled(motion.div)`

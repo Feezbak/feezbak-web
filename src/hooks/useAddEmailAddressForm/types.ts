@@ -8,6 +8,7 @@ import {
   UseFormGetValues,
   UseFormSetValue,
   UseFormReset,
+  UseFormTrigger,
 } from "react-hook-form";
 
 export interface UseAddEmailAddressResult {
@@ -17,6 +18,7 @@ export interface UseAddEmailAddressResult {
   formState: FormState<AddEmailFormInputs>;
   getFieldValue: UseFormGetValues<AddEmailFormInputs>;
   setPassValue: UseFormSetValue<AddEmailFormInputs>;
+  trigger: UseFormTrigger<AddEmailFormInputs>;
   submitForm: (
     e?: BaseSyntheticEvent<Record<string, unknown>, any, any>
   ) => Promise<void>;

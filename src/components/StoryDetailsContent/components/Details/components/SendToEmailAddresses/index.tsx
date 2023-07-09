@@ -22,6 +22,14 @@ interface Props {
 const SendToEmailAddresses = ({ emailsDefault }: Props) => {
   const { id: storyId } = useParams();
   const [emails, setEmail] = useState<EmailsListType[]>([]);
+  const [emailsFromStory, setEmailsFromStory] = useState<EmailsListType[]>([]);
+
+  useEffect(() => {
+    emailsDefault &&
+      setEmailsFromStory(
+        emailsDefault.map((email: string) => ({ email, id: uuid() }))
+      );
+  }, [emailsDefault]);
 
   const { run: shareToEmailAddresses, loading: sendEmailsLoading } = useRequest(
     (payload) => sendLinkByEmailAddresses(storyId!, payload),
@@ -29,7 +37,9 @@ const SendToEmailAddresses = ({ emailsDefault }: Props) => {
       manual: true,
       onSuccess: (resp) => {
         message.success("Your Story was succesfuly shared!");
-        setEmail(resp.data.map((email: string) => ({ email, id: uuid() })));
+        setEmailsFromStory(
+          resp.data.map((email: string) => ({ email, id: uuid() }))
+        );
       },
       onError: (error: any) => {
         message.error(error?.response?.data?.message);
@@ -38,10 +48,10 @@ const SendToEmailAddresses = ({ emailsDefault }: Props) => {
   );
 
   useEffect(() => {
-    if (emailsDefault) {
-      setEmail(emailsDefault.map((email: string) => ({ email, id: uuid() })));
+    if (emailsFromStory.length) {
+      setEmail(emailsFromStory);
     }
-  }, [emailsDefault]);
+  }, [emailsFromStory]);
 
   const handleDeleteEmail = (id: string) => {
     const oldEmails = [...emails];
@@ -62,11 +72,12 @@ const SendToEmailAddresses = ({ emailsDefault }: Props) => {
   };
 
   const newEmailAddresses = useMemo(() => {
-    return emails.filter((item) => !emailsDefault.includes(item.email));
-  }, [emails, emailsDefault]);
+    return emails.filter(
+      (email) => !emailsFromStory.some((item) => item.email === email.email)
+    );
+  }, [emails, emailsFromStory]);
 
   const handleShareViaEmail = async () => {
-    console.log(newEmailAddresses, 4444);
     if (newEmailAddresses.length) {
       const payload = {
         emails: newEmailAddresses.map((address) => address.email),
@@ -83,7 +94,7 @@ const SendToEmailAddresses = ({ emailsDefault }: Props) => {
       />
       <AddEmailAddress handleAddNewEmail={handleAddNewEmail} />
       <EmailsList
-        emailsDefault={emailsDefault}
+        emailsDefault={emailsFromStory}
         listData={emails}
         handleDeleteEmail={handleDeleteEmail}
       />

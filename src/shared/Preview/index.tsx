@@ -133,7 +133,7 @@ const Preview = () => {
   }, [title]);
 
   return (
-    <PreviewFlowWrapper xs={24} sm={24} md={9} lg={9} xl={8} xxl={7}>
+    <PreviewFlowWrapper xs={24} sm={24} md={24} lg={9} xl={8} xxl={7}>
       <PreviewFlow
         $background={color}
         $hasOutline={hasOutline}
