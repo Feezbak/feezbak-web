@@ -8,6 +8,7 @@ export default function useAddEmailAddressForm(
 ): UseAddEmailAddressResult {
   const {
     handleSubmit,
+    trigger,
     formState: { errors: formErrors },
     control: formControl,
     formState,
@@ -31,6 +32,7 @@ export default function useAddEmailAddressForm(
   });
 
   return {
+    trigger,
     reset,
     formErrors,
     formControl,

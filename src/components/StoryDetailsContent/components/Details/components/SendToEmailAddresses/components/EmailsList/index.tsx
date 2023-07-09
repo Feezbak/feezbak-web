@@ -6,7 +6,7 @@ import { List } from "./styles";
 
 interface Props {
   listData: EmailsListType[];
-  emailsDefault: string[];
+  emailsDefault: EmailsListType[];
   handleDeleteEmail: (id: string) => void;
 }
 
@@ -16,7 +16,9 @@ const EmailsList = ({ listData, handleDeleteEmail, emailsDefault }: Props) => {
       <AnimatePresence initial={false}>
         {listData.map((email) => (
           <EmailItem
-            isDeleteDisabled={emailsDefault.includes(email.email)}
+            isDeleteDisabled={emailsDefault.some(
+              (item) => item.email === email.email
+            )}
             key={email.id}
             id={email.id}
             email={email.email}

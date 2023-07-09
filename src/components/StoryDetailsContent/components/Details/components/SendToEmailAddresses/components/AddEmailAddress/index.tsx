@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Controller } from "react-hook-form";
 import { Input } from "antd";
 import { useAddEmailAddressForm } from "@hooks/useAddEmailAddressForm";
@@ -9,13 +9,19 @@ interface Props {
 }
 
 const AddEmailAddress = ({ handleAddNewEmail }: Props) => {
-  const { formErrors, formState, formControl, submitForm, reset } =
+  const { formErrors, formState, formControl, submitForm, reset, trigger } =
     useAddEmailAddressForm(onSuccessAction);
 
   function onSuccessAction(data: { email?: string }) {
     handleAddNewEmail(data.email ?? "");
     reset();
   }
+
+  useEffect(() => {
+    if (formState.isDirty) {
+      trigger("email");
+    }
+  }, [formState.isDirty, trigger]);
 
   return (
     <AddingWrapper

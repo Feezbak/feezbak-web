@@ -1,7 +1,7 @@
 import { UseUpdateProfileFormResult } from "./types";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { useForm } from "react-hook-form";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { userData } from "@/recoil";
 import { UpdateProfileFormInputs, UpdateProfileSchema } from "@/validations";
 import { message } from "antd";
@@ -11,7 +11,7 @@ import useRequest from "@ahooksjs/use-request";
 export default function useProfileUpdateForm(
   onSuccessAction: () => void
 ): UseUpdateProfileFormResult {
-  const userRecoilData = useRecoilValue(userData);
+  const [userRecoilData, setUserRecoilData] = useRecoilState(userData);
 
   const {
     handleSubmit,
@@ -45,6 +45,7 @@ export default function useProfileUpdateForm(
       manual: true,
       onSuccess: (res) => {
         if (res) {
+          setUserRecoilData(res.data);
           onSuccessAction();
         }
       },

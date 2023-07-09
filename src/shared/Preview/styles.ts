@@ -8,6 +8,21 @@ import { motion } from "framer-motion";
 export const PreviewFlowWrapper = styled(Col)`
   padding: 4rem 0;
   height: 100%;
+  ${FlexBoxEnum.CenterHorizontal}
+
+  ${inLessThan(BreakpointEnums.mobile)`
+     padding-right: 2.5%;
+     padding-left: 2.5%;
+  `}
+
+   ${inLessThan(BreakpointEnums.md)`
+     padding-right: 20%;
+     padding-left: 20%;
+  `}
+
+   ${inLessThan(BreakpointEnums.sm)`
+     padding: 10% 5%;
+  `}
 `;
 
 export const iconBtnStyles = css`

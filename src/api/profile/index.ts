@@ -6,6 +6,10 @@ export function updateProfile(payload: any) {
     .then((response) => response);
 }
 
+export function getMyProfile() {
+  return axiosClient.get("get-me").then((response) => response);
+}
+
 export function changePassword(payload: any) {
   return axiosClient
     .put("/change-password", payload)
