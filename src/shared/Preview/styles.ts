@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { Button, Col } from "antd";
-import { prop, ifProp, inLessThan, inGreaterThan } from "@/helpers";
+import { prop, ifProp, inLessThan } from "@/helpers";
 import { StyleEnums, FlexBoxEnum, BreakpointEnums } from "@/enums";
 import Circle from "@uiw/react-color-circle";
 import { motion } from "framer-motion";
