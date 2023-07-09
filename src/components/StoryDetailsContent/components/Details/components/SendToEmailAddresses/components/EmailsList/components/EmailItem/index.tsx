@@ -15,7 +15,6 @@ const EmailItem = ({
   isDeleteDisabled,
   handleDeleteEmail,
 }: Props) => {
-  console.log(isDeleteDisabled, 5555);
   return (
     <ItemWrapper
       key={id}
