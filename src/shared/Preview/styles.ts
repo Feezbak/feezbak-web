@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { Button, Col } from "antd";
-import { prop, ifProp, inLessThan } from "@/helpers";
+import { prop, ifProp, inLessThan, inGreaterThan } from "@/helpers";
 import { StyleEnums, FlexBoxEnum, BreakpointEnums } from "@/enums";
 import Circle from "@uiw/react-color-circle";
 import { motion } from "framer-motion";
@@ -8,6 +8,21 @@ import { motion } from "framer-motion";
 export const PreviewFlowWrapper = styled(Col)`
   padding: 4rem 0;
   height: 100%;
+  ${FlexBoxEnum.CenterHorizontal}
+
+  ${inLessThan(BreakpointEnums.mobile)`
+     padding-right: 2.5%;
+     padding-left: 2.5%;
+  `}
+
+   ${inLessThan(BreakpointEnums.md)`
+     padding-right: 20%;
+     padding-left: 20%;
+  `}
+
+   ${inLessThan(BreakpointEnums.sm)`
+     padding: 10% 5%;
+  `}
 `;
 
 export const iconBtnStyles = css`
