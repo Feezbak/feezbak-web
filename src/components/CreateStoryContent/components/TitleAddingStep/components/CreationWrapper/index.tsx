@@ -6,6 +6,7 @@ import { storyDefaultState } from "@/constants";
 import { notification, message } from "antd";
 import { saveStoryFields } from "@/api";
 import { useParams } from "react-router-dom";
+import { useTextFromHTML } from "@/hooks";
 import useRequest from "@ahooksjs/use-request";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
 import { CreationFlowHeader, CreationFlowFooter } from "@/shared";
@@ -18,6 +19,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
   const { id: storyId } = useParams();
   const [api, contextHolder] = notification.useNotification();
   const { currentStep, step1, setNextStep } = useContext(StoryCreationContext);
+  const titleText = useTextFromHTML(step1.title);
 
   const openNotification = useCallback(() => {
     api.open({
@@ -58,6 +60,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
         ? "step2"
         : "step1",
       ...step1,
+      titleText,
     };
     (() => runSaveStoryFields(stepInfoBody))();
   };
