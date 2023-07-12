@@ -6,6 +6,7 @@ import { getStoryById } from "@/api";
 import { message } from "antd";
 import StorySkeleton from "./components/StorySkeleton";
 import useRequest from "@ahooksjs/use-request";
+import { Preview } from "@/shared";
 import { AnimatePresence } from "framer-motion";
 import { FeedbackerContentWrapper, PreviewFlowWrapper } from "./styles";
 
@@ -31,7 +32,7 @@ const FeedbackerContent = () => {
       <Header />
       <PreviewFlowWrapper>
         <AnimatePresence>
-          {storyDataLoading ? <StorySkeleton /> : <div>GGGGG</div>}
+          {storyDataLoading ? <StorySkeleton /> : <Preview />}
         </AnimatePresence>
       </PreviewFlowWrapper>
     </FeedbackerContentWrapper>

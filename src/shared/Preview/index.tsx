@@ -26,7 +26,11 @@ import {
   TitlePreview,
 } from "./styles";
 
-const Preview = () => {
+interface Props {
+  isCreationMode?: boolean;
+}
+
+const Preview = ({ isCreationMode = false }: Props) => {
   const [isHovered, setHoverState] = useState(false);
   const [isColorPickerOpen, setColorPickerState] = useState(false);
   const {
