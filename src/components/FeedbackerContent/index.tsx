@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useResponsive } from "@/hooks";
 import Header from "./components/Header";
 import { useParams, useNavigate } from "react-router-dom";
@@ -25,23 +25,21 @@ const FeedbackerContent = () => {
     }
   );
 
-  return isLessThanSm ? (
-    story?.data && !storyDataLoading ? (
+  const flowContent = useMemo(() => {
+    return story?.data && !storyDataLoading ? (
       <Preview storyData={story.data} />
     ) : (
       <StorySkeleton />
-    )
+    );
+  }, [story, storyDataLoading]);
+
+  return isLessThanSm ? (
+    flowContent
   ) : (
     <FeedbackerContentWrapper>
       <Header />
       <PreviewFlowWrapper>
-        <AnimatePresence>
-          {story?.data && !storyDataLoading ? (
-            <Preview storyData={story.data} />
-          ) : (
-            <StorySkeleton />
-          )}
-        </AnimatePresence>
+        <AnimatePresence>{flowContent}</AnimatePresence>
       </PreviewFlowWrapper>
     </FeedbackerContentWrapper>
   );

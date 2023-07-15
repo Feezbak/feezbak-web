@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Demo from "../../components/Demo";
+import ClientLayers from "@shared/Preview/components/ClientLayers";
 import { DemoWrapper } from "./styles";
 
 interface Props {
@@ -16,9 +17,18 @@ const FeedbackView = ({ storyData }: Props) => {
     response: { responseBtnList },
     userInfoFields,
   } = storyData;
+  const [isLayersOpen, setLayersState] = useState(true);
   console.log(storyData, 7777);
+
   return (
     <DemoWrapper>
+      {isLayersOpen && (
+        <ClientLayers
+          handleCloseLayers={() => setLayersState((ps) => !ps)}
+          isPIIRequested={storyData.isInfoCollectionAllowed}
+          isMultySelectRequested={storyData.isMultiple}
+        />
+      )}
       <Demo
         isCreationMode={false}
         responseButtons={responseBtnList}

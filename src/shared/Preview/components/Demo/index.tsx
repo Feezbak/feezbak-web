@@ -7,13 +7,9 @@ import CredentialsForm from "@/shared/Preview/components/CredentialsForm";
 import { dynamicFontSizeHelpers } from "@helpers/dynamicFontSizeHelpers";
 import { StoryTypeEnum, StyleEnums, StoryStepEnum } from "@/enums";
 import DOMPurify from "dompurify";
+import { DemoProps } from "./types";
 import { useResponsive } from "@/hooks";
-import {
-  colorPickerMainColors,
-  ResponseBtnsType,
-  Image,
-  UserInfoFieldType,
-} from "@/constants";
+import { colorPickerMainColors } from "@/constants";
 import {
   opacityAnimation,
   opacityWithScaleAnimation,
@@ -28,28 +24,6 @@ import {
   SquareBtn,
   TitlePreview,
 } from "./styles";
-
-interface Props {
-  color: string;
-  title: string;
-  titleColor: string;
-  type: StoryTypeEnum;
-  isSquare: boolean;
-  isHovered?: boolean;
-  coverImgSrc: string;
-  isColorPickerOpen?: boolean;
-  squareBtnHandler?: () => void;
-  colorPickerBtnHandler?: () => void;
-  flowMouseLeave?: (state: boolean) => void;
-  flowMouseEnter?: (state: boolean) => void;
-  colorPickerOnChange?: (color: string) => void;
-  images: Image[];
-  responseButtons: ResponseBtnsType;
-  userInfoFields: UserInfoFieldType[];
-  isCreationMode: boolean;
-  isInfoCollectionAllowed?: boolean;
-  currentStep?: StoryStepEnum;
-}
 
 const Demo = ({
   color,
@@ -71,7 +45,7 @@ const Demo = ({
   flowMouseEnter,
   images,
   currentStep,
-}: Props) => {
+}: DemoProps) => {
   const [isCredentialDrawerOpen, setCredentialDrawerState] = useState(false);
   const { isLessThanSm } = useResponsive();
 
