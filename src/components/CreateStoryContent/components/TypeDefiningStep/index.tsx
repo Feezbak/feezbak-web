@@ -22,10 +22,10 @@ const TypeDefiningStep = () => {
           onClose={() => setDemoDrawerState(false)}
           isOpen={isDemoDrawerOpen}
         >
-          <Preview />
+          <Preview isCreationMode={true} />
         </PreviewMobileDrawer>
       ) : (
-        <Preview />
+        <Preview isCreationMode={true} />
       )}
     </AnimatedWrapper>
   );
