@@ -1,26 +1,23 @@
-import React, { useContext, memo } from "react";
+import React, { memo } from "react";
 import { SliderContainer } from "./styles";
 import Slider from "react-slick";
-import { slickSettings } from "@/constants";
+import { slickSettings, Image } from "@/constants";
 import Icon from "@ant-design/icons";
 import PreviewSlide from "./components/PreviewSlide";
 import { FeezbakWhiteIcon } from "@/icons";
-import { StoryCreationContext } from "@/context";
 
 interface Props {
   hasCover: boolean;
   isSquare: boolean;
   hasLayer: boolean;
+  images: Image[];
 }
 
-const PreviewSlider = ({ hasCover, isSquare, hasLayer }: Props) => {
-  const { step2 } = useContext(StoryCreationContext);
-  const { imageVoting } = step2;
-
+const PreviewSlider = ({ hasCover, isSquare, hasLayer, images }: Props) => {
   return (
     <SliderContainer>
       <Slider {...slickSettings}>
-        {imageVoting?.images?.map((image) => (
+        {images?.map((image) => (
           <PreviewSlide
             hasCover={hasCover}
             imgSrc={`${process.env.REACT_APP_API_URL}/${image.src}`}

@@ -3,6 +3,7 @@ export { default as useDebounce } from "./useDebounce";
 export { default as useManageStepInStorage } from "./useManageStepInStorage";
 export { default as usePageLeaveDetection } from "./usePageLeave";
 export { default as useWindowSize } from "./useWindowSize";
+export { default as useTextFromHTML } from "./useTextFromHTML";
 export * from "./useSignUpByEmailForm";
 export * from "./useProfileUpdateForm";
 export * from "./useAddEmailAddressForm";

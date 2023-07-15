@@ -2,6 +2,7 @@ import React, { useCallback, useMemo } from "react";
 import { Badge } from "@/shared";
 import { useNavigate } from "react-router-dom";
 import { StyleEnums, StoryEnums } from "@/enums";
+import { useTextFromHTML } from "@/hooks";
 import { EditIconGrayBg, DeleteIconGrayBg, LinkIconGrayBg } from "@/icons";
 import {
   StoryItemStatusAndActions,
@@ -26,6 +27,7 @@ interface Props {
 const StoryItem = ({ storyData, handleDelete, storyId }: Props) => {
   const navigate = useNavigate();
   const { title, progress, _id: id } = storyData ?? {};
+  const titleTextContent = useTextFromHTML(title ?? "");
 
   const handleEdit = useCallback(() => {
     if (!title) localStorage.setItem(storyId, JSON.stringify({}));
@@ -59,10 +61,8 @@ const StoryItem = ({ storyData, handleDelete, storyId }: Props) => {
     if (!element) {
       return "Story was't completed! 😔";
     }
-    const tempElement = document.createElement("div");
-    tempElement.innerHTML = element;
-    return tempElement.textContent;
-  }, [title]);
+    return titleTextContent;
+  }, [title, titleTextContent]);
 
   return (
     <StoryListItemWrapper wrap>
