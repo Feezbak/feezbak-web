@@ -7,9 +7,19 @@ export const responseBtnListDefaultState = [
   },
 ];
 
+export type ResponseBtnsType = {
+  id: string;
+  text: string;
+}[];
+
 export type Image = {
   id: string;
   src: string;
+};
+
+export type UserInfoFieldType = {
+  value: string;
+  label: string;
 };
 
 export type Step2Type = {
@@ -22,17 +32,14 @@ export type Step2Type = {
     images: Image[];
   };
   response: {
-    responseBtnList: typeof responseBtnListDefaultState;
+    responseBtnList: ResponseBtnsType;
   };
 };
 
 export type Step3Type = {
   shareType: string;
   isInfoCollectionAllowed: boolean;
-  userInfoFields: {
-    value: string;
-    label: string;
-  }[];
+  userInfoFields: UserInfoFieldType[];
 };
 
 export type Step1Type = {

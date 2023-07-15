@@ -26,13 +26,21 @@ const FeedbackerContent = () => {
   );
 
   return isLessThanSm ? (
-    <div>Mobile View</div>
+    story?.data && !storyDataLoading ? (
+      <Preview storyData={story.data} />
+    ) : (
+      <StorySkeleton />
+    )
   ) : (
     <FeedbackerContentWrapper>
       <Header />
       <PreviewFlowWrapper>
         <AnimatePresence>
-          {storyDataLoading ? <StorySkeleton /> : <Preview />}
+          {story?.data && !storyDataLoading ? (
+            <Preview storyData={story.data} />
+          ) : (
+            <StorySkeleton />
+          )}
         </AnimatePresence>
       </PreviewFlowWrapper>
     </FeedbackerContentWrapper>
