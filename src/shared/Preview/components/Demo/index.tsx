@@ -130,6 +130,7 @@ const Demo = ({
         $hasBorderRadius={!isCreationMode}
         onMouseLeave={() => flowMouseLeave?.(false)}
         onMouseEnter={() => flowMouseEnter?.(true)}
+        {...opacityWithScaleAnimation}
       >
         <AnimatePresence>
           {((isHovered && coverImgSrc && squareBtnHandler) || isSquare) &&

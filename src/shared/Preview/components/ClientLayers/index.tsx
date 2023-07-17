@@ -4,6 +4,7 @@ import PIILayer from "./components/PIILayer";
 import SelectionQuantityLayer from "./components/SelectionQuantityLayer";
 import TypeInfoLayer from "./components/TypeInfoLayer";
 import WelcomeLayer from "./components/WelcomeLayer";
+import { opacityAnimation } from "@assets/framerAnimations";
 import { LayersSelectionWrapper } from "./styles";
 
 interface Props {
@@ -28,7 +29,12 @@ const ClientLayers = ({
   const activeLayer = useMemo(() => {
     switch (activeLayerNumber) {
       case 0:
-        return <WelcomeLayer handleLayer={() => setActiveLayerNumber(1)} />;
+        return (
+          <WelcomeLayer
+            handleSkip={handleCloseLayers}
+            handleLayer={() => setActiveLayerNumber(1)}
+          />
+        );
       case 1:
         return (
           <TypeInfoLayer
@@ -42,18 +48,34 @@ const ClientLayers = ({
       case 2:
         return (
           <SelectionQuantityLayer
+            handleSkip={handleCloseLayers}
             handleLayer={() => setActiveLayerNumber(isPIIRequested ? 3 : 4)}
           />
         );
       case 3:
-        return <PIILayer handleLayer={() => setActiveLayerNumber(4)} />;
+        return (
+          <PIILayer
+            handleSkip={handleCloseLayers}
+            handleLayer={() => setActiveLayerNumber(4)}
+          />
+        );
       default:
-        return <WelcomeLayer handleLayer={() => setActiveLayerNumber(4)} />;
+        return (
+          <WelcomeLayer
+            handleSkip={handleCloseLayers}
+            handleLayer={() => setActiveLayerNumber(4)}
+          />
+        );
     }
-  }, [activeLayerNumber, isPIIRequested, isMultySelectRequested]);
+  }, [
+    activeLayerNumber,
+    isPIIRequested,
+    isMultySelectRequested,
+    handleCloseLayers,
+  ]);
 
   return (
-    <LayersSelectionWrapper>
+    <LayersSelectionWrapper {...opacityAnimation}>
       <AnimatePresence>{activeLayer}</AnimatePresence>
     </LayersSelectionWrapper>
   );

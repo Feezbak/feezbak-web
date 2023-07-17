@@ -1,12 +1,19 @@
 import React from "react";
 import { opacityAnimation } from "@assets/framerAnimations";
-import { LayerWrapper, LayerInfoContent, NextBtn } from "../../styles";
+import {
+  LayerWrapper,
+  LayerInfoContent,
+  ActionsWrapper,
+  SkipBtn,
+  NextBtn,
+} from "../../styles";
 
 interface Props {
   handleLayer: () => void;
+  handleSkip: () => void;
 }
 
-const WelcomeLayer = ({ handleLayer }: Props) => {
+const WelcomeLayer = ({ handleLayer, handleSkip }: Props) => {
   return (
     <LayerWrapper {...opacityAnimation}>
       <LayerInfoContent>
@@ -26,7 +33,10 @@ const WelcomeLayer = ({ handleLayer }: Props) => {
           together!
         </p>
       </LayerInfoContent>
-      <NextBtn onClick={handleLayer}>Next</NextBtn>
+      <ActionsWrapper>
+        <NextBtn onClick={handleLayer}>Next</NextBtn>
+        <SkipBtn onClick={handleSkip}>Skip {">>>"}</SkipBtn>
+      </ActionsWrapper>
     </LayerWrapper>
   );
 };
