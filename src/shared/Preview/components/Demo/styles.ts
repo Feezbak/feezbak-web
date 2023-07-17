@@ -14,7 +14,7 @@ export const iconBtnStyles = css`
   z-index: 3;
 `;
 
-export const PreviewFlow = styled.div<{
+export const PreviewFlow = styled(motion.div)<{
   readonly $background: string;
   readonly $hasOutline: boolean;
   readonly $isSquare: boolean;

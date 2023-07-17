@@ -8,7 +8,6 @@ import { dynamicFontSizeHelpers } from "@helpers/dynamicFontSizeHelpers";
 import { StoryTypeEnum, StyleEnums, StoryStepEnum } from "@/enums";
 import DOMPurify from "dompurify";
 import { DemoProps } from "./types";
-import { useResponsive } from "@/hooks";
 import { colorPickerMainColors } from "@/constants";
 import {
   opacityAnimation,
@@ -47,7 +46,6 @@ const Demo = ({
   currentStep,
 }: DemoProps) => {
   const [isCredentialDrawerOpen, setCredentialDrawerState] = useState(false);
-  const { isLessThanSm } = useResponsive();
 
   useEffect(() => {
     isCreationMode &&
@@ -129,9 +127,10 @@ const Demo = ({
         $background={color}
         $hasOutline={hasOutline}
         $isSquare={isSquare}
-        $hasBorderRadius={isCreationMode ? true : !isLessThanSm}
+        $hasBorderRadius={!isCreationMode}
         onMouseLeave={() => flowMouseLeave?.(false)}
         onMouseEnter={() => flowMouseEnter?.(true)}
+        {...opacityWithScaleAnimation}
       >
         <AnimatePresence>
           {((isHovered && coverImgSrc && squareBtnHandler) || isSquare) &&
