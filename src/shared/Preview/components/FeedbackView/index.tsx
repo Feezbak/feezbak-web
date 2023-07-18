@@ -26,6 +26,7 @@ const FeedbackView = ({ storyData }: Props) => {
       <AnimatePresence initial={false}>
         {isLayersOpen ? (
           <ClientLayers
+            type={storyData.type}
             handleCloseLayers={() => setLayersState((ps) => !ps)}
             isPIIRequested={storyData.isInfoCollectionAllowed}
             isMultySelectRequested={storyData.isMultiple}

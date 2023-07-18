@@ -116,7 +116,8 @@ const Demo = ({
 
   const isFullHeight = useMemo(
     () =>
-      (!isNotFirstStep || isTextType || !hasButtonsResp || !isCreationMode) &&
+      (!isNotFirstStep || isTextType || !hasButtonsResp) &&
+      !isCreationMode &&
       !isSquare,
     [isNotFirstStep, isSquare, isTextType, hasButtonsResp, isCreationMode]
   );

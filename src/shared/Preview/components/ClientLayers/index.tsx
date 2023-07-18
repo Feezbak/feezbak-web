@@ -6,8 +6,10 @@ import TypeInfoLayer from "./components/TypeInfoLayer";
 import WelcomeLayer from "./components/WelcomeLayer";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { LayersSelectionWrapper } from "./styles";
+import { StoryTypeEnum } from "@/enums";
 
 interface Props {
+  type: StoryTypeEnum;
   isPIIRequested: boolean;
   isMultySelectRequested: boolean;
   handleCloseLayers: () => void;
@@ -16,6 +18,7 @@ interface Props {
 const ClientLayers = ({
   isPIIRequested,
   isMultySelectRequested,
+  type,
   handleCloseLayers,
 }: Props) => {
   const [activeLayerNumber, setActiveLayerNumber] = useState(0);
@@ -38,6 +41,8 @@ const ClientLayers = ({
       case 1:
         return (
           <TypeInfoLayer
+            type={type}
+            handleSkip={handleCloseLayers}
             handleLayer={() =>
               setActiveLayerNumber(
                 isMultySelectRequested ? (isPIIRequested ? 3 : 4) : 2
@@ -68,6 +73,7 @@ const ClientLayers = ({
         );
     }
   }, [
+    type,
     activeLayerNumber,
     isPIIRequested,
     isMultySelectRequested,
