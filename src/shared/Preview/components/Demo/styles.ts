@@ -23,11 +23,15 @@ export const PreviewFlow = styled(motion.div)<{
   background: ${prop("$background")};
   width: 100%;
   height: 100%;
-  border-radius: ${ifProp("$hasBorderRadius", `2.75rem`, "none")};
+  border-radius: 2.75rem;
   position: relative;
   ${FlexBoxEnum.EndCenterVertical}
   transition: 0.3s;
   box-shadow: ${ifProp("$hasOutline", `0 0 5px ${StyleEnums.gray2}`, "none")};
+
+  ${inLessThan(BreakpointEnums.mobile)`
+     border-radius: ${ifProp("$hasBorderRadius", "0", "2.75rem")} !important;
+  `}
 
   .ant-drawer-content-wrapper {
     box-shadow: unset;
@@ -39,7 +43,6 @@ export const TitlePreview = styled(motion.div)<{
   readonly $isTextTypeWithBtnResp: boolean;
   readonly $fontSize: string;
 }>`
-  margin-top: ${ifProp("$isTextTypeWithBtnResp", "25rem", "0")};
   font-size: ${prop("$fontSize")}rem;
   line-height: ${prop("$fontSize")}rem;
   letter-spacing: -0.02em;
@@ -104,18 +107,14 @@ export const ColorPickerWrapper = styled(motion.div)`
 
 export const ResponseTitleWrapper = styled.div<{
   readonly $isFullHeight: boolean;
-  readonly $isTextTypeWithBtnResp: boolean;
+  readonly $justifyContent: boolean;
 }>`
   transition: 0.3s;
   width: 80%;
   display: flex;
   border-radius: 2.5rem;
-  margin-bottom: ${ifProp("$isTextTypeWithBtnResp", "3rem", "0")};
-  justify-content: ${ifProp(
-    "$isTextTypeWithBtnResp",
-    "space-between",
-    "center"
-  )};
+  padding: ${ifProp("$justifyContent", "60% 0 12% 0", "inherit")};
+  justify-content: ${ifProp("$justifyContent", "space-between", "center")};
   align-items: center;
   flex-direction: column;
   min-height: ${ifProp("$isFullHeight", "100%", "55%")};

@@ -1,11 +1,11 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { ColorPickerIcon, MakeSquareIcon } from "@/icons";
 import { AnimatePresence, motion } from "framer-motion";
 import ResponsePreviewBtn from "@/shared/ResponsePreviewBtn";
 import PreviewSlider from "@/shared/Preview/components/PreviewSlider";
 import CredentialsForm from "@/shared/Preview/components/CredentialsForm";
 import { dynamicFontSizeHelpers } from "@helpers/dynamicFontSizeHelpers";
-import { StoryTypeEnum, StyleEnums, StoryStepEnum } from "@/enums";
+import { StoryStepEnum, StoryTypeEnum, StyleEnums } from "@/enums";
 import DOMPurify from "dompurify";
 import { DemoProps } from "./types";
 import { colorPickerMainColors } from "@/constants";
@@ -115,12 +115,32 @@ const Demo = ({
   );
 
   const isFullHeight = useMemo(
-    () =>
-      (!isNotFirstStep || isTextType || !hasButtonsResp) &&
-      !isCreationMode &&
-      !isSquare,
-    [isNotFirstStep, isSquare, isTextType, hasButtonsResp, isCreationMode]
+    () => (isCreationMode && !isNotFirstStep) || isTextType || !isSquare,
+    [isNotFirstStep, isSquare, isTextType, isCreationMode]
   );
+
+  const isSpaceBetween = useMemo(
+    () =>
+      type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP ||
+      type === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
+      type === StoryTypeEnum.COMBINED,
+    [type]
+  );
+
+  const isSquareBtnVisible = useMemo(
+    () =>
+      isCreationMode &&
+      (type === StoryTypeEnum.COMBINED ||
+        type === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
+        type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP),
+    [isCreationMode, type]
+  );
+
+  useEffect(() => {
+    if (isCreationMode && isTextType && squareBtnHandler) {
+      squareBtnHandler(false);
+    }
+  }, [isCreationMode, isTextType, squareBtnHandler, isSquare]);
 
   return (
     <>
@@ -135,12 +155,12 @@ const Demo = ({
       >
         <AnimatePresence>
           {((isHovered && coverImgSrc && squareBtnHandler) || isSquare) &&
-            isCreationMode && (
+            isSquareBtnVisible && (
               <motion.div {...opacityAnimation} key="1">
                 <SquareBtn
                   icon={<MakeSquareIcon />}
                   $isActive={isSquare}
-                  onClick={squareBtnHandler}
+                  onClick={() => squareBtnHandler?.(!isSquare)}
                 />
               </motion.div>
             )}
@@ -164,9 +184,7 @@ const Demo = ({
         )}
         <ResponseTitleWrapper
           $isFullHeight={isFullHeight}
-          $isTextTypeWithBtnResp={
-            type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP
-          }
+          $justifyContent={isSpaceBetween}
         >
           <TitlePreview
             dangerouslySetInnerHTML={createMarkup}
