@@ -10,7 +10,7 @@ export interface DemoProps {
   isHovered?: boolean;
   coverImgSrc: string;
   isColorPickerOpen?: boolean;
-  squareBtnHandler?: () => void;
+  squareBtnHandler?: (state: boolean) => void;
   colorPickerBtnHandler?: () => void;
   flowMouseLeave?: (state: boolean) => void;
   flowMouseEnter?: (state: boolean) => void;

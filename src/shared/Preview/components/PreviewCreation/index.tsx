@@ -57,7 +57,7 @@ const PreviewCreation = () => {
         isColorPickerOpen={isColorPickerOpen}
         colorPickerBtnHandler={() => setColorPickerState((ps) => !ps)}
         colorPickerOnChange={(newColor) => setColor(newColor)}
-        squareBtnHandler={() => setSquareState((ps) => !ps)}
+        squareBtnHandler={(state) => setSquareState(state)}
       />
     </PreviewFlowWrapper>
   );
