@@ -9,3 +9,4 @@ export { default as CreationFlowFooter } from "./CreationFlowFooter";
 export { default as EmailVerificationNotifier } from "./EmailVerificationNotifier";
 export { default as Preview } from "./Preview";
 export { default as PreviewMobileDrawer } from "./PreviewMobileDrawer";
+export { default as ResizableTextArea } from "./ResizableTextArea";

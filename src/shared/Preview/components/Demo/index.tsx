@@ -3,6 +3,7 @@ import { ColorPickerIcon, MakeSquareIcon } from "@/icons";
 import { AnimatePresence, motion } from "framer-motion";
 import ResponsePreviewBtn from "@/shared/ResponsePreviewBtn";
 import PreviewSlider from "@/shared/Preview/components/PreviewSlider";
+import { ResizableTextArea } from "@/shared";
 import CredentialsForm from "@/shared/Preview/components/CredentialsForm";
 import { dynamicFontSizeHelpers } from "@helpers/dynamicFontSizeHelpers";
 import { StoryStepEnum, StoryTypeEnum, StyleEnums } from "@/enums";
@@ -142,6 +143,10 @@ const Demo = ({
     }
   }, [isCreationMode, isTextType, squareBtnHandler, isSquare]);
 
+  const handleSendTextFeedback = (msg: string) => {
+    console.log(msg, 1111);
+  };
+
   return (
     <>
       <PreviewFlow
@@ -220,6 +225,14 @@ const Demo = ({
           isOpen={isCredentialDrawerOpen}
           onClose={() => setCredentialDrawerState(false)}
         />
+        {!isCreationMode && (
+          <ResizableTextArea
+            isFixed={true}
+            isDisabled={false}
+            positionProps={{ bottom: "8%" }}
+            handleSend={handleSendTextFeedback}
+          />
+        )}
       </PreviewFlow>
     </>
   );
