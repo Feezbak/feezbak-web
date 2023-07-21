@@ -41,12 +41,15 @@ export const PreviewFlow = styled(motion.div)<{
 export const TitlePreview = styled(motion.div)<{
   readonly $titleShadowColor: string;
   readonly $isTextTypeWithBtnResp: boolean;
-  readonly $fontSize: string;
 }>`
-  font-size: ${prop("$fontSize")}rem;
-  line-height: ${prop("$fontSize")}rem;
+  user-select: none;
+  max-height: 30rem;
+  overflow-y: auto;
+  font-size: 1.6rem;
+  line-height: 2.5rem;
   letter-spacing: -0.02em;
   z-index: 2;
+  ${FlexBoxEnum.StartStartVertical}
 
   h3 {
     color: ${StyleEnums.black};
