@@ -1,13 +1,14 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useRef } from "react";
 import { ColorPickerIcon, MakeSquareIcon } from "@/icons";
 import { AnimatePresence, motion } from "framer-motion";
 import ResponsePreviewBtn from "@/shared/ResponsePreviewBtn";
 import PreviewSlider from "@/shared/Preview/components/PreviewSlider";
 import { ResizableTextArea } from "@/shared";
 import CredentialsForm from "@/shared/Preview/components/CredentialsForm";
-import { dynamicFontSizeHelpers } from "@helpers/dynamicFontSizeHelpers";
 import { StoryStepEnum, StoryTypeEnum, StyleEnums } from "@/enums";
 import DOMPurify from "dompurify";
+import Slider from "react-slick";
+import { useParams } from "react-router-dom";
 import { DemoProps } from "./types";
 import { colorPickerMainColors } from "@/constants";
 import {
@@ -46,6 +47,9 @@ const Demo = ({
   images,
   currentStep,
 }: DemoProps) => {
+  const { id: storyId } = useParams();
+  const sliderRef = useRef<Slider | null>(null);
+  const [activeSlideId, setActiveSlide] = useState("");
   const [isCredentialDrawerOpen, setCredentialDrawerState] = useState(false);
 
   useEffect(() => {
@@ -94,10 +98,6 @@ const Demo = ({
     [type]
   );
 
-  const dynamicFontSize = useMemo(() => {
-    return dynamicFontSizeHelpers(40, 60, title, "rem");
-  }, [title]);
-
   const hasOutline = useMemo(
     () => color.toUpperCase() === StyleEnums.white,
     [color]
@@ -144,7 +144,24 @@ const Demo = ({
   }, [isCreationMode, isTextType, squareBtnHandler, isSquare]);
 
   const handleSendTextFeedback = (msg: string) => {
-    console.log(msg, 1111);
+    if (type === StoryTypeEnum.TEXT_VOTING_ONLY_TEXT_RESP) {
+      const feedbackResult = {
+        msg,
+        id: storyId,
+        type,
+      };
+      console.log(feedbackResult, 1111);
+    } else if (type === StoryTypeEnum.IMAGE_VOTING_ONLY_TEXT_RESP) {
+      const feedbackResult = {
+        msg,
+        type,
+        id: storyId,
+        imageId: activeSlideId,
+      };
+      console.log(feedbackResult, 1111);
+      //todo change slide when request will be succeded!
+      sliderRef?.current?.slickNext();
+    }
   };
 
   return (
@@ -181,6 +198,8 @@ const Demo = ({
         </AnimatePresence>
         {!!images.length && (
           <PreviewSlider
+            setActiveSlide={setActiveSlide}
+            ref={sliderRef}
             images={images}
             hasCover={!!coverImgSrc?.length}
             hasLayer={hasLayer || !isCreationMode}
@@ -193,7 +212,6 @@ const Demo = ({
         >
           <TitlePreview
             dangerouslySetInnerHTML={createMarkup}
-            $fontSize={dynamicFontSize}
             $titleShadowColor={titleShadowColor}
             $isTextTypeWithBtnResp={
               type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP

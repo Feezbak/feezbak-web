@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, forwardRef, useState, useEffect } from "react";
 import { SliderContainer } from "./styles";
 import Slider from "react-slick";
 import { slickSettings, Image } from "@/constants";
@@ -10,13 +10,27 @@ interface Props {
   hasCover: boolean;
   isSquare: boolean;
   hasLayer: boolean;
+  setActiveSlide: (slideId: string) => void;
   images: Image[];
 }
 
-const PreviewSlider = ({ hasCover, isSquare, hasLayer, images }: Props) => {
+const PreviewSlider = (
+  { hasCover, isSquare, hasLayer, images, setActiveSlide }: Props,
+  ref: any
+) => {
+  const [activeId, setActiveId] = useState(images[0].id);
+
+  useEffect(() => {
+    setActiveSlide && setActiveSlide(activeId);
+  }, [activeId, setActiveSlide]);
+
   return (
     <SliderContainer>
-      <Slider {...slickSettings}>
+      <Slider
+        {...slickSettings}
+        ref={ref}
+        afterChange={(currentSlide) => setActiveId(currentSlide + "")}
+      >
         {images?.map((image) => (
           <PreviewSlide
             hasCover={hasCover}
@@ -36,4 +50,4 @@ const PreviewSlider = ({ hasCover, isSquare, hasLayer, images }: Props) => {
   );
 };
 
-export default memo(PreviewSlider);
+export default memo(forwardRef(PreviewSlider));

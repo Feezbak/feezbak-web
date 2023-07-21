@@ -7,7 +7,7 @@ const { TextArea } = Input;
 export const TextAreaWrapper = styled.div<{ readonly $isFixed: boolean }>`
   position: ${ifProp("$isFixed", "absolute", "static")};
   z-index: 3;
-  width: 92%;
+  width: 84%;
   border-radius: 1.25rem;
   padding: 1.25rem;
   background: ${StyleEnums.white};
