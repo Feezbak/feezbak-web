@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { ColorPickerIcon, MakeSquareIcon } from "@/icons";
 import { AnimatePresence, motion } from "framer-motion";
 import ResponsePreviewBtn from "@/shared/ResponsePreviewBtn";
@@ -9,7 +9,8 @@ import { StoryStepEnum, StoryTypeEnum, StyleEnums } from "@/enums";
 import DOMPurify from "dompurify";
 import Slider from "react-slick";
 import { useParams } from "react-router-dom";
-import { DemoProps } from "./types";
+import { DemoProps, Feedback } from "./types";
+import { handleResponse } from "./utils";
 import { colorPickerMainColors } from "@/constants";
 import {
   opacityAnimation,
@@ -38,6 +39,7 @@ const Demo = ({
   isHovered = false,
   isInfoCollectionAllowed = false,
   isCreationMode = true,
+  isMultiple = false,
   isColorPickerOpen = false,
   colorPickerOnChange,
   squareBtnHandler,
@@ -51,6 +53,7 @@ const Demo = ({
   const sliderRef = useRef<Slider | null>(null);
   const [activeSlideId, setActiveSlide] = useState("");
   const [isCredentialDrawerOpen, setCredentialDrawerState] = useState(false);
+  const [feedback, setFeedback] = useState<Feedback | null>(null);
 
   useEffect(() => {
     isCreationMode &&
@@ -59,6 +62,15 @@ const Demo = ({
           isInfoCollectionAllowed
       );
   }, [currentStep, isCreationMode, isInfoCollectionAllowed]);
+
+  useEffect(() => {
+    if (feedback) {
+      if (feedback.isComplete) {
+        console.log(feedback, 11111);
+        //Send Request with feedback object and show Complete layer
+      }
+    }
+  }, [feedback]);
 
   const isNotFirstStep = useMemo(
     () => currentStep !== StoryStepEnum.TITLE_STEP,
@@ -120,22 +132,17 @@ const Demo = ({
     [isNotFirstStep, isSquare, isTextType, isCreationMode]
   );
 
-  const isSpaceBetween = useMemo(
-    () =>
-      type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP ||
-      type === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
-      type === StoryTypeEnum.COMBINED,
-    [type]
+  const isSquareBtnVisible = useMemo(
+    () => isCreationMode && hasButtonsResp,
+    [isCreationMode, hasButtonsResp]
   );
 
-  const isSquareBtnVisible = useMemo(
-    () =>
-      isCreationMode &&
-      (type === StoryTypeEnum.COMBINED ||
-        type === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
-        type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP),
-    [isCreationMode, type]
-  );
+  const isTextRespRequired = useMemo(() => {
+    return (
+      type === StoryTypeEnum.TEXT_VOTING_ONLY_TEXT_RESP ||
+      type === StoryTypeEnum.IMAGE_VOTING_ONLY_TEXT_RESP
+    );
+  }, [type]);
 
   useEffect(() => {
     if (isCreationMode && isTextType && squareBtnHandler) {
@@ -143,25 +150,35 @@ const Demo = ({
     }
   }, [isCreationMode, isTextType, squareBtnHandler, isSquare]);
 
-  const handleSendTextFeedback = (msg: string) => {
-    if (type === StoryTypeEnum.TEXT_VOTING_ONLY_TEXT_RESP) {
-      const feedbackResult = {
-        msg,
-        id: storyId,
-        type,
-      };
-      console.log(feedbackResult, 1111);
-    } else if (type === StoryTypeEnum.IMAGE_VOTING_ONLY_TEXT_RESP) {
-      const feedbackResult = {
-        msg,
-        type,
-        id: storyId,
-        imageId: activeSlideId,
-      };
-      console.log(feedbackResult, 1111);
-      //todo change slide when request will be succeded!
-      sliderRef?.current?.slickNext();
-    }
+  const handleTextFeedback = (msg: string) => {
+    handleResponse(
+      type,
+      feedback,
+      setFeedback,
+      () => sliderRef?.current?.slickNext(),
+      isMultiple,
+      storyId!,
+      msg,
+      images,
+      activeSlideId
+    );
+  };
+
+  const handleButtonFeedback = (actionData: any) => {
+    if (isCreationMode) return;
+
+    handleResponse(
+      type,
+      feedback,
+      setFeedback,
+      () => sliderRef?.current?.slickNext(),
+      isMultiple,
+      storyId!,
+      actionData.text,
+      images,
+      activeSlideId,
+      actionData.id
+    );
   };
 
   return (
@@ -198,7 +215,7 @@ const Demo = ({
         </AnimatePresence>
         {!!images.length && (
           <PreviewSlider
-            setActiveSlide={setActiveSlide}
+            setActiveSlide={!isCreationMode ? setActiveSlide : undefined}
             ref={sliderRef}
             images={images}
             hasCover={!!coverImgSrc?.length}
@@ -208,20 +225,22 @@ const Demo = ({
         )}
         <ResponseTitleWrapper
           $isFullHeight={isFullHeight}
-          $justifyContent={isSpaceBetween}
+          $justifyContent={hasButtonsResp}
         >
           <TitlePreview
             dangerouslySetInnerHTML={createMarkup}
             $titleShadowColor={titleShadowColor}
-            $isTextTypeWithBtnResp={
-              type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP
-            }
+            $hasBtnResp={hasButtonsResp}
           />
           {(isNotFirstStep || !isCreationMode) && hasButtonsResp && (
             <Responses>
               <AnimatePresence initial={false}>
                 {responseButtons.map((respBtn) => (
-                  <ResponsePreviewBtn key={respBtn.id} text={respBtn.text} />
+                  <ResponsePreviewBtn
+                    key={respBtn.id}
+                    text={respBtn.text}
+                    action={() => handleButtonFeedback(respBtn)}
+                  />
                 ))}
               </AnimatePresence>
             </Responses>
@@ -243,12 +262,12 @@ const Demo = ({
           isOpen={isCredentialDrawerOpen}
           onClose={() => setCredentialDrawerState(false)}
         />
-        {!isCreationMode && (
+        {!isCreationMode && isTextRespRequired && (
           <ResizableTextArea
             isFixed={true}
-            isDisabled={false}
+            isDisabled={!!feedback?.isComplete}
             positionProps={{ bottom: "8%" }}
-            handleSend={handleSendTextFeedback}
+            handleSend={handleTextFeedback}
           />
         )}
       </PreviewFlow>

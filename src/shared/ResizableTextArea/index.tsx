@@ -7,6 +7,7 @@ interface Props {
   isFixed: boolean;
   isDisabled: boolean;
   handleSend: (msg: string) => void;
+  defaultValue?: string;
   positionProps?: {
     top?: string;
     bottom?: string;
@@ -20,12 +21,18 @@ const ResizableTextArea: FC<Props> = ({
   positionProps,
   handleSend,
   isDisabled,
+  defaultValue = "",
 }) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(defaultValue);
   const debouncedData = useDebounce(value, 200);
 
   const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
+  };
+
+  const handleSendAction = () => {
+    handleSend(debouncedData);
+    setValue("");
   };
 
   return (
@@ -38,9 +45,10 @@ const ResizableTextArea: FC<Props> = ({
         autoSize={{ minRows: 1, maxRows: 28 }}
       />
       <SendMSGBtn
+        type="primary"
         icon={<SendIcon />}
         disabled={!value.length || isDisabled}
-        onClick={() => handleSend(debouncedData)}
+        onClick={handleSendAction}
       />
     </TextAreaWrapper>
   );

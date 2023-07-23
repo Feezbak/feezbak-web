@@ -40,10 +40,10 @@ export const PreviewFlow = styled(motion.div)<{
 
 export const TitlePreview = styled(motion.div)<{
   readonly $titleShadowColor: string;
-  readonly $isTextTypeWithBtnResp: boolean;
+  readonly $hasBtnResp: boolean;
 }>`
   user-select: none;
-  max-height: 30rem;
+  max-height: ${ifProp("$hasBtnResp", "17", "30")}rem;
   overflow-y: auto;
   font-size: 1.6rem;
   line-height: 2.5rem;
@@ -116,7 +116,7 @@ export const ResponseTitleWrapper = styled.div<{
   width: 80%;
   display: flex;
   border-radius: 2.5rem;
-  padding: ${ifProp("$justifyContent", "60% 0 12% 0", "inherit")};
+  padding: ${ifProp("$justifyContent", "55% 0 12% 0", "inherit")};
   justify-content: ${ifProp("$justifyContent", "space-between", "center")};
   align-items: center;
   flex-direction: column;

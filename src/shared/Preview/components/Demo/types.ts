@@ -8,6 +8,7 @@ export interface DemoProps {
   type: StoryTypeEnum;
   isSquare: boolean;
   isHovered?: boolean;
+  isMultiple?: boolean;
   coverImgSrc: string;
   isColorPickerOpen?: boolean;
   squareBtnHandler?: (state: boolean) => void;
@@ -21,4 +22,16 @@ export interface DemoProps {
   isCreationMode: boolean;
   isInfoCollectionAllowed?: boolean;
   currentStep?: StoryStepEnum;
+}
+
+export interface Feedback {
+  id: string;
+  type: StoryTypeEnum;
+  isComplete: boolean;
+  isMultiple: boolean;
+  responses: {
+    msg: string;
+    imageId?: string;
+    respBtnId?: string;
+  }[];
 }

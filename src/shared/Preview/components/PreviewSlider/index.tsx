@@ -10,7 +10,7 @@ interface Props {
   hasCover: boolean;
   isSquare: boolean;
   hasLayer: boolean;
-  setActiveSlide: (slideId: string) => void;
+  setActiveSlide?: (slideId: string) => void;
   images: Image[];
 }
 
@@ -29,7 +29,7 @@ const PreviewSlider = (
       <Slider
         {...slickSettings}
         ref={ref}
-        afterChange={(currentSlide) => setActiveId(currentSlide + "")}
+        afterChange={(currentSlide) => setActiveId(images[currentSlide].id)}
       >
         {images?.map((image) => (
           <PreviewSlide

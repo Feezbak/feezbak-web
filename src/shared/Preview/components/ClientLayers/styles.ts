@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Button } from "antd";
-import { StyleEnums, FlexBoxEnum } from "@/enums";
+import { inLessThan } from "@/helpers";
+import { StyleEnums, FlexBoxEnum, BreakpointEnums } from "@/enums";
 
 export const LayersSelectionWrapper = styled(motion.div)`
   position: absolute;
@@ -12,6 +13,9 @@ export const LayersSelectionWrapper = styled(motion.div)`
   z-index: 3;
   border-radius: 2.75rem;
   background: ${StyleEnums.primary};
+  ${inLessThan(BreakpointEnums.mobile)`
+     border-radius: 0;
+  `}
 `;
 
 export const LayerWrapper = styled(motion.div)`
