@@ -1,5 +1,6 @@
-import React from "react";
-import FlowSelector from "./components/FlowSelector";
+import React, { lazy } from "react";
+
+const FlowSelector = lazy(() => import("./components/FlowSelector"));
 
 interface Props {
   isCreationMode?: boolean;

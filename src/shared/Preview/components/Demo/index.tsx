@@ -1,14 +1,16 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { ColorPickerIcon, MakeSquareIcon } from "@/icons";
 import { AnimatePresence, motion } from "framer-motion";
 import ResponsePreviewBtn from "@/shared/ResponsePreviewBtn";
 import PreviewSlider from "@/shared/Preview/components/PreviewSlider";
+import { ResizableTextArea } from "@/shared";
 import CredentialsForm from "@/shared/Preview/components/CredentialsForm";
-import { dynamicFontSizeHelpers } from "@helpers/dynamicFontSizeHelpers";
-import { StoryTypeEnum, StyleEnums, StoryStepEnum } from "@/enums";
+import { StoryStepEnum, StoryTypeEnum, StyleEnums } from "@/enums";
 import DOMPurify from "dompurify";
-import { DemoProps } from "./types";
-import { useResponsive } from "@/hooks";
+import Slider from "react-slick";
+import { useParams } from "react-router-dom";
+import { DemoProps, Feedback } from "./types";
+import { handleResponse } from "./utils";
 import { colorPickerMainColors } from "@/constants";
 import {
   opacityAnimation,
@@ -37,6 +39,7 @@ const Demo = ({
   isHovered = false,
   isInfoCollectionAllowed = false,
   isCreationMode = true,
+  isMultiple = false,
   isColorPickerOpen = false,
   colorPickerOnChange,
   squareBtnHandler,
@@ -46,8 +49,11 @@ const Demo = ({
   images,
   currentStep,
 }: DemoProps) => {
+  const { id: storyId } = useParams();
+  const sliderRef = useRef<Slider | null>(null);
+  const [activeSlideId, setActiveSlide] = useState("");
   const [isCredentialDrawerOpen, setCredentialDrawerState] = useState(false);
-  const { isLessThanSm } = useResponsive();
+  const [feedback, setFeedback] = useState<Feedback | null>(null);
 
   useEffect(() => {
     isCreationMode &&
@@ -56,6 +62,15 @@ const Demo = ({
           isInfoCollectionAllowed
       );
   }, [currentStep, isCreationMode, isInfoCollectionAllowed]);
+
+  useEffect(() => {
+    if (feedback) {
+      if (feedback.isComplete) {
+        console.log(feedback, 11111);
+        //Send Request with feedback object and show Complete layer
+      }
+    }
+  }, [feedback]);
 
   const isNotFirstStep = useMemo(
     () => currentStep !== StoryStepEnum.TITLE_STEP,
@@ -95,10 +110,6 @@ const Demo = ({
     [type]
   );
 
-  const dynamicFontSize = useMemo(() => {
-    return dynamicFontSizeHelpers(40, 60, title, "rem");
-  }, [title]);
-
   const hasOutline = useMemo(
     () => color.toUpperCase() === StyleEnums.white,
     [color]
@@ -117,11 +128,58 @@ const Demo = ({
   );
 
   const isFullHeight = useMemo(
-    () =>
-      (!isNotFirstStep || isTextType || !hasButtonsResp || !isCreationMode) &&
-      !isSquare,
-    [isNotFirstStep, isSquare, isTextType, hasButtonsResp, isCreationMode]
+    () => (isCreationMode && !isNotFirstStep) || isTextType || !isSquare,
+    [isNotFirstStep, isSquare, isTextType, isCreationMode]
   );
+
+  const isSquareBtnVisible = useMemo(
+    () => isCreationMode && hasButtonsResp,
+    [isCreationMode, hasButtonsResp]
+  );
+
+  const isTextRespRequired = useMemo(() => {
+    return (
+      type === StoryTypeEnum.TEXT_VOTING_ONLY_TEXT_RESP ||
+      type === StoryTypeEnum.IMAGE_VOTING_ONLY_TEXT_RESP
+    );
+  }, [type]);
+
+  useEffect(() => {
+    if (isCreationMode && isTextType && squareBtnHandler) {
+      squareBtnHandler(false);
+    }
+  }, [isCreationMode, isTextType, squareBtnHandler, isSquare]);
+
+  const handleTextFeedback = (msg: string) => {
+    handleResponse(
+      type,
+      feedback,
+      setFeedback,
+      () => sliderRef?.current?.slickNext(),
+      isMultiple,
+      storyId!,
+      msg,
+      images,
+      activeSlideId
+    );
+  };
+
+  const handleButtonFeedback = (actionData: any) => {
+    if (isCreationMode) return;
+
+    handleResponse(
+      type,
+      feedback,
+      setFeedback,
+      () => sliderRef?.current?.slickNext(),
+      isMultiple,
+      storyId!,
+      actionData.text,
+      images,
+      activeSlideId,
+      actionData.id
+    );
+  };
 
   return (
     <>
@@ -129,18 +187,19 @@ const Demo = ({
         $background={color}
         $hasOutline={hasOutline}
         $isSquare={isSquare}
-        $hasBorderRadius={isCreationMode ? true : !isLessThanSm}
+        $hasBorderRadius={!isCreationMode}
         onMouseLeave={() => flowMouseLeave?.(false)}
         onMouseEnter={() => flowMouseEnter?.(true)}
+        {...opacityWithScaleAnimation}
       >
         <AnimatePresence>
           {((isHovered && coverImgSrc && squareBtnHandler) || isSquare) &&
-            isCreationMode && (
+            isSquareBtnVisible && (
               <motion.div {...opacityAnimation} key="1">
                 <SquareBtn
                   icon={<MakeSquareIcon />}
                   $isActive={isSquare}
-                  onClick={squareBtnHandler}
+                  onClick={() => squareBtnHandler?.(!isSquare)}
                 />
               </motion.div>
             )}
@@ -156,6 +215,8 @@ const Demo = ({
         </AnimatePresence>
         {!!images.length && (
           <PreviewSlider
+            setActiveSlide={!isCreationMode ? setActiveSlide : undefined}
+            ref={sliderRef}
             images={images}
             hasCover={!!coverImgSrc?.length}
             hasLayer={hasLayer || !isCreationMode}
@@ -164,23 +225,22 @@ const Demo = ({
         )}
         <ResponseTitleWrapper
           $isFullHeight={isFullHeight}
-          $isTextTypeWithBtnResp={
-            type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP
-          }
+          $justifyContent={hasButtonsResp}
         >
           <TitlePreview
             dangerouslySetInnerHTML={createMarkup}
-            $fontSize={dynamicFontSize}
             $titleShadowColor={titleShadowColor}
-            $isTextTypeWithBtnResp={
-              type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP
-            }
+            $hasBtnResp={hasButtonsResp}
           />
           {(isNotFirstStep || !isCreationMode) && hasButtonsResp && (
             <Responses>
               <AnimatePresence initial={false}>
                 {responseButtons.map((respBtn) => (
-                  <ResponsePreviewBtn key={respBtn.id} text={respBtn.text} />
+                  <ResponsePreviewBtn
+                    key={respBtn.id}
+                    text={respBtn.text}
+                    action={() => handleButtonFeedback(respBtn)}
+                  />
                 ))}
               </AnimatePresence>
             </Responses>
@@ -202,6 +262,14 @@ const Demo = ({
           isOpen={isCredentialDrawerOpen}
           onClose={() => setCredentialDrawerState(false)}
         />
+        {!isCreationMode && isTextRespRequired && (
+          <ResizableTextArea
+            isFixed={true}
+            isDisabled={!!feedback?.isComplete}
+            positionProps={{ bottom: "8%" }}
+            handleSend={handleTextFeedback}
+          />
+        )}
       </PreviewFlow>
     </>
   );
