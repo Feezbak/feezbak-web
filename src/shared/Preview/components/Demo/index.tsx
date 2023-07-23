@@ -9,7 +9,8 @@ import { StoryStepEnum, StoryTypeEnum, StyleEnums } from "@/enums";
 import DOMPurify from "dompurify";
 import Slider from "react-slick";
 import { useParams } from "react-router-dom";
-import { DemoProps } from "./types";
+import { DemoProps, Feedback } from "./types";
+import { handleResponse } from "./utils";
 import { colorPickerMainColors } from "@/constants";
 import {
   opacityAnimation,
@@ -25,18 +26,6 @@ import {
   SquareBtn,
   TitlePreview,
 } from "./styles";
-
-interface Feedback {
-  id: string;
-  type: StoryTypeEnum;
-  isComplete: boolean;
-  isMultiple: boolean;
-  responses: {
-    msg: string;
-    imageId?: string;
-    respBtnId?: string;
-  }[];
-}
 
 const Demo = ({
   color,
@@ -162,112 +151,34 @@ const Demo = ({
   }, [isCreationMode, isTextType, squareBtnHandler, isSquare]);
 
   const handleTextFeedback = (msg: string) => {
-    if (type === StoryTypeEnum.TEXT_VOTING_ONLY_TEXT_RESP) {
-      const feedbackResult = {
-        id: storyId!,
-        type,
-        isComplete: true,
-        isMultiple: false,
-        responses: [
-          {
-            msg,
-          },
-        ],
-      };
-      setFeedback(feedbackResult);
-    } else if (type === StoryTypeEnum.IMAGE_VOTING_ONLY_TEXT_RESP) {
-      const isComplete =
-        images[images.length - 1].id === activeSlideId || !isMultiple;
-      const feedbackResult = {
-        id: storyId!,
-        type,
-        isComplete,
-        isMultiple,
-        responses: [
-          {
-            msg,
-            imageId: activeSlideId,
-          },
-        ],
-      };
-      if (feedback) {
-        setFeedback(
-          (ps) =>
-            ps && {
-              ...ps,
-              isComplete,
-              isMultiple,
-              responses: [
-                ...ps!.responses,
-                {
-                  msg,
-                  imageId: activeSlideId,
-                },
-              ],
-            }
-        );
-      } else {
-        setFeedback(feedbackResult);
-      }
-      isMultiple && sliderRef?.current?.slickNext();
-    }
+    handleResponse(
+      type,
+      feedback,
+      setFeedback,
+      () => sliderRef?.current?.slickNext(),
+      isMultiple,
+      storyId!,
+      msg,
+      images,
+      activeSlideId
+    );
   };
 
   const handleButtonFeedback = (actionData: any) => {
     if (isCreationMode) return;
 
-    if (type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP) {
-      const feedbackResult = {
-        id: storyId!,
-        type,
-        isComplete: true,
-        isMultiple: false,
-        responses: [
-          {
-            msg: actionData.text,
-            respBtnId: actionData.id,
-          },
-        ],
-      };
-      setFeedback(feedbackResult);
-    } else if (type === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP) {
-      const isComplete =
-        images[images.length - 1].id === activeSlideId || !isMultiple;
-      const feedbackResult = {
-        id: storyId!,
-        type,
-        isComplete,
-        isMultiple,
-        responses: [
-          {
-            msg: actionData.text,
-            imageId: activeSlideId,
-            respBtnId: actionData.id,
-          },
-        ],
-      };
-      if (feedback) {
-        setFeedback(
-          (ps) =>
-            ps && {
-              ...ps,
-              isComplete,
-              isMultiple,
-              responses: [
-                ...ps!.responses,
-                {
-                  msg: actionData.text,
-                  imageId: activeSlideId,
-                  respBtnId: actionData.id,
-                },
-              ],
-            }
-        );
-      } else {
-        setFeedback(feedbackResult);
-      }
-      isMultiple && sliderRef?.current?.slickNext();
-    }
+    handleResponse(
+      type,
+      feedback,
+      setFeedback,
+      () => sliderRef?.current?.slickNext(),
+      isMultiple,
+      storyId!,
+      actionData.text,
+      images,
+      activeSlideId,
+      actionData.id
+    );
   };
 
   return (
@@ -354,7 +265,7 @@ const Demo = ({
         {!isCreationMode && isTextRespRequired && (
           <ResizableTextArea
             isFixed={true}
-            isDisabled={false}
+            isDisabled={!!feedback?.isComplete}
             positionProps={{ bottom: "8%" }}
             handleSend={handleTextFeedback}
           />

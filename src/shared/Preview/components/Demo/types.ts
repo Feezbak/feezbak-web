@@ -23,3 +23,15 @@ export interface DemoProps {
   isInfoCollectionAllowed?: boolean;
   currentStep?: StoryStepEnum;
 }
+
+export interface Feedback {
+  id: string;
+  type: StoryTypeEnum;
+  isComplete: boolean;
+  isMultiple: boolean;
+  responses: {
+    msg: string;
+    imageId?: string;
+    respBtnId?: string;
+  }[];
+}
