@@ -40,6 +40,7 @@ const FeedbackView = ({ storyData }: Props) => {
             type={type}
             coverImgSrc={selectedImgSrc}
             images={images}
+            isMultiple={storyData.isMultiple}
             isSquare={isSquare}
             color={background}
             userInfoFields={userInfoFields}

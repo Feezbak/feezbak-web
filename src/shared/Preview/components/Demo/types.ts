@@ -8,6 +8,7 @@ export interface DemoProps {
   type: StoryTypeEnum;
   isSquare: boolean;
   isHovered?: boolean;
+  isMultiple?: boolean;
   coverImgSrc: string;
   isColorPickerOpen?: boolean;
   squareBtnHandler?: (state: boolean) => void;
