@@ -54,6 +54,7 @@ const Demo = ({
   const [activeSlideId, setActiveSlide] = useState("");
   const [isCredentialDrawerOpen, setCredentialDrawerState] = useState(false);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
+  const [respBtnId, setRespBtnId] = useState("");
 
   useEffect(() => {
     isCreationMode &&
@@ -151,34 +152,54 @@ const Demo = ({
   }, [isCreationMode, isTextType, squareBtnHandler, isSquare]);
 
   const handleTextFeedback = (msg: string) => {
-    handleResponse(
-      type,
-      feedback,
-      setFeedback,
-      () => sliderRef?.current?.slickNext(),
-      isMultiple,
-      storyId!,
-      msg,
-      images,
-      activeSlideId
-    );
+    if (type === StoryTypeEnum.COMBINED) {
+      handleResponse(
+        type,
+        feedback,
+        setFeedback,
+        () => sliderRef?.current?.slickNext(),
+        isMultiple,
+        storyId!,
+        msg,
+        images,
+        activeSlideId,
+        respBtnId,
+        () => setRespBtnId("")
+      );
+    } else {
+      handleResponse(
+        type,
+        feedback,
+        setFeedback,
+        () => sliderRef?.current?.slickNext(),
+        isMultiple,
+        storyId!,
+        msg,
+        images,
+        activeSlideId
+      );
+    }
   };
 
   const handleButtonFeedback = (actionData: any) => {
     if (isCreationMode) return;
 
-    handleResponse(
-      type,
-      feedback,
-      setFeedback,
-      () => sliderRef?.current?.slickNext(),
-      isMultiple,
-      storyId!,
-      actionData.text,
-      images,
-      activeSlideId,
-      actionData.id
-    );
+    if (type === StoryTypeEnum.COMBINED) {
+      setRespBtnId(actionData.id);
+    } else {
+      handleResponse(
+        type,
+        feedback,
+        setFeedback,
+        () => sliderRef?.current?.slickNext(),
+        isMultiple,
+        storyId!,
+        "",
+        images,
+        activeSlideId,
+        actionData.id
+      );
+    }
   };
 
   return (
@@ -262,14 +283,17 @@ const Demo = ({
           isOpen={isCredentialDrawerOpen}
           onClose={() => setCredentialDrawerState(false)}
         />
-        {!isCreationMode && isTextRespRequired && (
-          <ResizableTextArea
-            isFixed={true}
-            isDisabled={!!feedback?.isComplete}
-            positionProps={{ bottom: "8%" }}
-            handleSend={handleTextFeedback}
-          />
-        )}
+        <AnimatePresence initial={false}>
+          {((!isCreationMode && isTextRespRequired) || !!respBtnId?.length) && (
+            <ResizableTextArea
+              isFixed={true}
+              isFullHeight={!!respBtnId?.length}
+              isDisabled={!!feedback?.isComplete}
+              positionProps={{ bottom: "8%" }}
+              handleSend={handleTextFeedback}
+            />
+          )}
+        </AnimatePresence>
       </PreviewFlow>
     </>
   );

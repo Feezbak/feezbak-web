@@ -12,7 +12,8 @@ export const handleResponse = (
   msg: string,
   images: Image[],
   activeSlideId?: string,
-  respBtnId?: string
+  respBtnId?: string,
+  cleanSavedRespBtnId?: () => void
 ) => {
   if (type === StoryTypeEnum.TEXT_VOTING_ONLY_TEXT_RESP) {
     const feedbackResult = {
@@ -73,7 +74,10 @@ export const handleResponse = (
       ],
     };
     setFeedback(feedbackResult);
-  } else if (type === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP) {
+  } else if (
+    type === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
+    type === StoryTypeEnum.COMBINED
+  ) {
     const isComplete =
       images[images.length - 1].id === activeSlideId || !isMultiple;
     const feedbackResult = {
@@ -106,6 +110,14 @@ export const handleResponse = (
     } else {
       setFeedback(feedbackResult);
     }
-    isMultiple && slideToNext();
+
+    if (isMultiple) {
+      if (type === StoryTypeEnum.COMBINED) {
+        cleanSavedRespBtnId?.();
+        slideToNext();
+      } else {
+        slideToNext();
+      }
+    }
   }
 };
