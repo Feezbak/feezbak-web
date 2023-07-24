@@ -1,13 +1,25 @@
-import React, { ChangeEvent, useState, FC } from "react";
-import { SendIcon } from "@/icons";
+import React, { ChangeEvent, useState, useEffect, useRef, FC } from "react";
+import { SendIcon, ResizeIcon } from "@/icons";
 import { useDebounce } from "@/hooks";
-import { SendMSGBtn, TextAreaWrapper, TextField } from "./styles";
+import {
+  SendMSGBtn,
+  TextAreaWrapper,
+  TextField,
+  ResizeBtn,
+  ActionsWrapper,
+  Title,
+  Header,
+} from "./styles";
+import { opacityWithScaleAnimation } from "@assets/framerAnimations";
 
 interface Props {
   isFixed: boolean;
   isDisabled: boolean;
   handleSend: (msg: string) => void;
   defaultValue?: string;
+  hasSend?: boolean;
+  hasResize?: boolean;
+  isFullHeight?: boolean;
   positionProps?: {
     top?: string;
     bottom?: string;
@@ -22,7 +34,12 @@ const ResizableTextArea: FC<Props> = ({
   handleSend,
   isDisabled,
   defaultValue = "",
+  hasSend = true,
+  hasResize = true,
+  isFullHeight = false,
 }) => {
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const [isFullSize, setSizeState] = useState(isFullHeight);
   const [value, setValue] = useState(defaultValue);
   const debouncedData = useDebounce(value, 200);
 
@@ -35,20 +52,45 @@ const ResizableTextArea: FC<Props> = ({
     setValue("");
   };
 
+  useEffect(() => {
+    if (textAreaRef.current) {
+      textAreaRef.current.focus();
+    }
+  }, []);
+
   return (
-    <TextAreaWrapper style={positionProps} $isFixed={isFixed}>
+    <TextAreaWrapper
+      style={positionProps}
+      $isFixed={isFixed}
+      {...opacityWithScaleAnimation}
+    >
+      <Header>
+        <Title>Please provide your feedback below!</Title>
+        <ActionsWrapper>
+          {hasResize && (
+            <ResizeBtn
+              icon={<ResizeIcon />}
+              disabled={!value.length || isDisabled}
+              onClick={() => setSizeState((ps) => !ps)}
+            />
+          )}
+          {hasSend && (
+            <SendMSGBtn
+              type="primary"
+              icon={<SendIcon />}
+              disabled={!value.length || isDisabled}
+              onClick={handleSendAction}
+            />
+          )}
+        </ActionsWrapper>
+      </Header>
       <TextField
+        ref={textAreaRef}
+        $isFullSize={isFullSize}
         value={value}
         style={{ resize: "none" }}
         onChange={onChange}
-        placeholder="Please provide your feedback here!"
-        autoSize={{ minRows: 1, maxRows: 28 }}
-      />
-      <SendMSGBtn
-        type="primary"
-        icon={<SendIcon />}
-        disabled={!value.length || isDisabled}
-        onClick={handleSendAction}
+        autoSize={{ minRows: 2, maxRows: 28 }}
       />
     </TextAreaWrapper>
   );
