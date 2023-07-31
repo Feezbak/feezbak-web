@@ -1,7 +1,6 @@
 import { ChangeEvent, FC, useEffect, useMemo, useRef, useState } from "react";
 import { ResizeIcon, GoBackRoundIcon } from "@/icons";
 import { useDebounce } from "@/hooks";
-import { StoryTypeEnum } from "@/enums";
 import { opacityWithScaleAnimation } from "@assets/framerAnimations";
 import {
   ActionsWrapper,
@@ -25,7 +24,6 @@ interface Props {
   hasGoBack?: boolean;
   isFullHeight?: boolean | null;
   isTextRespOnly?: boolean;
-  type?: StoryTypeEnum;
   positionProps?: {
     top?: string;
     bottom?: string;
@@ -39,7 +37,6 @@ const ResizableTextArea: FC<Props> = ({
   positionProps,
   handleSend,
   isDisabled,
-  type,
   defaultValue = "",
   handleClose,
   hasSend = true,
@@ -77,7 +74,7 @@ const ResizableTextArea: FC<Props> = ({
       : !isFullSize
       ? "6rem !important"
       : "32rem !important";
-  }, [type, isFullSize, isTextRespOnly]);
+  }, [isFullSize, isTextRespOnly]);
 
   const handleResize = () => {
     if (isFullSize === null) {

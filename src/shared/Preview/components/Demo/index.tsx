@@ -292,7 +292,6 @@ const Demo = ({
             <ResizableTextArea
               isFixed={true}
               handleClose={handleCloseResizeText}
-              type={type}
               isFullHeight={!!respBtnId?.length}
               isDisabled={!!feedback?.isComplete}
               positionProps={{ bottom: "8%" }}
