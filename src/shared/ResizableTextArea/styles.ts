@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { Input, Button } from "antd";
-import { ifProp } from "@/helpers";
+import { ifProp, prop } from "@/helpers";
 import { FlexBoxEnum, StyleEnums } from "@/enums";
 import { motion } from "framer-motion";
 const { TextArea } = Input;
@@ -17,11 +17,14 @@ export const TextAreaWrapper = styled(motion.div)<{
   ${FlexBoxEnum.CenterVertical}
 `;
 
-export const TextField = styled(TextArea)<{ readonly $isFullSize: boolean }>`
+export const TextField = styled(TextArea)<{ readonly $height: string }>`
   width: 100%;
   padding: 0 0.25rem;
   border: none;
-  height: ${ifProp("$isFullSize", "34rem !important", "unset")};
+  max-height: 33rem !important;
+  min-height: 5rem !important;
+  overflow-y: auto !important;
+  height: ${prop("$height")};
   outline: none;
   box-shadow: none;
   font-size: 1.25rem;
@@ -38,14 +41,22 @@ export const btnStyles = css`
 `;
 
 export const SendMSGBtn = styled(Button)`
-  margin-left: 0.25rem;
-  ${btnStyles}
+  width: 100%;
+  color: ${StyleEnums.white};
+  margin-top: 1rem;
+  background: ${StyleEnums.black};
   ${FlexBoxEnum.CenterHorizontal}
 `;
 
 export const ResizeBtn = styled(Button)`
   background: ${StyleEnums.gray4};
   ${btnStyles}
+  ${FlexBoxEnum.CenterHorizontal}
+`;
+
+export const CloseBtn = styled(Button)`
+  ${btnStyles};
+  margin-right: 0.25rem;
   ${FlexBoxEnum.CenterHorizontal}
 `;
 
