@@ -202,6 +202,10 @@ const Demo = ({
     }
   };
 
+  const handleCloseResizeText = () => {
+    setRespBtnId("");
+  };
+
   return (
     <>
       <PreviewFlow
@@ -287,9 +291,12 @@ const Demo = ({
           {((!isCreationMode && isTextRespRequired) || !!respBtnId?.length) && (
             <ResizableTextArea
               isFixed={true}
+              handleClose={handleCloseResizeText}
               isFullHeight={!!respBtnId?.length}
               isDisabled={!!feedback?.isComplete}
               positionProps={{ bottom: "8%" }}
+              isTextRespOnly={isTextRespRequired}
+              hasGoBack={type === StoryTypeEnum.COMBINED}
               handleSend={handleTextFeedback}
             />
           )}
