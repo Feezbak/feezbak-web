@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useContext } from "react";
+import { useRef, useEffect, useState, useContext } from "react";
 import { Editor as TitleEditor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import { useDebounce } from "@/hooks";
@@ -14,6 +14,7 @@ import {
 } from "draft-js";
 
 const Editor = () => {
+  const characterLimit = 60;
   const editor = useRef(null);
   const { step1, setTitleData } = useContext(StoryCreationContext);
   const [convertedContent, setConvertedContent] = useState(
@@ -29,6 +30,22 @@ const Editor = () => {
       )
     )
   );
+
+  const handleEditorStateChange = (newEditorState: any) => {
+    const content = newEditorState.getCurrentContent();
+    const text = content.getPlainText();
+    if (text.length <= characterLimit) {
+      setEditorState(newEditorState);
+    } else {
+      const currentContent = editorState.getCurrentContent();
+      const lastBlock = currentContent.getLastBlock();
+      const lastBlockText = lastBlock.getText();
+      const newText = lastBlockText.slice(0, -1); // Remove the last character
+      const newContent = ContentState.createFromText(newText);
+
+      setEditorState(EditorState.push(editorState, newContent, "remove-range"));
+    }
+  };
 
   useEffect(() => {
     const editorCurrent = editor?.current as any;
@@ -63,7 +80,6 @@ const Editor = () => {
 
   useEffect(() => {
     if (debouncedData.title !== step1.title) {
-      //todo need to set this to store after sending successful request to back end
       setTitleData(debouncedData);
     }
   }, [debouncedData, step1, setTitleData]);
@@ -73,11 +89,17 @@ const Editor = () => {
       <EditorTitle>Type in the title of your Story</EditorTitle>
       <EditorFocusArea>
         <TitleEditor
+          handlePastedText={(val) => {
+            const textLength = editorState
+              .getCurrentContent()
+              .getPlainText().length;
+            return val.length + textLength <= characterLimit;
+          }}
           placeholder="Do you like my jacket?"
           wrapperClassName="wrapper-class"
           editorClassName="editor-class"
           toolbarClassName="toolbar-class"
-          onEditorStateChange={setEditorState}
+          onEditorStateChange={handleEditorStateChange}
           editorState={editorState}
           toolbar={toolbarOptions}
           toolbarOnFocus

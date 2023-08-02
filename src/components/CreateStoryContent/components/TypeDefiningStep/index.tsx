@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useResponsive } from "@/hooks";
 import CreationWrapper from "./components/CreationWrapper";
 import { Preview, PreviewMobileDrawer } from "@/shared";

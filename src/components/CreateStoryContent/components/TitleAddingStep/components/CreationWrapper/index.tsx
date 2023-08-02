@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from "react";
+import { useContext, useCallback } from "react";
 import Editor from "./components/Editor";
 import { AnanasOnBikeIcon } from "@/icons";
 import { StoryCreationContext } from "@/context";
