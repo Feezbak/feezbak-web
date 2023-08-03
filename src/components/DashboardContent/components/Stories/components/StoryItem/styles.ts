@@ -25,6 +25,9 @@ export const StoryInfoContainer = styled.div`
     font-size: 1rem;
     line-height: 1.5rem;
     white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 35rem;
   }
 
   p {

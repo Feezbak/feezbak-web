@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { inLessThan } from "@/helpers";
+import styled, { css } from "styled-components";
+import { prop, inLessThan } from "@/helpers";
 import { StyleEnums, FlexBoxEnum, BreakpointEnums } from "@/enums";
 
 export const TitleEditorWrapper = styled.div`
@@ -7,10 +7,14 @@ export const TitleEditorWrapper = styled.div`
   ${FlexBoxEnum.StartStartVertical}
 `;
 
-export const EditorTitle = styled.p`
+export const paragraphStyles = css`
   font-size: 1rem;
   line-height: 1.5rem;
   letter-spacing: -0.02em;
+`;
+
+export const EditorTitle = styled.p`
+  ${paragraphStyles}
   margin-bottom: 0.5rem;
 `;
 
@@ -59,4 +63,9 @@ export const EditorFocusArea = styled.div`
       box-shadow: 0 0 2px 2px ${StyleEnums.primary};
     }
   }
+`;
+
+export const MaxLength = styled.p<{ readonly $color: string }>`
+  ${paragraphStyles}
+  color: ${prop("$color")}
 `;
