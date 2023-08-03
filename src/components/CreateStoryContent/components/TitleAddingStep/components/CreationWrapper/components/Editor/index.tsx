@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useContext } from "react";
+import { useRef, useEffect, useState, useContext } from "react";
 import { Editor as TitleEditor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import { useDebounce } from "@/hooks";
@@ -29,6 +29,14 @@ const Editor = () => {
       )
     )
   );
+
+  const handleBeforeInput = () => {
+    if (
+      draftToHtml(convertToRaw(editorState.getCurrentContent())).length >= 60
+    ) {
+      return "handled";
+    }
+  };
 
   useEffect(() => {
     const editorCurrent = editor?.current as any;
@@ -63,7 +71,6 @@ const Editor = () => {
 
   useEffect(() => {
     if (debouncedData.title !== step1.title) {
-      //todo need to set this to store after sending successful request to back end
       setTitleData(debouncedData);
     }
   }, [debouncedData, step1, setTitleData]);
@@ -73,6 +80,7 @@ const Editor = () => {
       <EditorTitle>Type in the title of your Story</EditorTitle>
       <EditorFocusArea>
         <TitleEditor
+          handleBeforeInput={handleBeforeInput}
           placeholder="Do you like my jacket?"
           wrapperClassName="wrapper-class"
           editorClassName="editor-class"
