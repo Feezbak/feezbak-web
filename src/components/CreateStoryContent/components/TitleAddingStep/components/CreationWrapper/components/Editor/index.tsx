@@ -39,7 +39,7 @@ const Editor = () => {
   };
 
   useEffect(() => {
-    const editorCurrent = editor?.current;
+    const editorCurrent = editor?.current as any;
     if (editorCurrent) {
       editorCurrent.focusEditor();
     }
