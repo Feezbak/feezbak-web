@@ -98,8 +98,9 @@
   },
   "devDependencies": {
     "@types/dompurify": "^2.4.0",
-    "@types/draftjs-to-html": "^0.8.1",
     "@types/draft-js": "^0.11.10",
+    "@types/draftjs-to-html": "^0.8.1",
+    "@types/react-draft-wysiwyg": "^1.13.4",
     "@types/lodash.isstring": "^4.0.7",
     "@types/react-helmet": "^6.1.5",
     "@types/react-modal": "^3.13.1",
@@ -112,7 +113,6 @@
     "commitizen": "^4.3.0",
     "craco-alias": "^3.0.1",
     "eslint": "^8.21.0",
-    "@types/react-draft-wysiwyg": "^1.13.4",
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.26.0",
