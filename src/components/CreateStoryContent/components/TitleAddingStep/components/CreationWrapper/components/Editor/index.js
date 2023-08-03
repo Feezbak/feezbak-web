@@ -14,7 +14,6 @@ import {
 } from "draft-js";
 
 const Editor = () => {
-  const characterLimit = 60;
   const editor = useRef(null);
   const { step1, setTitleData } = useContext(StoryCreationContext);
   const [convertedContent, setConvertedContent] = useState(
@@ -31,24 +30,16 @@ const Editor = () => {
     )
   );
 
-  const handleEditorStateChange = (newEditorState: any) => {
-    const content = newEditorState.getCurrentContent();
-    const text = content.getPlainText();
-    if (text.length <= characterLimit) {
-      setEditorState(newEditorState);
-    } else {
-      const currentContent = editorState.getCurrentContent();
-      const lastBlock = currentContent.getLastBlock();
-      const lastBlockText = lastBlock.getText();
-      const newText = lastBlockText.slice(0, -1); // Remove the last character
-      const newContent = ContentState.createFromText(newText);
-
-      setEditorState(EditorState.push(editorState, newContent, "remove-range"));
+  const handleBeforeInput = () => {
+    if (
+      draftToHtml(convertToRaw(editorState.getCurrentContent())).length >= 60
+    ) {
+      return "handled";
     }
   };
 
   useEffect(() => {
-    const editorCurrent = editor?.current as any;
+    const editorCurrent = editor?.current;
     if (editorCurrent) {
       editorCurrent.focusEditor();
     }
@@ -89,17 +80,12 @@ const Editor = () => {
       <EditorTitle>Type in the title of your Story</EditorTitle>
       <EditorFocusArea>
         <TitleEditor
-          handlePastedText={(val) => {
-            const textLength = editorState
-              .getCurrentContent()
-              .getPlainText().length;
-            return val.length + textLength <= characterLimit;
-          }}
+          handleBeforeInput={handleBeforeInput}
           placeholder="Do you like my jacket?"
           wrapperClassName="wrapper-class"
           editorClassName="editor-class"
           toolbarClassName="toolbar-class"
-          onEditorStateChange={handleEditorStateChange}
+          onEditorStateChange={setEditorState}
           editorState={editorState}
           toolbar={toolbarOptions}
           toolbarOnFocus
