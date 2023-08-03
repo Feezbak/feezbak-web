@@ -1,11 +1,21 @@
-import { useRef, useEffect, useState, useContext } from "react";
+import { useRef, useEffect, useState, useContext, useMemo } from "react";
 import { Editor as TitleEditor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import { useDebounce } from "@/hooks";
 import rgbHex from "rgb-hex";
-import { toolbarOptions, storyEditorConvertedContent } from "@/constants";
+import { StyleEnums } from "@/enums";
+import {
+  toolbarOptions,
+  storyEditorConvertedContent,
+  titleMaxLength,
+} from "@/constants";
 import { StoryCreationContext } from "@/context";
-import { TitleEditorWrapper, EditorTitle, EditorFocusArea } from "./styles";
+import {
+  TitleEditorWrapper,
+  EditorTitle,
+  EditorFocusArea,
+  MaxLength,
+} from "./styles";
 import {
   ContentState,
   EditorState,
@@ -32,7 +42,7 @@ const Editor = () => {
 
   const handleBeforeInput = () => {
     if (
-      draftToHtml(convertToRaw(editorState.getCurrentContent())).length >= 60
+      convertToRaw(editorState.getCurrentContent()).blocks[0].text.length >= 60
     ) {
       return "handled";
     }
@@ -75,6 +85,16 @@ const Editor = () => {
     }
   }, [debouncedData, step1, setTitleData]);
 
+  const currentLength = useMemo(() => {
+    return convertToRaw(editorState.getCurrentContent()).blocks[0].text.length;
+  }, [editorState]);
+
+  const color = useMemo(() => {
+    return currentLength === titleMaxLength
+      ? StyleEnums.error
+      : StyleEnums.secondaryTitle;
+  }, [currentLength]);
+
   return (
     <TitleEditorWrapper>
       <EditorTitle>Type in the title of your Story</EditorTitle>
@@ -95,6 +115,9 @@ const Editor = () => {
             trigger: "#",
           }}
         />
+        <MaxLength $color={color as string}>
+          {currentLength}/{titleMaxLength}
+        </MaxLength>
       </EditorFocusArea>
     </TitleEditorWrapper>
   );
