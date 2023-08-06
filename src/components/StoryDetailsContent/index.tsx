@@ -43,7 +43,7 @@ const DashboardContent = () => {
 
   const shareableLink = useMemo(() => {
     return story?.data
-      ? `${process.env.REACT_APP_API_URL}/feedback/${story.data._id}`
+      ? `${process.env.REACT_APP_API_URL}/story/${story.data._id}/feedback/${story.data.feedbackId}`
       : "";
   }, [story]);
 
