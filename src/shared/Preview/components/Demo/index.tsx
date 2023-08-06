@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ColorPickerIcon, MakeSquareIcon } from "@/icons";
 import { AnimatePresence, motion } from "framer-motion";
 import ResponsePreviewBtn from "@/shared/ResponsePreviewBtn";
@@ -7,10 +7,14 @@ import { ResizableTextArea } from "@/shared";
 import CredentialsForm from "@/shared/Preview/components/CredentialsForm";
 import { StoryStepEnum, StoryTypeEnum, StyleEnums } from "@/enums";
 import DOMPurify from "dompurify";
+import useRequest from "@ahooksjs/use-request";
 import Slider from "react-slick";
+import { useQuery } from "@/hooks";
+import { generateFeedbackGuest, sendFeedback } from "@/api";
 import { useParams } from "react-router-dom";
 import { DemoProps, Feedback } from "./types";
 import { handleResponse } from "./utils";
+import { message } from "antd";
 import { colorPickerMainColors } from "@/constants";
 import {
   opacityAnimation,
@@ -49,12 +53,37 @@ const Demo = ({
   images,
   currentStep,
 }: DemoProps) => {
-  const { id: storyId } = useParams();
+  const { storyId } = useParams();
+  const query = useQuery();
   const sliderRef = useRef<Slider | null>(null);
   const [activeSlideId, setActiveSlide] = useState("");
   const [isCredentialDrawerOpen, setCredentialDrawerState] = useState(false);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [respBtnId, setRespBtnId] = useState("");
+
+  const { run: sendFeedbackResults } = useRequest(
+    (payload) => sendFeedback(storyId!, payload),
+    {
+      manual: true,
+      onSuccess: (resp) => {
+        alert("feedback was successfully send!");
+      },
+      onError: (error: any) => {
+        message.error(error?.response?.data?.message);
+      },
+    }
+  );
+
+  const { run: generateGuest } = useRequest(() => generateFeedbackGuest(), {
+    manual: true,
+    onSuccess: (resp) => {
+      console.log(resp, "guest ID");
+      sendFeedbackResults(feedback);
+    },
+    onError: (error: any) => {
+      message.error(error?.response?.data?.message);
+    },
+  });
 
   useEffect(() => {
     isCreationMode &&
@@ -67,11 +96,16 @@ const Demo = ({
   useEffect(() => {
     if (feedback) {
       if (feedback.isComplete) {
-        console.log(feedback, 11111);
-        //Send Request with feedback object and show Complete layer
+        const isGuest = !!query?.get("guest");
+        if (isGuest) {
+          (() => generateGuest())();
+        } else {
+          (() => sendFeedbackResults(feedback))();
+        }
       }
     }
-  }, [feedback]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [feedback, query]);
 
   const isNotFirstStep = useMemo(
     () => currentStep !== StoryStepEnum.TITLE_STEP,

@@ -12,7 +12,7 @@ import { FeedbackerContentWrapper, PreviewFlowWrapper } from "./styles";
 
 const FeedbackerContent = () => {
   const navigate = useNavigate();
-  const { id: storyId } = useParams();
+  const { storyId } = useParams();
   const { isLessThanSm } = useResponsive();
 
   const { data: story, loading: storyDataLoading } = useRequest(

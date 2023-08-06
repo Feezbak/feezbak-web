@@ -19,7 +19,6 @@ const FeedbackView = ({ storyData }: Props) => {
     userInfoFields,
   } = storyData;
   const [isLayersOpen, setLayersState] = useState(true);
-  console.log(storyData, 7777);
 
   return (
     <DemoWrapper>
