@@ -1,4 +1,3 @@
-import React from "react";
 import { FormHeadingWrapper, DescriptionContainer, SubmitBtn } from "./styles";
 
 interface Props {

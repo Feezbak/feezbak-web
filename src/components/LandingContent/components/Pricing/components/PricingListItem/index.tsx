@@ -1,4 +1,3 @@
-import React from "react";
 import { Col, Row } from "antd";
 import Check from "@images/check.svg";
 import { PricingListWrapper } from "./styles";

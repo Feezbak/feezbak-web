@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Modal from "./components/Modal";
 import { Backdrop } from "./styles";
 import { createPortal } from "react-dom";

@@ -1,4 +1,3 @@
-import React from "react";
 import TitleDescriptionPair from "../../../TitleDescriptionPair";
 import { opacityAnimation } from "@assets/framerAnimations";
 import {

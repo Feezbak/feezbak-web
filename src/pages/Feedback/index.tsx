@@ -1,4 +1,3 @@
-import React from "react";
 import { FeedbackerContent } from "@/components";
 import { Layout } from "@/shared";
 

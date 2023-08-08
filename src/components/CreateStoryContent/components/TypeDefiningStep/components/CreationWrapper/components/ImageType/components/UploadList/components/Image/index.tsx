@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent } from "react";
+import { useState, MouseEvent } from "react";
 import { TrashWhiteIcon } from "@/icons";
 import { usePresence, AnimatePresence } from "framer-motion";
 import { listItemAnimation, opacityAnimation } from "@assets/framerAnimations";

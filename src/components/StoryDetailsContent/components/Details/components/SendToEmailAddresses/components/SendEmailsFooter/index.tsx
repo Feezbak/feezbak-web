@@ -1,4 +1,3 @@
-import React from "react";
 import { EmailFooterWrapper, Description, SendEmailsBtn } from "./styles";
 
 interface Props {

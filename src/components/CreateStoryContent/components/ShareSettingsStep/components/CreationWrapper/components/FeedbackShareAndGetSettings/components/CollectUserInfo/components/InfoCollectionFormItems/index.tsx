@@ -1,4 +1,4 @@
-import React, { useContext, useLayoutEffect, useState } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import FormItem from "./components/FormItem";

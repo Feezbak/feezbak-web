@@ -1,4 +1,3 @@
-import React from "react";
 import { ProfileContent } from "@/components";
 import { Layout } from "@/shared";
 

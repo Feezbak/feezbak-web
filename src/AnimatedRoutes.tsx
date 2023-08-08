@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { isAuth } from "@/hooks";

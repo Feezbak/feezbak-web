@@ -1,4 +1,3 @@
-import React from "react";
 import ShareSegmentSelection from "./components/ShareSegmentSelection";
 import { ShareSettingsWrapper, ShareSettingsTitle } from "./styles";
 

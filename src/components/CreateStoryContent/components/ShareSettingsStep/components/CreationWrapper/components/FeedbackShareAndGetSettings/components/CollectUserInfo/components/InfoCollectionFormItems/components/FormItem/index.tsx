@@ -1,4 +1,3 @@
-import React from "react";
 import { DragIcon } from "@/icons";
 import { FormItemWrapper, Content, FieldName } from "./styles";
 

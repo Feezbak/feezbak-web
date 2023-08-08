@@ -1,4 +1,3 @@
-import React from "react";
 import { TextPairWrapper, Title, SecondaryText } from "./styles";
 
 interface Props {

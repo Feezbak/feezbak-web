@@ -1,4 +1,3 @@
-import React from "react";
 import { opacityAnimation } from "@assets/framerAnimations";
 import emailVerifySrc from "@images/email-verification.png";
 import {

@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from "react";
+import { useCallback, useContext } from "react";
 import Image from "./components/Image";
 import { AnimatePresence } from "framer-motion";
 import { message } from "antd";

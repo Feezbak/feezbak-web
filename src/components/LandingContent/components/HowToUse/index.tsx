@@ -1,4 +1,3 @@
-import React from "react";
 import Card from "./components/Card";
 import { SectionTitle } from "../../styles";
 import { StyleEnums } from "@/enums";

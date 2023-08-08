@@ -1,4 +1,3 @@
-import React from "react";
 import { Dropdown } from "antd";
 import { MenuItems } from "./utils";
 import { UserOutlined } from "@ant-design/icons";

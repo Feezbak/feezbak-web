@@ -1,4 +1,3 @@
-import React from "react";
 import CredentialsFormContent from "./components/CredentialsFormContent";
 import { GoBackRoundIcon } from "@/icons";
 import { opacityAnimation } from "@assets/framerAnimations";

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { StoryTypeEnum } from "@/enums";
 import {

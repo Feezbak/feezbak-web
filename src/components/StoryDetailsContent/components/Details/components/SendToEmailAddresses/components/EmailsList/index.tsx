@@ -1,4 +1,3 @@
-import React from "react";
 import EmailItem from "./components/EmailItem";
 import { AnimatePresence } from "framer-motion";
 import { EmailsListType } from "../../../SendToEmailAddresses";

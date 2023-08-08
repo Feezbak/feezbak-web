@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { useResponsive } from "@/hooks";
 import Header from "./components/Header";
 import { useParams, useNavigate } from "react-router-dom";

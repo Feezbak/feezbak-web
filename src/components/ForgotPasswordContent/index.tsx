@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ForgotPasswordForm from "./components/ForgotPasswordForm";
 import { EmailVerificationNotifier } from "@/shared";
 import forgotPasswordImgSrc from "@images/forgot-pass.png";
