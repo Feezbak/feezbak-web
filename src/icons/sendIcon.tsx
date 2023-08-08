@@ -1,5 +1,3 @@
-import React from "react";
-
 export const SendIcon = () => (
   <svg
     width="30px"

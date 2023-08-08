@@ -1,4 +1,3 @@
-import React from "react";
 import { TrashBlackIcon } from "@/icons";
 import { ItemWrapper, EmailSpan, DeleteEmailBtn } from "./styles";
 

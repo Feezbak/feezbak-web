@@ -1,4 +1,3 @@
-import React from "react";
 import { ActionsList } from "../../";
 import { StoryTypeEnum } from "@/enums";
 import MultipleSelection from "./components/MultipleSelection";

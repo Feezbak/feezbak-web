@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from "react";
+import { useContext, useCallback } from "react";
 import { StoryCreationContext } from "@/context";
 import { CreationFlowFooter, CreationFlowHeader } from "@/shared";
 import { notification, message } from "antd";

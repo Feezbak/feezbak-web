@@ -1,5 +1,3 @@
-import React from "react";
-
 export const LinkIconGrayBg = () => (
   <svg
     width="32"

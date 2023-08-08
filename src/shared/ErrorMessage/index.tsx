@@ -1,4 +1,3 @@
-import React from "react";
 import { DeepMap, FieldError } from "react-hook-form";
 import { Error } from "./styles";
 

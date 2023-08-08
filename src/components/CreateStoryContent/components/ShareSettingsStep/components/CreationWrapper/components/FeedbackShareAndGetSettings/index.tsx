@@ -1,4 +1,3 @@
-import React from "react";
 import ShareSettings from "./components/ShareSettings";
 import CollectUserInfo from "./components/CollectUserInfo";
 import { ShareSettingsWrapper } from "./styles";

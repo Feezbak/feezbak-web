@@ -1,4 +1,3 @@
-import React from "react";
 import { FallbackWrapper } from "./styles";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { Spin } from "antd";

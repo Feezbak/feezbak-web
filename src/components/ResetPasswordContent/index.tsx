@@ -1,4 +1,3 @@
-import React from "react";
 import ResetPasswordForm from "./components/ResetPasswordForm";
 import forgotPasswordImgSrc from "@images/forgot-pass.png";
 import {

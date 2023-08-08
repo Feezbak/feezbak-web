@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useCallback } from "react";
+import { useContext, useMemo, useCallback } from "react";
 import { StoryTypeEnum } from "@/enums";
 import { StoryCreationContext } from "@/context";
 import ImageType from "./components/ImageType";

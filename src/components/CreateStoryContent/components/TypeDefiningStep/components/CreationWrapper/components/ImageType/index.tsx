@@ -1,4 +1,3 @@
-import React from "react";
 import UploadArea from "./components/UploadArea";
 import UploadList from "./components/UploadList";
 import { opacityAnimation } from "@assets/framerAnimations";

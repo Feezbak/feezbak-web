@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import { useState, Fragment } from "react";
 import { StyleEnums } from "@/enums";
 import { IncomesImg, IncomesImgWrapper } from "./styles";
 import questionSrc from "@images/Question.png";

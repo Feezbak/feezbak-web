@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { LinkShareEnum } from "@/enums";
 import { AnimatePresence } from "framer-motion";
 import ShareSegmentSelection from "./components/ShareSegmentSelection";

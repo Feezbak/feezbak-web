@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Segmented } from "antd";
 import { shareChoises } from "@/constants";
 import { StoryCreationContext } from "@/context";

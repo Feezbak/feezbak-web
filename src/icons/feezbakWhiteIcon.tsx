@@ -1,5 +1,3 @@
-import React from "react";
-
 export const FeezbakWhiteIcon = () => (
   <svg
     width="119"

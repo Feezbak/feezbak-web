@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { StoryStepEnum } from "@/enums";
 import { ArrowRightIcon } from "@/icons";
 import {

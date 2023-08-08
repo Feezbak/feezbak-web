@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { isAuth } from "@/hooks";
@@ -69,7 +69,10 @@ const AnimatedRoutes = () => {
 
   useEffect(() => {
     if (authed) {
-      if (!user?.firstName) {
+      if (
+        !user?.firstName &&
+        !(pathname.includes("feedback") && pathname.includes("story"))
+      ) {
         (async () => await getProfileData())();
       }
     }
@@ -97,7 +100,7 @@ const AnimatedRoutes = () => {
           path="/forgot-password"
           element={<ForgotPassword />}
         />
-        <Route caseSensitive path="/feedback/:id" element={<Feedback />} />
+        <Route caseSensitive path="story/:storyId" element={<Feedback />} />
         <Route
           caseSensitive
           path="/reset-password/:id"

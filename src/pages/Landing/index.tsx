@@ -1,4 +1,3 @@
-import React from "react";
 import { LandingContent } from "@/components";
 import { Layout } from "@/shared";
 

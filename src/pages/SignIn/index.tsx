@@ -1,4 +1,3 @@
-import React from "react";
 import { SignInContent } from "@/components";
 import { Layout } from "@/shared";
 

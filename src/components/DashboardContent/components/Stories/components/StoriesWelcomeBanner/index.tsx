@@ -1,4 +1,3 @@
-import React from "react";
 import StoryWelcomeBannerImgSrc from "@images/sammy-line-delivery.png";
 import {
   RowWrapper,

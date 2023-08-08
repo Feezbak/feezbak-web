@@ -1,4 +1,3 @@
-import React from "react";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { Controller } from "react-hook-form";
 import { ErrorMessage } from "@/shared";

@@ -1,4 +1,3 @@
-import React from "react";
 import { CardBody, CardContent } from "./styles";
 import { AnimatePresence } from "framer-motion";
 import { useResponsive } from "@/hooks";

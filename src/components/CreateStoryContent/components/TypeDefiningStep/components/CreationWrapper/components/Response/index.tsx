@@ -1,4 +1,3 @@
-import React from "react";
 import ButtonResponse from "./components/ButtonResponse";
 import { opacityAnimation } from "@assets/framerAnimations";
 import {

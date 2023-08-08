@@ -1,4 +1,3 @@
-import React from "react";
 import Icon from "@ant-design/icons";
 import { userProfileTabs } from "@/constants";
 import { SelectorWrapper, SelectorContainer, SelectionItem } from "./styles";

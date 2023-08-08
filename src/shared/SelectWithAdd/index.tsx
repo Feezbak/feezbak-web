@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import { Divider, Input, InputRef, Select } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { SelectActionWrapper, ItemAddButton, CustomSelect } from "./styles";

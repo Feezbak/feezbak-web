@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import { lazy } from "react";
 import { AnimatePresence } from "framer-motion";
 import { FormWrapper } from "./styles";
 

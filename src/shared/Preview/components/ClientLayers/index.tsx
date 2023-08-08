@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import PIILayer from "./components/PIILayer";
 import SelectionQuantityLayer from "./components/SelectionQuantityLayer";

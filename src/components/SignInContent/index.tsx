@@ -1,4 +1,3 @@
-import React from "react";
 import SignInForm from "./components/SignInForm";
 import signUpImgSrc from "@images/sign-in.png";
 import {

@@ -1,4 +1,3 @@
-import React from "react";
 import { GoBackRoundIcon, MobileDeviseIcon } from "@/icons";
 import HeaderActions from "./components/HeaderActions";
 import { StoryTypeEnum } from "@/enums";

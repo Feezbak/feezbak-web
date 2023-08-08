@@ -1,4 +1,3 @@
-import React from "react";
 import Heading from "./components/Heading";
 import { useProfileUpdateForm } from "@/hooks";
 import { Controller } from "react-hook-form";

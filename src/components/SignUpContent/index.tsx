@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import SignUpForm from "./components/SignUpForm";
 import signUpImgSrc from "@images/sign-up.png";
 import { AnimatePresence } from "framer-motion";

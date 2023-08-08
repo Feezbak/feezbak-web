@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import AnimatedRoutes from "./AnimatedRoutes";
 import Fallback from "@components/Fallback";
 import { BrowserRouter as Router } from "react-router-dom";
