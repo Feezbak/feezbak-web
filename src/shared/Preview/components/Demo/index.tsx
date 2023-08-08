@@ -96,7 +96,7 @@ const Demo = ({
   useEffect(() => {
     if (feedback) {
       if (feedback.isComplete) {
-        const isGuest = !!query?.get("guest");
+        const isGuest = !query?.get("guest") && !query?.get("feedback");
         if (isGuest) {
           (() => generateGuest())();
         } else {

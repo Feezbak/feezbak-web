@@ -100,11 +100,7 @@ const AnimatedRoutes = () => {
           path="/forgot-password"
           element={<ForgotPassword />}
         />
-        <Route
-          caseSensitive
-          path="story/:storyId/feedback/:feedbackId"
-          element={<Feedback />}
-        />
+        <Route caseSensitive path="story/:storyId" element={<Feedback />} />
         <Route
           caseSensitive
           path="/reset-password/:id"
