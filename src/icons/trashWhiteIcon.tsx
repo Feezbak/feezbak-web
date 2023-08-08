@@ -1,5 +1,3 @@
-import React from "react";
-
 export const TrashWhiteIcon = () => (
   <svg
     width="20"
