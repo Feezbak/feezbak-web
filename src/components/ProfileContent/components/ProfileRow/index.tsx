@@ -1,4 +1,4 @@
-import React, { lazy, useState } from "react";
+import { lazy, useState } from "react";
 import FormContent from "./components/FormContent";
 import { ProfileRowWrapper } from "./styles";
 

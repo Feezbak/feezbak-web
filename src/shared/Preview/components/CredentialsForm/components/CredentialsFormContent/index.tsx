@@ -1,4 +1,3 @@
-import React from "react";
 import { FormWrapper, SubmitBtn, FormItem, CustomisedInput } from "./styles";
 
 interface Props {

@@ -1,4 +1,3 @@
-import React from "react";
 import { verifyUserById } from "@/api";
 import useRequest from "@ahooksjs/use-request";
 import { message, Spin } from "antd";

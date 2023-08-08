@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import { listItemAnimation } from "@assets/framerAnimations";
 import { ResponseButtonWrapper, DeleteRespBtn, ResponseInput } from "./styles";
 import { usePresence } from "framer-motion";

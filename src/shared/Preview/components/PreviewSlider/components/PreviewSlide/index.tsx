@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { PoweredByWrapper } from "./styles";
 
 interface Props {

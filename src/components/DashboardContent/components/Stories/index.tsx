@@ -1,4 +1,3 @@
-import React from "react";
 import StoriesList from "./components/StoriesList";
 import StoriesWelcomeBanner from "./components/StoriesWelcomeBanner";
 import useRequest from "@ahooksjs/use-request";

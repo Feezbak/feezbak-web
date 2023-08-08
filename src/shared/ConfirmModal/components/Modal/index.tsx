@@ -1,4 +1,3 @@
-import React from "react";
 import { dropIn } from "@/constants";
 import confirmModalSrc from "@/assets/images/sammy-line-downloading.png";
 import {

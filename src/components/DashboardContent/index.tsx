@@ -1,4 +1,3 @@
-import React from "react";
 import { NavigationHeader } from "@/shared";
 import { links } from "./utils";
 import { Outlet } from "react-router-dom";

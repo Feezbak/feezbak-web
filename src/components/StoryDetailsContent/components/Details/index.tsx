@@ -1,4 +1,3 @@
-import React from "react";
 import ShareSettings from "./components/ShareSettings";
 import SendEmailAddresses from "./components/SendToEmailAddresses";
 import { DetailsWrapper } from "./styles";

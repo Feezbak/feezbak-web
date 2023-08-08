@@ -1,4 +1,3 @@
-import React from "react";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { FormContainer } from "./styles";
 import UpdateProfileForm from "./components/UpdateProfileForm";

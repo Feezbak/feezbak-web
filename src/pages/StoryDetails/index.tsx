@@ -1,4 +1,3 @@
-import React from "react";
 import { StoryDetailsContent } from "@/components";
 import { Layout } from "@/shared";
 

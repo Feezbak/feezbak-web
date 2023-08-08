@@ -1,4 +1,3 @@
-import React from "react";
 import PreviewCreation from "../PreviewCreation";
 import FeedbackView from "../FeedbackView";
 

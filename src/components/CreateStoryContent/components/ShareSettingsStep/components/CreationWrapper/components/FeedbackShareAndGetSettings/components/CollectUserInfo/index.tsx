@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Switch } from "antd";
 import { StoryCreationContext } from "@/context";
 import InfoCollectionFormItems from "./components/InfoCollectionFormItems";

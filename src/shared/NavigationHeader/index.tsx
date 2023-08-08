@@ -1,4 +1,3 @@
-import React from "react";
 import Links from "./components/Links";
 import productLogoSrc from "@/assets/images/product_logo_white.svg";
 import CreatorDropdownMenu from "./components/CreatorDropdownMenu";

@@ -1,4 +1,3 @@
-import React from "react";
 import girlSendingMessageSrc from "@images/girl-sending-message.png";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { TextTypeWrapper, TextTypeImage } from "./styles";

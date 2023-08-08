@@ -12,3 +12,4 @@ export * from "./useForgotPasswordForm";
 export * from "./useChangePasswordForm";
 export * from "./useResetPasswordForm";
 export * from "./isAuth";
+export * from "./useQuery";

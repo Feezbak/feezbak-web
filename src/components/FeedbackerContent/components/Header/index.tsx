@@ -1,4 +1,3 @@
-import React from "react";
 import logoFeezbak from "@images/product_logo.svg";
 import { Link } from "react-router-dom";
 import FeedbackerNavBar from "./components/FeedbackerNavBar";

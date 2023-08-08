@@ -1,4 +1,4 @@
-import React, { memo, forwardRef, useState, useEffect } from "react";
+import { memo, forwardRef, useState, useEffect } from "react";
 import { SliderContainer } from "./styles";
 import Slider from "react-slick";
 import { slickSettings, Image } from "@/constants";

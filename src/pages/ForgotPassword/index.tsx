@@ -1,4 +1,3 @@
-import React from "react";
 import { ForgotPasswordContent } from "@/components";
 import { Layout } from "@/shared";
 

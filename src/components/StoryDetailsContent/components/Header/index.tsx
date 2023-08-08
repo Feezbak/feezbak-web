@@ -1,4 +1,3 @@
-import React from "react";
 import { DetailsHeaderWrapper, Title, Description } from "./styles";
 
 const Header = () => {

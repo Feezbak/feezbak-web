@@ -1,4 +1,3 @@
-import React from "react";
 import { OfferingWrapper, Text, Type, SelectionTypes } from "./styles";
 
 const Offering = () => {

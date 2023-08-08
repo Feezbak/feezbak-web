@@ -1,5 +1,3 @@
-import React from "react";
-
 export const GoBackRoundIcon = () => (
   <svg
     width="40"

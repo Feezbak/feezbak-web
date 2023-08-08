@@ -1,4 +1,3 @@
-import React from "react";
 import { LinkItem, LinksWrapper } from "./styles";
 
 type LinkDataType = {

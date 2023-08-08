@@ -1,4 +1,3 @@
-import React from "react";
 import { Controller } from "react-hook-form";
 import { ErrorMessage } from "@/shared";
 import { useNavigate, useParams } from "react-router-dom";

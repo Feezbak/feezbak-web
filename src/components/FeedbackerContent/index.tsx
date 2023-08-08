@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { useResponsive } from "@/hooks";
 import Header from "./components/Header";
 import { useParams, useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ import { FeedbackerContentWrapper, PreviewFlowWrapper } from "./styles";
 
 const FeedbackerContent = () => {
   const navigate = useNavigate();
-  const { id: storyId } = useParams();
+  const { storyId } = useParams();
   const { isLessThanSm } = useResponsive();
 
   const { data: story, loading: storyDataLoading } = useRequest(

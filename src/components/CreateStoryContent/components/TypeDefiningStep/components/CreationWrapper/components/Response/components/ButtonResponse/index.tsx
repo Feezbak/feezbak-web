@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import RespButton from "./components/RespButton";
 import { AnimatePresence } from "framer-motion";
 import { opacityAnimation } from "@assets/framerAnimations";

@@ -1,4 +1,3 @@
-import React from "react";
 import PricingListItem from "./components/PricingListItem";
 import { PricingList, PaddingWrapper } from "./styles";
 import Offering from "./components/Offering";

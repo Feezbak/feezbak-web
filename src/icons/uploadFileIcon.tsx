@@ -1,5 +1,3 @@
-import React from "react";
-
 export const UploadFileIcon = () => (
   <svg
     width="44"

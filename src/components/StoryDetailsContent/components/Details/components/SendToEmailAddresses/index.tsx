@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import uuid from "react-uuid";
 import { message } from "antd";
 import { sendLinkByEmailAddresses } from "@/api";

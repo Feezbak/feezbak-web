@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import StoryItem from "../StoryItem";
 import { ConfirmModal } from "@/shared";
 import useRequest from "@ahooksjs/use-request";

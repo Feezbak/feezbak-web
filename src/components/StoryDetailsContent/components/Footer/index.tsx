@@ -1,4 +1,3 @@
-import React from "react";
 import useRequest from "@ahooksjs/use-request";
 import { message } from "antd";
 import { createStory } from "@/api";

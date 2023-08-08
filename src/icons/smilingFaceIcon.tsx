@@ -1,5 +1,3 @@
-import React from "react";
-
 export const SmilingFaceIcon = () => (
   <svg
     width="28"
