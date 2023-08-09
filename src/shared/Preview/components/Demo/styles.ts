@@ -116,7 +116,7 @@ export const ResponseTitleWrapper = styled.div<{
   width: 80%;
   display: flex;
   border-radius: 2.5rem;
-  padding: ${ifProp("$justifyContent", "76% 0 12% 0", "inherit")};
+  padding: ${ifProp("$justifyContent", "76% 0 8% 0", "inherit")};
   justify-content: ${ifProp("$justifyContent", "space-between", "center")};
   align-items: center;
   flex-direction: column;
