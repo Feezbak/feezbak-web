@@ -11,7 +11,7 @@ export const FeedbackerContentWrapper = styled.div`
 
 export const PreviewFlowWrapper = styled.div`
   width: 50%;
-  height: 85dvh;
+  height: 89dvh;
   margin-top: -3rem;
   max-width: 30rem;
 

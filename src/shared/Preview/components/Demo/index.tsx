@@ -243,6 +243,7 @@ const Demo = ({
   return (
     <>
       <PreviewFlow
+        $hasBorder={!isCreationMode}
         $background={color}
         $hasOutline={hasOutline}
         $isSquare={isSquare}

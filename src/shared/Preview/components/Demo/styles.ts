@@ -19,6 +19,7 @@ export const PreviewFlow = styled(motion.div)<{
   readonly $hasOutline: boolean;
   readonly $isSquare: boolean;
   readonly $hasBorderRadius: boolean;
+  readonly $hasBorder: boolean;
 }>`
   background: ${prop("$background")};
   width: 100%;
@@ -27,6 +28,7 @@ export const PreviewFlow = styled(motion.div)<{
   position: relative;
   ${FlexBoxEnum.EndCenterVertical}
   transition: 0.3s;
+  border: ${ifProp("$hasBorder", `20px solid ${StyleEnums.white}`, "none")};
   box-shadow: ${ifProp("$hasOutline", `0 0 5px ${StyleEnums.gray2}`, "none")};
 
   ${inLessThan(BreakpointEnums.mobile)`
@@ -116,7 +118,7 @@ export const ResponseTitleWrapper = styled.div<{
   width: 80%;
   display: flex;
   border-radius: 2.5rem;
-  padding: ${ifProp("$justifyContent", "76% 0 12% 0", "inherit")};
+  padding: ${ifProp("$justifyContent", "76% 0 8% 0", "inherit")};
   justify-content: ${ifProp("$justifyContent", "space-between", "center")};
   align-items: center;
   flex-direction: column;
