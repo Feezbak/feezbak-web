@@ -1,13 +1,19 @@
+import { ContactToData } from "@shared/Preview/components/Demo/types";
 import { FormWrapper, SubmitBtn, FormItem, CustomisedInput } from "./styles";
 
 interface Props {
   fields: string[];
   isCreation?: boolean;
+  sendContactInfo: (info: ContactToData[]) => void;
 }
 
-const CredentialsFormContent = ({ fields, isCreation = true }: Props) => {
+const CredentialsFormContent = ({
+  fields,
+  isCreation = true,
+  sendContactInfo,
+}: Props) => {
   const handleSubmit = (formData: any) => {
-    console.log(formData, 4444);
+    console.log(fields, formData, 3333);
   };
 
   return (
