@@ -17,6 +17,7 @@ const FeedbackView = ({ storyData }: Props) => {
     imageVoting: { images, selectedImgSrc, isSquare },
     response: { responseBtnList },
     userInfoFields,
+    isInfoCollectionAllowed,
   } = storyData;
   const [isLayersOpen, setLayersState] = useState(true);
 
@@ -37,6 +38,7 @@ const FeedbackView = ({ storyData }: Props) => {
             title={title}
             titleColor={titleColor}
             type={type}
+            isInfoCollectionAllowed={isInfoCollectionAllowed}
             coverImgSrc={selectedImgSrc}
             images={images}
             isMultiple={storyData.isMultiple}

@@ -24,11 +24,17 @@ export interface DemoProps {
   currentStep?: StoryStepEnum;
 }
 
+export interface ContactToData {
+  field: string;
+  value: string;
+}
+
 export interface Feedback {
   id: string;
   type: StoryTypeEnum;
   isComplete: boolean;
   isMultiple: boolean;
+  contactToData?: ContactToData[];
   responses: {
     msg: string;
     imageId?: string;

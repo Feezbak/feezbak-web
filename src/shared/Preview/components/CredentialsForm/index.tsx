@@ -1,15 +1,24 @@
 import CredentialsFormContent from "./components/CredentialsFormContent";
 import { GoBackRoundIcon } from "@/icons";
 import { opacityAnimation } from "@assets/framerAnimations";
+import { ContactToData } from "@shared/Preview/components/Demo/types";
 import { FormDrawer, CredTitle, CloseBtn, DrawerContent } from "./styles";
 
 interface Props {
   isOpen: boolean;
   fields: string[];
+  isCreationMode: boolean;
   onClose: () => void;
+  sendContactInfo: (info: ContactToData[]) => void;
 }
 
-const CredentialsForm = ({ isOpen = true, onClose, fields }: Props) => {
+const CredentialsForm = ({
+  isOpen = true,
+  onClose,
+  fields,
+  isCreationMode,
+  sendContactInfo,
+}: Props) => {
   return (
     <FormDrawer
       title=""
@@ -29,7 +38,11 @@ const CredentialsForm = ({ isOpen = true, onClose, fields }: Props) => {
             The Story creator asks for your credentials, Please feel data to be
             able to send your feedback
           </CredTitle>
-          <CredentialsFormContent fields={fields} />
+          <CredentialsFormContent
+            fields={fields}
+            isCreation={isCreationMode}
+            sendContactInfo={sendContactInfo}
+          />
         </DrawerContent>
       )}
     </FormDrawer>
