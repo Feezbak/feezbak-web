@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { FlexBoxEnum } from "@/enums";
 
 export const FormDrawer = styled(Drawer)`
-  background: rgba(255, 255, 255, 0.9) !important;
-  border-radius: 2.75rem;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-radius: 1rem;
   z-index: 2;
 `;
 

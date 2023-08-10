@@ -10,9 +10,9 @@ import DOMPurify from "dompurify";
 import useRequest from "@ahooksjs/use-request";
 import Slider from "react-slick";
 import { useQuery } from "@/hooks";
-import { generateFeedbackGuest, sendFeedback } from "@/api";
+import { generateFeedback, sendFeedback } from "@/api";
 import { useParams } from "react-router-dom";
-import { DemoProps, Feedback } from "./types";
+import { DemoProps, Feedback, ContactToData } from "./types";
 import { handleResponse } from "./utils";
 import { message } from "antd";
 import { colorPickerMainColors } from "@/constants";
@@ -74,11 +74,11 @@ const Demo = ({
     }
   );
 
-  const { run: generateGuest } = useRequest(() => generateFeedbackGuest(), {
+  const { run: generateGuest } = useRequest(() => generateFeedback(), {
     manual: true,
-    onSuccess: (resp) => {
+    onSuccess: async (resp) => {
       console.log(resp, "guest ID");
-      sendFeedbackResults(feedback);
+      await sendFeedbackResults(feedback);
     },
     onError: (error: any) => {
       message.error(error?.response?.data?.message);
@@ -93,14 +93,22 @@ const Demo = ({
       );
   }, [currentStep, isCreationMode, isInfoCollectionAllowed]);
 
+  const sendFeedbackRequests = () => {
+    const isGuest = !query?.get("guest") && !query?.get("feedback");
+    if (isGuest) {
+      (() => generateGuest())();
+    } else {
+      (() => sendFeedbackResults(feedback))();
+    }
+  };
+
   useEffect(() => {
     if (feedback) {
       if (feedback.isComplete) {
-        const isGuest = !query?.get("guest") && !query?.get("feedback");
-        if (isGuest) {
-          (() => generateGuest())();
+        if (isInfoCollectionAllowed) {
+          setCredentialDrawerState(true);
         } else {
-          (() => sendFeedbackResults(feedback))();
+          sendFeedbackRequests();
         }
       }
     }
@@ -240,6 +248,12 @@ const Demo = ({
     setRespBtnId("");
   };
 
+  const handleSetContactInfo = (contactToData: ContactToData[]) => {
+    console.log(contactToData, 1111);
+    //    const newFeedback = { contactToData};
+    //    setFeedback(feedback)
+  };
+
   return (
     <>
       <PreviewFlow
@@ -318,6 +332,8 @@ const Demo = ({
           )}
         </AnimatePresence>
         <CredentialsForm
+          sendContactInfo={handleSetContactInfo}
+          isCreationMode={isCreationMode}
           fields={fields}
           isOpen={isCredentialDrawerOpen}
           onClose={() => setCredentialDrawerState(false)}
