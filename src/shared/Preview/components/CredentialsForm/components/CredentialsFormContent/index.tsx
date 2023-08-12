@@ -13,7 +13,11 @@ const CredentialsFormContent = ({
   sendContactInfo,
 }: Props) => {
   const handleSubmit = (formData: any) => {
-    console.log(fields, formData, 3333);
+    const refactoredData = Object.entries(formData).map((field) => ({
+      field: field[0],
+      value: field[1] as string,
+    }));
+    sendContactInfo(refactoredData);
   };
 
   return (

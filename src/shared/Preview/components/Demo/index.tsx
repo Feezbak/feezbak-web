@@ -55,6 +55,8 @@ const Demo = ({
 }: DemoProps) => {
   const { storyId } = useParams();
   const query = useQuery();
+  const feedbackId = query.get("feedbackId");
+  const guestId = query.get("guestId");
   const sliderRef = useRef<Slider | null>(null);
   const [activeSlideId, setActiveSlide] = useState("");
   const [isCredentialDrawerOpen, setCredentialDrawerState] = useState(false);
@@ -62,7 +64,8 @@ const Demo = ({
   const [respBtnId, setRespBtnId] = useState("");
 
   const { run: sendFeedbackResults } = useRequest(
-    (payload) => sendFeedback(storyId!, payload),
+    (payload, feedbackId, guestId) =>
+      sendFeedback(storyId!, feedbackId, guestId, payload),
     {
       manual: true,
       onSuccess: (resp) => {
@@ -74,16 +77,22 @@ const Demo = ({
     }
   );
 
-  const { run: generateGuest } = useRequest(() => generateFeedback(), {
-    manual: true,
-    onSuccess: async (resp) => {
-      console.log(resp, "guest ID");
-      await sendFeedbackResults(feedback);
-    },
-    onError: (error: any) => {
-      message.error(error?.response?.data?.message);
-    },
-  });
+  const { run: generateGuest } = useRequest(
+    () => generateFeedback(storyId ?? ""),
+    {
+      manual: true,
+      onSuccess: async (resp) => {
+        await sendFeedbackResults(
+          feedback,
+          resp.data.feedbackId,
+          resp.data.guestId
+        );
+      },
+      onError: (error: any) => {
+        message.error(error?.response?.data?.message);
+      },
+    }
+  );
 
   useEffect(() => {
     isCreationMode &&
@@ -94,11 +103,11 @@ const Demo = ({
   }, [currentStep, isCreationMode, isInfoCollectionAllowed]);
 
   const sendFeedbackRequests = () => {
-    const isGuest = !query?.get("guest") && !query?.get("feedback");
+    const isGuest = !guestId && !feedbackId;
     if (isGuest) {
       (() => generateGuest())();
     } else {
-      (() => sendFeedbackResults(feedback))();
+      (() => sendFeedbackResults(feedback, guestId, feedbackId))();
     }
   };
 
@@ -249,9 +258,9 @@ const Demo = ({
   };
 
   const handleSetContactInfo = (contactToData: ContactToData[]) => {
-    console.log(contactToData, 1111);
-    //    const newFeedback = { contactToData};
-    //    setFeedback(feedback)
+    const newFeedback = { ...structuredClone(feedback), contactToData };
+    setFeedback(newFeedback);
+    sendFeedbackRequests();
   };
 
   return (
