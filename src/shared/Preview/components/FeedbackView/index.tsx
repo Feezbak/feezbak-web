@@ -20,12 +20,20 @@ const FeedbackView = ({ storyData }: Props) => {
     isInfoCollectionAllowed,
   } = storyData;
   const [isLayersOpen, setLayersState] = useState(true);
+  const [activeLayerNumber, setActiveLayerNumber] = useState(0);
+
+  const handleCompleteFeedback = (layer: number) => {
+    setActiveLayerNumber(layer);
+    setLayersState(true);
+  };
 
   return (
     <DemoWrapper>
       <AnimatePresence initial={false}>
         {isLayersOpen ? (
           <ClientLayers
+            activeLayerNumber={activeLayerNumber}
+            setActiveLayerNumber={setActiveLayerNumber}
             type={storyData.type}
             handleCloseLayers={() => setLayersState((ps) => !ps)}
             isPIIRequested={storyData.isInfoCollectionAllowed}
@@ -45,6 +53,7 @@ const FeedbackView = ({ storyData }: Props) => {
             isSquare={isSquare}
             color={background}
             userInfoFields={userInfoFields}
+            handleCompleteFeedback={handleCompleteFeedback}
           />
         )}
       </AnimatePresence>

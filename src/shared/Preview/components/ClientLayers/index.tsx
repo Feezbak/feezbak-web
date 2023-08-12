@@ -1,9 +1,10 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import PIILayer from "./components/PIILayer";
 import SelectionQuantityLayer from "./components/SelectionQuantityLayer";
 import TypeInfoLayer from "./components/TypeInfoLayer";
 import WelcomeLayer from "./components/WelcomeLayer";
+import SuccessLayer from "./components/SuccessLayer";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { LayersSelectionWrapper } from "./styles";
 import { StoryTypeEnum } from "@/enums";
@@ -13,18 +14,20 @@ interface Props {
   isPIIRequested: boolean;
   isMultySelectRequested: boolean;
   handleCloseLayers: () => void;
+  activeLayerNumber: number;
+  setActiveLayerNumber: (state: number) => void;
 }
 
 const ClientLayers = ({
+  activeLayerNumber,
+  setActiveLayerNumber,
   isPIIRequested,
   isMultySelectRequested,
   type,
   handleCloseLayers,
 }: Props) => {
-  const [activeLayerNumber, setActiveLayerNumber] = useState(0);
-
   useEffect(() => {
-    if (activeLayerNumber === 4) {
+    if (activeLayerNumber === 5) {
       handleCloseLayers();
     }
   }, [activeLayerNumber, handleCloseLayers]);
@@ -64,6 +67,8 @@ const ClientLayers = ({
             handleLayer={() => setActiveLayerNumber(4)}
           />
         );
+      case 4:
+        return <SuccessLayer />;
       default:
         return (
           <WelcomeLayer
@@ -74,6 +79,7 @@ const ClientLayers = ({
     }
   }, [
     type,
+    setActiveLayerNumber,
     activeLayerNumber,
     isPIIRequested,
     isMultySelectRequested,

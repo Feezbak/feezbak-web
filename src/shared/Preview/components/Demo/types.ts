@@ -22,6 +22,7 @@ export interface DemoProps {
   isCreationMode: boolean;
   isInfoCollectionAllowed?: boolean;
   currentStep?: StoryStepEnum;
+  handleCompleteFeedback?: (layer: number) => void;
 }
 
 export interface ContactToData {

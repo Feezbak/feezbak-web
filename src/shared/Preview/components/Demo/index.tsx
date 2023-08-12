@@ -52,6 +52,7 @@ const Demo = ({
   flowMouseEnter,
   images,
   currentStep,
+  handleCompleteFeedback,
 }: DemoProps) => {
   const { storyId } = useParams();
   const query = useQuery();
@@ -69,7 +70,10 @@ const Demo = ({
     {
       manual: true,
       onSuccess: (resp) => {
-        alert("feedback was successfully send!");
+        if (resp) {
+          handleCompleteFeedback?.(4);
+          setCredentialDrawerState(false);
+        }
       },
       onError: (error: any) => {
         message.error(error?.response?.data?.message);
