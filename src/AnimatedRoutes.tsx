@@ -71,7 +71,8 @@ const AnimatedRoutes = () => {
     if (authed) {
       if (
         !user?.firstName &&
-        !(pathname.includes("feedback") && pathname.includes("story"))
+        (pathname.includes("/create-story") ||
+          pathname.includes("/story-details"))
       ) {
         (async () => await getProfileData())();
       }
