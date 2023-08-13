@@ -32,6 +32,7 @@ export const PreviewFlow = styled(motion.div)<{
   box-shadow: ${ifProp("$hasOutline", `0 0 5px ${StyleEnums.gray2}`, "none")};
 
   ${inLessThan(BreakpointEnums.mobile)`
+     border: unset;
      border-radius: ${ifProp("$hasBorderRadius", "0", "2.75rem")} !important;
   `}
 

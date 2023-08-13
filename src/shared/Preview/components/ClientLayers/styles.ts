@@ -20,21 +20,21 @@ export const LayersSelectionWrapper = styled(motion.div)`
 
 export const LayerWrapper = styled(motion.div)`
   height: 100%;
-  padding: 3.5rem 2rem;
+  padding: 3rem 2rem;
   color: ${StyleEnums.white};
   ${FlexBoxEnum.SpaceBetweenCenterVertical}
 `;
 
 export const LayerInfoContent = styled.div`
   h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-bottom: 1.5rem;
     text-align: center;
   }
 
   p {
     font-weight: 500;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     line-height: 1.8rem;
     text-align: center;
   }

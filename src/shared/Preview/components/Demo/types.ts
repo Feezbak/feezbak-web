@@ -1,4 +1,4 @@
-import { StoryTypeEnum, StoryStepEnum } from "@/enums";
+import { StoryTypeEnum, StoryStepEnum, ClientLayerEnums } from "@/enums";
 import { ResponseBtnsType, Image, UserInfoFieldType } from "@/constants";
 
 export interface DemoProps {
@@ -22,6 +22,7 @@ export interface DemoProps {
   isCreationMode: boolean;
   isInfoCollectionAllowed?: boolean;
   currentStep?: StoryStepEnum;
+  handleCompleteFeedback?: (layer: ClientLayerEnums) => void;
 }
 
 export interface ContactToData {
