@@ -7,80 +7,88 @@ import WelcomeLayer from "./components/WelcomeLayer";
 import SuccessLayer from "./components/SuccessLayer";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { LayersSelectionWrapper } from "./styles";
-import { StoryTypeEnum } from "@/enums";
+import { StoryTypeEnum, ClientLayerEnums } from "@/enums";
 
 interface Props {
   type: StoryTypeEnum;
   isPIIRequested: boolean;
   isMultySelectRequested: boolean;
   handleCloseLayers: () => void;
-  activeLayerNumber: number;
-  setActiveLayerNumber: (state: number) => void;
+  activeLayer: ClientLayerEnums;
+  setActiveLayer: (state: ClientLayerEnums) => void;
 }
 
 const ClientLayers = ({
-  activeLayerNumber,
-  setActiveLayerNumber,
+  activeLayer,
+  setActiveLayer,
   isPIIRequested,
   isMultySelectRequested,
   type,
   handleCloseLayers,
 }: Props) => {
   useEffect(() => {
-    if (activeLayerNumber === 5) {
+    if (activeLayer === ClientLayerEnums.CLOSE) {
       handleCloseLayers();
     }
-  }, [activeLayerNumber, handleCloseLayers]);
+  }, [activeLayer, handleCloseLayers]);
 
-  const activeLayer = useMemo(() => {
-    switch (activeLayerNumber) {
-      case 0:
+  const activeLayerContent = useMemo(() => {
+    switch (activeLayer) {
+      case ClientLayerEnums.WELCOME:
         return (
           <WelcomeLayer
             handleSkip={handleCloseLayers}
-            handleLayer={() => setActiveLayerNumber(1)}
+            handleLayer={() => setActiveLayer(ClientLayerEnums.TYPE)}
           />
         );
-      case 1:
+      case ClientLayerEnums.TYPE:
         return (
           <TypeInfoLayer
             type={type}
             handleSkip={handleCloseLayers}
             handleLayer={() =>
-              setActiveLayerNumber(
-                isMultySelectRequested ? (isPIIRequested ? 3 : 4) : 2
+              setActiveLayer(
+                isMultySelectRequested
+                  ? isPIIRequested
+                    ? ClientLayerEnums.PII
+                    : ClientLayerEnums.CLOSE
+                  : ClientLayerEnums.MULTI_SELECT
               )
             }
           />
         );
-      case 2:
+      case ClientLayerEnums.MULTI_SELECT:
         return (
           <SelectionQuantityLayer
             handleSkip={handleCloseLayers}
-            handleLayer={() => setActiveLayerNumber(isPIIRequested ? 3 : 4)}
+            handleLayer={() =>
+              setActiveLayer(
+                isPIIRequested ? ClientLayerEnums.PII : ClientLayerEnums.CLOSE
+              )
+            }
           />
         );
-      case 3:
+      case ClientLayerEnums.PII:
         return (
           <PIILayer
             handleSkip={handleCloseLayers}
-            handleLayer={() => setActiveLayerNumber(4)}
+            handleLayer={() => setActiveLayer(ClientLayerEnums.CLOSE)}
           />
         );
-      case 4:
+      case ClientLayerEnums.SUCCESS:
         return <SuccessLayer />;
       default:
         return (
           <WelcomeLayer
             handleSkip={handleCloseLayers}
-            handleLayer={() => setActiveLayerNumber(4)}
+            handleLayer={() => setActiveLayer(ClientLayerEnums.CLOSE)}
           />
         );
     }
   }, [
     type,
-    setActiveLayerNumber,
-    activeLayerNumber,
+    setActiveLayer,
+    activeLayer,
     isPIIRequested,
     isMultySelectRequested,
     handleCloseLayers,
@@ -88,7 +96,7 @@ const ClientLayers = ({
 
   return (
     <LayersSelectionWrapper {...opacityAnimation}>
-      <AnimatePresence>{activeLayer}</AnimatePresence>
+      <AnimatePresence>{activeLayerContent}</AnimatePresence>
     </LayersSelectionWrapper>
   );
 };

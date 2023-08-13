@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Demo from "../../components/Demo";
+import { ClientLayerEnums } from "@/enums";
 import { AnimatePresence } from "framer-motion";
 import ClientLayers from "@shared/Preview/components/ClientLayers";
 import { DemoWrapper } from "./styles";
@@ -20,10 +21,10 @@ const FeedbackView = ({ storyData }: Props) => {
     isInfoCollectionAllowed,
   } = storyData;
   const [isLayersOpen, setLayersState] = useState(true);
-  const [activeLayerNumber, setActiveLayerNumber] = useState(0);
+  const [activeLayer, setActiveLayer] = useState(ClientLayerEnums.WELCOME);
 
-  const handleCompleteFeedback = (layer: number) => {
-    setActiveLayerNumber(layer);
+  const handleCompleteFeedback = (layer: ClientLayerEnums) => {
+    setActiveLayer(layer);
     setLayersState(true);
   };
 
@@ -32,8 +33,8 @@ const FeedbackView = ({ storyData }: Props) => {
       <AnimatePresence initial={false}>
         {isLayersOpen ? (
           <ClientLayers
-            activeLayerNumber={activeLayerNumber}
-            setActiveLayerNumber={setActiveLayerNumber}
+            activeLayer={activeLayer}
+            setActiveLayer={setActiveLayer}
             type={storyData.type}
             handleCloseLayers={() => setLayersState((ps) => !ps)}
             isPIIRequested={storyData.isInfoCollectionAllowed}

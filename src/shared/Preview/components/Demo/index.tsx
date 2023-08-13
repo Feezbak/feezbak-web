@@ -5,7 +5,12 @@ import ResponsePreviewBtn from "@/shared/ResponsePreviewBtn";
 import PreviewSlider from "@/shared/Preview/components/PreviewSlider";
 import { ResizableTextArea } from "@/shared";
 import CredentialsForm from "@/shared/Preview/components/CredentialsForm";
-import { StoryStepEnum, StoryTypeEnum, StyleEnums } from "@/enums";
+import {
+  StoryStepEnum,
+  StoryTypeEnum,
+  StyleEnums,
+  ClientLayerEnums,
+} from "@/enums";
 import DOMPurify from "dompurify";
 import useRequest from "@ahooksjs/use-request";
 import Slider from "react-slick";
@@ -86,7 +91,7 @@ const Demo = ({
       manual: true,
       onSuccess: (resp) => {
         if (resp) {
-          handleCompleteFeedback?.(4);
+          handleCompleteFeedback?.(ClientLayerEnums.SUCCESS);
           setCredentialDrawerState(false);
         }
       },
