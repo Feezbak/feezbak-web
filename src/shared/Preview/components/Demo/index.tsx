@@ -64,6 +64,21 @@ const Demo = ({
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [respBtnId, setRespBtnId] = useState("");
 
+  const structureFeedbackPayload = (feedbackObj: Feedback) => {
+    const feedbackData = structuredClone(feedbackObj);
+    const guestData = feedbackData.contactToData;
+    delete feedbackData.contactToData;
+    return {
+      feedback: feedbackData,
+      guest: {
+        firstName: guestData?.["First Name"],
+        lastName: guestData?.["Last Name"],
+        email: guestData?.["email"],
+        phone: guestData?.["phone"],
+      },
+    };
+  };
+
   const { run: sendFeedbackResults } = useRequest(
     (payload, feedbackId, guestId) =>
       sendFeedback(storyId!, feedbackId, guestId, payload),
@@ -86,8 +101,9 @@ const Demo = ({
     {
       manual: true,
       onSuccess: async (resp) => {
+        const feedbackPayload = structureFeedbackPayload(feedback!);
         await sendFeedbackResults(
-          feedback,
+          feedbackPayload,
           resp.data.feedbackId,
           resp.data.guestId
         );
@@ -111,7 +127,8 @@ const Demo = ({
     if (isGuest) {
       (() => generateGuest())();
     } else {
-      (() => sendFeedbackResults(feedback, guestId, feedbackId))();
+      const feedbackPayload = structureFeedbackPayload(feedback!);
+      (() => sendFeedbackResults(feedbackPayload, guestId, feedbackId))();
     }
   };
 
