@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import FormItem from "./components/FormItem";
@@ -10,7 +10,7 @@ import { InfoFormWrapper, FieldsTitle } from "./styles";
 const InfoCollectionFormItems = () => {
   const { step3, setInfoCollectionFields } = useContext(StoryCreationContext);
   const { userInfoFields } = step3;
-  const [value, setValue] = useState<string[]>([]);
+  //  const [value, setValue] = useState<string[]>([]);
 
   //  useLayoutEffect(() => {
   //    const filteredValues = userInfoFields.map((field) => field.value);
@@ -56,7 +56,7 @@ const InfoCollectionFormItems = () => {
 
   return (
     <InfoFormWrapper {...opacityAnimation}>
-      <FieldsTitle>Fields</FieldsTitle>
+      {/*<FieldsTitle>Fields</FieldsTitle>*/}
       {/*<Select {...selectProps} />*/}
       <FieldsTitle>Order</FieldsTitle>
       <DragDropContext onDragEnd={handleDragEnd}>
