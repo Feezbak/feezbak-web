@@ -110,6 +110,10 @@ export const storyDefaultState: StoryCreationDataType = {
         value: "Email Address",
         label: "Email Address",
       },
+      {
+        value: "Phone",
+        label: "Phone",
+      },
     ],
   },
   setCurrentStep: () => {},

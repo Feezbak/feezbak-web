@@ -1,21 +1,21 @@
-import { useContext, useLayoutEffect, useState } from "react";
+import { useContext } from "react";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import FormItem from "./components/FormItem";
-import { Select } from "antd";
-import type { SelectProps } from "antd";
+//import { Select } from "antd";
+//import type { SelectProps } from "antd";
 import { StoryCreationContext } from "@/context";
 import { InfoFormWrapper, FieldsTitle } from "./styles";
 
 const InfoCollectionFormItems = () => {
   const { step3, setInfoCollectionFields } = useContext(StoryCreationContext);
   const { userInfoFields } = step3;
-  const [value, setValue] = useState<string[]>([]);
+  //  const [value, setValue] = useState<string[]>([]);
 
-  useLayoutEffect(() => {
-    const filteredValues = userInfoFields.map((field) => field.value);
-    setValue(filteredValues);
-  }, [userInfoFields]);
+  //  useLayoutEffect(() => {
+  //    const filteredValues = userInfoFields.map((field) => field.value);
+  //    setValue(filteredValues);
+  //  }, [userInfoFields]);
 
   const handleDragEnd = (result: any) => {
     if (!result.destination) {
@@ -31,33 +31,33 @@ const InfoCollectionFormItems = () => {
     setInfoCollectionFields(newItems);
   };
 
-  const options: SelectProps["options"] = userInfoFields;
+  //  const options: SelectProps["options"] = userInfoFields;
+  //
+  //  const handleChange = (value: string[]) => {
+  //    const newArr = value.map((title: string) => ({
+  //      label: title,
+  //      value: title,
+  //    }));
+  //    setInfoCollectionFields(newArr);
+  //  };
 
-  const handleChange = (value: string[]) => {
-    const newArr = value.map((title: string) => ({
-      label: title,
-      value: title,
-    }));
-    setInfoCollectionFields(newArr);
-  };
-
-  const selectProps: SelectProps = {
-    mode: "tags",
-    value,
-    options,
-    onChange: handleChange,
-    placeholder: "Enter form field name...",
-    maxTagCount: "responsive",
-    style: {
-      width: "100%",
-      marginBottom: "1.5rem",
-    },
-  };
+  //  const selectProps: SelectProps = {
+  //    mode: "tags",
+  //    value,
+  //    options,
+  //    onChange: handleChange,
+  //    placeholder: "Enter form field name...",
+  //    maxTagCount: "responsive",
+  //    style: {
+  //      width: "100%",
+  //      marginBottom: "1.5rem",
+  //    },
+  //  };
 
   return (
     <InfoFormWrapper {...opacityAnimation}>
-      <FieldsTitle>Fields</FieldsTitle>
-      <Select {...selectProps} />
+      {/*<FieldsTitle>Fields</FieldsTitle>*/}
+      {/*<Select {...selectProps} />*/}
       <FieldsTitle>Order</FieldsTitle>
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="droppable">
