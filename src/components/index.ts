@@ -6,7 +6,6 @@ export { default as CreateStoryContent } from "./CreateStoryContent";
 export { default as FeedbackerContent } from "./FeedbackerContent";
 export { default as AnalyticsContent } from "./AnalyticsContent";
 export { default as DashboardContent } from "./DashboardContent";
-export { default as CasesOfUseContent } from "./UseCasesContent";
 export { default as ProfileContent } from "./ProfileContent";
 export { default as LandingContent } from "./LandingContent";
 export { default as SignInContent } from "./SignInContent";
