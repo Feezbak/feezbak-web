@@ -22,6 +22,7 @@ import {
   StoryDetails,
   ForgotPassword,
   ResetPassword,
+  Analytics,
 } from "@/pages";
 
 const AnimatedRoutes = () => {
@@ -135,6 +136,15 @@ const AnimatedRoutes = () => {
           element={
             <PrivateRoute>
               <StoryDetails />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          caseSensitive
+          path="/analytics/:storyId"
+          element={
+            <PrivateRoute>
+              <Analytics />
             </PrivateRoute>
           }
         />

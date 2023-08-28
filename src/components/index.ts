@@ -4,6 +4,7 @@ export { default as ResetPasswordContent } from "./ResetPasswordContent";
 export { default as StoryDetailsContent } from "./StoryDetailsContent";
 export { default as CreateStoryContent } from "./CreateStoryContent";
 export { default as FeedbackerContent } from "./FeedbackerContent";
+export { default as AnalyticsContent } from "./AnalyticsContent";
 export { default as DashboardContent } from "./DashboardContent";
 export { default as CasesOfUseContent } from "./UseCasesContent";
 export { default as ProfileContent } from "./ProfileContent";
