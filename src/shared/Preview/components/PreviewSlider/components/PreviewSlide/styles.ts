@@ -24,7 +24,7 @@ export const PoweredByWrapper = styled.div<{
   border-bottom-right-radius: ${ifProp("$isSquare", "2", "0")}rem;
 
   p {
-    margin: 1.3rem 0 0.15rem 0;
+    margin: 1.3rem 0 0.45rem 0;
     color: ${StyleEnums.white};
     font-weight: 600;
     font-size: 0.563rem;

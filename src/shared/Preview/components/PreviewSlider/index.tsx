@@ -1,10 +1,9 @@
 import { memo, forwardRef, useState, useEffect } from "react";
-import { SliderContainer } from "./styles";
 import Slider from "react-slick";
 import { slickSettings, Image } from "@/constants";
-import Icon from "@ant-design/icons";
+import logoFeezbak from "@images/product_logo.svg";
 import PreviewSlide from "./components/PreviewSlide";
-import { FeezbakWhiteIcon } from "@/icons";
+import { SliderContainer, ProductLogo } from "./styles";
 
 interface Props {
   hasCover: boolean;
@@ -41,7 +40,11 @@ const PreviewSlider = (
           >
             <>
               <p>POWERED BY</p>
-              <Icon component={FeezbakWhiteIcon} />
+              <ProductLogo
+                src={logoFeezbak}
+                alt="feezbak logo"
+                loading="lazy"
+              />
             </>
           </PreviewSlide>
         ))}

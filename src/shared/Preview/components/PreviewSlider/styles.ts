@@ -39,3 +39,8 @@ export const SliderContainer = styled.div`
     }
   }
 `;
+
+export const ProductLogo = styled.img`
+  cursor: pointer;
+  width: 9rem;
+`;

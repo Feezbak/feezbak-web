@@ -3,7 +3,6 @@ export { EditIconGrayBg } from "./editIconGrayBg";
 export { DeleteIconGrayBg } from "./deleteIconGrayBg";
 export { GoBackRoundIcon } from "./goBackRoundIcon";
 export { ArrowRightIcon } from "./arrowRightIcon";
-export { FeezbakWhiteIcon } from "./feezbakWhiteIcon";
 export { ColorPickerIcon } from "./colorPickerIcon";
 export { AnanasOnBikeIcon } from "./ananasOnBikeIcon";
 export { TrashWhiteIcon } from "./trashWhiteIcon";
