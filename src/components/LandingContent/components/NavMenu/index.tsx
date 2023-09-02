@@ -7,7 +7,6 @@ const NavMenu = () => {
     <NavMenuWrapper>
       <img src={logoFeezbak} alt="logo" loading="lazy" />
       <Nav>
-        <NavLink to="/use-cases">Use Cases</NavLink>
         <NavLink to="/solutions">Platform</NavLink>
         <NavLink to="/blog">Blog</NavLink>
         <NavLink to="/about-us">About Us</NavLink>
