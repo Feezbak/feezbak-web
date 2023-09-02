@@ -3,4 +3,5 @@ import { Row } from "antd";
 
 export const StoryAnalyticsWrapper = styled(Row)`
   height: 100%;
+  width: 100%;
 `;
