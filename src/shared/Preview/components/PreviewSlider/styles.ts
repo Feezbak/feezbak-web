@@ -1,12 +1,16 @@
 import styled from "styled-components";
 import { StyleEnums } from "@/enums";
+import { ifProp } from "@/helpers";
 
-export const SliderContainer = styled.div`
+export const SliderContainer = styled.div<{
+  readonly $isCreationMode: boolean;
+}>`
   position: absolute;
-  height: 95%;
-  top: 1.25rem;
-  left: 1.25rem;
-  right: 1.25rem;
+  width: ${ifProp("$isCreationMode", "auto", "100%")};
+  height: ${ifProp("$isCreationMode", "95", "100")}%;
+  top: ${ifProp("$isCreationMode", "1.25rem", "unset")};
+  left: ${ifProp("$isCreationMode", "1.25rem", "unset")};
+  right: ${ifProp("$isCreationMode", "1.25rem", "unset")};
   margin: 0 auto;
   border-radius: 2rem;
 

@@ -24,7 +24,7 @@ const PreviewSlider = (
   }, [activeId, setActiveSlide]);
 
   return (
-    <SliderContainer>
+    <SliderContainer $isCreationMode={!setActiveSlide || isSquare}>
       <Slider
         {...slickSettings}
         ref={ref}
