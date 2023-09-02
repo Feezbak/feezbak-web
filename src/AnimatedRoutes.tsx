@@ -7,7 +7,7 @@ import { useRecoilState } from "recoil";
 import { userData } from "@/recoil";
 import useRequest from "@ahooksjs/use-request";
 import { getMyProfile } from "@/api";
-import UseCases from "@components/DashboardContent/components/UseCases";
+import StoryAnalytics from "@components/AnalyticsContent/components/StoryAnalytics";
 import Stories from "@components/DashboardContent/components/Stories";
 import { PageNotFound, PrivateRoute } from "@/components";
 import {
@@ -119,7 +119,6 @@ const AnimatedRoutes = () => {
           }
         >
           <Route index element={<Stories />} />
-          <Route caseSensitive path="use-cases" element={<UseCases />} />
         </Route>
         <Route
           caseSensitive
@@ -147,7 +146,13 @@ const AnimatedRoutes = () => {
               <Analytics />
             </PrivateRoute>
           }
-        />
+        >
+          <Route
+            caseSensitive
+            path="/analytics/:storyId"
+            element={<StoryAnalytics />}
+          />
+        </Route>
       </Routes>
     </AnimatePresence>
   );
