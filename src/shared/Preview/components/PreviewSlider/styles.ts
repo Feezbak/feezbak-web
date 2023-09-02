@@ -4,6 +4,7 @@ import { ifProp } from "@/helpers";
 
 export const SliderContainer = styled.div<{
   readonly $isCreationMode: boolean;
+  readonly $isFeedbackerMobile: boolean;
 }>`
   position: absolute;
   width: ${ifProp("$isCreationMode", "auto", "100%")};
@@ -19,7 +20,7 @@ export const SliderContainer = styled.div<{
   }
 
   .slick-list {
-    border-radius: 2rem;
+    border-radius: ${ifProp("$isFeedbackerMobile", "unset", "2rem")};
   }
 
   .slick-dots {
