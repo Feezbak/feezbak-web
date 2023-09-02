@@ -73,14 +73,26 @@ const Demo = ({
     const feedbackData = structuredClone(feedbackObj);
     const guestData = feedbackData.contactToData;
     delete feedbackData.contactToData;
+    const guestPayloadData = {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: 0,
+    };
+    guestData.forEach((item: { field: string; value: string }) => {
+      if (item.field === "First Name") {
+        guestPayloadData.firstName = item.value;
+      } else if (item.field === "Last Name") {
+        guestPayloadData.lastName = item.value;
+      } else if (item.field === "Phone") {
+        guestPayloadData.phone = +item.value;
+      } else {
+        guestPayloadData.email = item.value;
+      }
+    });
     return {
       feedback: feedbackData,
-      guest: {
-        firstName: guestData?.["First Name"],
-        lastName: guestData?.["Last Name"],
-        email: guestData?.["email"],
-        phone: guestData?.["phone"],
-      },
+      guest: guestPayloadData,
     };
   };
 
