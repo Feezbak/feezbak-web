@@ -52,8 +52,9 @@ export const StoryActionsContainer = styled.div`
   ${FlexBoxEnum.SpaceBetweenHorizontal}
 
   button {
+    margin-right: 0.5rem;
     &:last-child {
-      margin-left: 0.5rem;
+      margin-right: 0;
     }
   }
 `;

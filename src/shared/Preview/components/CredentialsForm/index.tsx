@@ -8,6 +8,7 @@ interface Props {
   isOpen: boolean;
   fields: string[];
   isCreationMode: boolean;
+  isLoading: boolean;
   onClose: () => void;
   sendContactInfo: (info: ContactToData[]) => void;
 }
@@ -18,6 +19,7 @@ const CredentialsForm = ({
   fields,
   isCreationMode,
   sendContactInfo,
+  isLoading,
 }: Props) => {
   return (
     <FormDrawer
@@ -40,6 +42,7 @@ const CredentialsForm = ({
           </CredTitle>
           <CredentialsFormContent
             fields={fields}
+            isLoading={isLoading}
             isCreation={isCreationMode}
             sendContactInfo={sendContactInfo}
           />
