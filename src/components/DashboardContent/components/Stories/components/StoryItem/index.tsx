@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { StyleEnums, StoryEnums } from "@/enums";
 import { useTextFromHTML } from "@/hooks";
 import { EditIconGrayBg, DeleteIconGrayBg, LinkIconGrayBg } from "@/icons";
+import { AreaChartOutlined } from "@ant-design/icons";
 import {
   StoryItemStatusAndActions,
   StoryActionsContainer,
@@ -25,6 +26,7 @@ interface Props {
 }
 
 const StoryItem = ({ storyData, handleDelete, storyId }: Props) => {
+  console.log(storyData, 3333);
   const navigate = useNavigate();
   const { title, progress, _id: id } = storyData ?? {};
   const titleTextContent = useTextFromHTML(title ?? "");
@@ -36,6 +38,10 @@ const StoryItem = ({ storyData, handleDelete, storyId }: Props) => {
 
   const handleShareDetails = useCallback(() => {
     navigate(`/story-details/${storyId}`);
+  }, [storyId, navigate]);
+
+  const handleAnalytics = useCallback(() => {
+    navigate(`/analytics/${storyId}`);
   }, [storyId, navigate]);
 
   const conditionalAction = useMemo(
@@ -57,8 +63,7 @@ const StoryItem = ({ storyData, handleDelete, storyId }: Props) => {
   }, [progress]);
 
   const titleText = useMemo(() => {
-    const element = title;
-    if (!element) {
+    if (!title) {
       return "Story was't completed! 😔";
     }
     return titleTextContent;
@@ -86,6 +91,9 @@ const StoryItem = ({ storyData, handleDelete, storyId }: Props) => {
             icon={<DeleteIconGrayBg />}
             onClick={() => handleDelete(id)}
           />
+          {progress === "step3" && (
+            <ActionBtn onClick={handleAnalytics} icon={<AreaChartOutlined />} />
+          )}
         </StoryActionsContainer>
       </StoryItemStatusAndActions>
     </StoryListItemWrapper>

@@ -96,7 +96,7 @@ const Demo = ({
     };
   };
 
-  const { run: sendFeedbackResults } = useRequest(
+  const { run: sendFeedbackResults, loading: sendFeedbackLoading } = useRequest(
     (payload, feedbackId, guestId) =>
       sendFeedback(storyId!, feedbackId, guestId, payload),
     {
@@ -113,7 +113,7 @@ const Demo = ({
     }
   );
 
-  const { run: generateGuest } = useRequest(
+  const { run: generateGuest, loading: generateGuestLoading } = useRequest(
     () => generateFeedback(storyId ?? ""),
     {
       manual: true,
@@ -382,6 +382,7 @@ const Demo = ({
           sendContactInfo={handleSetContactInfo}
           isCreationMode={isCreationMode}
           fields={fields}
+          isLoading={generateGuestLoading || sendFeedbackLoading}
           isOpen={isCredentialDrawerOpen}
           onClose={() => setCredentialDrawerState(false)}
         />

@@ -4,12 +4,14 @@ import { FormWrapper, SubmitBtn, FormItem, CustomisedInput } from "./styles";
 interface Props {
   fields: string[];
   isCreation?: boolean;
+  isLoading?: boolean;
   sendContactInfo: (info: ContactToData[]) => void;
 }
 
 const CredentialsFormContent = ({
   fields,
   isCreation = true,
+  isLoading = false,
   sendContactInfo,
 }: Props) => {
   const handleSubmit = (formData: any) => {
@@ -37,7 +39,7 @@ const CredentialsFormContent = ({
         </FormItem>
       ))}
       <FormItem>
-        <SubmitBtn type="primary" htmlType="submit">
+        <SubmitBtn type="primary" htmlType="submit" loading={isLoading}>
           Send My Feedback
         </SubmitBtn>
       </FormItem>
