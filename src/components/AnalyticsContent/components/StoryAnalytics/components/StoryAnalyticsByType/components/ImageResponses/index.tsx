@@ -1,7 +1,8 @@
 import { StoryTypeEnum } from "@/enums";
+import { ImageResponsesType } from "@/constants";
 
 interface Props {
-  feedbacks: unknown;
+  feedbacks: ImageResponsesType[];
   storyType: StoryTypeEnum;
 }
 

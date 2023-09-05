@@ -1,6 +1,7 @@
 import { StoryTypeEnum } from "@/enums";
 import ImageResponses from "./components/ImageResponses";
 import CommentResponses from "./components/CommentResponses";
+import { CommentResponsesType, ImageResponsesType } from "@/constants";
 import { OverallCountText, StoryFeedbackWrapper, TitleText } from "./styles";
 
 //todo need to define type interface for feedbacks Prop
@@ -9,13 +10,8 @@ interface Props {
   title: string;
   storyType: StoryTypeEnum;
   overallVotes: number;
-  feedbacks: unknown;
+  feedbacks: ImageResponsesType[] | CommentResponsesType[];
 }
-
-const views = {
-  imageResponses: ImageResponses,
-  commentResponses: CommentResponses,
-};
 
 const StoryAnalyticsByType = ({
   title,
@@ -28,18 +24,23 @@ const StoryAnalyticsByType = ({
     storyType === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
     storyType === StoryTypeEnum.IMAGE_VOTING_ONLY_TEXT_RESP;
 
-  const CurrentView =
-    views[imageViewSelector ? "imageResponses" : "commentResponses"];
-
-  console.log(feedbacks, 33333);
-
   return (
     <StoryFeedbackWrapper>
       <TitleText>{title}</TitleText>
       <OverallCountText>
         Total number of votes: <strong>{overallVotes}</strong>
       </OverallCountText>
-      <CurrentView feedbacks={feedbacks} />
+      {imageViewSelector ? (
+        <ImageResponses
+          feedbacks={feedbacks as ImageResponsesType[]}
+          storyType={storyType}
+        />
+      ) : (
+        <CommentResponses
+          feedbacks={feedbacks as CommentResponsesType[]}
+          storyType={storyType}
+        />
+      )}
     </StoryFeedbackWrapper>
   );
 };
