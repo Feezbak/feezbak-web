@@ -1,6 +1,7 @@
 import { StoryTypeEnum } from "@/enums";
 import ImageResponses from "./components/ImageResponses";
 import CommentResponses from "./components/CommentResponses";
+import { opacityAnimation } from "@assets/framerAnimations";
 import { CommentResponsesType, ImageResponsesType } from "@/constants";
 import { OverallCountText, StoryFeedbackWrapper, TitleText } from "./styles";
 
@@ -25,7 +26,7 @@ const StoryAnalyticsByType = ({
     storyType === StoryTypeEnum.IMAGE_VOTING_ONLY_TEXT_RESP;
 
   return (
-    <StoryFeedbackWrapper>
+    <StoryFeedbackWrapper {...opacityAnimation}>
       <TitleText>{title}</TitleText>
       <OverallCountText>
         Total number of votes: <strong>{overallVotes}</strong>

@@ -10,7 +10,7 @@ interface Props {
 const ImageResponse = ({ data, storyType }: Props) => {
   return (
     <ImageResponseContainer>
-      <ImageCol xs={24} sm={24} md={5} lg={5} xl={5} xxl={5}>
+      <ImageCol xs={24} sm={24} md={6} lg={5} xl={5} xxl={5}>
         <Image
           src={`${process.env.REACT_APP_API_URL}/${data.src}`}
           loading="lazy"
