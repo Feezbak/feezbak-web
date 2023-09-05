@@ -1,5 +1,7 @@
 import { StoryTypeEnum } from "@/enums";
 import { ImageResponsesType } from "@/constants";
+import ImageResponse from "./components/ImageResponse";
+import { StorySlidesContainer } from "./styles";
 
 interface Props {
   feedbacks: ImageResponsesType[];
@@ -7,7 +9,17 @@ interface Props {
 }
 
 const ImageResponses = ({ feedbacks, storyType }: Props) => {
-  return <div>Image Response, create dynamic page rely on type</div>;
+  return (
+    <StorySlidesContainer>
+      {feedbacks.map((feedback) => (
+        <ImageResponse
+          key={feedback.id}
+          data={feedback}
+          storyType={storyType}
+        />
+      ))}
+    </StorySlidesContainer>
+  );
 };
 
 export default ImageResponses;
