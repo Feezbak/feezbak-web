@@ -171,3 +171,17 @@ export const storyEditorConvertedContent = {
   title: storyDefaultState.step1.title,
   titleColor: storyDefaultState.step1.titleColor,
 };
+
+export type ResponseBtnAnalyticsType = {
+  buttonVotesCount?: number;
+  text: string;
+  id: string;
+};
+
+export type ImageResponsesType = {
+  id: string;
+  src: string;
+  buttons: ResponseBtnAnalyticsType[];
+};
+
+export type CommentResponsesType = {};

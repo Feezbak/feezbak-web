@@ -16,3 +16,4 @@ export { UserIcon } from "./userIcon";
 export { LockIcon } from "./lockIcon";
 export { SendIcon } from "./sendIcon";
 export { ResizeIcon } from "./resizeIcon";
+export { GroupUsersIcon } from "./groupUsersIcon";

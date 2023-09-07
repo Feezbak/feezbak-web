@@ -1,8 +1,12 @@
+import { CommentResponsesType } from "@/constants";
+import { StoryTypeEnum } from "@/enums";
+
 interface Props {
-  feedbacks: unknown;
+  feedbacks: CommentResponsesType[];
+  storyType: StoryTypeEnum;
 }
 
-const CommentResponses = ({ feedbacks }: Props) => {
+const CommentResponses = ({ feedbacks, storyType }: Props) => {
   return <div>Comment Response</div>;
 };
 
