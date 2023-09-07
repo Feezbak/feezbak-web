@@ -1,12 +1,17 @@
 import styled from "styled-components";
 import { StyleEnums } from "@/enums";
+import { ifProp } from "@/helpers";
 
-export const SliderContainer = styled.div`
+export const SliderContainer = styled.div<{
+  readonly $isCreationMode: boolean;
+  readonly $isFeedbackerMobile: boolean;
+}>`
   position: absolute;
-  height: 95%;
-  top: 1.25rem;
-  left: 1.25rem;
-  right: 1.25rem;
+  width: ${ifProp("$isCreationMode", "auto", "100%")};
+  height: ${ifProp("$isCreationMode", "95", "100")}%;
+  top: ${ifProp("$isCreationMode", "1.25rem", "unset")};
+  left: ${ifProp("$isCreationMode", "1.25rem", "unset")};
+  right: ${ifProp("$isCreationMode", "1.25rem", "unset")};
   margin: 0 auto;
   border-radius: 2rem;
 
@@ -15,7 +20,7 @@ export const SliderContainer = styled.div`
   }
 
   .slick-list {
-    border-radius: 2rem;
+    border-radius: ${ifProp("$isFeedbackerMobile", "unset", "2rem")};
   }
 
   .slick-dots {
@@ -38,4 +43,9 @@ export const SliderContainer = styled.div`
       opacity: 1;
     }
   }
+`;
+
+export const ProductLogo = styled.img`
+  cursor: pointer;
+  width: 9rem;
 `;

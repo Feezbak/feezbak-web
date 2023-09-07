@@ -24,7 +24,7 @@ export const PreviewFlow = styled(motion.div)<{
   background: ${prop("$background")};
   width: 100%;
   height: 100%;
-  border-radius: 2.75rem;
+  border-radius: 3.5rem;
   position: relative;
   ${FlexBoxEnum.EndCenterVertical}
   transition: 0.3s;
@@ -33,7 +33,7 @@ export const PreviewFlow = styled(motion.div)<{
 
   ${inLessThan(BreakpointEnums.mobile)`
      border: unset;
-     border-radius: ${ifProp("$hasBorderRadius", "0", "2.75rem")} !important;
+     border-radius: ${ifProp("$hasBorderRadius", "0", "3.5rem")} !important;
   `}
 
   .ant-drawer-content-wrapper {

@@ -12,9 +12,11 @@ type LinkDataType = {
   title: string;
   url: string;
 };
+
 interface Props {
   links: LinkDataType[];
 }
+
 const NavigationHeader = ({ links }: Props) => {
   return (
     <NavigationHeaderWrapper>

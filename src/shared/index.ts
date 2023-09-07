@@ -10,3 +10,4 @@ export { default as EmailVerificationNotifier } from "./EmailVerificationNotifie
 export { default as Preview } from "./Preview";
 export { default as PreviewMobileDrawer } from "./PreviewMobileDrawer";
 export { default as ResizableTextArea } from "./ResizableTextArea";
+export { default as PageLoader } from "./PageLoader";
