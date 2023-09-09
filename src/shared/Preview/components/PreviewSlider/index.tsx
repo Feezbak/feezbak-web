@@ -18,7 +18,7 @@ const PreviewSlider = (
   { hasCover, isSquare, hasLayer, images, setActiveSlide }: Props,
   ref: any
 ) => {
-  const { isMobile } = useResponsive();
+  const { isLessThanMd } = useResponsive();
   const [activeId, setActiveId] = useState(images[0].id);
 
   useEffect(() => {
@@ -26,8 +26,8 @@ const PreviewSlider = (
   }, [activeId, setActiveSlide]);
 
   const isFeedbackerMobile = useMemo(
-    () => !!setActiveSlide && isMobile,
-    [setActiveSlide, isMobile]
+    () => !!setActiveSlide && isLessThanMd,
+    [setActiveSlide, isLessThanMd]
   );
 
   return (
