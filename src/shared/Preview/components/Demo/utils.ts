@@ -94,18 +94,35 @@ export const handleResponse = (
       ],
     };
     if (feedback) {
-      setFeedback({
-        ...feedback,
-        isComplete,
-        isMultiple,
-        responses: [
+      const feedbackResponses = [...feedback!.responses];
+      const indexOfExistingResp = feedbackResponses.findIndex(
+        (resp) => resp.imageId === activeSlideId
+      );
+      let responses = [] as typeof feedback.responses;
+
+      if (indexOfExistingResp === -1) {
+        responses = [
           ...feedback!.responses,
           {
             msg,
             imageId: activeSlideId,
             respBtnId,
           },
-        ],
+        ];
+      } else {
+        feedbackResponses[indexOfExistingResp] = {
+          msg,
+          imageId: activeSlideId,
+          respBtnId,
+        };
+        responses = feedbackResponses;
+      }
+
+      setFeedback({
+        ...feedback,
+        isComplete,
+        isMultiple,
+        responses,
       });
     } else {
       setFeedback(feedbackResult);

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ColorPickerIcon, MakeSquareIcon } from "@/icons";
 import { AnimatePresence, motion } from "framer-motion";
 import ResponsePreviewBtn from "@/shared/ResponsePreviewBtn";
@@ -73,13 +73,15 @@ const Demo = ({
     const feedbackData = structuredClone(feedbackObj);
     const guestData = feedbackData.contactToData;
     delete feedbackData.contactToData;
-    const guestPayloadData = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: 0,
-    };
-    guestData.forEach((item: { field: string; value: string }) => {
+    const guestPayloadData = guestData
+      ? {
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: 0,
+        }
+      : {};
+    guestData?.forEach((item: { field: string; value: string }) => {
       if (item.field === "First Name") {
         guestPayloadData.firstName = item.value;
       } else if (item.field === "Last Name") {
@@ -301,6 +303,21 @@ const Demo = ({
     sendFeedbackRequests();
   };
 
+  const checkActivity = useCallback(
+    (respBtnId: string) => {
+      if (feedback?.responses) {
+        if (hasButtonsResp) {
+          const activeSlideRespData = feedback.responses.find(
+            (slide) => slide.imageId === activeSlideId
+          );
+          return activeSlideRespData?.respBtnId === respBtnId;
+        }
+      }
+      return false;
+    },
+    [feedback, hasButtonsResp, activeSlideId]
+  );
+
   return (
     <>
       <PreviewFlow
@@ -358,6 +375,7 @@ const Demo = ({
               <AnimatePresence initial={false}>
                 {responseButtons.map((respBtn) => (
                   <ResponsePreviewBtn
+                    isActive={checkActivity(respBtn.id)}
                     key={respBtn.id}
                     text={respBtn.text}
                     action={() => handleButtonFeedback(respBtn)}
