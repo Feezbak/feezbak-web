@@ -178,10 +178,20 @@ export type ResponseBtnAnalyticsType = {
   id: string;
 };
 
+export type UserCommentsType = {
+  _id: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+  msg: string;
+};
+
 export type ImageResponsesType = {
   id: string;
   src: string;
-  buttons: ResponseBtnAnalyticsType[];
+  buttons?: ResponseBtnAnalyticsType[];
+  commentResponses?: UserCommentsType[];
 };
 
 export type CommentResponsesType = {};
