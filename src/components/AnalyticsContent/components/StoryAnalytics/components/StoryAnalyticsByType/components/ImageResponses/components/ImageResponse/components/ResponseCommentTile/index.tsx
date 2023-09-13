@@ -28,7 +28,14 @@ const ResponseCommentTile = ({ data, index }: Props) => {
     <CommentTileWrapper>
       <UserInfoSection>
         <UserAvatar
-          src={`https://robohash.org/${data._id.substring(0, 3)}` + index}
+          src={
+            `https://avatars.dicebear.com/api/open-peeps/${data._id.substring(
+              0,
+              3
+            )}` +
+            index +
+            ".svg"
+          }
           alt="user avatar"
         />
         <UserInfo>
