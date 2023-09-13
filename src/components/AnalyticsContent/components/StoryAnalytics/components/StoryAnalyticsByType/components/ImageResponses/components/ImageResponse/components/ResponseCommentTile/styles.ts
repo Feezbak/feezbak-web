@@ -30,7 +30,8 @@ export const UserAvatar = styled.img`
   border-radius: 50%;
   width: 2.25rem;
   height: 2.25rem;
-  border: 1px solid ${StyleEnums.gray4};
+  border: 1px solid ${StyleEnums.gray3};
+  background-color: ${StyleEnums.primary};
 `;
 
 export const Comment = styled.p`
