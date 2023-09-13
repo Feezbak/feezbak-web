@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { FlexBoxEnum, StyleEnums } from "@/enums";
-import { prop } from "@/helpers";
+import { ifProp, prop } from "@/helpers";
 import { Button } from "antd";
 
 export const ButtonDataWrapper = styled.div`
@@ -39,11 +39,14 @@ export const ActionsAndInfoContainer = styled.div`
   ${FlexBoxEnum.SpaceBetweenHorizontal}
 `;
 
-export const CommentsForChoiceBtn = styled(Button)`
+export const CommentsForChoiceBtn = styled(Button)<{
+  readonly $hasMargin: boolean;
+}>`
   margin-right: 0.5rem;
   height: 40px;
   padding: 0 1rem;
   border-radius: 0.75rem;
+  margin: ${ifProp("$hasMargin", "1.25rem 0 0 1.25rem", 0)};
   ${FlexBoxEnum.CenterHorizontal}
 `;
 

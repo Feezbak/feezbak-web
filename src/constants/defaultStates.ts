@@ -191,7 +191,7 @@ export type ImageResponsesType = {
   id: string;
   src: string;
   buttons?: ResponseBtnAnalyticsType[];
-  commentResponses?: UserCommentsType[];
+  comments?: UserCommentsType[];
 };
 
 export type CommentResponsesType = {};

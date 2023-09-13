@@ -38,7 +38,7 @@ const ResponseBTNTile = ({
       </ProgressText>
       <ActionsAndInfoContainer>
         {hasComments && (
-          <CommentsForChoiceBtn>
+          <CommentsForChoiceBtn $hasMargin={false}>
             See {commentsCount} comments
           </CommentsForChoiceBtn>
         )}
