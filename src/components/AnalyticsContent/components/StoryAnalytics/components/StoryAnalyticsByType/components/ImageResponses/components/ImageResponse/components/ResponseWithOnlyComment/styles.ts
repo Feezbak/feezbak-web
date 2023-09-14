@@ -3,5 +3,5 @@ import { Col } from "antd";
 import { FlexBoxEnum } from "@/enums";
 
 export const ResponseCommentsWrapper = styled(Col)`
-  ${FlexBoxEnum.CenterVertical}
+  ${FlexBoxEnum.StartStartVertical}
 `;

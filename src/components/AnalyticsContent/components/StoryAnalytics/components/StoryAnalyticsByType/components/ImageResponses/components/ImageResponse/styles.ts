@@ -6,7 +6,7 @@ export const ImageResponseContainer = styled(Row)`
   width: 100%;
   padding: 2rem 0;
   border-bottom: 1px solid ${StyleEnums.gray4};
-  ${FlexBoxEnum.SpaceBetweenHorizontal}
+  ${FlexBoxEnum.SpaceBetweenStartVertical}
 
   &:last-child {
     border: none;
