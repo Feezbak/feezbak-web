@@ -26,7 +26,6 @@ interface Props {
 }
 
 const StoryItem = ({ storyData, handleDelete, storyId }: Props) => {
-  console.log(storyData, 3333);
   const navigate = useNavigate();
   const { title, progress, _id: id } = storyData ?? {};
   const titleTextContent = useTextFromHTML(title ?? "");
