@@ -28,6 +28,8 @@ const ResponseBTNTile = ({
     return votesCount ? Math.round((votesCount * 100) / overallVotesCount) : 0;
   }, [votesCount, overallVotesCount]);
 
+  console.log(progress, overallVotesCount, votesCount, 1111);
+
   return (
     <ButtonDataWrapper>
       <ProgressText>

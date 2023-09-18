@@ -12,11 +12,13 @@ const ResponseWithOnlyBTN = ({ data }: Props) => {
     () =>
       data.reduce(
         (accumulator, currentValue) =>
-          accumulator + (currentValue?.buttonVotesCount ?? 0),
+          accumulator + (currentValue?.votesCount ?? 0),
         0
       ),
     [data]
   );
+
+  console.log(overallVotesCount, 5555);
 
   return (
     <ResponseBtnsDataWrapper xs={24} sm={24} md={17} lg={18} xl={18} xxl={18}>
@@ -26,7 +28,7 @@ const ResponseWithOnlyBTN = ({ data }: Props) => {
           text={btn.text}
           commentsCount={0}
           hasComments={false}
-          votesCount={btn.buttonVotesCount!}
+          votesCount={btn.votesCount!}
           overallVotesCount={overallVotesCount}
         />
       ))}
