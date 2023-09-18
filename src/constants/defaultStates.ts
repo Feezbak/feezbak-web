@@ -173,7 +173,7 @@ export const storyEditorConvertedContent = {
 };
 
 export type ResponseBtnAnalyticsType = {
-  buttonVotesCount?: number;
+  votesCount?: number;
   text: string;
   id: string;
 };
@@ -184,7 +184,7 @@ export type UserCommentsType = {
   lastName?: string;
   email?: string;
   phone?: string;
-  msg: string;
+  commentText: string;
 };
 
 export type ImageResponsesType = {

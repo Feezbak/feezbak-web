@@ -43,7 +43,7 @@ const ResponseCommentTile = ({ data, index }: Props) => {
           <SecondaryInfo></SecondaryInfo>
         </UserInfo>
       </UserInfoSection>
-      <Comment>{data.msg}</Comment>
+      <Comment>{data.commentText}</Comment>
     </CommentTileWrapper>
   );
 };
