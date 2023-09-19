@@ -18,7 +18,14 @@ const ImageResponse = ({ data, storyType }: Props) => {
     } else if (storyType === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP) {
       return data?.buttons && <ResponseWithOnlyBTN data={data.buttons} />;
     } else {
-      return data?.comments && <ResponseWithOnlyComment data={data.comments} />;
+      return (
+        data?.comments && (
+          <ResponseWithOnlyComment
+            data={data.comments}
+            totalCommentCount={data.totalCommentCount}
+          />
+        )
+      );
     }
   }, [storyType, data]);
 

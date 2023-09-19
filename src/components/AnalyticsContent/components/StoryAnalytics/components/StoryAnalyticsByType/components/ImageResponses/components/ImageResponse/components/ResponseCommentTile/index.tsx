@@ -1,4 +1,6 @@
+import { useMemo } from "react";
 import { UserCommentsType } from "@/constants";
+import dayjs from "dayjs";
 import {
   CommentTileWrapper,
   Comment,
@@ -8,7 +10,6 @@ import {
   UserInfo,
   Name,
 } from "./styles";
-import { useMemo } from "react";
 
 interface Props {
   data: UserCommentsType;
@@ -23,6 +24,11 @@ const ResponseCommentTile = ({ data, index }: Props) => {
       return "Anonymous";
     }
   }, [data]);
+
+  const commentDate = useMemo(() => {
+    const date = dayjs(data.createdAt, { format: "YYYY-MM-DD HH:mm:ss" });
+    return date.format("MMMM D, YYYY • HH:mm");
+  }, [data.createdAt]);
 
   return (
     <CommentTileWrapper>
@@ -40,7 +46,7 @@ const ResponseCommentTile = ({ data, index }: Props) => {
         />
         <UserInfo>
           <Name>{userName}</Name>
-          <SecondaryInfo></SecondaryInfo>
+          <SecondaryInfo>{commentDate}</SecondaryInfo>
         </UserInfo>
       </UserInfoSection>
       <Comment>{data.commentText}</Comment>
