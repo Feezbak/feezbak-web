@@ -14,7 +14,7 @@ interface Props {
 const ImageResponse = ({ data, storyType }: Props) => {
   const dataInfoComponent = useMemo(() => {
     if (storyType === StoryTypeEnum.COMBINED) {
-      return <ResponseWithBTNAndComment />;
+      return data?.buttons && <ResponseWithBTNAndComment data={data.buttons} />;
     } else if (storyType === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP) {
       return data?.buttons && <ResponseWithOnlyBTN data={data.buttons} />;
     } else {
