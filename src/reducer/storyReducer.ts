@@ -85,6 +85,9 @@ const storyReducer = (state: any, action: any) => {
         },
       };
     case storyStateActions.SET_VOTING_TYPE:
+      const isTextTypeStory =
+        payload === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP ||
+        payload === StoryTypeEnum.TEXT_VOTING_ONLY_TEXT_RESP;
       return {
         ...state,
         step2: {
@@ -93,16 +96,10 @@ const storyReducer = (state: any, action: any) => {
           imageVoting: {
             ...state.step2.imageVoting,
             isImageAttached: false,
-            images:
-              payload === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP ||
-              payload === StoryTypeEnum.TEXT_VOTING_ONLY_TEXT_RESP
-                ? []
-                : [...state.step2.imageVoting.images],
-            selectedImgSrc:
-              payload === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP ||
-              payload === StoryTypeEnum.TEXT_VOTING_ONLY_TEXT_RESP
-                ? ""
-                : state?.step2?.imageVoting?.images[0]?.src ?? "",
+            images: isTextTypeStory ? [] : [...state.step2.imageVoting.images],
+            selectedImgSrc: isTextTypeStory
+              ? ""
+              : state?.step2?.imageVoting?.images[0]?.src ?? "",
           },
         },
       };
