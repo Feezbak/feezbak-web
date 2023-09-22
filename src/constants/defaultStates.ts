@@ -174,7 +174,6 @@ export const storyEditorConvertedContent = {
 
 export type ResponseBtnAnalyticsType = {
   votesCount?: number;
-  commentsCount?: number;
   text: string;
   id: string;
 };

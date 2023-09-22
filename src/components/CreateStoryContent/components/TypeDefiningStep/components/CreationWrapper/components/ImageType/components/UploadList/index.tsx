@@ -24,8 +24,6 @@ const UploadList = () => {
     }
   );
 
-  const setImgSrcToStore = (imgSrc = "") => setSelectedImgSrc(imgSrc);
-
   const handleDelete = async (id: string) => {
     const resp = await runDeleteImgById(id);
     if (resp?.data === id) {
@@ -35,13 +33,13 @@ const UploadList = () => {
       oldImagesArr.splice(deleteItemIndex, 1);
       deleteImage(id);
       if (deleteItemSrc === step2?.imageVoting?.selectedImgSrc) {
-        setImgSrcToStore();
+        setSelectedImgSrc("");
       }
     }
   };
 
   const handleSelect = (src: string) => {
-    setImgSrcToStore(src);
+    setSelectedImgSrc(src);
   };
 
   const isSelected = useCallback(

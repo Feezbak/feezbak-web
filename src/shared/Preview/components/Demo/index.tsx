@@ -375,6 +375,7 @@ const Demo = ({
               <AnimatePresence initial={false}>
                 {responseButtons.map((respBtn) => (
                   <ResponsePreviewBtn
+                    disabled={generateGuestLoading || sendFeedbackLoading}
                     isActive={checkActivity(respBtn.id)}
                     key={respBtn.id}
                     text={respBtn.text}

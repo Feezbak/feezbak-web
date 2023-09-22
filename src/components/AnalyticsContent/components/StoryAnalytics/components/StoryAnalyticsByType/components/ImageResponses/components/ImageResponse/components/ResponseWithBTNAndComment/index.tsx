@@ -24,7 +24,7 @@ const ResponseWithBTNAndComment = ({ data }: Props) => {
         <ResponseBTNTile
           key={btn.id}
           text={btn.text}
-          commentsCount={btn.commentsCount}
+          commentsCount={btn.votesCount}
           votesCount={btn.votesCount!}
           overallVotesCount={overallVotesCount}
         />
