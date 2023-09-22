@@ -35,4 +35,8 @@ export const ResponsePreviewButton = styled(Button)<{
   width: 100%;
   border: 2px solid ${ifProp("$isActive", StyleEnums.white, StyleEnums.black)};
   color: ${ifProp("$isActive", StyleEnums.white, StyleEnums.black)};
+
+  &:disabled {
+    background: ${StyleEnums.gray5};
+  }
 `;
