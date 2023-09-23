@@ -1,17 +1,15 @@
 import { StoryTypeEnum } from "@/enums";
 import ImageResponses from "./components/ImageResponses";
-import CommentResponses from "./components/CommentResponses";
+import TextResponses from "./components/TextResponses";
 import { opacityAnimation } from "@assets/framerAnimations";
-import { CommentResponsesType, ImageResponsesType } from "@/constants";
+import { TextResponsesType, ImageResponsesType } from "@/constants";
 import { OverallCountText, StoryFeedbackWrapper, TitleText } from "./styles";
-
-//todo need to define type interface for feedbacks Prop
 
 interface Props {
   title: string;
   storyType: StoryTypeEnum;
   overallVotes: number;
-  feedbacks: ImageResponsesType[] | CommentResponsesType[];
+  feedbacks: ImageResponsesType[] | TextResponsesType[];
 }
 
 const StoryAnalyticsByType = ({
@@ -37,8 +35,8 @@ const StoryAnalyticsByType = ({
           storyType={storyType}
         />
       ) : (
-        <CommentResponses
-          feedbacks={feedbacks as CommentResponsesType[]}
+        <TextResponses
+          feedbacks={feedbacks as TextResponsesType}
           storyType={storyType}
         />
       )}

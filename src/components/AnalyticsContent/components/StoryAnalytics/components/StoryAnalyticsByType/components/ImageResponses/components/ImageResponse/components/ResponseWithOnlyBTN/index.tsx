@@ -1,5 +1,5 @@
 import { ResponseBtnAnalyticsType } from "@/constants";
-import ResponseBTNTile from "../ResponseBTNTile";
+import ResponseBTNTile from "../../../../../ResponseBTNTile";
 import { ResponseBtnsDataWrapper } from "./styles";
 import { useMemo } from "react";
 

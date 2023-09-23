@@ -1,5 +1,5 @@
 import { ResponseBtnAnalyticsType } from "@/constants";
-import ResponseBTNTile from "../../../../../ResponseBTNTile";
+import ResponseBTNTile from "../../../ResponseBTNTile";
 import { ResponseBtnsDataWrapper } from "./styles";
 import { useMemo } from "react";
 
@@ -7,7 +7,7 @@ interface Props {
   data: ResponseBtnAnalyticsType[];
 }
 
-const ResponseWithBTNAndComment = ({ data }: Props) => {
+const TextWithButtonResp = ({ data }: Props) => {
   const overallVotesCount = useMemo(
     () =>
       data.reduce(
@@ -19,12 +19,13 @@ const ResponseWithBTNAndComment = ({ data }: Props) => {
   );
 
   return (
-    <ResponseBtnsDataWrapper xs={24} sm={24} md={17} lg={18} xl={18} xxl={18}>
+    <ResponseBtnsDataWrapper>
       {data.map((btn) => (
         <ResponseBTNTile
           key={btn.id}
           text={btn.text}
-          commentsCount={btn.votesCount}
+          commentsCount={0}
+          hasComments={false}
           votesCount={btn.votesCount!}
           overallVotesCount={overallVotesCount}
         />
@@ -33,4 +34,4 @@ const ResponseWithBTNAndComment = ({ data }: Props) => {
   );
 };
 
-export default ResponseWithBTNAndComment;
+export default TextWithButtonResp;

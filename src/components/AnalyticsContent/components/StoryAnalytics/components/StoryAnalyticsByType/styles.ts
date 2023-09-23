@@ -25,3 +25,8 @@ export const OverallCountText = styled.p`
   line-height: 1.25rem;
   margin-bottom: 2rem;
 `;
+
+export const StorySlidesContainer = styled.div`
+  width: 100%;
+  ${FlexBoxEnum.StartStartVertical}
+`;

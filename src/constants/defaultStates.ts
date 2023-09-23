@@ -196,4 +196,10 @@ export type ImageResponsesType = {
   comments?: UserCommentsType[];
 };
 
-export type CommentResponsesType = {};
+export type TextResponsesType = {
+  buttons?: ResponseBtnAnalyticsType[];
+  comments?: UserCommentsType[];
+  perPage?: number;
+  currentPage?: number;
+  commentsCount?: number;
+};

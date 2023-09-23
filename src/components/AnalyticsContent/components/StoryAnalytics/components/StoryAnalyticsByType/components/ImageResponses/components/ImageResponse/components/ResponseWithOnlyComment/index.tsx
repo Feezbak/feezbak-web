@@ -1,7 +1,7 @@
 import { UserCommentsType } from "@/constants";
 import { ResponseCommentsWrapper } from "./styles";
-import ResponseCommentTile from "../ResponseCommentTile";
-import { CommentsForChoiceBtn } from "../ResponseBTNTile/styles";
+import ResponseCommentTile from "../../../../../ResponseCommentTile";
+import { CommentsForChoiceBtn } from "../../../../../ResponseBTNTile/styles";
 
 interface Props {
   data: UserCommentsType[];

@@ -13,7 +13,7 @@ import {
 
 interface Props {
   data: UserCommentsType;
-  index: number;
+  index?: number;
 }
 
 const ResponseCommentTile = ({ data, index }: Props) => {
