@@ -1,4 +1,5 @@
 import { Image, storyStateActions } from "@/constants";
+import { StoryTypeEnum } from "@/enums";
 
 const storyReducer = (state: any, action: any) => {
   const { type, payload } = action;
@@ -84,6 +85,9 @@ const storyReducer = (state: any, action: any) => {
         },
       };
     case storyStateActions.SET_VOTING_TYPE:
+      const isTextTypeStory =
+        payload === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP ||
+        payload === StoryTypeEnum.TEXT_VOTING_ONLY_TEXT_RESP;
       return {
         ...state,
         step2: {
@@ -92,7 +96,10 @@ const storyReducer = (state: any, action: any) => {
           imageVoting: {
             ...state.step2.imageVoting,
             isImageAttached: false,
-            selectedImgSrc: "",
+            images: isTextTypeStory ? [] : [...state.step2.imageVoting.images],
+            selectedImgSrc: isTextTypeStory
+              ? ""
+              : state?.step2?.imageVoting?.images[0]?.src ?? "",
           },
         },
       };
@@ -165,7 +172,7 @@ const storyReducer = (state: any, action: any) => {
         },
       };
     default:
-      throw new Error(`No case for type ${type} found in shopReducer.`);
+      throw new Error(`No case for type ${type} found in storyReducer.`);
   }
 };
 

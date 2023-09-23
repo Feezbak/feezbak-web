@@ -180,6 +180,7 @@ export type ResponseBtnAnalyticsType = {
 
 export type UserCommentsType = {
   _id: string;
+  createdAt: string;
   firstName?: string;
   lastName?: string;
   email?: string;
@@ -190,8 +191,15 @@ export type UserCommentsType = {
 export type ImageResponsesType = {
   id: string;
   src: string;
+  totalCommentCount?: number;
   buttons?: ResponseBtnAnalyticsType[];
   comments?: UserCommentsType[];
 };
 
-export type CommentResponsesType = {};
+export type TextResponsesType = {
+  buttons?: ResponseBtnAnalyticsType[];
+  comments?: UserCommentsType[];
+  perPage?: number;
+  currentPage?: number;
+  commentsCount?: number;
+};

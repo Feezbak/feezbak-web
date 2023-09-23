@@ -22,13 +22,14 @@ const ResponseBTNTile = ({
   text,
   votesCount = 0,
   overallVotesCount,
-  hasComments = false,
 }: Props) => {
   const progress = useMemo(() => {
     return votesCount ? Math.round((votesCount * 100) / overallVotesCount) : 0;
   }, [votesCount, overallVotesCount]);
 
-  console.log(progress, overallVotesCount, votesCount, 1111);
+  const hasComments = useMemo(() => {
+    return !!commentsCount;
+  }, [commentsCount]);
 
   return (
     <ButtonDataWrapper>

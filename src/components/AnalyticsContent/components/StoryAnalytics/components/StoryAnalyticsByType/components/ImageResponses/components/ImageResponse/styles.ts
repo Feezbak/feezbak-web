@@ -14,7 +14,7 @@ export const ImageResponseContainer = styled(Row)`
 `;
 
 export const ImageCol = styled(Col)`
-  max-height: 15rem;
+  height: 15rem;
 `;
 
 export const Image = styled.img`

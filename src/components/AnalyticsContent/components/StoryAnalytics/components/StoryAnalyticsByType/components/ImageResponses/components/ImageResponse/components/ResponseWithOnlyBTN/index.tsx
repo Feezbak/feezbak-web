@@ -1,5 +1,5 @@
 import { ResponseBtnAnalyticsType } from "@/constants";
-import ResponseBTNTile from "../ResponseBTNTile";
+import ResponseBTNTile from "../../../../../ResponseBTNTile";
 import { ResponseBtnsDataWrapper } from "./styles";
 import { useMemo } from "react";
 
@@ -17,8 +17,6 @@ const ResponseWithOnlyBTN = ({ data }: Props) => {
       ),
     [data]
   );
-
-  console.log(overallVotesCount, 5555);
 
   return (
     <ResponseBtnsDataWrapper xs={24} sm={24} md={17} lg={18} xl={18} xxl={18}>

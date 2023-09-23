@@ -13,7 +13,7 @@ export const UserInfoSection = styled.div`
 `;
 
 export const UserInfo = styled.div`
-  ${FlexBoxEnum.CenterVertical}
+  ${FlexBoxEnum.StartStartVertical}
   margin-left: 0.75rem;
 `;
 
@@ -24,7 +24,9 @@ export const Name = styled.p`
   margin-bottom: 0.25rem;
 `;
 
-export const SecondaryInfo = styled.p``;
+export const SecondaryInfo = styled.p`
+  color: ${StyleEnums.gray2};
+`;
 
 export const UserAvatar = styled.img`
   border-radius: 50%;
