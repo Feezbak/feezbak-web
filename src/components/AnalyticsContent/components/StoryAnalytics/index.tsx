@@ -34,7 +34,7 @@ const StoryAnalytics = () => {
           StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
         feedbacks.data.storyType === StoryTypeEnum.IMAGE_VOTING_ONLY_TEXT_RESP;
       return feedbacks.data[
-        isImageViewFeedbacks ? "imageResponseData" : "commentResponseData"
+        isImageViewFeedbacks ? "imageResponseData" : "textResponse"
       ];
     }
   }, [feedbacks]);
