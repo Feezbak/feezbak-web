@@ -137,7 +137,7 @@ export const storyDefaultState: StoryCreationDataType = {
   setSelectionQuantityState: () => {},
 };
 
-export type userDataType = {
+export type UserDataType = {
   accountVerificationCode: undefined | string;
   changePasswordId: undefined | string;
   createdAt: undefined | string;
@@ -152,7 +152,7 @@ export type userDataType = {
   _id: undefined | string;
 };
 
-export const userDefaultData: userDataType = {
+export const userDefaultData: UserDataType = {
   accountVerificationCode: undefined,
   changePasswordId: undefined,
   createdAt: undefined,

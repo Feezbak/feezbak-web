@@ -70,7 +70,6 @@ const AnimatedRoutes = () => {
 
   useEffect(() => {
     if (authed) {
-      console.log(user?.firstName, 1111);
       if (
         !user?.firstName &&
         (pathname.includes("/create-story") ||
