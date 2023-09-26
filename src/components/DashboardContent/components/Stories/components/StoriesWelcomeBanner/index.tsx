@@ -9,6 +9,10 @@ import {
   Img,
 } from "./styles";
 const StoriesWelcomeBanner = () => {
+  const handleUpdateAccount = () => {
+    alert("This feature is not available, we will notify you soon about it!");
+  };
+
   return (
     <StoriesWelcomeBannerWrapper
       xs={24}
@@ -28,7 +32,9 @@ const StoriesWelcomeBanner = () => {
           </p>
           <BecomeProAdvice>
             <p>4 out of 6 stories used</p>
-            <BecomeProBtn>Become Pro</BecomeProBtn>
+            <BecomeProBtn onClick={handleUpdateAccount}>
+              Become Pro
+            </BecomeProBtn>
           </BecomeProAdvice>
         </TextContent>
         <ImageWrapper xs={24} sm={24} md={12} lg={12} xl={12} xxl={12}>
