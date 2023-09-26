@@ -70,10 +70,13 @@ const AnimatedRoutes = () => {
 
   useEffect(() => {
     if (authed) {
+      console.log(user?.firstName, 1111);
       if (
         !user?.firstName &&
         (pathname.includes("/create-story") ||
-          pathname.includes("/story-details"))
+          pathname.includes("/story-details") ||
+          pathname.includes("/dashboard") ||
+          pathname.includes("/profile"))
       ) {
         (async () => await getProfileData())();
       }
