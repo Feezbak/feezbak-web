@@ -4,14 +4,20 @@ import { Controller } from "react-hook-form";
 import { message } from "antd";
 import { ErrorMessage, SelectWithAdd } from "@/shared";
 import { UpdateForm, FieldsSection, FormItem, CustomisedInput } from "./styles";
+import { UserDataType } from "@/constants";
 
-const UpdateProfileForm = () => {
+interface Props {
+  userRecoilData: UserDataType;
+}
+
+const UpdateProfileForm = ({ userRecoilData }: Props) => {
   const onProfileSuccessUpdate = () => {
     message.success("Your profile was successfuly updated!");
   };
 
   const { submitForm, formState, requestLoading, formControl, formErrors } =
-    useProfileUpdateForm(onProfileSuccessUpdate);
+    useProfileUpdateForm(onProfileSuccessUpdate, userRecoilData);
+
   return (
     <UpdateForm
       name="updateForm"
@@ -26,7 +32,7 @@ const UpdateProfileForm = () => {
       <FieldsSection size="large">
         <FormItem
           name="firstName"
-          validateStatus={formErrors && formErrors["firstName"] ? "error" : ""}
+          validateStatus={formErrors?.["firstName"] ? "error" : ""}
           help={
             formErrors.firstName && (
               <ErrorMessage message={formErrors.firstName.message} />
@@ -52,7 +58,7 @@ const UpdateProfileForm = () => {
         </FormItem>
         <FormItem
           name="lastname"
-          validateStatus={formErrors && formErrors["lastName"] ? "error" : ""}
+          validateStatus={formErrors?.["lastName"] ? "error" : ""}
           help={
             formErrors.lastName && (
               <ErrorMessage message={formErrors.lastName.message} />
@@ -80,7 +86,7 @@ const UpdateProfileForm = () => {
       <FieldsSection size="large">
         <FormItem
           name="email"
-          validateStatus={formErrors && formErrors["email"] ? "error" : ""}
+          validateStatus={formErrors?.["email"] ? "error" : ""}
           help={
             formErrors.email && (
               <ErrorMessage message={formErrors.email.message} />
