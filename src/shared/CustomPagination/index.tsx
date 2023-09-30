@@ -9,13 +9,14 @@ interface Props {
   setCurrentPage: (page: number) => void;
 }
 
-const StoriesPagination = ({
+const CustomPagination = ({
   total,
   pageSize,
   currentPage,
   setCurrentPage,
 }: Props) => {
   const navigate = useNavigate();
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     navigate(`?page=${page}`);
@@ -33,4 +34,4 @@ const StoriesPagination = ({
   );
 };
 
-export default StoriesPagination;
+export default CustomPagination;
