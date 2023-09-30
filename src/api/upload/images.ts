@@ -13,7 +13,7 @@ function dataURLtoBlob(dataURL: string) {
 
   return new Blob([arrayBuffer], { type: contentType });
 }
-export function uploadImageToStory(storyId: string, payload: any) {
+export async function uploadImageToStory(storyId: string, payload: any) {
   const formdata = new FormData();
   formdata.append("images", dataURLtoBlob(payload), "aaaaaaa.png");
 
@@ -22,7 +22,7 @@ export function uploadImageToStory(storyId: string, payload: any) {
     .then((response) => response);
 }
 
-export function deleteUploadedImgById(storyId: string, imageId: string) {
+export async function deleteUploadedImgById(storyId: string, imageId: string) {
   return axiosClient
     .delete(`/upload/images/${storyId}/${imageId}`)
     .then((response) => response);
