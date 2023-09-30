@@ -1,6 +1,6 @@
 import { useState } from "react";
 import StoryItem from "../StoryItem";
-import { ConfirmModal } from "@/shared";
+import { ConfirmModal, CustomPagination } from "@/shared";
 import useRequest from "@ahooksjs/use-request";
 import { getStories, deleteStory } from "@/api";
 import { message } from "antd";
@@ -8,7 +8,6 @@ import { AnimatePresence } from "framer-motion";
 import emptyStoriesSrc from "@images/empty-stories.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { opacityAnimation } from "@assets/framerAnimations";
-import StoriesPagination from "./components/StoriesPagination";
 import {
   EmptyStoriesWrapper,
   StoriesListWrapper,
@@ -114,7 +113,7 @@ const StoriesList = () => {
               ))}
             </StoriesListWrapper>
             {storiesPaginatedData.total > storiesPaginatedData.limit && (
-              <StoriesPagination
+              <CustomPagination
                 currentPage={currentPage}
                 setCurrentPage={handleSetCurrentPage}
                 pageSize={storiesPaginatedData.limit}
