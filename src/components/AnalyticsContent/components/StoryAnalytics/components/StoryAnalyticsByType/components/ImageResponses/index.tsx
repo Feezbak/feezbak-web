@@ -7,9 +7,17 @@ import { StorySlidesContainer } from "../../styles";
 interface Props {
   feedbacks: ImageResponsesType[];
   storyType: StoryTypeEnum;
+  setCommentsModalData: (commentsModalData: {
+    storyId: string;
+    imageId: string;
+  }) => void;
 }
 
-const ImageResponses = ({ feedbacks, storyType }: Props) => {
+const ImageResponses = ({
+  feedbacks,
+  storyType,
+  setCommentsModalData,
+}: Props) => {
   const { storyId } = useParams();
   const handleSeeMoreComments = (imageId: string) => {
     console.log(storyId, imageId, 77777);

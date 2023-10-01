@@ -1,3 +1,4 @@
+import { useMemo, useState } from "react";
 import { StoryTypeEnum } from "@/enums";
 import ImageResponses from "./components/ImageResponses";
 import TextResponses from "./components/TextResponses";
@@ -18,10 +19,21 @@ const StoryAnalyticsByType = ({
   overallVotes,
   feedbacks,
 }: Props) => {
-  const imageViewSelector =
-    storyType === StoryTypeEnum.COMBINED ||
-    storyType === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
-    storyType === StoryTypeEnum.IMAGE_VOTING_ONLY_TEXT_RESP;
+  const [commentsModalData, setCommentsModalData] = useState<null | {
+    storyId: string;
+    imageId?: string;
+    respBtnId?: string;
+  }>(null);
+
+  const imageViewSelector = useMemo(
+    () =>
+      storyType === StoryTypeEnum.COMBINED ||
+      storyType === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
+      storyType === StoryTypeEnum.IMAGE_VOTING_ONLY_TEXT_RESP,
+    [storyType]
+  );
+
+  console.log(commentsModalData, 4444);
 
   return (
     <StoryFeedbackWrapper {...opacityAnimation}>
@@ -33,11 +45,13 @@ const StoryAnalyticsByType = ({
         <ImageResponses
           feedbacks={feedbacks as ImageResponsesType[]}
           storyType={storyType}
+          setCommentsModalData={setCommentsModalData}
         />
       ) : (
         <TextResponses
           feedbacks={feedbacks as TextResponsesType}
           storyType={storyType}
+          setCommentsModalData={setCommentsModalData}
         />
       )}
     </StoryFeedbackWrapper>
