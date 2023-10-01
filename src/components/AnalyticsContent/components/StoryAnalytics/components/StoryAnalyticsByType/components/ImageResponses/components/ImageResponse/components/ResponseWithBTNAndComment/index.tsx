@@ -5,9 +5,10 @@ import { useMemo } from "react";
 
 interface Props {
   data: ResponseBtnAnalyticsType[];
+  handleSeeMoreComments: (imageId: string) => void;
 }
 
-const ResponseWithBTNAndComment = ({ data }: Props) => {
+const ResponseWithBTNAndComment = ({ data, handleSeeMoreComments }: Props) => {
   const overallVotesCount = useMemo(
     () =>
       data.reduce(

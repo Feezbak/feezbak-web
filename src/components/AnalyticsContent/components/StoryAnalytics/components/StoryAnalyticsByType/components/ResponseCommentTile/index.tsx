@@ -36,7 +36,7 @@ const ResponseCommentTile = ({ data, index }: Props) => {
     <CommentTileWrapper>
       <UserInfoSection>
         <UserAvatar
-          src={`https://api.dicebear.com/7.x/micah/svg?seed=${avatarSrc}`}
+          src={`https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${avatarSrc}`}
           alt="user avatar"
         />
         <UserInfo>

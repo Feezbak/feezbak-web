@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { UserCommentsType } from "@/constants";
 import { CustomPagination } from "@/shared";
 import { message } from "antd";
@@ -13,16 +13,18 @@ interface Props {
 }
 
 const TextWithCommentResp = ({ feedbacksPaginatedData }: Props) => {
+  const commentsWrapperRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { storyId } = useParams();
-  const [commentsData] = useState(feedbacksPaginatedData);
+  const [commentsData, setCommentData] = useState(feedbacksPaginatedData);
 
   const { run: getCommentsData } = useRequest(
     (page: number) => getFeedbackComments(storyId!, "", "", page),
     {
       manual: true,
       onSuccess: (response: any) => {
-        console.log(response, 5555);
+        setCommentData(response.data);
+        window.scrollTo({ top: 0, behavior: "smooth" });
       },
       onError: (error: any) => {
         setTimeout(() => navigate("/not-found"), 2000);
@@ -36,7 +38,7 @@ const TextWithCommentResp = ({ feedbacksPaginatedData }: Props) => {
   };
 
   return (
-    <CommentsListWrapper>
+    <CommentsListWrapper ref={commentsWrapperRef}>
       {commentsData.comments.map((singleComment: UserCommentsType) => (
         <ResponseCommentTile key={singleComment._id} data={singleComment} />
       ))}

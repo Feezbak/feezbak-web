@@ -9,25 +9,35 @@ import { ImageResponseContainer, ImageCol, Image } from "./styles";
 interface Props {
   data: ImageResponsesType;
   storyType: StoryTypeEnum;
+  handleSeeMoreComments: (imageId: string) => void;
 }
 
-const ImageResponse = ({ data, storyType }: Props) => {
+const ImageResponse = ({ data, storyType, handleSeeMoreComments }: Props) => {
   const dataInfoComponent = useMemo(() => {
     if (storyType === StoryTypeEnum.COMBINED) {
-      return data?.buttons && <ResponseWithBTNAndComment data={data.buttons} />;
+      return (
+        data?.buttons && (
+          <ResponseWithBTNAndComment
+            data={data.buttons}
+            handleSeeMoreComments={handleSeeMoreComments}
+          />
+        )
+      );
     } else if (storyType === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP) {
       return data?.buttons && <ResponseWithOnlyBTN data={data.buttons} />;
     } else {
       return (
         data?.comments && (
           <ResponseWithOnlyComment
+            imageId={data.id}
             data={data.comments}
             totalCommentCount={data.totalCommentCount}
+            handleSeeMoreComments={handleSeeMoreComments}
           />
         )
       );
     }
-  }, [storyType, data]);
+  }, [storyType, data, handleSeeMoreComments]);
 
   return (
     <ImageResponseContainer>
