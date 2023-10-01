@@ -30,8 +30,8 @@ export const SecondaryInfo = styled.p`
 
 export const UserAvatar = styled.img`
   border-radius: 50%;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.75rem;
+  height: 2.75rem;
   border: 1px solid ${StyleEnums.gray3};
   background-color: ${StyleEnums.primary};
 `;

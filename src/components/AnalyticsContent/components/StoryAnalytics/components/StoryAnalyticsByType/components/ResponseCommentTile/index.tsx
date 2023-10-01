@@ -30,18 +30,13 @@ const ResponseCommentTile = ({ data, index }: Props) => {
     return date.format("MMMM D, YYYY • HH:mm");
   }, [data.createdAt]);
 
+  const avatarSrc = useMemo(() => dayjs(data.createdAt).unix(), [data]);
+
   return (
     <CommentTileWrapper>
       <UserInfoSection>
         <UserAvatar
-          src={
-            `https://avatars.dicebear.com/api/open-peeps/${data._id.substring(
-              0,
-              3
-            )}` +
-            index +
-            ".svg"
-          }
+          src={`https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${avatarSrc}`}
           alt="user avatar"
         />
         <UserInfo>
