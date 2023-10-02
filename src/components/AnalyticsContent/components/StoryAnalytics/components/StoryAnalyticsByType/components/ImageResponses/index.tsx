@@ -20,7 +20,10 @@ const ImageResponses = ({
 }: Props) => {
   const { storyId } = useParams();
   const handleSeeMoreComments = (imageId: string) => {
-    console.log(storyId, imageId, 77777);
+    setCommentsModalData({
+      imageId,
+      storyId: storyId!,
+    });
   };
 
   return (

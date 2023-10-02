@@ -2,7 +2,9 @@ import { useMemo, useState } from "react";
 import { StoryTypeEnum } from "@/enums";
 import ImageResponses from "./components/ImageResponses";
 import TextResponses from "./components/TextResponses";
+import CommentsModalContent from "./components/CommentsModalContent";
 import { opacityAnimation } from "@assets/framerAnimations";
+import { CustomModal } from "@/shared";
 import { TextResponsesType, ImageResponsesType } from "@/constants";
 import { OverallCountText, StoryFeedbackWrapper, TitleText } from "./styles";
 
@@ -33,8 +35,6 @@ const StoryAnalyticsByType = ({
     [storyType]
   );
 
-  console.log(commentsModalData, 4444);
-
   return (
     <StoryFeedbackWrapper {...opacityAnimation}>
       <TitleText>{title}</TitleText>
@@ -54,6 +54,18 @@ const StoryAnalyticsByType = ({
           setCommentsModalData={setCommentsModalData}
         />
       )}
+      <CustomModal
+        isOpen={!!commentsModalData}
+        closeModal={() => setCommentsModalData(null)}
+      >
+        {
+          <CommentsModalContent
+            storyId={commentsModalData?.storyId}
+            imageId={commentsModalData?.imageId}
+            respBtnId={commentsModalData?.respBtnId}
+          />
+        }
+      </CustomModal>
     </StoryFeedbackWrapper>
   );
 };
