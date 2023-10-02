@@ -18,7 +18,7 @@ interface Props {
   positiveBtnAction: () => void;
   negativeBtnAction: () => void;
 }
-const Modal = ({
+const ConfirmModalContent = ({
   title,
   text,
   positiveBtnAction,
@@ -53,4 +53,4 @@ const Modal = ({
   );
 };
 
-export default Modal;
+export default ConfirmModalContent;
