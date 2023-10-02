@@ -12,8 +12,8 @@ export async function getFeedbackComments(
 ) {
   return axiosClient
     .get(
-      `/story/${id}/comments?${imageId && `imageId=${imageId}`}${
-        btnId && `&btnId=${btnId}&`
+      `/story/${id}/comments?${imageId && `imageId=${imageId}&`}${
+        btnId && `btnId=${btnId}&`
       }page=${page}`
     )
     .then((response) => response);

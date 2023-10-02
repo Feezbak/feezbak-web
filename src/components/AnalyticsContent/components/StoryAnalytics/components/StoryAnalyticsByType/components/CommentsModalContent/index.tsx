@@ -1,5 +1,10 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { dropIn } from "@/constants";
 import { ModalWrapper } from "./styles";
+import { message } from "antd";
+import useRequest from "@ahooksjs/use-request";
+import { getFeedbackComments } from "@/api";
 
 interface Props {
   storyId?: string;
@@ -8,7 +13,29 @@ interface Props {
 }
 
 const CommentsModalContent = ({ storyId, imageId, respBtnId }: Props) => {
-  console.log(storyId, imageId, respBtnId, 999);
+  const navigate = useNavigate();
+  //  const [commentsData, setCommentsData] = useState();
+
+  const { run: getCommentsData } = useRequest(
+    (page: number) =>
+      getFeedbackComments(storyId!, imageId ?? "", respBtnId ?? "", page),
+    {
+      manual: true,
+      onSuccess: (response: any) => {
+        console.log(response, 5555);
+        //        setCommentData(response.data);
+      },
+      onError: (error: any) => {
+        setTimeout(() => navigate("/not-found"), 2000);
+        message.error(error?.response?.data?.message ?? "");
+      },
+    }
+  );
+
+  useEffect(() => {
+    getCommentsData(1);
+  }, []);
+
   return (
     <ModalWrapper
       onClick={(e) => e.stopPropagation()}
@@ -16,7 +43,9 @@ const CommentsModalContent = ({ storyId, imageId, respBtnId }: Props) => {
       initial="hidden"
       animate="visible"
       exit="exit"
-    ></ModalWrapper>
+    >
+      content
+    </ModalWrapper>
   );
 };
 
