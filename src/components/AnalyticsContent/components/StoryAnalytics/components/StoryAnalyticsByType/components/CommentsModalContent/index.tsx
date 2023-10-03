@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { dropIn } from "@/constants";
-import { ModalWrapper } from "./styles";
+import { CustomPagination } from "@/shared";
 import { message } from "antd";
 import useRequest from "@ahooksjs/use-request";
 import { getFeedbackComments } from "@/api";
+import { CommentPaginatedDataType } from "@/constants";
+import { ModalWrapper } from "./styles";
 
 interface Props {
   storyId?: string;
@@ -14,16 +16,15 @@ interface Props {
 
 const CommentsModalContent = ({ storyId, imageId, respBtnId }: Props) => {
   const navigate = useNavigate();
-  //  const [commentsData, setCommentsData] = useState();
+  const [commentsData, setCommentsData] =
+    useState<CommentPaginatedDataType | null>(null);
 
   const { run: getCommentsData } = useRequest(
-    (page: number) =>
+    (page = 1) =>
       getFeedbackComments(storyId!, imageId ?? "", respBtnId ?? "", page),
     {
-      manual: true,
       onSuccess: (response: any) => {
-        console.log(response, 5555);
-        //        setCommentData(response.data);
+        setCommentsData(response.data);
       },
       onError: (error: any) => {
         setTimeout(() => navigate("/not-found"), 2000);
@@ -31,10 +32,6 @@ const CommentsModalContent = ({ storyId, imageId, respBtnId }: Props) => {
       },
     }
   );
-
-  useEffect(() => {
-    getCommentsData(1);
-  }, []);
 
   return (
     <ModalWrapper
@@ -44,7 +41,14 @@ const CommentsModalContent = ({ storyId, imageId, respBtnId }: Props) => {
       animate="visible"
       exit="exit"
     >
-      content
+      {!!commentsData?.comments?.length && (
+        <CustomPagination
+          currentPage={commentsData.currentPage}
+          setCurrentPage={(page) => getCommentsData(page)}
+          pageSize={commentsData.perPage!}
+          total={commentsData.commentsCount}
+        />
+      )}
     </ModalWrapper>
   );
 };

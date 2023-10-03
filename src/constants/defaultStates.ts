@@ -188,6 +188,13 @@ export type UserCommentsType = {
   commentText: string;
 };
 
+export type CommentPaginatedDataType = {
+  currentPage: number;
+  commentsCount: number;
+  perPage: number;
+  comments: UserCommentsType[];
+};
+
 export type ImageResponsesType = {
   id: string;
   src: string;
