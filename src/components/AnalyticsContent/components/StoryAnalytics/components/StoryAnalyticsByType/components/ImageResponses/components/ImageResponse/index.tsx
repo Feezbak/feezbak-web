@@ -9,7 +9,7 @@ import { ImageResponseContainer, ImageCol, Image } from "./styles";
 interface Props {
   data: ImageResponsesType;
   storyType: StoryTypeEnum;
-  handleSeeMoreComments: (imageId: string) => void;
+  handleSeeMoreComments: (imageId: string, imageSrc: string) => void;
 }
 
 const ImageResponse = ({ data, storyType, handleSeeMoreComments }: Props) => {
@@ -19,7 +19,12 @@ const ImageResponse = ({ data, storyType, handleSeeMoreComments }: Props) => {
         data?.buttons && (
           <ResponseWithBTNAndComment
             data={data.buttons}
-            handleSeeMoreComments={handleSeeMoreComments}
+            handleSeeMoreComments={(imageId) =>
+              handleSeeMoreComments(
+                imageId,
+                `${process.env.REACT_APP_API_URL}/${data.src}`
+              )
+            }
           />
         )
       );
@@ -32,7 +37,12 @@ const ImageResponse = ({ data, storyType, handleSeeMoreComments }: Props) => {
             imageId={data.id}
             data={data.comments}
             totalCommentCount={data.totalCommentCount}
-            handleSeeMoreComments={handleSeeMoreComments}
+            handleSeeMoreComments={(imageId) =>
+              handleSeeMoreComments(
+                imageId,
+                `${process.env.REACT_APP_API_URL}/${data.src}`
+              )
+            }
           />
         )
       );

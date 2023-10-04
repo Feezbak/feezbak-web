@@ -6,24 +6,32 @@ import { message } from "antd";
 import useRequest from "@ahooksjs/use-request";
 import { getFeedbackComments } from "@/api";
 import { CommentPaginatedDataType } from "@/constants";
-import { ModalWrapper } from "./styles";
+import Image from "./components/Image";
+import Comments from "./components/Comments";
+import { ModalWrapper, ContentWrapper, FixedWrapper } from "./styles";
 
 interface Props {
   storyId?: string;
   imageId?: string;
   respBtnId?: string;
+  imageSrc?: string;
 }
 
-const CommentsModalContent = ({ storyId, imageId, respBtnId }: Props) => {
+const CommentsModalContent = ({
+  storyId,
+  imageId,
+  respBtnId,
+  imageSrc,
+}: Props) => {
   const navigate = useNavigate();
   const [commentsData, setCommentsData] =
     useState<CommentPaginatedDataType | null>(null);
 
-  const { run: getCommentsData } = useRequest(
+  const { run: getCommentsData, loading } = useRequest(
     (page = 1) =>
       getFeedbackComments(storyId!, imageId ?? "", respBtnId ?? "", page),
     {
-      onSuccess: (response: any) => {
+      onSuccess: (response) => {
         setCommentsData(response.data);
       },
       onError: (error: any) => {
@@ -41,13 +49,19 @@ const CommentsModalContent = ({ storyId, imageId, respBtnId }: Props) => {
       animate="visible"
       exit="exit"
     >
-      {!!commentsData?.comments?.length && (
-        <CustomPagination
-          currentPage={commentsData.currentPage}
-          setCurrentPage={(page) => getCommentsData(page)}
-          pageSize={commentsData.perPage!}
-          total={commentsData.commentsCount}
-        />
+      <ContentWrapper>
+        {imageSrc && <Image src={imageSrc} />}
+        <Comments isLoading={loading} comments={commentsData?.comments} />
+      </ContentWrapper>
+      {!!commentsData?.comments?.length && !loading && (
+        <FixedWrapper>
+          <CustomPagination
+            currentPage={commentsData.currentPage}
+            setCurrentPage={(page) => getCommentsData(page)}
+            pageSize={commentsData.perPage!}
+            total={commentsData.commentsCount}
+          />
+        </FixedWrapper>
       )}
     </ModalWrapper>
   );

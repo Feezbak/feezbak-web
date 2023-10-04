@@ -20,7 +20,7 @@ export const StoriesListHeader = styled.div`
 `;
 
 export const StoriesContent = styled(Col)`
-  margin-top: 2.25rem;
+  margin: 2.25rem 0 4rem 0;
   height: max-content;
   width: 100%;
 `;
