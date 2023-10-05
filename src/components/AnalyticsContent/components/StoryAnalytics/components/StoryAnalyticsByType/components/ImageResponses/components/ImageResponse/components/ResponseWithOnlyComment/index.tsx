@@ -4,17 +4,15 @@ import ResponseCommentTile from "../../../../../ResponseCommentTile";
 import { CommentsForChoiceBtn } from "../../../../../ResponseBTNTile/styles";
 
 interface Props {
-  imageId: string;
   data: UserCommentsType[];
   totalCommentCount?: number;
-  handleSeeMoreComments: (imageId: string) => void;
+  handleSeeMoreComments: () => void;
 }
 
 const ResponseWithOnlyComment = ({
   data,
   totalCommentCount,
   handleSeeMoreComments,
-  imageId,
 }: Props) => {
   return (
     <ResponseCommentsWrapper xs={24} sm={24} md={17} lg={18} xl={18} xxl={18}>
@@ -26,10 +24,7 @@ const ResponseWithOnlyComment = ({
         />
       ))}
       {(totalCommentCount ?? 0) > 3 && (
-        <CommentsForChoiceBtn
-          $hasMargin={true}
-          onClick={() => handleSeeMoreComments(imageId)}
-        >
+        <CommentsForChoiceBtn $hasMargin={true} onClick={handleSeeMoreComments}>
           Show All {totalCommentCount} Comments
         </CommentsForChoiceBtn>
       )}
