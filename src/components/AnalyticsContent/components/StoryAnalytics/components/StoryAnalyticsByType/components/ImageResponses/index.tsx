@@ -10,6 +10,8 @@ interface Props {
   setCommentsModalData: (commentsModalData: {
     storyId: string;
     imageId: string;
+    imageSrc: string;
+    respBtnId?: string;
   }) => void;
 }
 
@@ -19,10 +21,16 @@ const ImageResponses = ({
   setCommentsModalData,
 }: Props) => {
   const { storyId } = useParams();
-  const handleSeeMoreComments = (imageId: string) => {
+  const handleSeeMoreComments = (
+    imageId: string,
+    imageSrc: string,
+    respBtnId?: string
+  ) => {
     setCommentsModalData({
       imageId,
       storyId: storyId!,
+      imageSrc,
+      respBtnId: respBtnId ?? "",
     });
   };
 

@@ -51,10 +51,10 @@ const DashboardContent = () => {
     <>
       <StoryDetailsContentWrapper
         xs={22}
-        sm={20}
-        md={15}
-        lg={12}
-        xl={9}
+        sm={22}
+        md={17}
+        lg={14}
+        xl={11}
         xxl={8}
       >
         <Header />

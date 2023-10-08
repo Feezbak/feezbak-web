@@ -25,6 +25,7 @@ const StoryAnalyticsByType = ({
     storyId: string;
     imageId?: string;
     respBtnId?: string;
+    imageSrc?: string;
   }>(null);
 
   const imageViewSelector = useMemo(
@@ -58,13 +59,12 @@ const StoryAnalyticsByType = ({
         isOpen={!!commentsModalData}
         closeModal={() => setCommentsModalData(null)}
       >
-        {
-          <CommentsModalContent
-            storyId={commentsModalData?.storyId}
-            imageId={commentsModalData?.imageId}
-            respBtnId={commentsModalData?.respBtnId}
-          />
-        }
+        <CommentsModalContent
+          imageSrc={commentsModalData?.imageSrc}
+          storyId={commentsModalData?.storyId}
+          imageId={commentsModalData?.imageId}
+          respBtnId={commentsModalData?.respBtnId}
+        />
       </CustomModal>
     </StoryFeedbackWrapper>
   );

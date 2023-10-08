@@ -5,7 +5,7 @@ import { useMemo } from "react";
 
 interface Props {
   data: ResponseBtnAnalyticsType[];
-  handleSeeMoreComments: (imageId: string) => void;
+  handleSeeMoreComments: (respBtnId: string) => void;
 }
 
 const ResponseWithBTNAndComment = ({ data, handleSeeMoreComments }: Props) => {
@@ -28,6 +28,7 @@ const ResponseWithBTNAndComment = ({ data, handleSeeMoreComments }: Props) => {
           commentsCount={btn.votesCount}
           votesCount={btn.votesCount!}
           overallVotesCount={overallVotesCount}
+          handleSeeMoreComments={() => handleSeeMoreComments(btn.id)}
         />
       ))}
     </ResponseBtnsDataWrapper>
