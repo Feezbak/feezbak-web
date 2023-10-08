@@ -9,12 +9,30 @@ import { ImageResponseContainer, ImageCol, Image } from "./styles";
 interface Props {
   data: ImageResponsesType;
   storyType: StoryTypeEnum;
+  handleSeeMoreComments: (
+    imageId: string,
+    imageSrc: string,
+    respBtnId?: string
+  ) => void;
 }
 
-const ImageResponse = ({ data, storyType }: Props) => {
+const ImageResponse = ({ data, storyType, handleSeeMoreComments }: Props) => {
   const dataInfoComponent = useMemo(() => {
     if (storyType === StoryTypeEnum.COMBINED) {
-      return data?.buttons && <ResponseWithBTNAndComment data={data.buttons} />;
+      return (
+        data?.buttons && (
+          <ResponseWithBTNAndComment
+            data={data.buttons}
+            handleSeeMoreComments={(respBtnId) =>
+              handleSeeMoreComments(
+                data.id,
+                `${process.env.REACT_APP_API_URL}/${data.src}`,
+                respBtnId
+              )
+            }
+          />
+        )
+      );
     } else if (storyType === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP) {
       return data?.buttons && <ResponseWithOnlyBTN data={data.buttons} />;
     } else {
@@ -23,11 +41,17 @@ const ImageResponse = ({ data, storyType }: Props) => {
           <ResponseWithOnlyComment
             data={data.comments}
             totalCommentCount={data.totalCommentCount}
+            handleSeeMoreComments={() =>
+              handleSeeMoreComments(
+                data.id,
+                `${process.env.REACT_APP_API_URL}/${data.src}`
+              )
+            }
           />
         )
       );
     }
-  }, [storyType, data]);
+  }, [storyType, data, handleSeeMoreComments]);
 
   return (
     <ImageResponseContainer>

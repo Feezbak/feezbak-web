@@ -5,9 +5,10 @@ import { useMemo } from "react";
 
 interface Props {
   data: ResponseBtnAnalyticsType[];
+  handleSeeMoreComments: (respBtnId: string) => void;
 }
 
-const ResponseWithBTNAndComment = ({ data }: Props) => {
+const ResponseWithBTNAndComment = ({ data, handleSeeMoreComments }: Props) => {
   const overallVotesCount = useMemo(
     () =>
       data.reduce(
@@ -27,6 +28,7 @@ const ResponseWithBTNAndComment = ({ data }: Props) => {
           commentsCount={btn.votesCount}
           votesCount={btn.votesCount!}
           overallVotesCount={overallVotesCount}
+          handleSeeMoreComments={() => handleSeeMoreComments(btn.id)}
         />
       ))}
     </ResponseBtnsDataWrapper>

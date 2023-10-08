@@ -8,6 +8,10 @@ import { StorySlidesContainer } from "../../styles";
 interface Props {
   feedbacks: TextResponsesType;
   storyType: StoryTypeEnum;
+  setCommentsModalData: (commentsModalData: {
+    storyId: string;
+    imageId: string;
+  }) => void;
 }
 
 const TextResponses = ({ feedbacks, storyType }: Props) => {

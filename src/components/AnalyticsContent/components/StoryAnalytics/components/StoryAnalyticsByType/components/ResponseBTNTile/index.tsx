@@ -15,6 +15,7 @@ interface Props {
   commentsCount?: number;
   votesCount?: number;
   overallVotesCount: number;
+  handleSeeMoreComments?: () => void;
 }
 
 const ResponseBTNTile = ({
@@ -22,6 +23,7 @@ const ResponseBTNTile = ({
   text,
   votesCount = 0,
   overallVotesCount,
+  handleSeeMoreComments,
 }: Props) => {
   const progress = useMemo(() => {
     return votesCount ? Math.round((votesCount * 100) / overallVotesCount) : 0;
@@ -41,7 +43,10 @@ const ResponseBTNTile = ({
       </ProgressText>
       <ActionsAndInfoContainer>
         {hasComments && (
-          <CommentsForChoiceBtn $hasMargin={false}>
+          <CommentsForChoiceBtn
+            $hasMargin={false}
+            onClick={handleSeeMoreComments}
+          >
             See {commentsCount} comments
           </CommentsForChoiceBtn>
         )}

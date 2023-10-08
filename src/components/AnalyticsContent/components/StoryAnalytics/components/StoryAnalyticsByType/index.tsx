@@ -1,7 +1,10 @@
+import { useMemo, useState } from "react";
 import { StoryTypeEnum } from "@/enums";
 import ImageResponses from "./components/ImageResponses";
 import TextResponses from "./components/TextResponses";
+import CommentsModalContent from "./components/CommentsModalContent";
 import { opacityAnimation } from "@assets/framerAnimations";
+import { CustomModal } from "@/shared";
 import { TextResponsesType, ImageResponsesType } from "@/constants";
 import { OverallCountText, StoryFeedbackWrapper, TitleText } from "./styles";
 
@@ -18,10 +21,20 @@ const StoryAnalyticsByType = ({
   overallVotes,
   feedbacks,
 }: Props) => {
-  const imageViewSelector =
-    storyType === StoryTypeEnum.COMBINED ||
-    storyType === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
-    storyType === StoryTypeEnum.IMAGE_VOTING_ONLY_TEXT_RESP;
+  const [commentsModalData, setCommentsModalData] = useState<null | {
+    storyId: string;
+    imageId?: string;
+    respBtnId?: string;
+    imageSrc?: string;
+  }>(null);
+
+  const imageViewSelector = useMemo(
+    () =>
+      storyType === StoryTypeEnum.COMBINED ||
+      storyType === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
+      storyType === StoryTypeEnum.IMAGE_VOTING_ONLY_TEXT_RESP,
+    [storyType]
+  );
 
   return (
     <StoryFeedbackWrapper {...opacityAnimation}>
@@ -33,13 +46,26 @@ const StoryAnalyticsByType = ({
         <ImageResponses
           feedbacks={feedbacks as ImageResponsesType[]}
           storyType={storyType}
+          setCommentsModalData={setCommentsModalData}
         />
       ) : (
         <TextResponses
           feedbacks={feedbacks as TextResponsesType}
           storyType={storyType}
+          setCommentsModalData={setCommentsModalData}
         />
       )}
+      <CustomModal
+        isOpen={!!commentsModalData}
+        closeModal={() => setCommentsModalData(null)}
+      >
+        <CommentsModalContent
+          imageSrc={commentsModalData?.imageSrc}
+          storyId={commentsModalData?.storyId}
+          imageId={commentsModalData?.imageId}
+          respBtnId={commentsModalData?.respBtnId}
+        />
+      </CustomModal>
     </StoryFeedbackWrapper>
   );
 };

@@ -11,3 +11,5 @@ export { default as Preview } from "./Preview";
 export { default as PreviewMobileDrawer } from "./PreviewMobileDrawer";
 export { default as ResizableTextArea } from "./ResizableTextArea";
 export { default as PageLoader } from "./PageLoader";
+export { default as CustomPagination } from "./CustomPagination";
+export { default as CustomModal } from "./CustomModal";

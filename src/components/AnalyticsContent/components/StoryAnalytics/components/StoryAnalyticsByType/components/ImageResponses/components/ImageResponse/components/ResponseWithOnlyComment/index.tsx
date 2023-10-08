@@ -6,9 +6,14 @@ import { CommentsForChoiceBtn } from "../../../../../ResponseBTNTile/styles";
 interface Props {
   data: UserCommentsType[];
   totalCommentCount?: number;
+  handleSeeMoreComments: () => void;
 }
 
-const ResponseWithOnlyComment = ({ data, totalCommentCount }: Props) => {
+const ResponseWithOnlyComment = ({
+  data,
+  totalCommentCount,
+  handleSeeMoreComments,
+}: Props) => {
   return (
     <ResponseCommentsWrapper xs={24} sm={24} md={17} lg={18} xl={18} xxl={18}>
       {data?.map((commentData, index) => (
@@ -19,7 +24,7 @@ const ResponseWithOnlyComment = ({ data, totalCommentCount }: Props) => {
         />
       ))}
       {(totalCommentCount ?? 0) > 3 && (
-        <CommentsForChoiceBtn $hasMargin={true}>
+        <CommentsForChoiceBtn $hasMargin={true} onClick={handleSeeMoreComments}>
           Show All {totalCommentCount} Comments
         </CommentsForChoiceBtn>
       )}
