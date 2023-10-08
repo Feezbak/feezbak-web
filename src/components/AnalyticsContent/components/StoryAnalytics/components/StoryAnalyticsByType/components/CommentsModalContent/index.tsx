@@ -53,16 +53,18 @@ const CommentsModalContent = ({
         {imageSrc && <Image src={imageSrc} />}
         <Comments isLoading={loading} comments={commentsData?.comments} />
       </ContentWrapper>
-      {!!commentsData?.comments?.length && !loading && (
-        <FixedWrapper>
-          <CustomPagination
-            currentPage={commentsData.currentPage}
-            setCurrentPage={(page) => getCommentsData(page)}
-            pageSize={commentsData.perPage!}
-            total={commentsData.commentsCount}
-          />
-        </FixedWrapper>
-      )}
+      {!!commentsData?.comments?.length &&
+        commentsData?.commentsCount > commentsData.perPage &&
+        !loading && (
+          <FixedWrapper>
+            <CustomPagination
+              currentPage={commentsData.currentPage}
+              setCurrentPage={(page) => getCommentsData(page)}
+              pageSize={commentsData.perPage!}
+              total={commentsData.commentsCount}
+            />
+          </FixedWrapper>
+        )}
     </ModalWrapper>
   );
 };
