@@ -3,6 +3,7 @@ on:
   pull_request:
     branches:
       - develop
+
 jobs:
   lighthouse:
     name: Audit with Lighthouse
@@ -12,10 +13,12 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.sha }}
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '14.x'
+
       - name: Prepare application
         run: |
           npm config set scripts-prepend-node-path true
@@ -23,25 +26,25 @@ jobs:
           npm run build
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-      - name: Set base URL for Lighthouse
+
+      - name: Install and serve the application
         run: |
-          echo "LHCI_BUILD_COMMAND='npm run serve:prod'" >> .env.local
-          echo "LHCI_SERVER_BASE_URL=http://localhost:3000/dashboard" >> .env.local
-        env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-      - name: Start the production server
-        run: |
-            npm run serve:prod &
-            disown
+          npm install -g serve
+          serve -s build -l 3000 &
+          # Continue immediately without waiting for serve to finish
+        shell: bash
+
       - name: Wait for the server to start
         run: |
           until curl -sSf http://localhost:3000/dashboard -o /dev/null; do
             echo "Waiting for the server to start..."
             sleep 5
           done
-      - name: Run Lighthouse CI
+
+      - name: Run Lighthouse on http://localhost:3000/dashboard
         run: |
           npm install -g @lhci/cli@0.8.x
-          lhci autorun
+          lhci collect --url http://localhost:3000/dashboard
+          lhci upload
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
