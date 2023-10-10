@@ -25,6 +25,11 @@ jobs:
              echo "LHCI_COLLECT_URL=http://localhost:3000/dashboard" >> .env.local
            env:
              LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+         - name: Set base URL for Lighthouse
+           run: |
+             echo "LHCI_SERVER_BASE_URL=http://localhost:3000/dashboard" >> .env.local
+           env:
+             LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
          - name: run Lighthouse CI
            run: |
              npm install -g @lhci/cli@0.8.x
