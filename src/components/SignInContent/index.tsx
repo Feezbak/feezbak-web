@@ -17,9 +17,9 @@ const SignInContent = () => {
           xs={0}
           sm={0}
           md={0}
-          lg={10}
-          xl={8}
-          xxl={6}
+          lg={12}
+          xl={10}
+          xxl={7}
           flex="center"
         >
           <img src={signUpImgSrc} alt="sign up" loading="lazy" />

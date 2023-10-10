@@ -36,8 +36,8 @@ const SignUpContent = () => {
                 xs={0}
                 sm={0}
                 md={0}
-                lg={10}
-                xl={8}
+                lg={11}
+                xl={9}
                 xxl={6}
                 flex="center"
               >
