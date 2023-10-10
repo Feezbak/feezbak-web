@@ -28,10 +28,7 @@ jobs:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
       - name: Start the application
-        run: |
-          npm run serve:prod &
-          sleep 5 # Wait for the server to start
-        background: true
+        run: npm run serve:prod
 
       - name: Wait for the server to start
         run: |
