@@ -17,7 +17,6 @@ import {
   Create,
   Verify,
   Profile,
-  Landing,
   Dashboard,
   StoryDetails,
   ForgotPassword,
@@ -86,7 +85,6 @@ const AnimatedRoutes = () => {
   return (
     <AnimatePresence>
       <Routes>
-        <Route caseSensitive path="/" element={<Landing />} />
         <Route caseSensitive path="/sign-in" element={<SignIn />} />
         <Route caseSensitive path="/sign-up" element={<SignUp />} />
         <Route path="*" element={<PageNotFound />} />
