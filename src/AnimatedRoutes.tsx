@@ -37,6 +37,7 @@ const AnimatedRoutes = () => {
     },
     onError: (error: any) => {
       message.error(error?.response?.data?.message ?? "");
+      localStorage.clear();
     },
   });
 
