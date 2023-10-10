@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "description": "Feedback accumulating and managing web platform",
   "author": "Taron Vardanyan",
+  "homepage": "/dashboard",
   "repository": {
     "type": "git",
     "url": "https://github.com/Feezbak/feezbak-web.git"
   },
   "private": true,
-  "proxy": "http://localhost:3000/",
+  "proxy": "http://localhost:3000/dashboard",
   "dependencies": {
     "@ahooksjs/use-request": "^2.8.15",
     "@craco/craco": "^6.4.5",
