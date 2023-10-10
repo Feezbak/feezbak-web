@@ -27,12 +27,11 @@ jobs:
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
-      - name: Install and serve the application
+      - name: Start the application
         run: |
-          npm install -g serve
-          serve -s build -l 3000 &
-          # Continue immediately without waiting for serve to finish
-        shell: bash
+          npm run serve:prod &
+          sleep 5 # Wait for the server to start
+        background: true
 
       - name: Wait for the server to start
         run: |
