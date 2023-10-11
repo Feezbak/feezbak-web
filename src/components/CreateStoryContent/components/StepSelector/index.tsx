@@ -41,13 +41,17 @@ const StepSelector = () => {
       manual: true,
       onSuccess: (resp) => {
         if (resp?.data) {
-          setStoryDataToStore(
-            resp.data,
-            setStep1,
-            setStep2,
-            setStep3,
-            setCurrentStep
-          );
+          if (resp?.data?.progress !== "step3") {
+            setStoryDataToStore(
+              resp.data,
+              setStep1,
+              setStep2,
+              setStep3,
+              setCurrentStep
+            );
+          } else {
+            navigate("/dashboard");
+          }
         }
       },
       onError: (error: any) => {
