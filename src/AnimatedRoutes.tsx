@@ -33,7 +33,7 @@ const AnimatedRoutes = () => {
   const { run: getProfileData } = useRequest(() => getMyProfile(), {
     manual: true,
     onSuccess: (resp) => {
-      setUserData(resp.data);
+      resp?.data && setUserData(resp.data);
     },
     onError: (error: any) => {
       message.error(error?.response?.data?.message ?? "");

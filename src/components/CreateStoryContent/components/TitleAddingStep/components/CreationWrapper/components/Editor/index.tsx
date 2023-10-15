@@ -102,6 +102,7 @@ const Editor = () => {
         <TitleEditor
           handleBeforeInput={handleBeforeInput}
           placeholder="Do you like my jacket?"
+          handlePastedText={() => false}
           wrapperClassName="wrapper-class"
           editorClassName="editor-class"
           toolbarClassName="toolbar-class"
