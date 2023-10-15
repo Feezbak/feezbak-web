@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { ifProp, prop } from "@/helpers";
-import { StyleEnums, FlexBoxEnum } from "@/enums";
+import { FlexBoxEnum } from "@/enums";
 
 export const PoweredByWrapper = styled.div<{
   readonly $hasCover: boolean;
@@ -10,6 +10,7 @@ export const PoweredByWrapper = styled.div<{
 }>`
   ${FlexBoxEnum.StartCenterVertical}
   transition: 0.3s;
+  width: 100%;
   height: ${ifProp("$isSquare", "50%", "100%")} !important;
   background-image: linear-gradient(
       180deg,
@@ -22,14 +23,4 @@ export const PoweredByWrapper = styled.div<{
   background-size: cover;
   border-bottom-left-radius: ${ifProp("$isSquare", "2", "0")}rem;
   border-bottom-right-radius: ${ifProp("$isSquare", "2", "0")}rem;
-
-  p {
-    margin: 1.3rem 0 0.45rem 0;
-    color: ${StyleEnums.white};
-    font-weight: 600;
-    font-size: 0.563rem;
-    line-height: 0.75rem;
-    text-align: center;
-    letter-spacing: 0.25rem;
-  }
 `;

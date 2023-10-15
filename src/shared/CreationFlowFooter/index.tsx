@@ -59,6 +59,10 @@ const CreationFlowFooter = ({
 
   return (
     <CreationFlowFooterWrapper>
+      <StepsText>
+        This is step {currentStep} out of 3 steps and then you’ll be able to
+        share it with friends! 😎
+      </StepsText>
       <StepsControlWrapper>
         {currentStep !== StoryStepEnum.TITLE_STEP && (
           <StepControlPrevBtn onClick={prevBtnActionHandler}>
@@ -67,10 +71,6 @@ const CreationFlowFooter = ({
         )}
         {nextBtnContent}
       </StepsControlWrapper>
-      <StepsText>
-        This is step {currentStep} out of 3 steps and then you’ll be able to
-        share it with friends! 😎
-      </StepsText>
     </CreationFlowFooterWrapper>
   );
 };

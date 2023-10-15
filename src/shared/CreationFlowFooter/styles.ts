@@ -19,7 +19,7 @@ export const StepsText = styled.span`
   width: 20rem;
   font-size: 1rem;
   line-height: 1.25rem;
-  text-align: right;
+  text-align: left;
   color: ${StyleEnums.gray3};
 
   ${inLessThan(BreakpointEnums.mobile)`
