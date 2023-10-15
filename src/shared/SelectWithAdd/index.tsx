@@ -52,7 +52,7 @@ const SelectWithAdd = ({ value = "", onChange }: Props) => {
               onClick={addItem}
               disabled={!name.length}
             >
-              Add item
+              Add Profession
             </ItemAddButton>
           </SelectActionWrapper>
         </>
