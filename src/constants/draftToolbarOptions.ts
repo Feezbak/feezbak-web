@@ -4,8 +4,6 @@ export const toolbarOptions = {
     options: ["bold", "italic", "underline", "strikethrough"],
   },
   colorPicker: {
-    className: undefined,
-    component: undefined,
     popupClassName: "color-picker",
     colors: [
       "rgb(97,189,109)",
