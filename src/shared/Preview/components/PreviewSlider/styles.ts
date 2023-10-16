@@ -22,6 +22,25 @@ export const SliderContainer = styled.div<{
 
   div.slick-slider {
     width: 100%;
+
+    .slick-next,
+    .slick-prev {
+      width: 2.188rem;
+      height: 2.188rem;
+      z-index: 4;
+
+      &::before {
+        font-size: 2.188rem;
+      }
+    }
+
+    .slick-next {
+      right: 3.5%;
+    }
+
+    .slick-prev {
+      left: 3.5%;
+    }
   }
 
   .slick-list {

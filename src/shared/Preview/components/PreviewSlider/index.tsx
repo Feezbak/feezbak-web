@@ -1,6 +1,6 @@
 import { memo, forwardRef, useState, useEffect, useMemo } from "react";
 import Slider from "react-slick";
-import { slickSettings, Image } from "@/constants";
+import { getSlickSettings, Image } from "@/constants";
 import logoFeezbak from "@images/product_logo.svg";
 import PreviewSlide from "./components/PreviewSlide";
 import { useResponsive } from "@/hooks";
@@ -40,7 +40,7 @@ const PreviewSlider = (
         <ProductLogo src={logoFeezbak} alt="feezbak logo" loading="lazy" />
       </PoweredByFixed>
       <Slider
-        {...slickSettings}
+        {...getSlickSettings(isLessThanMd)}
         ref={ref}
         afterChange={(currentSlide) => setActiveId(images[currentSlide].id)}
       >
