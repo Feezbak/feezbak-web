@@ -16,7 +16,7 @@ const ButtonResponse = () => {
   const [respBtnState, setRespBtnState] = useState(
     step2.response.responseBtnList
   );
-  const responses = useDebounce(respBtnState, 1000);
+  const responses = useDebounce(respBtnState, 500);
 
   useEffect(() => {
     if (responses.every((respBtn) => respBtn.text.length && respBtn.id)) {
