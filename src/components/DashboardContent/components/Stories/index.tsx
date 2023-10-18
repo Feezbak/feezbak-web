@@ -36,6 +36,7 @@ const Stories = () => {
           <h3>Your Feedback Stories</h3>
           <Button
             type="primary"
+            size="large"
             onClick={handleCreateStory}
             loading={isLoading}
           >

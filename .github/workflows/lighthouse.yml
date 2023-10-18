@@ -9,38 +9,20 @@ jobs:
     name: Audit with Lighthouse
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14.x'
-
-      - name: Prepare application
-        run: |
-          npm config set scripts-prepend-node-path true
-          npm install
-          npm run build
-        env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-
-      - name: Start the application
-        run: npm run serve:prod
-        background: true
-      - name: Wait for the server to start
-        run: |
-          until curl -sSf http://localhost:3000/dashboard -o /dev/null; do
-            echo "Waiting for the server to start..."
-            sleep 5
-          done
-
-      - name: Run Lighthouse on http://localhost:3000/dashboard
-        run: |
-          npm install -g @lhci/cli@0.8.x
-          lhci collect --url http://localhost:3000/dashboard
-          lhci upload
-        env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+       - uses: actions/checkout@v2
+         with:
+           ref: ${{ github.event.pull_request.head.sha }}
+       - uses: actions/setup-node@v2
+         with:
+             node-version: '14.x'
+       - name: prepare application
+         run: |
+             npm config set scripts-prepend-node-path true
+             npm install
+             npm run build
+       - name: run Lighthouse CI
+         run: |
+             npm install -g @lhci/cli@0.8.x
+             lhci autorun
+         env:
+             LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

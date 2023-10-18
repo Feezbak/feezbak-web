@@ -19,7 +19,7 @@ export const StepsText = styled.span`
   width: 20rem;
   font-size: 1rem;
   line-height: 1.25rem;
-  text-align: right;
+  text-align: left;
   color: ${StyleEnums.gray3};
 
   ${inLessThan(BreakpointEnums.mobile)`
@@ -51,17 +51,6 @@ export const StepControlNextBtn = styled(Button)`
   ${inLessThan(BreakpointEnums.mobile)`
      width: 100%;
   `}
-
-  svg {
-    margin: 0.75rem;
-  }
-
-  &.ant-btn-primary {
-    font-weight: 600;
-    svg > path {
-      fill: ${StyleEnums.white};
-    }
-  }
 `;
 export const StepControlPrevBtn = styled(Button)`
   ${stepBtnStyles};

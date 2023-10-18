@@ -1,5 +1,7 @@
 export enum StyleEnums {
   primary = "#FF7F61",
+  ghostButtonColor = "#F4F4F6",
+  defaultButtonColor = "#06060C",
   secondary = "#FFAF51",
   creamy = "#FFF0E1",
   error = "#FF3333",
@@ -25,7 +27,9 @@ export enum StyleEnums {
   borderRadiusBase = 10,
   inputPaddingHorizontal = 16,
   inputPaddingVertical = 10.5,
-  buttonBaseHeight = 48,
+  buttonBaseHeightLG = 40,
+  contentFontSizeLG = 14,
+  paddingInlineLG = 24,
   dropdownPadding = "0",
   fontFamily = "Epilogue, Regular, sans-serif",
   fontWeightStrong = 600,

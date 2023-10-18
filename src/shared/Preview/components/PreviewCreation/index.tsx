@@ -34,7 +34,7 @@ const PreviewCreation = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedIsSquareData]);
 
-  const responseButtons = useMemo(() => response.responseBtnList, [response]);
+  const responseButtons = useMemo(() => response?.responseBtnList, [response]);
 
   return (
     <PreviewFlowWrapper xs={24} sm={24} md={24} lg={9} xl={8} xxl={7}>

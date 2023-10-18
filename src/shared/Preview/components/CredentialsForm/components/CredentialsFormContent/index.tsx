@@ -39,7 +39,12 @@ const CredentialsFormContent = ({
         </FormItem>
       ))}
       <FormItem>
-        <SubmitBtn type="primary" htmlType="submit" loading={isLoading}>
+        <SubmitBtn
+          type="primary"
+          size="large"
+          htmlType="submit"
+          loading={isLoading}
+        >
           Send My Feedback
         </SubmitBtn>
       </FormItem>

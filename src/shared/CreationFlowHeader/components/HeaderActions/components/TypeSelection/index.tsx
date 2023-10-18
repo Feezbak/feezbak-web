@@ -28,7 +28,9 @@ const TypeSelection = ({ onChange, defaultValue }: Props) => {
   return (
     <>
       <TypeSelectionBtn
+        ghost={true}
         type="default"
+        size="large"
         onClick={() => setTypeModalState((ps) => !ps)}
       >
         <span>{selectedTypeTitle}</span>

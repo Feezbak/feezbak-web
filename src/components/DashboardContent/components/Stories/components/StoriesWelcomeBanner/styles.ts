@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { StyleEnums, FlexBoxEnum } from "@/enums";
-import { Button, Col, Row } from "antd";
+import { Col, Row } from "antd";
 
 export const StoriesWelcomeBannerWrapper = styled(Col)`
   padding: 1.25rem 5.5rem 1.25rem 3.5rem;
@@ -41,13 +41,6 @@ export const BecomeProAdvice = styled.div`
     color: ${StyleEnums.blue};
     margin: 0 0.5rem 0 0;
   }
-`;
-
-export const BecomeProBtn = styled(Button)`
-  height: unset;
-  border-radius: 2rem;
-  padding: 0.375rem 0.75rem;
-  background-color: ${StyleEnums.white};
 `;
 
 export const ImageWrapper = styled(Col)`

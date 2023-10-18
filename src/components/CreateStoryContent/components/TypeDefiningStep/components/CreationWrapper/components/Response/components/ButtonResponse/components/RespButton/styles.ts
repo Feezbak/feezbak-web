@@ -33,6 +33,7 @@ export const ResponseInput = styled(Input)`
   font-size: 1rem;
   line-height: 1.5rem;
   border-radius: 0.75rem;
+  font-family: unset;
   &:focus {
     outline: none;
     border: 1px solid ${StyleEnums.gray3};

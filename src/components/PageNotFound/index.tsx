@@ -18,7 +18,7 @@ const PageNotFound = () => {
         alt="Page not found"
         title="Page not found"
       />
-      <Button type="primary" onClick={handleGoBack}>
+      <Button type="primary" size="large" onClick={handleGoBack}>
         Go to previuse page
       </Button>
     </NotFoundWrapper>

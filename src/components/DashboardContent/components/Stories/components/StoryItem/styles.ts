@@ -64,6 +64,7 @@ export const ActionBtn = styled(Button)`
   width: 2rem !important;
   height: 2rem;
   border: none;
+  background: ${StyleEnums.gray5};
 `;
 
 export const StoryItemStatusAndActions = styled(Col)`

@@ -24,6 +24,7 @@ interface Props {
   hasGoBack?: boolean;
   isFullHeight?: boolean | null;
   isTextRespOnly?: boolean;
+  placeholder?: string;
   positionProps?: {
     top?: string;
     bottom?: string;
@@ -44,6 +45,7 @@ const ResizableTextArea: FC<Props> = ({
   hasResize = true,
   isFullHeight = false,
   isTextRespOnly = false,
+  placeholder,
 }) => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [isFullSize, setSizeState] = useState<null | boolean>(
@@ -107,11 +109,13 @@ const ResizableTextArea: FC<Props> = ({
         value={value}
         style={{ resize: "none" }}
         onChange={onChange}
+        placeholder={placeholder}
         autoSize={{ minRows: 2, maxRows: 17 }}
       />
       {hasSend && (
         <SendMSGBtn
           type="primary"
+          size="large"
           disabled={!value.length || isDisabled}
           onClick={handleSendAction}
         >
