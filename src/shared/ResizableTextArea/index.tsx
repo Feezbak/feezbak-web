@@ -115,6 +115,7 @@ const ResizableTextArea: FC<Props> = ({
       {hasSend && (
         <SendMSGBtn
           type="primary"
+          size="large"
           disabled={!value.length || isDisabled}
           onClick={handleSendAction}
         >

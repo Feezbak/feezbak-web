@@ -60,7 +60,8 @@ const ButtonResponse = () => {
         </AnimatePresence>
       </ResponseBtnList>
       <AddNewRespBtn
-        type="primary"
+        type="default"
+        size="large"
         onClick={handleAddRespBtn}
         disabled={respBtnState.length >= 3}
       >

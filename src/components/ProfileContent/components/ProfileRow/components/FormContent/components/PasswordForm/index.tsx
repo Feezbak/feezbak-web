@@ -74,6 +74,7 @@ const PasswordForm = () => {
           <SubmitButton
             type="primary"
             htmlType="submit"
+            size="large"
             loading={requestLoading}
             disabled={!formState.isDirty || !formState.isValid}
           >

@@ -68,6 +68,7 @@ const ForgotPasswordForm = ({ setEmailSendState }: Props) => {
       </FormItem>
       <BtnWrapper>
         <SubmitButton
+          size="large"
           type="primary"
           htmlType="submit"
           loading={requestLoading}

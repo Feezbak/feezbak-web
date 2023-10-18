@@ -48,7 +48,7 @@ const SelectWithAdd = ({ value = "", onChange }: Props) => {
             <ItemAddButton
               size="large"
               type="primary"
-              icon={<PlusOutlined />}
+              icon={<PlusOutlined rev="" />}
               onClick={addItem}
               disabled={!name.length}
             >

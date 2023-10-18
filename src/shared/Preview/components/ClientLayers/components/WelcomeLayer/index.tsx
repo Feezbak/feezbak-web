@@ -33,8 +33,12 @@ const WelcomeLayer = ({ handleLayer, handleSkip }: Props) => {
         </p>
       </LayerInfoContent>
       <ActionsWrapper>
-        <NextBtn onClick={handleLayer}>Next</NextBtn>
-        <SkipBtn onClick={handleSkip}>Skip {">>>"}</SkipBtn>
+        <NextBtn onClick={handleLayer} size="large">
+          Next
+        </NextBtn>
+        <SkipBtn onClick={handleSkip} size="large">
+          Skip {">>>"}
+        </SkipBtn>
       </ActionsWrapper>
     </LayerWrapper>
   );

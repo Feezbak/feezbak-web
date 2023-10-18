@@ -51,17 +51,6 @@ export const StepControlNextBtn = styled(Button)`
   ${inLessThan(BreakpointEnums.mobile)`
      width: 100%;
   `}
-
-  svg {
-    margin: 0.75rem;
-  }
-
-  &.ant-btn-primary {
-    font-weight: 600;
-    svg > path {
-      fill: ${StyleEnums.white};
-    }
-  }
 `;
 export const StepControlPrevBtn = styled(Button)`
   ${stepBtnStyles};
