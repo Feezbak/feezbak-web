@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import { StyleEnums } from "@/enums";
+import { FlexBoxEnum, StyleEnums } from "@/enums";
 import { ifProp } from "@/helpers";
 
 export const SliderContainer = styled.div<{
   readonly $isCreationMode: boolean;
   readonly $isFeedbackerMobile: boolean;
 }>`
+  ${FlexBoxEnum.SpaceBetweenCenterVertical}
   position: absolute;
   width: ${ifProp("$isCreationMode", "auto", "100%")};
   height: ${ifProp("$isCreationMode", "95", "100")}%;
@@ -17,6 +18,29 @@ export const SliderContainer = styled.div<{
 
   div {
     height: 100%;
+  }
+
+  div.slick-slider {
+    width: 100%;
+
+    .slick-next,
+    .slick-prev {
+      width: 2.188rem;
+      height: 2.188rem;
+      z-index: 4;
+
+      &::before {
+        font-size: 2.188rem;
+      }
+    }
+
+    .slick-next {
+      right: 3.5%;
+    }
+
+    .slick-prev {
+      left: 3.5%;
+    }
   }
 
   .slick-list {
@@ -48,4 +72,21 @@ export const SliderContainer = styled.div<{
 export const ProductLogo = styled.img`
   cursor: pointer;
   width: 9rem;
+`;
+
+export const PoweredByFixed = styled.div`
+  position: fixed;
+  height: unset !important;
+  z-index: 3;
+  ${FlexBoxEnum.CenterVertical}
+
+  p {
+    margin: 1.3rem 0 0.45rem 0;
+    color: ${StyleEnums.white};
+    font-weight: 600;
+    font-size: 0.563rem;
+    line-height: 0.75rem;
+    text-align: center;
+    letter-spacing: 0.25rem;
+  }
 `;

@@ -46,7 +46,8 @@ export const EditorFocusArea = styled.div`
     overflow-y: scroll;
     overflow-x: hidden;
     width: 100%;
-    word-break: break-all;
+    word-break: break-word;
+    font-family: ${StyleEnums.fontFamily};
   }
 
   .color-picker {

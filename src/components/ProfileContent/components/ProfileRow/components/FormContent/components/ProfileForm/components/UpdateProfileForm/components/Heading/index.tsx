@@ -16,6 +16,7 @@ const Heading = ({ loading, isDirty, isValid }: Props) => {
       <SubmitBtn
         type="primary"
         htmlType="submit"
+        size="large"
         loading={loading}
         disabled={!isDirty || !isValid}
       >

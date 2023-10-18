@@ -26,12 +26,14 @@ export const ResponsePreviewButton = styled(Button)<{
   readonly $isActive: boolean;
 }>`
   padding: 0.72rem 1.5rem;
+  outline: none;
   background: ${ifProp("$isActive", StyleEnums.primary, StyleEnums.white)};
   border-radius: 5rem;
   font-weight: 600;
   font-size: 1.2rem;
   line-height: 1.5rem;
   letter-spacing: -0.02em;
+  height: 3rem;
   width: 100%;
   border: 2px solid ${ifProp("$isActive", StyleEnums.white, StyleEnums.black)};
   color: ${ifProp("$isActive", StyleEnums.white, StyleEnums.black)};

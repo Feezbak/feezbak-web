@@ -98,7 +98,10 @@ const StoryItem = ({ storyData, handleDelete, storyId }: Props) => {
             onClick={() => handleDelete(id)}
           />
           {progress === "step3" && (
-            <ActionBtn onClick={handleAnalytics} icon={<AreaChartOutlined />} />
+            <ActionBtn
+              onClick={handleAnalytics}
+              icon={<AreaChartOutlined rev="" />}
+            />
           )}
         </StoryActionsContainer>
       </StoryItemStatusAndActions>

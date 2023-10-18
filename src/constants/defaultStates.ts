@@ -82,7 +82,7 @@ export const storyDefaultState: StoryCreationDataType = {
     titleColor: StyleEnums.black as string,
   },
   step2: {
-    isMultiple: false,
+    isMultiple: true,
     type: StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP,
     imageVoting: {
       isImageAttached: false,

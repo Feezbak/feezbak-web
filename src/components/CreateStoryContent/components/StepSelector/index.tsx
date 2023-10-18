@@ -1,11 +1,10 @@
-import { lazy, useContext, useEffect, useMemo } from "react";
+import { lazy, useContext, useEffect } from "react";
 import { StoryStepEnum } from "@/enums";
 import { Spin, message } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { storyDefaultState } from "@/constants";
 import { StoryCreationContext } from "@/context";
 import { getStoryById } from "@/api";
-import { AnimatePresence } from "framer-motion";
 import useRequest from "@ahooksjs/use-request";
 import { setStoryDataToStore } from "./utils";
 import {
@@ -81,20 +80,6 @@ const StepSelector = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storyId]);
 
-  const currentStepContent = useMemo(() => {
-    if (currentStep === StoryStepEnum.TITLE_STEP) {
-      return <TitleAddingStep />;
-    } else if (currentStep === StoryStepEnum.TYPE_STEP) {
-      return <TypeDefiningStep />;
-    } else if (currentStep === StoryStepEnum.SHARE_SETTINGS_STEP) {
-      return <ShareSettingsStep />;
-    } else if (!currentStep) {
-      return <Spin size="large" />;
-    } else {
-      return null;
-    }
-  }, [currentStep]);
-
   useEffect(() => {
     if (!requestLoading && storyId) {
       manageStepInStorage(step1, stringifyStep1, "step1", storyId);
@@ -113,9 +98,17 @@ const StepSelector = () => {
     }
   }, [step3, storyId, stringifyStep3, requestLoading]);
 
-  return (
-    <AnimatePresence initial={false}>{currentStepContent}</AnimatePresence>
-  );
+  if (currentStep === StoryStepEnum.TITLE_STEP) {
+    return <TitleAddingStep />;
+  } else if (currentStep === StoryStepEnum.TYPE_STEP) {
+    return <TypeDefiningStep />;
+  } else if (currentStep === StoryStepEnum.SHARE_SETTINGS_STEP) {
+    return <ShareSettingsStep />;
+  } else if (!currentStep) {
+    return <Spin size="large" />;
+  } else {
+    return null;
+  }
 };
 
 export default StepSelector;

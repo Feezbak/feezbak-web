@@ -17,7 +17,7 @@ const ProfileFormSelector = ({ active, setActive }: Props) => {
             key={item.key}
             onClick={() => setActive(item.key)}
           >
-            <Icon component={item.icon} />
+            <Icon component={item.icon} rev="" />
             {item.title}
           </SelectionItem>
         ))}

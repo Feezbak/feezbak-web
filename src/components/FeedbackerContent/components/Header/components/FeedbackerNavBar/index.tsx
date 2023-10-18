@@ -16,7 +16,7 @@ const FeedbackerNavBar = () => {
           <LinkTxt>
             <Link to="/sign-in">Sign In</Link>
           </LinkTxt>
-          <SignUpButton type="primary" href="/sign-up">
+          <SignUpButton type="primary" size="large" href="/sign-up">
             Sign Up
           </SignUpButton>
         </>

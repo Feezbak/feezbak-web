@@ -1,10 +1,10 @@
 import { memo, forwardRef, useState, useEffect, useMemo } from "react";
 import Slider from "react-slick";
-import { slickSettings, Image } from "@/constants";
+import { getSlickSettings, Image } from "@/constants";
 import logoFeezbak from "@images/product_logo.svg";
 import PreviewSlide from "./components/PreviewSlide";
 import { useResponsive } from "@/hooks";
-import { SliderContainer, ProductLogo } from "./styles";
+import { SliderContainer, ProductLogo, PoweredByFixed } from "./styles";
 
 interface Props {
   hasCover: boolean;
@@ -35,8 +35,12 @@ const PreviewSlider = (
       $isCreationMode={!setActiveSlide || isSquare}
       $isFeedbackerMobile={isFeedbackerMobile}
     >
+      <PoweredByFixed>
+        <p>POWERED BY</p>
+        <ProductLogo src={logoFeezbak} alt="feezbak logo" loading="lazy" />
+      </PoweredByFixed>
       <Slider
-        {...slickSettings}
+        {...getSlickSettings(isLessThanMd)}
         ref={ref}
         afterChange={(currentSlide) => setActiveId(images[currentSlide].id)}
       >
@@ -47,16 +51,7 @@ const PreviewSlider = (
             isSquare={isSquare}
             hasLayer={hasLayer}
             key={image.id}
-          >
-            <>
-              <p>POWERED BY</p>
-              <ProductLogo
-                src={logoFeezbak}
-                alt="feezbak logo"
-                loading="lazy"
-              />
-            </>
-          </PreviewSlide>
+          />
         ))}
       </Slider>
     </SliderContainer>

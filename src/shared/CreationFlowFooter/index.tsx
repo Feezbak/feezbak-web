@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { StoryStepEnum } from "@/enums";
-import { ArrowRightIcon } from "@/icons";
 import {
   CreationFlowFooterWrapper,
   StepsText,
@@ -36,15 +35,16 @@ const CreationFlowFooter = ({
           type="primary"
           onClick={nextBtnActionHandler}
           loading={nextLoading}
+          size="large"
         >
-          {isLastStep ? "Finalize" : "Next Step"} <ArrowRightIcon />
+          {isLastStep ? "Finalize" : "Next Step"}
         </StepControlNextBtn>
       );
     } else {
       return (
         <NextBtnTooltip title={toolTipTitle}>
-          <StepControlNextBtn disabled>
-            {isLastStep ? "Finalize" : "Next Step"} <ArrowRightIcon />
+          <StepControlNextBtn disabled size="large">
+            {isLastStep ? "Finalize" : "Next Step"}
           </StepControlNextBtn>
         </NextBtnTooltip>
       );
@@ -59,18 +59,22 @@ const CreationFlowFooter = ({
 
   return (
     <CreationFlowFooterWrapper>
-      <StepsControlWrapper>
-        {currentStep !== StoryStepEnum.TITLE_STEP && (
-          <StepControlPrevBtn onClick={prevBtnActionHandler}>
-            <ArrowRightIcon /> Previous Step
-          </StepControlPrevBtn>
-        )}
-        {nextBtnContent}
-      </StepsControlWrapper>
       <StepsText>
         This is step {currentStep} out of 3 steps and then you’ll be able to
         share it with friends! 😎
       </StepsText>
+      <StepsControlWrapper>
+        {currentStep !== StoryStepEnum.TITLE_STEP && (
+          <StepControlPrevBtn
+            onClick={prevBtnActionHandler}
+            type="default"
+            size="large"
+          >
+            Previous Step
+          </StepControlPrevBtn>
+        )}
+        {nextBtnContent}
+      </StepsControlWrapper>
     </CreationFlowFooterWrapper>
   );
 };

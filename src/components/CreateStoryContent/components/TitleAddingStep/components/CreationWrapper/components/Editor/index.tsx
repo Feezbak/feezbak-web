@@ -24,7 +24,7 @@ import {
 } from "draft-js";
 
 const Editor = () => {
-  const editor = useRef(null);
+  const editorRef = useRef<TitleEditor>(null);
   const { step1, setTitleData } = useContext(StoryCreationContext);
   const [convertedContent, setConvertedContent] = useState(
     storyEditorConvertedContent
@@ -47,13 +47,6 @@ const Editor = () => {
       return "handled";
     }
   };
-
-  useEffect(() => {
-    const editorCurrent = editor?.current as any;
-    if (editorCurrent) {
-      editorCurrent.focusEditor();
-    }
-  }, []);
 
   useEffect(() => {
     const html = draftToHtml(
@@ -102,6 +95,7 @@ const Editor = () => {
         <TitleEditor
           handleBeforeInput={handleBeforeInput}
           placeholder="Do you like my jacket?"
+          handlePastedText={() => false}
           wrapperClassName="wrapper-class"
           editorClassName="editor-class"
           toolbarClassName="toolbar-class"
@@ -109,7 +103,7 @@ const Editor = () => {
           editorState={editorState}
           toolbar={toolbarOptions}
           toolbarOnFocus
-          ref={editor}
+          ref={editorRef}
           hashtag={{
             separator: " ",
             trigger: "#",

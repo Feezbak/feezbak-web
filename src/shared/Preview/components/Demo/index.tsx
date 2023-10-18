@@ -409,6 +409,7 @@ const Demo = ({
           {((!isCreationMode && isTextRespRequired) || !!respBtnId?.length) && (
             <ResizableTextArea
               isFixed={true}
+              placeholder="Your comment here."
               handleClose={handleCloseResizeText}
               isFullHeight={!!respBtnId?.length}
               isDisabled={!!feedback?.isComplete}

@@ -48,7 +48,7 @@ export default function useForgotPasswordForm(
       },
       onError: (error: any) => {
         console.error(error);
-        message.error(error.response.data.message);
+        message.error(error?.response?.data?.message);
       },
     }
   );
