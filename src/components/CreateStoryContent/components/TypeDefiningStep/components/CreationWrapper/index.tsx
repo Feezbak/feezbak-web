@@ -36,7 +36,6 @@ const CreationWrapper = ({ handleDemo }: Props) => {
         "You currently made some changes and We’re pretty sure that it looks way nicer now!",
       duration: 1,
       placement: "topRight",
-      className: "notification-custom-styles",
       icon: <AnanasOnBikeIcon />,
     });
   }, [api]);

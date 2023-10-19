@@ -32,6 +32,7 @@ const RespButton = ({
       <ResponseInput value={btnText} onChange={handleChange} />
       {!!index && (
         <DeleteRespBtn
+          ghost={true}
           onClick={() => deleteItem(index)}
           icon={<TrashWhiteIcon />}
         />
