@@ -64,29 +64,28 @@ p, h1, h2, h3, h4, h5, h6 {
   align-items: stretch;
 }
 
-.notification-custom-styles {
+.ant-notification-notice-wrapper {
   border-radius: 1.5rem;
   box-shadow: 0 17px 40px rgba(74, 68, 143, 0.06);
   border: 1px solid #F0F0F4;
-  width: 27.1rem;
-  height: 11.75rem;
-  padding: 2.75rem 1.5rem;
+  width: 27rem !important;
+  height: 11.75rem !important;
 }
 
-.notification-custom-styles .ant-notification-notice-message {
+.ant-notification-notice-wrapper .ant-notification-notice-message {
   font-weight: bolder;
   font-size: 1.25rem;
   line-height: 1.5rem;
   margin-inline-start: 10rem !important;
 }
 
-.notification-custom-styles .ant-notification-notice-description {
+.ant-notification-notice-wrapper .ant-notification-notice-description {
   font-size: 1rem;
   line-height: 1.5rem;
   margin-inline-start: 10rem !important;
 }
 
-.notification-custom-styles .ant-notification-notice-icon {
+.ant-notification-notice-wrapper .ant-notification-notice-icon {
   position: absolute;
   left: 1.5rem;
   top: 1.5rem;

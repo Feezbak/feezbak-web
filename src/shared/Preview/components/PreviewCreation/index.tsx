@@ -20,8 +20,8 @@ const PreviewCreation = () => {
   const { isInfoCollectionAllowed, userInfoFields } = step3;
   const [color, setColor] = useState(background);
   const [isSquare, setSquareState] = useState(imageVoting.isSquare);
-  const debouncedColorData = useDebounce(color, 1000);
-  const debouncedIsSquareData = useDebounce(isSquare, 1000);
+  const debouncedColorData = useDebounce(color, 100);
+  const debouncedIsSquareData = useDebounce(isSquare, 100);
 
   useEffect(() => {
     if (debouncedColorData !== background) {

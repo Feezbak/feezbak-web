@@ -20,21 +20,15 @@ export const StoryItemInfo = styled(Col)`
 `;
 
 export const StoryInfoContainer = styled.div`
+  width: 100%;
   ${FlexBoxEnum.StartStartVertical}
   h3 {
+    width: 100%;
     font-size: 1rem;
     line-height: 1.5rem;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    max-width: 35rem;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.25rem;
-    margin: 0;
-    white-space: nowrap;
   }
 `;
 
