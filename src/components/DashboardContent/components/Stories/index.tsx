@@ -35,7 +35,7 @@ const Stories = () => {
         <StoriesListHeader>
           <h3>Your Feedback Stories</h3>
           <Button
-            type="primary"
+            type="default"
             size="large"
             onClick={handleCreateStory}
             loading={isLoading}
