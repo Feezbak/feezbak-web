@@ -55,13 +55,18 @@ p, h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
-
-
 #root {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: stretch;
+}
+
+/* Override font-family for Safari browser */
+@supports (-webkit-appearance: none) {
+  .ant-input, .ant-input-password {
+    font-family: inherit;
+  }
 }
 
 .ant-notification-notice-wrapper {
