@@ -31,6 +31,7 @@ export enum StyleEnums {
   contentFontSizeLG = 14,
   paddingInlineLG = 24,
   dropdownPadding = "0",
+  fontFamilyBold = "Epilogue, Bold",
   fontFamily = "Epilogue, Regular, sans-serif",
   fontWeightStrong = 600,
 }

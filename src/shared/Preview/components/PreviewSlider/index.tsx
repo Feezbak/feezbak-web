@@ -1,10 +1,10 @@
 import { memo, forwardRef, useState, useEffect, useMemo } from "react";
 import Slider from "react-slick";
 import { getSlickSettings, Image } from "@/constants";
-import logoFeezbak from "@images/product_logo.svg";
+import { ProductLogoWhite } from "@/icons";
 import PreviewSlide from "./components/PreviewSlide";
 import { useResponsive } from "@/hooks";
-import { SliderContainer, ProductLogo, PoweredByFixed } from "./styles";
+import { SliderContainer, PoweredByFixed } from "./styles";
 
 interface Props {
   hasCover: boolean;
@@ -37,7 +37,7 @@ const PreviewSlider = (
     >
       <PoweredByFixed>
         <p>POWERED BY</p>
-        <ProductLogo src={logoFeezbak} alt="feezbak logo" loading="lazy" />
+        <ProductLogoWhite />
       </PoweredByFixed>
       <Slider
         {...getSlickSettings(isLessThanMd)}

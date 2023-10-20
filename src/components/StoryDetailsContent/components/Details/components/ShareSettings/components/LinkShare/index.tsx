@@ -1,12 +1,13 @@
 import TitleDescriptionPair from "../../../TitleDescriptionPair";
 import { opacityAnimation } from "@assets/framerAnimations";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { message } from "antd";
 import {
   LinkShareWrapper,
   CopyToClipboardWrapper,
   LinkContainer,
   CopyBtn,
 } from "./styles";
-import { message } from "antd";
 
 interface Props {
   link: string;
@@ -14,15 +15,8 @@ interface Props {
 
 const LinkShare = ({ link }: Props) => {
   const handleCopyToClipboard = async () => {
-    try {
-      await navigator.clipboard.writeText("link");
-      message.destroy();
-      message.success("The link was successfully copied!");
-    } catch (error) {
-      message.destroy();
-      message.error("Something went wrong while copying the link!");
-      console.error("Failed to copy Link: ", error);
-    }
+    message.destroy();
+    await message.success("The link was successfully copied!");
   };
 
   return (
@@ -35,9 +29,9 @@ const LinkShare = ({ link }: Props) => {
         <LinkContainer>
           <p>{link}</p>
         </LinkContainer>
-        <CopyBtn onClick={handleCopyToClipboard} type="primary">
-          Copy Link
-        </CopyBtn>
+        <CopyToClipboard text={link} onCopy={handleCopyToClipboard}>
+          <CopyBtn type="primary">Copy Link</CopyBtn>
+        </CopyToClipboard>
       </CopyToClipboardWrapper>
     </LinkShareWrapper>
   );
