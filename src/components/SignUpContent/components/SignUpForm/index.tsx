@@ -99,12 +99,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
           </label>
           <Controller
             render={({ field: { onChange, value } }) => (
-              <CustomisedInput
-                autoComplete="off"
-                size="large"
-                onChange={onChange}
-                value={value}
-              />
+              <CustomisedInput size="large" onChange={onChange} value={value} />
             )}
             name="lastName"
             control={formControl}
@@ -127,7 +122,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
           <Controller
             render={({ field: { onChange, value } }) => (
               <PasswordInput
-                autoComplete="off"
+                autoComplete="new-password"
                 size="large"
                 onChange={onChange}
                 value={value}
