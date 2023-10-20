@@ -37,7 +37,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
       </FormItem>
       <FormItem
         name="email"
-        validateStatus={formErrors && formErrors["email"] ? "error" : ""}
+        validateStatus={formErrors?.email ? "error" : ""}
         help={
           formErrors.email && (
             <ErrorMessage message={formErrors.email.message} />
@@ -64,7 +64,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
       </FormItem>
       <FormItem
         name="firstName"
-        validateStatus={formErrors && formErrors["firstName"] ? "error" : ""}
+        validateStatus={formErrors?.firstName ? "error" : ""}
         help={
           formErrors.firstName && (
             <ErrorMessage message={formErrors.firstName.message} />
@@ -86,7 +86,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
       </FormItem>
       <FormItem
         name="lastname"
-        validateStatus={formErrors && formErrors["lastName"] ? "error" : ""}
+        validateStatus={formErrors?.lastName ? "error" : ""}
         help={
           formErrors.lastName && (
             <ErrorMessage message={formErrors.lastName.message} />
@@ -107,7 +107,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
         </>
       </FormItem>
       <FormItem
-        validateStatus={formErrors && formErrors["password"] ? "error" : ""}
+        validateStatus={formErrors?.password ? "error" : ""}
         name="password"
         help={
           formErrors.password && (
@@ -121,7 +121,12 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
           </label>
           <Controller
             render={({ field: { onChange, value } }) => (
-              <PasswordInput size="large" onChange={onChange} value={value} />
+              <PasswordInput
+                autoComplete="new-password"
+                size="large"
+                onChange={onChange}
+                value={value}
+              />
             )}
             name="password"
             control={formControl}
