@@ -1,11 +1,10 @@
 import Links from "./components/Links";
-import productLogoSrc from "@/assets/images/product_logo_white.svg";
+import { ProductLogoBlack } from "@/icons";
 import CreatorDropdownMenu from "./components/CreatorDropdownMenu";
 import {
   NavigationHeaderWrapper,
   NavigationContainer,
   UserContainer,
-  Logo,
 } from "./styles";
 
 type LinkDataType = {
@@ -21,7 +20,7 @@ const NavigationHeader = ({ links }: Props) => {
   return (
     <NavigationHeaderWrapper>
       <NavigationContainer>
-        <Logo src={productLogoSrc} alt="logo" loading="lazy" />
+        <ProductLogoBlack />
         <Links links={links} />
       </NavigationContainer>
       <UserContainer>

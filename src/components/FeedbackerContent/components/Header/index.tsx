@@ -1,13 +1,13 @@
-import logoFeezbak from "@images/product_logo.svg";
 import { Link } from "react-router-dom";
+import { ProductLogoWhite } from "@/icons";
 import FeedbackerNavBar from "./components/FeedbackerNavBar";
-import { HeaderWrapper, ProductLogo } from "./styles";
+import { HeaderWrapper } from "./styles";
 
 const Header = () => {
   return (
     <HeaderWrapper>
       <Link to="/dashboard">
-        <ProductLogo src={logoFeezbak} alt="logo" loading="lazy" />
+        <ProductLogoWhite />
       </Link>
       <FeedbackerNavBar />
     </HeaderWrapper>
