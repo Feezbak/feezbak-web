@@ -1,4 +1,4 @@
-name: Deploy Staging
+name: Deploy app
 
 on:
   push:
@@ -6,9 +6,25 @@ on:
       - feature/update-dashboard-ui
 
 jobs:
-  test_jov:
-    name: Test Job
-    runs-on: self-hosted
+  build_and_deploy:
+    runs-on: ubuntu-latest
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v3
+      - name: Checkout main branch
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Test application
+        run: yarn test
+
+      - name: Deploy to DigitalOcean
+        uses: digitalocean/app_action@main
+        with:
+          app_name: feezbak-web-stage
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
