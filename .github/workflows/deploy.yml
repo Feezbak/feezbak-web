@@ -1,4 +1,4 @@
-name: Deploy to Digital Ocean Droplet
+name: Deploy to Digital Ocean
 
 on:
   push:
@@ -13,23 +13,24 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Install dependencies
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14
+
+    - name: Install Dependencies
       run: yarn install
 
-    - name: Build the React app
+    - name: Build
       run: yarn build
 
-    - name: SSH into the Digital Ocean Droplet
+    - name: Deploy to Digital Ocean
+      run: scp -r build/* username@your-droplet-ip:/path/to/your/web/root
+
+    - name: SSH into Droplet
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.DROPLET_IP }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: 22
-        script: |
-          cd apps/feezbak-web
-          git pull
-          yarn install
-          yarn build
-          # Restart your server, e.g., Nginx
-          sudo systemctl restart nginx
+        script: 'cd /path/to/your/web/root && rm -rf * && mv /path/to/your/web/root/build/* ./'
