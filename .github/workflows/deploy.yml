@@ -1,27 +1,35 @@
-name: Deploy Feezbak Staging
+name: Deploy Workflow
 
 on:
   push:
     branches:
-      - develop
+      - develop  # Replace with the branch you want to trigger this workflow
 
 jobs:
-  build_and_deploy:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout main branch
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: '16.x'
+      - name: Set up SSH
+        run: |
+          echo "$SSH_PRIVATE_KEY" > ssh_key
+          chmod 600 ssh_key
+          ssh -i ssh_key root@$DROPLET_ID
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          DROPLET_ID: ${{ secrets.DROPLET_ID }}
 
-      - name: Install dependencies
-        run: yarn install
+      - name: Change directory
+        run: cd apps/feezbak-web
 
-      - name: Deploy to DigitalOcean
-        uses: digitalocean/app_action@v1.1.5
-        with:
-          app_name: feezbak-web
-          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: Git Pull
+        run: git pull origin master
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Build
+        run: yarn build
