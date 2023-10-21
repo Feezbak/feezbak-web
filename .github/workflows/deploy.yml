@@ -27,7 +27,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: |
-          cd /path/to/your/app
+          cd apps/feezbak-web
           git pull
           yarn install
           yarn build
