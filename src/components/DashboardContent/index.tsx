@@ -3,7 +3,7 @@ import { links } from "./utils";
 import { Outlet } from "react-router-dom";
 import { DashboardContentWrapper } from "./styles";
 
-//dashboar
+//dashboard
 
 const DashboardContent = () => {
   return (
