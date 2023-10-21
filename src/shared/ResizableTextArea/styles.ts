@@ -7,10 +7,12 @@ const { TextArea } = Input;
 
 export const TextAreaWrapper = styled(motion.div)<{
   readonly $isFixed: boolean;
+  readonly $height: string;
 }>`
   position: ${ifProp("$isFixed", "absolute", "static")};
   z-index: 3;
   width: 84%;
+  height: ${prop("$height")};
   border-radius: 1.25rem;
   padding: 1.25rem;
   background: ${StyleEnums.white};
@@ -21,10 +23,9 @@ export const TextField = styled(TextArea)<{ readonly $height: string }>`
   width: 100%;
   padding: 0 0.25rem;
   border: none;
-  max-height: 33rem !important;
   min-height: 5rem !important;
   overflow-y: auto !important;
-  height: ${prop("$height")};
+  height: 100% !important;
   outline: none;
   box-shadow: none;
   font-size: 1.25rem;
