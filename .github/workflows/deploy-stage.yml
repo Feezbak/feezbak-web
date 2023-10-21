@@ -26,4 +26,4 @@ jobs:
         run: ssh-keyscan -H ${{ secrets.DROPLET_IP }} >> ~/.ssh/known_hosts
 
       - name: Deploy with rsync
-        run: rsync -avz --delete . ${{ secrets.USERNAME }}@${{ secrets.DROPLET_IP }}:/tmp
+        run: rsync -avz --delete . ${{ secrets.SSH_USERNAME }}@${{ secrets.DROPLET_IP }}:/tmp
