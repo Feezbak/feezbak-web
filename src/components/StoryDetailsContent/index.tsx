@@ -22,9 +22,9 @@ const DashboardContent = () => {
   const { data: story, loading: storyDataLoading } = useRequest(
     () => getStoryById(storyId!),
     {
-      onError: (error: any) => {
+      onError: async (error: any) => {
         setTimeout(() => navigate("/not-found"), 2000);
-        message.error(error?.response?.data?.message);
+        await message.error(error?.response?.data?.message);
       },
     }
   );
@@ -43,7 +43,7 @@ const DashboardContent = () => {
 
   const shareableLink = useMemo(() => {
     return story?.data
-      ? `${process.env.REACT_APP_API_URL}/story/${story.data._id}`
+      ? `${process.env.REACT_APP_FRONT_END_URL}/story/${story.data._id}`
       : "";
   }, [story]);
 
