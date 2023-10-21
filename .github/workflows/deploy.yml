@@ -1,0 +1,36 @@
+name: Deploy Workflow
+
+on:
+  push:
+    branches:
+      - develop  # Replace with the branch you want to trigger this workflow
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install sshpass
+        run: sudo apt-get update && sudo apt-get install -y sshpass
+
+      - name: Connect to SSH
+        run: |
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no root@${{ secrets.DROPLET_IP }}
+        env:
+          DROPLET_IP: ${{ secrets.DROPLET_IP }}
+
+      - name: Change directory
+        run: |
+          cd ./apps/feezbak-web/
+
+      - name: Git Pull
+        run: git pull origin master
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Build
+        run: yarn build
