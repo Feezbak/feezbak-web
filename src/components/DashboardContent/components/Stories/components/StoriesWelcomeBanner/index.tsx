@@ -19,7 +19,7 @@ const StoriesWelcomeBanner = () => {
     >
       <RowWrapper>
         <TextContent xs={24} sm={24} md={12} lg={12} xl={12} xxl={12}>
-          <h3>Happy Decision Making!55555</h3>
+          <h3>Happy Decision Making!99995555</h3>
           <p>
             I'm really happy to see you here. I just know that you're going to
             make some fantastic decisions, thanks to all the reliable feedback
