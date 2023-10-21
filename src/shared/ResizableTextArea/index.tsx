@@ -73,9 +73,9 @@ const ResizableTextArea: FC<Props> = ({
   const height = useMemo(() => {
     return isTextRespOnly && isFullSize === null
       ? "unset"
-      : !isFullSize
-      ? "6rem !important"
-      : "32rem !important";
+      : isFullSize
+      ? "80% !important"
+      : "";
   }, [isFullSize, isTextRespOnly]);
 
   const handleResize = () => {
@@ -89,6 +89,7 @@ const ResizableTextArea: FC<Props> = ({
   return (
     <TextAreaWrapper
       style={positionProps}
+      $height={height}
       $isFixed={isFixed}
       {...opacityWithScaleAnimation}
     >
