@@ -8,7 +8,7 @@ on:
 jobs:
   test_jov:
     name: Test Job
-    runs-on: ubuntu-latest
+    runs-on: Digital_Ocean
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
