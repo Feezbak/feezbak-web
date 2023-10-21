@@ -13,14 +13,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Install SSH key
-      run: |
-        echo "$SSH_PRIVATE_KEY" > ssh_key
-        chmod 600 ssh_key
-        eval $(ssh-agent -s)
-        ssh-add ssh_key
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.4.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: Deploy to Digital Ocean
       run: |
-        ssh -i ssh_key user@${{ secrets.DO_DROPLET_IP }}  'cd apps/feezbak-web && git pull origin master && yarn install && yarn build'
+        ssh -i ssh_key user@${{ secrets.DROPLET_IP }}  'cd apps/feezbak-web && git pull origin master && yarn install && yarn build'
 
