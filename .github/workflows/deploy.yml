@@ -1,4 +1,4 @@
-name: Deploy to Digital Ocean
+name: Deploy Feezbak Staging
 
 on:
   push:
@@ -6,19 +6,22 @@ on:
       - develop
 
 jobs:
-  deploy:
+  build_and_deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout main branch
+        uses: actions/checkout@v2
 
-    - name: Set up SSH
-      uses: webfactory/ssh-agent@v0.4.0
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
 
-    - name: Deploy to Digital Ocean
-      run: |
-        ssh -i ssh_key user@${{ secrets.DROPLET_IP }}  'cd apps/feezbak-web && git pull origin master && yarn install && yarn build'
+      - name: Install dependencies
+        run: yarn install
 
+      - name: Deploy to DigitalOcean
+        uses: digitalocean/app_action@develop
+        with:
+          app_name: my_react_app
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
