@@ -21,7 +21,7 @@ jobs:
         run: yarn install
 
       - name: Deploy to DigitalOcean
-        uses: digitalocean/app_action@main
+        uses: digitalocean/app_action@v1.1.5
         with:
           app_name: feezbak-web
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
