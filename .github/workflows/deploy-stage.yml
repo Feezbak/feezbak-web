@@ -7,7 +7,7 @@ on:
 
 jobs:
   test_jov:
-    name: Test Job
+    name: Deploy Job
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Feature Branch
