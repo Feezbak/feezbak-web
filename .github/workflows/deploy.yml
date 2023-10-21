@@ -23,5 +23,5 @@ jobs:
       - name: Deploy to DigitalOcean
         uses: digitalocean/app_action@main
         with:
-          app_name: my_react_app
+          app_name: feezbak-web
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
