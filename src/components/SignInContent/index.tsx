@@ -27,7 +27,7 @@ const SignInContent = () => {
         <Content xs={24} sm={24} md={12} lg={10} xl={9} xxl={7}>
           <TitleWrapper>
             Easiest way to gather feedback!
-            <Description>Sign in to your account now 1111</Description>
+            <Description>Sign in to your account now</Description>
           </TitleWrapper>
           <SignInForm />
         </Content>
