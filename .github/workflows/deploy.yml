@@ -13,24 +13,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: 16
-
-    - name: Install Dependencies
-      run: yarn install
-
-    - name: Build
-      run: yarn build
+    - name: Install SSH key
+      run: |
+        echo "$SSH_PRIVATE_KEY" > ssh_key
+        chmod 600 ssh_key
+        eval $(ssh-agent -s)
+        ssh-add ssh_key
 
     - name: Deploy to Digital Ocean
-      run: scp -r build/* username@${{ secrets.DROPLET_IP }}:/apps/feezbak-web/
+      run: |
+        ssh -i ssh_key user@${{ secrets.DO_DROPLET_IP }}  'cd apps/feezbak-web && git pull origin master && yarn install && yarn build'
 
-    - name: SSH into Droplet
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.DROPLET_IP }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        script: 'cd /path/to/your/web/root && rm -rf * && mv /path/to/your/web/root/build/* ./'
