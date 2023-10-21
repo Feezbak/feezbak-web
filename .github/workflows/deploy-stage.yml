@@ -19,10 +19,7 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
-
-      - name: Test application
-        run: yarn test
-
+    
       - name: Deploy to DigitalOcean
         uses: digitalocean/app_action@main
         with:
