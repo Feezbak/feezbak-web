@@ -1,0 +1,14 @@
+name: Deploy Workflow
+
+on:
+  push:
+    branches:
+      - develop  # Replace with the branch you want to trigger this workflow
+
+jobs:
+  deploy:
+    runs-on: Digital_Ocean
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
