@@ -1,4 +1,4 @@
-name: Deploy app
+name: Deploy Staging
 
 on:
   push:
@@ -6,22 +6,24 @@ on:
       - feature/update-dashboard-ui
 
 jobs:
-  build_and_deploy:
+  test_jov:
+    name: Test Job
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main branch
-        uses: actions/checkout@v2
-
-      - name: Use Node.js
-        uses: actions/setup-node@v1
+      - name: Checkout Feature Branch
+        uses: actions/checkout@v3
         with:
-          node-version: '16.x'
+          fetch-depth: 0
+          ref: feature/update-dashboard-ui
 
-      - name: Install dependencies
-        run: yarn install
-    
-      - name: Deploy to DigitalOcean
-        uses: digitalocean/app_action@main
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
         with:
-          app_name: feezbak-web-stage
-          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: "unnecessary"
+
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H ${{ secrets.DROPLET_IP }} >> ~/.ssh/known_hosts
+
+      - name: Deploy with rsync
+        run: rsync -avz --delete . ${{ secrets.USERNAME }}@${{ secrets.DROPLET_IP }}:/tmp
