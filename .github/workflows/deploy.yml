@@ -23,7 +23,7 @@ jobs:
           DROPLET_IP: ${{ secrets.DROPLET_IP }}
 
       - name: Change directory
-        run: cd apps/feezbak-web/
+        run: cd ./apps/feezbak-web
 
       - name: Git Pull
         run: git pull origin master
