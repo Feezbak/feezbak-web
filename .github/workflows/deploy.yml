@@ -21,7 +21,7 @@ jobs:
         run: yarn install
 
       - name: Deploy to DigitalOcean
-        uses: digitalocean/app_action@master
+        uses: digitalocean/app_action@main
         with:
           app_name: my_react_app
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
