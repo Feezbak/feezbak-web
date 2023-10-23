@@ -6,6 +6,7 @@ import { createStory } from "@/api";
 import { Button, message } from "antd";
 import { useResponsive } from "@/hooks";
 import { StoriesListHeader, StoriesContent, StoriesWrapper } from "./styles";
+import ListHeader from "./components/ListHeader";
 
 const Stories = () => {
   const { isLessThanSm } = useResponsive();
@@ -43,6 +44,7 @@ const Stories = () => {
             Create Story
           </Button>
         </StoriesListHeader>
+        <ListHeader />
         <StoriesList />
       </StoriesContent>
     </StoriesWrapper>

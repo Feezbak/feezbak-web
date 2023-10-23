@@ -18,18 +18,17 @@ const StoriesWelcomeBanner = () => {
       xxl={24}
     >
       <RowWrapper>
-        <TextContent xs={24} sm={24} md={12} lg={12} xl={12} xxl={12}>
-          <h3>Happy Decision Making!</h3>
+        <TextContent xs={24} sm={24} md={10} lg={10} xl={10} xxl={10}>
+          <h3>Don’t get confused where to ask feedback.</h3>
           <p>
-            I'm really happy to see you here. I just know that you're going to
-            make some fantastic decisions, thanks to all the reliable feedback
-            you'll be receiving.
+            Get feedbacks from every platform in one place and take actions
+            upon.
           </p>
           <BecomeProAdvice>
-            <p>4 out of 6 stories used</p>
+            {/*<p>4 out of 6 stories used</p>*/}
           </BecomeProAdvice>
         </TextContent>
-        <ImageWrapper xs={24} sm={24} md={12} lg={12} xl={12} xxl={12}>
+        <ImageWrapper xs={24} sm={24} md={8} lg={8} xl={8} xxl={8}>
           <Img src={StoryWelcomeBannerImgSrc as string} loading="lazy" />
         </ImageWrapper>
       </RowWrapper>

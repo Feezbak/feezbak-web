@@ -18,3 +18,4 @@ export { ResizeIcon } from "./resizeIcon";
 export { GroupUsersIcon } from "./groupUsersIcon";
 export { ProductLogoWhite } from "./productLogoWhite";
 export { ProductLogoBlack } from "./productLogoBlack";
+export { AnalyticsIcon } from "./analyticsIcon";

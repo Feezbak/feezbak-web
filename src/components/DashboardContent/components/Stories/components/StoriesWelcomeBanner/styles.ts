@@ -12,6 +12,7 @@ export const StoriesWelcomeBannerWrapper = styled(Col)`
 
 export const RowWrapper = styled(Row)`
   width: 100%;
+  ${FlexBoxEnum.SpaceBetweenHorizontal}
 `;
 
 export const TextContent = styled(Col)`
