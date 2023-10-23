@@ -7,7 +7,10 @@ export const BadgeWrapper = styled.div<{
 }>`
   text-transform: capitalize;
   border-radius: 1rem;
-  padding: 0.25rem 0.625rem;
+  padding: 0.375rem 0.75rem;
   color: ${prop("$textColor")};
   background-color: ${prop("$bgColor")};
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
 `;
