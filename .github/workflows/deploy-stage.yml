@@ -1,15 +1,40 @@
-name: Deploy Workflow
+name: Deploy Staging
 
 on:
   push:
     branches:
-      - develop  # Replace with the branch you want to trigger this workflow
+      - develop
 
 jobs:
-  deploy:
-    runs-on:
-      - Digital_Ocean
-
+  test_jov:
+    name: Deploy Job
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout Feature Branch
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: develop
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Build application
+        run: yarn build
+
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: "unnecessary"
+
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H ${{ secrets.DROPLET_IP }} >> ~/.ssh/known_hosts
+
+      - name: Deploy with rsync
+        run: rsync -avz --delete . ${{ secrets.SSH_USERNAME }}@${{ secrets.DROPLET_IP }}:/root/apps/feezbak-web
