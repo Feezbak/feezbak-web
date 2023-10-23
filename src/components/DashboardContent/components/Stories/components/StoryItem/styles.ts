@@ -22,7 +22,7 @@ export const StoryItemInfo = styled(Col)`
 export const StoryInfoContainer = styled.div`
   width: 100%;
   ${FlexBoxEnum.StartStartVertical}
-  h3 {
+  p {
     width: 100%;
     font-size: 1rem;
     line-height: 1.5rem;
