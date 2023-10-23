@@ -60,6 +60,7 @@
     "zxcvbn": "^4.4.2"
   },
   "scripts": {
+    "feez": "docker-compose up",
     "feezy-web": "docker run -p 3000:3000 -v $PWD:/app taronvardanyan/feezbak-web:latest",
     "start": "craco start",
     "build": "craco build",
