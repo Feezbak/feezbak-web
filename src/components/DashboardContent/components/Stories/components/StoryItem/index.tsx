@@ -77,7 +77,7 @@ const StoryItem = ({ storyData, handleDelete, storyId }: Props) => {
     <StoryListItemWrapper wrap>
       <StoryItemInfo xs={24} sm={24} md={10} lg={12} xl={12} xxl={12}>
         <StoryInfoContainer>
-          <h3>{titleText}</h3>
+          <p>{titleText}</p>
         </StoryInfoContainer>
       </StoryItemInfo>
       <StoryItemStatusAndActions
