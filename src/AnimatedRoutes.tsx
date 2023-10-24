@@ -84,7 +84,7 @@ const AnimatedRoutes = () => {
   }, [authed, user]);
 
   return (
-    <AnimatePresence>
+    <AnimatePresence initial={false}>
       <Routes>
         <Route caseSensitive path="/sign-in" element={<SignIn />} />
         <Route caseSensitive path="/sign-up" element={<SignUp />} />
