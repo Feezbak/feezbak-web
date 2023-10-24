@@ -3,7 +3,7 @@ import { Layout } from "@/shared";
 
 const Create = () => {
   return (
-    <Layout pageTitle="Create Story">
+    <Layout pageTitle="Create Story" isAnimated={false}>
       <CreateStoryContent />
     </Layout>
   );
