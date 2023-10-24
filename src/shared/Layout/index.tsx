@@ -7,9 +7,10 @@ import { StyleEnums } from "@/enums";
 interface Props {
   pageTitle: string;
   children: ReactNode;
+  isAnimated?: boolean;
 }
 
-const Layout = ({ pageTitle, children }: Props) => {
+const Layout = ({ pageTitle, children, isAnimated = true }: Props) => {
   return (
     <LayoutWrapper justify="center" align="top">
       <Helmet
@@ -21,7 +22,9 @@ const Layout = ({ pageTitle, children }: Props) => {
         <meta charSet="utf-8" />
         <title>{pageTitle}</title>
       </Helmet>
-      <AnimateDiv {...opacityAnimation}>{children}</AnimateDiv>
+      <AnimateDiv {...(isAnimated ? { ...opacityAnimation } : undefined)}>
+        {children}
+      </AnimateDiv>
     </LayoutWrapper>
   );
 };
