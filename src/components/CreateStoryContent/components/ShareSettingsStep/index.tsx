@@ -2,8 +2,7 @@ import { useState } from "react";
 import CreationWrapper from "./components/CreationWrapper";
 import { Preview, PreviewMobileDrawer } from "@/shared";
 import { useResponsive } from "@/hooks";
-import { AnimatedWrapper } from "../../styles";
-import { opacityAnimation } from "@assets/framerAnimations";
+import { ContentWrapper } from "../../styles";
 
 const ShareSettingsStep = () => {
   const [isDemoDrawerOpen, setDemoDrawerState] = useState(false);
@@ -14,7 +13,7 @@ const ShareSettingsStep = () => {
   };
 
   return (
-    <AnimatedWrapper {...opacityAnimation}>
+    <ContentWrapper>
       <CreationWrapper handleDemo={handleDemo} />
       {isMobile ? (
         <PreviewMobileDrawer
@@ -27,7 +26,7 @@ const ShareSettingsStep = () => {
       ) : (
         <Preview isCreationMode={true} />
       )}
-    </AnimatedWrapper>
+    </ContentWrapper>
   );
 };
 

@@ -2,8 +2,7 @@ import { useState } from "react";
 import { useResponsive } from "@/hooks";
 import CreationWrapper from "./components/CreationWrapper";
 import { Preview, PreviewMobileDrawer } from "@/shared";
-import { AnimatedWrapper } from "../../styles";
-import { opacityAnimation } from "@assets/framerAnimations";
+import { ContentWrapper } from "../../styles";
 
 const TypeDefiningStep = () => {
   const [isDemoDrawerOpen, setDemoDrawerState] = useState(false);
@@ -14,7 +13,7 @@ const TypeDefiningStep = () => {
   };
 
   return (
-    <AnimatedWrapper {...opacityAnimation}>
+    <ContentWrapper>
       <CreationWrapper handleDemo={handleDemo} />
       {isMobile ? (
         <PreviewMobileDrawer
@@ -27,7 +26,7 @@ const TypeDefiningStep = () => {
       ) : (
         <Preview isCreationMode={true} />
       )}
-    </AnimatedWrapper>
+    </ContentWrapper>
   );
 };
 

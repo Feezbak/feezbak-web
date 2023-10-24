@@ -27,11 +27,12 @@ export const ImageBackgroundWrapper = styled(motion.div)<{
 `;
 
 export const DeleteBtn = styled(Button)`
-  width: 3rem;
+  width: 3rem !important;
   height: 3rem;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
   border: none;
+  ${FlexBoxEnum.CenterVertical}
 `;
 
 export const DeleteBtnWrapper = styled(motion.div)`
