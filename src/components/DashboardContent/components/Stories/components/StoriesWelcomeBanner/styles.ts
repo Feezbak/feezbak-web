@@ -3,7 +3,7 @@ import { StyleEnums, FlexBoxEnum } from "@/enums";
 import { Col, Row } from "antd";
 
 export const StoriesWelcomeBannerWrapper = styled(Col)`
-  padding: 1.25rem 5.5rem 1.25rem 3.5rem;
+  padding: 2.5rem 3.5rem;
   margin-top: 1.5rem;
   border-radius: 2rem;
   background-color: ${StyleEnums.creamy};
