@@ -3,13 +3,16 @@ import { Badge } from "@/shared";
 import { useNavigate } from "react-router-dom";
 import { StyleEnums, StoryEnums } from "@/enums";
 import { useTextFromHTML } from "@/hooks";
-import { EditIconGrayBg, DeleteIconGrayBg, LinkIconGrayBg } from "@/icons";
-import { AreaChartOutlined } from "@ant-design/icons";
+import {
+  EditIconGrayBg,
+  DeleteIconGrayBg,
+  LinkIconGrayBg,
+  AnalyticsIcon,
+} from "@/icons";
 import {
   StoryItemStatusAndActions,
   StoryActionsContainer,
   StoryListItemWrapper,
-  StoryStatusContainer,
   StoryInfoContainer,
   StoryItemInfo,
   ActionBtn,
@@ -58,7 +61,9 @@ const StoryItem = ({ storyData, handleDelete, storyId }: Props) => {
   }, [progress]);
 
   const bgColor = useMemo(() => {
-    return progress !== "step3" ? StyleEnums.error : StyleEnums.success;
+    return progress !== "step3"
+      ? StyleEnums.draftBudgeBckg
+      : StyleEnums.publishedBudgeBckg;
   }, [progress]);
 
   const titleText = useMemo(() => {
@@ -70,9 +75,9 @@ const StoryItem = ({ storyData, handleDelete, storyId }: Props) => {
 
   return (
     <StoryListItemWrapper wrap>
-      <StoryItemInfo xs={24} sm={24} md={12} lg={12} xl={12} xxl={12}>
+      <StoryItemInfo xs={24} sm={24} md={10} lg={12} xl={12} xxl={12}>
         <StoryInfoContainer>
-          <h3>{titleText}</h3>
+          <p>{titleText}</p>
         </StoryInfoContainer>
       </StoryItemInfo>
       <StoryItemStatusAndActions
@@ -83,14 +88,11 @@ const StoryItem = ({ storyData, handleDelete, storyId }: Props) => {
         xl={10}
         xxl={8}
       >
-        <StoryStatusContainer>
-          <p>Status</p>
-          <Badge
-            bgColor={bgColor as string}
-            textColor={StyleEnums.white as string}
-            text={status}
-          />
-        </StoryStatusContainer>
+        <Badge
+          bgColor={bgColor as string}
+          textColor={StyleEnums.white as string}
+          text={status}
+        />
         <StoryActionsContainer>
           {conditionalAction}
           <ActionBtn
@@ -98,10 +100,7 @@ const StoryItem = ({ storyData, handleDelete, storyId }: Props) => {
             onClick={() => handleDelete(id)}
           />
           {progress === "step3" && (
-            <ActionBtn
-              onClick={handleAnalytics}
-              icon={<AreaChartOutlined rev="" />}
-            />
+            <ActionBtn onClick={handleAnalytics} icon={<AnalyticsIcon />} />
           )}
         </StoryActionsContainer>
       </StoryItemStatusAndActions>

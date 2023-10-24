@@ -38,13 +38,15 @@ export const EmptyStoriesImage = styled.img`
 
 export const SkeletonsWrapper = styled(motion.div)`
   width: 100%;
+  margin-top: 0.75rem;
   ${FlexBoxEnum.CenterVertical}
 `;
 
 export const StorySkeleton = styled(Skeleton.Input)`
-  margin-bottom: 1rem;
+  margin-bottom: 0.45rem;
+  border-radius: 0.75rem;
 
   span {
-    height: 4rem !important;
+    height: 5.5rem !important;
   }
 `;

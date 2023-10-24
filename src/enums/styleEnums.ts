@@ -3,7 +3,7 @@ export enum StyleEnums {
   ghostButtonColor = "#F4F4F6",
   defaultButtonColor = "#06060C",
   secondary = "#FFAF51",
-  creamy = "#FFF0E1",
+  creamy = "#E9E1D8",
   error = "#FF3333",
   storyDefaultColor1 = "#FF4773",
   storyDefaultColor2 = "#6B57E8",
@@ -34,4 +34,6 @@ export enum StyleEnums {
   fontFamilyBold = "Epilogue, Bold",
   fontFamily = "Epilogue, Regular, sans-serif",
   fontWeightStrong = 600,
+  draftBudgeBckg = "#FF6A97",
+  publishedBudgeBckg = "#25C7AA",
 }

@@ -5,9 +5,9 @@ import { Button, Row, Col } from "antd";
 export const StoryListItemWrapper = styled(Row)`
   width: 100%;
   border: 1px solid ${StyleEnums.gray4};
-  padding: 1rem 1.5rem;
-  border-radius: 1rem;
-  margin-bottom: 1rem;
+  padding: 1.5rem 2rem;
+  border-radius: 0.75rem;
+  margin-bottom: 0.75rem;
   ${FlexBoxEnum.SpaceBetweenHorizontal}
 
   &:last-child {
@@ -22,7 +22,7 @@ export const StoryItemInfo = styled(Col)`
 export const StoryInfoContainer = styled.div`
   width: 100%;
   ${FlexBoxEnum.StartStartVertical}
-  h3 {
+  p {
     width: 100%;
     font-size: 1rem;
     line-height: 1.5rem;
@@ -32,15 +32,6 @@ export const StoryInfoContainer = styled.div`
   }
 `;
 
-export const StoryStatusContainer = styled.div`
-  ${FlexBoxEnum.StartStartVertical}
-
-  p {
-    font-size: 1rem;
-    line-height: 1.25rem;
-    margin: 0 0 0.5rem 0;
-  }
-`;
 export const StoryActionsContainer = styled.div`
   margin-left: 3.5rem;
   ${FlexBoxEnum.SpaceBetweenHorizontal}
@@ -59,6 +50,7 @@ export const ActionBtn = styled(Button)`
   height: 2rem;
   border: none;
   background: ${StyleEnums.gray5};
+  ${FlexBoxEnum.CenterVertical}
 `;
 
 export const StoryItemStatusAndActions = styled(Col)`
