@@ -23,5 +23,5 @@ export const Description = styled.p`
   line-height: 1.5rem;
   text-align: center;
   letter-spacing: -0.01em;
-  color: ${StyleEnums.gray3};
+  color: ${StyleEnums.gray2};
 `;

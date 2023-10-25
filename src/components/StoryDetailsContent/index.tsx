@@ -7,10 +7,15 @@ import { useWindowSize } from "@/hooks";
 import useRequest from "@ahooksjs/use-request";
 import { getStoryById } from "@/api";
 import { message } from "antd";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import dayjs from "dayjs";
+import { ProductLogoBlack } from "@/icons";
 import duration from "dayjs/plugin/duration";
-import { StoryDetailsContentWrapper, DetailsSkeleton } from "./styles";
+import {
+  StoryDetailsContentWrapper,
+  DetailsSkeleton,
+  LogoContainer,
+} from "./styles";
 
 dayjs.extend(duration);
 
@@ -57,6 +62,11 @@ const DashboardContent = () => {
         xl={11}
         xxl={8}
       >
+        <LogoContainer>
+          <Link to="/dashboard">
+            <ProductLogoBlack />
+          </Link>
+        </LogoContainer>
         <Header />
         {!storyDataLoading && story?.data ? (
           <Details
