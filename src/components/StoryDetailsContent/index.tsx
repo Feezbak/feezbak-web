@@ -56,10 +56,10 @@ const DashboardContent = () => {
     <>
       <StoryDetailsContentWrapper
         xs={22}
-        sm={22}
-        md={17}
-        lg={14}
-        xl={11}
+        sm={18}
+        md={14}
+        lg={12}
+        xl={10}
         xxl={8}
       >
         <LogoContainer>

@@ -28,7 +28,6 @@ export const EditorFocusArea = styled.div`
     word-break: break-word;
     line-height: 6rem;
     font-style: normal;
-    font-family: ${StyleEnums.fontFamilyBold};
     color: ${StyleEnums.gray4};
 
     ${inLessThan(BreakpointEnums.mobile)`
