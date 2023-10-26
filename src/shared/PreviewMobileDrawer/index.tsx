@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Drawer } from "antd";
+import { MobileDrawer } from "./styles";
 
 interface Props {
   children: ReactNode;
@@ -10,7 +10,7 @@ interface Props {
 
 const PreviewMobileDrawer = ({ children, onClose, title, isOpen }: Props) => {
   return (
-    <Drawer
+    <MobileDrawer
       getContainer={false}
       mask={false}
       contentWrapperStyle={{
@@ -22,7 +22,7 @@ const PreviewMobileDrawer = ({ children, onClose, title, isOpen }: Props) => {
       open={isOpen}
     >
       {children}
-    </Drawer>
+    </MobileDrawer>
   );
 };
 
