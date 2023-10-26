@@ -24,7 +24,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
       autoComplete="off"
     >
       <FormItem name="profession">
-        <>
+        <div>
           <label htmlFor="profession">I am a</label>
           <Controller
             render={({ field: { onChange, value } }) => (
@@ -33,7 +33,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
             name="profession"
             control={formControl}
           />
-        </>
+        </div>
       </FormItem>
       <FormItem
         name="email"
@@ -44,7 +44,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
           )
         }
       >
-        <>
+        <div>
           <label htmlFor="email">
             Email <sub>*</sub>
           </label>
@@ -60,7 +60,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
             name="email"
             control={formControl}
           />
-        </>
+        </div>
       </FormItem>
       <FormItem
         name="firstName"
@@ -71,7 +71,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
           )
         }
       >
-        <>
+        <div>
           <label htmlFor="firstName">
             Firstname <sub>*</sub>
           </label>
@@ -82,7 +82,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
             name="firstName"
             control={formControl}
           />
-        </>
+        </div>
       </FormItem>
       <FormItem
         name="lastname"
@@ -93,7 +93,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
           )
         }
       >
-        <>
+        <div>
           <label htmlFor="lastName">
             Lastname <sub>*</sub>
           </label>
@@ -104,7 +104,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
             name="lastName"
             control={formControl}
           />
-        </>
+        </div>
       </FormItem>
       <FormItem
         validateStatus={formErrors?.password ? "error" : ""}
@@ -115,7 +115,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
           )
         }
       >
-        <>
+        <div>
           <label htmlFor="password">
             Password <sub>*</sub>
           </label>
@@ -131,7 +131,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
             name="password"
             control={formControl}
           />
-        </>
+        </div>
       </FormItem>
       <BtnWrapper>
         <SubmitButton

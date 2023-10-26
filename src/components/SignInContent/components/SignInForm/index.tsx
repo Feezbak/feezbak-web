@@ -37,7 +37,7 @@ const SignInForm = () => {
           )
         }
       >
-        <>
+        <div>
           <label htmlFor="email">
             Email <sub>*</sub>
           </label>
@@ -53,7 +53,7 @@ const SignInForm = () => {
             name="email"
             control={formControl}
           />
-        </>
+        </div>
       </FormItem>
       <FormItem
         validateStatus={formErrors && formErrors["password"] ? "error" : ""}
@@ -64,7 +64,7 @@ const SignInForm = () => {
           )
         }
       >
-        <>
+        <div>
           <label htmlFor="password">
             Password <sub>*</sub>
           </label>
@@ -75,7 +75,7 @@ const SignInForm = () => {
             name="password"
             control={formControl}
           />
-        </>
+        </div>
       </FormItem>
       <BtnWrapper>
         <SubmitButton
