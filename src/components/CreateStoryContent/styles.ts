@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Col } from "antd";
 import { inLessThan } from "@/helpers";
-import { motion } from "framer-motion";
 import { FlexBoxEnum, BreakpointEnums } from "@/enums";
 
 export const CreationFlowWrapper = styled(Col)`
@@ -14,7 +13,7 @@ export const CreationFlowWrapper = styled(Col)`
   `}
 `;
 
-export const AnimatedWrapper = styled(motion.div)`
+export const ContentWrapper = styled.div`
   width: 100%;
   height: 100%;
   ${FlexBoxEnum.CenterHorizontal}

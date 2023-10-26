@@ -8,6 +8,10 @@ export const LinkShareWrapper = styled(motion.div)`
   width: 100%;
   min-height: 8.5rem;
   ${FlexBoxEnum.StartStartVertical}
+
+  ${inLessThan(BreakpointEnums.mobile)`
+    min-height: unset;
+   `};
 `;
 
 export const CopyToClipboardWrapper = styled.div`

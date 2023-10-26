@@ -1,9 +1,10 @@
 import { FeedbackerContent } from "@/components";
 import { Layout } from "@/shared";
+import { PageTitleEnums } from "@/enums";
 
 const Feedback = () => {
   return (
-    <Layout pageTitle="Story | Give your feedback">
+    <Layout pageTitle={PageTitleEnums.FEEDBACK}>
       <FeedbackerContent />
     </Layout>
   );

@@ -1,9 +1,10 @@
 import { ResetPasswordContent } from "@/components";
 import { Layout } from "@/shared";
+import { PageTitleEnums } from "@/enums";
 
 const ResetPassword = () => {
   return (
-    <Layout pageTitle="Reset Password">
+    <Layout pageTitle={PageTitleEnums.RESET_PASSWORD}>
       <ResetPasswordContent />
     </Layout>
   );

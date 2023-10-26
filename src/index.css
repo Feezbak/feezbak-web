@@ -6,6 +6,13 @@
 }
 
 @font-face {
+  font-family: "Epilogue, ExtraBold";
+  src: local("Epilogue"),
+  url("assets/fonts/Epilogue/Epilogue-ExtraBold.ttf") format("truetype");
+  font-weight: 900;
+}
+
+@font-face {
   font-family: "Epilogue, Regular";
   src: local("Epilogue"),
   url("assets/fonts/Epilogue/Epilogue-Regular.ttf") format("truetype");
@@ -16,7 +23,7 @@
   font-family: "Epilogue, Medium";
   src: local("Epilogue"),
   url("assets/fonts/Epilogue/Epilogue-Medium.ttf") format("truetype");
-  font-weight: medium;
+  font-weight: 500;
 }
 
 div, input, button {
@@ -37,6 +44,10 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.public-DraftEditorPlaceholder-root {
+  font-family: "Epilogue, ExtraBold", sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6, button {

@@ -14,11 +14,15 @@ export const PreviewFlowWrapper = styled(Col)`
   `}
 
    ${inLessThan(BreakpointEnums.md)`
-     padding-right: 20%;
-     padding-left: 20%;
+     padding-right: 25%;
+     padding-left: 25%;
   `}
 
    ${inLessThan(BreakpointEnums.sm)`
-     padding: 10% 5%;
+     padding: 10% 20%;
+  `}
+
+  ${inLessThan(BreakpointEnums.xs)`
+     padding: 5%;
   `}
 `;
