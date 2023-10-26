@@ -3,7 +3,7 @@ import { StyleEnums } from "@/enums";
 import { Avatar } from "antd";
 
 export const CreatorAvatar = styled(Avatar)`
-  background: ${StyleEnums.primary};
+  border: none;
 `;
 
 export const CreatorMenuItem = styled.span`
