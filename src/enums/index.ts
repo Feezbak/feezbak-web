@@ -7,3 +7,4 @@ export * from "./storyEnums";
 export * from "./shareEnums";
 export * from "./flexBoxEnum";
 export * from "./clientLayerEnums";
+export * from "./pageTitleEnums";

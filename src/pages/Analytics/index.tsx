@@ -1,9 +1,10 @@
 import { AnalyticsContent } from "@/components";
 import { Layout } from "@/shared";
+import { PageTitleEnums } from "@/enums";
 
 const Analytics = () => {
   return (
-    <Layout pageTitle="Analytics">
+    <Layout pageTitle={PageTitleEnums.ANALYTICS}>
       <AnalyticsContent />
     </Layout>
   );

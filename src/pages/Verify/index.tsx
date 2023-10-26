@@ -1,9 +1,10 @@
 import { UserDataVerificationContent } from "@/components";
 import { Layout } from "@/shared";
+import { PageTitleEnums } from "@/enums";
 
 const Verify = () => {
   return (
-    <Layout pageTitle="Create Story">
+    <Layout pageTitle={PageTitleEnums.VERIFY}>
       <UserDataVerificationContent />
     </Layout>
   );
