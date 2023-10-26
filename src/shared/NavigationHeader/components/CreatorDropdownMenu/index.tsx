@@ -1,6 +1,6 @@
 import { Dropdown } from "antd";
 import { MenuItems } from "./utils";
-import { UserOutlined } from "@ant-design/icons";
+import { ProfileAvatarIcon } from "@/icons";
 import { useNavigate } from "react-router-dom";
 import { useResetRecoilState } from "recoil";
 import { userData } from "@/recoil";
@@ -23,7 +23,7 @@ const CreatorDropdownMenu = () => {
     <Dropdown menu={{ items }} placement="bottom" arrow>
       <CreatorAvatar
         size={{ xs: 40, sm: 40, md: 48, lg: 48, xl: 48, xxl: 48 }}
-        icon={<UserOutlined rev="" />}
+        icon={<ProfileAvatarIcon />}
       />
     </Dropdown>
   );
