@@ -19,7 +19,7 @@ export const ProfileAvatarIcon = () => (
         d="M359 393C359 476.347 287.862 544 200 544C112.138 544 41 476.347 41 393C41 309.653 112.138 242 200 242C287.862 242 359 309.653 359 393Z"
         fill="url(#paint3_linear_2198_1126)"
         stroke="url(#paint4_linear_2198_1126)"
-        stroke-width="2"
+        strokeWidth="2"
       />
     </g>
     <defs>
