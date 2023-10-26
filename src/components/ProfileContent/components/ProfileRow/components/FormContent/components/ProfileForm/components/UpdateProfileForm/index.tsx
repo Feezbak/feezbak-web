@@ -39,7 +39,7 @@ const UpdateProfileForm = ({ userRecoilData }: Props) => {
             )
           }
         >
-          <>
+          <div>
             <label htmlFor="firstName">
               Firstname <sub>*</sub>
             </label>
@@ -54,7 +54,7 @@ const UpdateProfileForm = ({ userRecoilData }: Props) => {
               name="firstName"
               control={formControl}
             />
-          </>
+          </div>
         </FormItem>
         <FormItem
           name="lastname"
@@ -65,7 +65,7 @@ const UpdateProfileForm = ({ userRecoilData }: Props) => {
             )
           }
         >
-          <>
+          <div>
             <label htmlFor="lastName">
               Lastname <sub>*</sub>
             </label>
@@ -80,7 +80,7 @@ const UpdateProfileForm = ({ userRecoilData }: Props) => {
               name="lastName"
               control={formControl}
             />
-          </>
+          </div>
         </FormItem>
       </FieldsSection>
       <FieldsSection size="large">
@@ -93,7 +93,7 @@ const UpdateProfileForm = ({ userRecoilData }: Props) => {
             )
           }
         >
-          <>
+          <div>
             <label htmlFor="email">
               Email <sub>*</sub>
             </label>
@@ -109,10 +109,10 @@ const UpdateProfileForm = ({ userRecoilData }: Props) => {
               name="email"
               control={formControl}
             />
-          </>
+          </div>
         </FormItem>
         <FormItem name="profession">
-          <>
+          <div>
             <label htmlFor="profession">I am a</label>
             <Controller
               render={({ field: { onChange, value } }) => (
@@ -121,7 +121,7 @@ const UpdateProfileForm = ({ userRecoilData }: Props) => {
               name="profession"
               control={formControl}
             />
-          </>
+          </div>
         </FormItem>
       </FieldsSection>
     </UpdateForm>
