@@ -8,7 +8,7 @@ export const TitleEditorWrapper = styled.div`
 `;
 
 export const paragraphStyles = css`
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.5rem;
   letter-spacing: -0.02em;
 `;

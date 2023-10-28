@@ -85,7 +85,7 @@ const Editor = () => {
   const color = useMemo(() => {
     return currentLength === titleMaxLength
       ? StyleEnums.error
-      : StyleEnums.secondaryTitle;
+      : StyleEnums.black;
   }, [currentLength]);
 
   return (
