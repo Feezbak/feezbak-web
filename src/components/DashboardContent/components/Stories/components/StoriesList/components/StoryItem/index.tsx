@@ -1,8 +1,9 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Badge } from "@/shared";
 import { useNavigate } from "react-router-dom";
 import { StyleEnums, StoryEnums } from "@/enums";
 import { useTextFromHTML } from "@/hooks";
+import { StorySkeleton } from "../../styles";
 import {
   EditIconGrayBg,
   DeleteIconGrayBg,
@@ -26,9 +27,11 @@ interface Props {
   };
   storyId: string;
   handleDelete: (id: string) => void;
+  loading: boolean;
 }
 
-const StoryItem = ({ storyData, handleDelete, storyId }: Props) => {
+const StoryItem = ({ storyData, handleDelete, storyId, loading }: Props) => {
+  const [deletionId, setDeletionId] = useState("");
   const navigate = useNavigate();
   const { title, progress, _id: id } = storyData ?? {};
   const titleTextContent = useTextFromHTML(title ?? "");
@@ -73,7 +76,14 @@ const StoryItem = ({ storyData, handleDelete, storyId }: Props) => {
     return titleTextContent;
   }, [title, titleTextContent]);
 
-  return (
+  const handleRemoveStory = () => {
+    handleDelete(id);
+    setDeletionId(id);
+  };
+
+  return loading && id === deletionId ? (
+    <StorySkeleton />
+  ) : (
     <StoryListItemWrapper wrap>
       <StoryItemInfo xs={24} sm={24} md={10} lg={12} xl={12} xxl={12}>
         <StoryInfoContainer>
@@ -95,10 +105,7 @@ const StoryItem = ({ storyData, handleDelete, storyId }: Props) => {
         />
         <StoryActionsContainer>
           {conditionalAction}
-          <ActionBtn
-            icon={<DeleteIconGrayBg />}
-            onClick={() => handleDelete(id)}
-          />
+          <ActionBtn icon={<DeleteIconGrayBg />} onClick={handleRemoveStory} />
           {progress === "step3" && (
             <ActionBtn onClick={handleAnalytics} icon={<AnalyticsIcon />} />
           )}

@@ -6,7 +6,6 @@ import Circle from "@uiw/react-color-circle";
 import { motion } from "framer-motion";
 
 export const iconBtnStyles = css`
-  background: none;
   border: none;
   padding: 0;
   width: 2.75rem !important;

@@ -335,6 +335,7 @@ const Demo = ({
             isSquareBtnVisible && (
               <motion.div {...opacityAnimation} key="1">
                 <SquareBtn
+                  type="default"
                   icon={<MakeSquareIcon />}
                   $isActive={isSquare}
                   onClick={() => squareBtnHandler?.(!isSquare)}
@@ -344,6 +345,7 @@ const Demo = ({
           {(isHovered || isColorPickerOpen) && (
             <motion.div {...opacityAnimation} key="2">
               <ColorPickerBtn
+                type="default"
                 icon={<ColorPickerIcon />}
                 $isActive={isColorPickerOpen}
                 onClick={colorPickerBtnHandler}
