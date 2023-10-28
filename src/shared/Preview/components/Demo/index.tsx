@@ -14,7 +14,7 @@ import {
 import DOMPurify from "dompurify";
 import useRequest from "@ahooksjs/use-request";
 import Slider from "react-slick";
-import { useQuery, usePalette as getDominantColors } from "@/hooks";
+import { useQuery } from "@/hooks";
 import { generateFeedback, sendFeedback } from "@/api";
 import { useParams } from "react-router-dom";
 import { DemoProps, Feedback, ContactToData } from "./types";
@@ -172,18 +172,7 @@ const Demo = ({
     [currentStep]
   );
 
-  const titleDynamicColor = useMemo(() => {
-    //image dominant color can be tested only on staging
-    if (!isSquare && activeSlide?.src) {
-      const activeSlideImageSrc = `${process.env.REACT_APP_API_URL}/${activeSlide?.src}`;
-      const { data: imageDominantColors } =
-        getDominantColors(activeSlideImageSrc);
-      console.log(imageDominantColors, "vibrant");
-      return dynamicTextColor(color);
-    }
-
-    return dynamicTextColor(color);
-  }, [color, isSquare, activeSlide]);
+  const titleDynamicColor = useMemo(() => dynamicTextColor(color), [color]);
 
   const createMarkup = useMemo(() => {
     return {
