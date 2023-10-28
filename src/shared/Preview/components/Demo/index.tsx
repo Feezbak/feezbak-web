@@ -184,7 +184,7 @@ const Demo = ({
     return {
       __html:
         !title.length || title === "<p></p>"
-          ? "<h3>Do you like my jacket?</h3>"
+          ? '<p class="story-title-placeholder">Do you like my jacket?</p>'
           : DOMPurify.sanitize(title),
     };
   }, [title]);

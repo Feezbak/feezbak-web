@@ -49,7 +49,7 @@ export const TitlePreview = styled(motion.div)<{
   max-height: ${ifProp("$hasBtnResp", "17", "30")}rem;
   overflow-y: auto;
   font-size: 1.6rem;
-  line-height: 2.5rem;
+  line-height: 2rem;
   letter-spacing: -0.02em;
   z-index: 2;
   ${FlexBoxEnum.StartStartVertical}
@@ -63,13 +63,19 @@ export const TitlePreview = styled(motion.div)<{
   }
 
   p {
+    text-align: center;
     word-break: break-word;
     text-shadow: 0 0 3px ${prop("$titleShadowColor")};
+    font-family: ${StyleEnums.fontFamilyExtraBold};
   }
 
   ${inLessThan(BreakpointEnums.mobile)`
     margin: 0 1.5rem;
   `}
+
+  .story-title-placeholder {
+    font-family: ${StyleEnums.fontFamilyExtraBold};
+  }
 `;
 
 export const ColorPickerBtn = styled(Button)<{ readonly $isActive: boolean }>`
