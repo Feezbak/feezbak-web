@@ -14,13 +14,14 @@ import {
 import DOMPurify from "dompurify";
 import useRequest from "@ahooksjs/use-request";
 import Slider from "react-slick";
-import { useQuery } from "@/hooks";
+import { useQuery, usePalette } from "@/hooks";
 import { generateFeedback, sendFeedback } from "@/api";
 import { useParams } from "react-router-dom";
 import { DemoProps, Feedback, ContactToData } from "./types";
 import { handleResponse } from "./utils";
 import { message } from "antd";
-import { colorPickerMainColors } from "@/constants";
+import { colorPickerMainColors, Image } from "@/constants";
+import { dynamicTextColor } from "@helpers/dynamicTextColor";
 import {
   opacityAnimation,
   opacityWithScaleAnimation,
@@ -64,10 +65,17 @@ const Demo = ({
   const feedbackId = query.get("feedbackId");
   const guestId = query.get("guestId");
   const sliderRef = useRef<Slider | null>(null);
-  const [activeSlideId, setActiveSlide] = useState("");
+  const [activeSlide, setActiveSlide] = useState<Image | null>(
+    images?.[0] || null
+  );
   const [isCredentialDrawerOpen, setCredentialDrawerState] = useState(false);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [respBtnId, setRespBtnId] = useState("");
+  const activeSlideImageSrc = useMemo(
+    () => `${process.env.REACT_APP_API_URL}/${activeSlide?.src}`,
+    [activeSlide]
+  );
+  const { data: imageDominantColors } = usePalette(activeSlideImageSrc ?? "");
 
   const structureFeedbackPayload = (feedbackObj: Feedback) => {
     const feedbackData = structuredClone(feedbackObj);
@@ -169,16 +177,16 @@ const Demo = ({
     [currentStep]
   );
 
-  const titleShadowColor = useMemo(() => {
-    if (titleColor === color.toUpperCase()) {
-      if (color !== (StyleEnums.black as string)) {
-        return StyleEnums.black as string;
-      } else {
-        return StyleEnums.white as string;
-      }
+  const titleDynamicColor = useMemo(() => {
+    //image dominant color can be tested only on staging
+    if (!isSquare && activeSlide?.src && imageDominantColors) {
+      const { vibrant } = imageDominantColors;
+      console.log(vibrant, "vibrant");
+      return dynamicTextColor(vibrant);
     }
-    return "transparent";
-  }, [titleColor, color]);
+
+    return dynamicTextColor(color);
+  }, [color, imageDominantColors, isSquare, activeSlide]);
 
   const createMarkup = useMemo(() => {
     return {
@@ -253,7 +261,7 @@ const Demo = ({
         storyId!,
         msg,
         images,
-        activeSlideId,
+        activeSlide?.id ?? "",
         respBtnId,
         () => setRespBtnId("")
       );
@@ -267,7 +275,7 @@ const Demo = ({
         storyId!,
         msg,
         images,
-        activeSlideId
+        activeSlide?.id ?? ""
       );
     }
   };
@@ -287,7 +295,7 @@ const Demo = ({
         storyId!,
         "",
         images,
-        activeSlideId,
+        activeSlide?.id ?? "",
         actionData.id
       );
     }
@@ -308,14 +316,14 @@ const Demo = ({
       if (feedback?.responses) {
         if (hasButtonsResp) {
           const activeSlideRespData = feedback.responses.find(
-            (slide) => slide.imageId === activeSlideId
+            (slide) => slide.imageId === activeSlide?.id
           );
           return activeSlideRespData?.respBtnId === respBtnId;
         }
       }
       return false;
     },
-    [feedback, hasButtonsResp, activeSlideId]
+    [feedback, hasButtonsResp, activeSlide]
   );
 
   return (
@@ -335,6 +343,7 @@ const Demo = ({
             isSquareBtnVisible && (
               <motion.div {...opacityAnimation} key="1">
                 <SquareBtn
+                  type="default"
                   icon={<MakeSquareIcon />}
                   $isActive={isSquare}
                   onClick={() => squareBtnHandler?.(!isSquare)}
@@ -344,6 +353,7 @@ const Demo = ({
           {(isHovered || isColorPickerOpen) && (
             <motion.div {...opacityAnimation} key="2">
               <ColorPickerBtn
+                type="default"
                 icon={<ColorPickerIcon />}
                 $isActive={isColorPickerOpen}
                 onClick={colorPickerBtnHandler}
@@ -367,8 +377,8 @@ const Demo = ({
         >
           <TitlePreview
             dangerouslySetInnerHTML={createMarkup}
-            $titleShadowColor={titleShadowColor}
             $hasBtnResp={hasButtonsResp}
+            $color={titleDynamicColor}
           />
           {(isNotFirstStep || !isCreationMode) && hasButtonsResp && (
             <Responses>

@@ -6,7 +6,6 @@ import Circle from "@uiw/react-color-circle";
 import { motion } from "framer-motion";
 
 export const iconBtnStyles = css`
-  background: none;
   border: none;
   padding: 0;
   width: 2.75rem !important;
@@ -42,7 +41,7 @@ export const PreviewFlow = styled(motion.div)<{
 `;
 
 export const TitlePreview = styled(motion.div)<{
-  readonly $titleShadowColor: string;
+  readonly $color: string;
   readonly $hasBtnResp: boolean;
 }>`
   user-select: none;
@@ -55,7 +54,7 @@ export const TitlePreview = styled(motion.div)<{
   ${FlexBoxEnum.StartStartVertical}
 
   h3 {
-    color: ${StyleEnums.black};
+    color: ${prop("$color")}
     font-weight: bolder;
     text-align: center;
     word-break: break-word;
@@ -63,9 +62,9 @@ export const TitlePreview = styled(motion.div)<{
   }
 
   p {
+    color: ${prop("$color")};
     text-align: center;
     word-break: break-word;
-    text-shadow: 0 0 3px ${prop("$titleShadowColor")};
     font-family: ${StyleEnums.fontFamilyExtraBold};
   }
 

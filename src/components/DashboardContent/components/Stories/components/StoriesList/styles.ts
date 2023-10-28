@@ -43,6 +43,7 @@ export const SkeletonsWrapper = styled(motion.div)`
 `;
 
 export const StorySkeleton = styled(Skeleton.Input)`
+  width: 100% !important;
   margin-bottom: 0.45rem;
   border-radius: 0.75rem;
 

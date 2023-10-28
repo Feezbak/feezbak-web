@@ -6,7 +6,6 @@ import { createStory } from "@/api";
 import { Button, message } from "antd";
 import { useResponsive } from "@/hooks";
 import { StoriesListHeader, StoriesContent, StoriesWrapper } from "./styles";
-import ListHeader from "./components/ListHeader";
 
 const Stories = () => {
   const { isLessThanSm } = useResponsive();
@@ -27,8 +26,6 @@ const Stories = () => {
     }
   );
 
-  const handleCreateStory = () => createNewStory();
-
   return (
     <StoriesWrapper align="stretch" justify="space-between" wrap>
       {!isLessThanSm && <StoriesWelcomeBanner />}
@@ -38,13 +35,12 @@ const Stories = () => {
           <Button
             type="default"
             size="large"
-            onClick={handleCreateStory}
+            onClick={createNewStory}
             loading={isLoading}
           >
             Create Story
           </Button>
         </StoriesListHeader>
-        <ListHeader />
         <StoriesList />
       </StoriesContent>
     </StoriesWrapper>
