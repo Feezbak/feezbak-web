@@ -4,7 +4,6 @@ import { ResponseBtnsType, Image, UserInfoFieldType } from "@/constants";
 export interface DemoProps {
   color: string;
   title: string;
-  titleColor: string;
   type: StoryTypeEnum;
   isSquare: boolean;
   isHovered?: boolean;

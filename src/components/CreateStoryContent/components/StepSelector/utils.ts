@@ -20,6 +20,7 @@ export function setStoryDataToStore(
     response,
     isMultiple,
   } = responseData;
+
   if (responseData.progress === "step1") {
     setStep1({
       title,

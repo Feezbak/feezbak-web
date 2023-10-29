@@ -42,8 +42,10 @@ const ConfirmModalContent = ({
           {title?.length && <h4>{title}</h4>}
           {text?.length && <p>{text}</p>}
           <Actions>
-            <ActionBtn onClick={negativeBtnAction}>{negativeBtnText}</ActionBtn>
-            <ActionBtn type="primary" onClick={positiveBtnAction}>
+            <ActionBtn onClick={negativeBtnAction} ghost={true} type="default">
+              {negativeBtnText}
+            </ActionBtn>
+            <ActionBtn type="default" onClick={positiveBtnAction}>
               {positiveBtnText}
             </ActionBtn>
           </Actions>

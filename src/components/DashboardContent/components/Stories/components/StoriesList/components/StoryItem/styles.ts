@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { StyleEnums, FlexBoxEnum } from "@/enums";
+import { inLessThan } from "@/helpers";
+import { StyleEnums, FlexBoxEnum, BreakpointEnums } from "@/enums";
 import { Button, Row, Col } from "antd";
 
 export const StoryListItemWrapper = styled(Row)`
@@ -17,6 +18,10 @@ export const StoryListItemWrapper = styled(Row)`
 
 export const StoryItemInfo = styled(Col)`
   ${FlexBoxEnum.JustifyStartHorizontal}
+
+  ${inLessThan(BreakpointEnums.mobile)`
+      margin-bottom: 0.5rem;
+  `};
 `;
 
 export const StoryInfoContainer = styled.div`

@@ -21,6 +21,5 @@ export const PoweredByWrapper = styled.div<{
   background-position: ${ifProp("$isSquare", "top", "center")};
   background-repeat: no-repeat;
   background-size: cover;
-  border-bottom-left-radius: ${ifProp("$isSquare", "2", "0")}rem;
-  border-bottom-right-radius: ${ifProp("$isSquare", "2", "0")}rem;
+  border-radius: ${ifProp("$isSquare", "2", "0")}rem;
 `;

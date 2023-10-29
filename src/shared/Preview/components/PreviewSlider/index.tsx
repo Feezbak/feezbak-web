@@ -1,4 +1,4 @@
-import { memo, forwardRef, useState, useEffect, useMemo } from "react";
+import { memo, forwardRef, useMemo } from "react";
 import Slider from "react-slick";
 import { getSlickSettings, Image } from "@/constants";
 import { ProductLogoWhite } from "@/icons";
@@ -10,7 +10,7 @@ interface Props {
   hasCover: boolean;
   isSquare: boolean;
   hasLayer: boolean;
-  setActiveSlide?: (slideId: string) => void;
+  setActiveSlide?: (image: Image) => void;
   images: Image[];
 }
 
@@ -19,16 +19,15 @@ const PreviewSlider = (
   ref: any
 ) => {
   const { isLessThanMd } = useResponsive();
-  const [activeId, setActiveId] = useState(images[0].id);
-
-  useEffect(() => {
-    setActiveSlide && setActiveSlide(activeId);
-  }, [activeId, setActiveSlide]);
 
   const isFeedbackerMobile = useMemo(
     () => !!setActiveSlide && isLessThanMd,
     [setActiveSlide, isLessThanMd]
   );
+
+  const handleAfterChange = (currentSlide: number) => {
+    setActiveSlide?.(images[currentSlide]);
+  };
 
   return (
     <SliderContainer
@@ -42,7 +41,7 @@ const PreviewSlider = (
       <Slider
         {...getSlickSettings(isLessThanMd)}
         ref={ref}
-        afterChange={(currentSlide) => setActiveId(images[currentSlide].id)}
+        afterChange={handleAfterChange}
       >
         {images?.map((image) => (
           <PreviewSlide

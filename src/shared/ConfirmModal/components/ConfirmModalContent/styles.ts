@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { StyleEnums, FlexBoxEnum } from "@/enums";
+import { StyleEnums, FlexBoxEnum, BreakpointEnums } from "@/enums";
 import { Row, Col, Button } from "antd";
+import { inLessThan } from "@/helpers";
 
 export const ModalWrapper = styled(motion.div)`
   background: ${StyleEnums.white};
@@ -10,6 +11,10 @@ export const ModalWrapper = styled(motion.div)`
   box-shadow: 0 17px 40px rgba(74, 68, 143, 0.06);
   border-radius: 1.25rem;
   width: 32rem;
+
+  ${inLessThan(BreakpointEnums.mobile)`
+      width: 20rem;
+  `};
 `;
 
 export const ModalContent = styled(Row)`

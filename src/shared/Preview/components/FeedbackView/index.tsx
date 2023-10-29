@@ -14,12 +14,12 @@ const FeedbackView = ({ storyData }: Props) => {
     type,
     background,
     title,
-    titleColor,
     imageVoting: { images, selectedImgSrc, isSquare },
     response: { responseBtnList },
     userInfoFields,
     isInfoCollectionAllowed,
   } = storyData;
+
   const [isLayersOpen, setLayersState] = useState(true);
   const [activeLayer, setActiveLayer] = useState(ClientLayerEnums.WELCOME);
 
@@ -45,7 +45,6 @@ const FeedbackView = ({ storyData }: Props) => {
             isCreationMode={false}
             responseButtons={responseBtnList}
             title={title}
-            titleColor={titleColor}
             type={type}
             isInfoCollectionAllowed={isInfoCollectionAllowed}
             coverImgSrc={selectedImgSrc}

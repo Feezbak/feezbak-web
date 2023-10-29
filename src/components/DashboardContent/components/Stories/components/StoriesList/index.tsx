@@ -1,5 +1,4 @@
 import { useState } from "react";
-import StoryItem from "../StoryItem";
 import { ConfirmModal, CustomPagination } from "@/shared";
 import useRequest from "@ahooksjs/use-request";
 import { getStories, deleteStory } from "@/api";
@@ -8,6 +7,8 @@ import { AnimatePresence } from "framer-motion";
 import emptyStoriesSrc from "@images/empty-stories.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { opacityAnimation } from "@assets/framerAnimations";
+import ListHeader from "./components/ListHeader";
+import StoryItem from "./components/StoryItem";
 import {
   EmptyStoriesWrapper,
   StoriesListWrapper,
@@ -51,7 +52,7 @@ const StoriesList = () => {
     }
   );
 
-  const { run: runDeleteStory } = useRequest((id) => deleteStory(id), {
+  const { run: runDeleteStory, loading } = useRequest((id) => deleteStory(id), {
     manual: true,
     onSuccess: async () => {
       try {
@@ -76,8 +77,8 @@ const StoriesList = () => {
     setRemoveIdState(id);
   };
 
-  const handleRunDelete = () => {
-    (() => runDeleteStory(removeId))();
+  const handleRunDelete = async () => {
+    await runDeleteStory(removeId);
     setRemoveIdState("");
   };
 
@@ -102,12 +103,14 @@ const StoriesList = () => {
           </SkeletonsWrapper>
         ) : storiesPaginatedData && storiesPaginatedData?.total >= 1 ? (
           <>
+            {!!storiesPaginatedData.total && <ListHeader />}
             <StoriesListWrapper {...opacityAnimation}>
               {storiesPaginatedData?.stories?.map((story: any) => (
                 <StoryItem
                   storyId={story._id}
                   key={story._id}
                   storyData={story}
+                  loading={loading}
                   handleDelete={handleDelete}
                 />
               ))}

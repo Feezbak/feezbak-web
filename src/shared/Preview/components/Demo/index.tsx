@@ -14,13 +14,14 @@ import {
 import DOMPurify from "dompurify";
 import useRequest from "@ahooksjs/use-request";
 import Slider from "react-slick";
-import { useQuery } from "@/hooks";
+import { useQuery, useOutsideClick } from "@/hooks";
 import { generateFeedback, sendFeedback } from "@/api";
 import { useParams } from "react-router-dom";
 import { DemoProps, Feedback, ContactToData } from "./types";
 import { handleResponse } from "./utils";
 import { message } from "antd";
-import { colorPickerMainColors } from "@/constants";
+import { colorPickerMainColors, Image } from "@/constants";
+import { dynamicTextColor } from "@helpers/dynamicTextColor";
 import {
   opacityAnimation,
   opacityWithScaleAnimation,
@@ -39,7 +40,6 @@ import {
 const Demo = ({
   color,
   title,
-  titleColor,
   userInfoFields,
   responseButtons,
   isSquare,
@@ -59,12 +59,16 @@ const Demo = ({
   currentStep,
   handleCompleteFeedback,
 }: DemoProps) => {
+  const colorPickerRef = useRef<HTMLDivElement>(null);
+  useOutsideClick(colorPickerRef, () => colorPickerBtnHandler?.());
   const { storyId } = useParams();
   const query = useQuery();
   const feedbackId = query.get("feedbackId");
   const guestId = query.get("guestId");
   const sliderRef = useRef<Slider | null>(null);
-  const [activeSlideId, setActiveSlide] = useState("");
+  const [activeSlide, setActiveSlide] = useState<Image | null>(
+    images?.[0] || null
+  );
   const [isCredentialDrawerOpen, setCredentialDrawerState] = useState(false);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [respBtnId, setRespBtnId] = useState("");
@@ -169,22 +173,13 @@ const Demo = ({
     [currentStep]
   );
 
-  const titleShadowColor = useMemo(() => {
-    if (titleColor === color.toUpperCase()) {
-      if (color !== (StyleEnums.black as string)) {
-        return StyleEnums.black as string;
-      } else {
-        return StyleEnums.white as string;
-      }
-    }
-    return "transparent";
-  }, [titleColor, color]);
+  const titleDynamicColor = useMemo(() => dynamicTextColor(color), [color]);
 
   const createMarkup = useMemo(() => {
     return {
       __html:
         !title.length || title === "<p></p>"
-          ? "<h3>Do you like my jacket?</h3>"
+          ? '<p class="story-title-placeholder">Do you like my jacket?</p>'
           : DOMPurify.sanitize(title),
     };
   }, [title]);
@@ -253,7 +248,7 @@ const Demo = ({
         storyId!,
         msg,
         images,
-        activeSlideId,
+        activeSlide?.id ?? "",
         respBtnId,
         () => setRespBtnId("")
       );
@@ -267,7 +262,7 @@ const Demo = ({
         storyId!,
         msg,
         images,
-        activeSlideId
+        activeSlide?.id ?? ""
       );
     }
   };
@@ -287,7 +282,7 @@ const Demo = ({
         storyId!,
         "",
         images,
-        activeSlideId,
+        activeSlide?.id ?? "",
         actionData.id
       );
     }
@@ -308,14 +303,14 @@ const Demo = ({
       if (feedback?.responses) {
         if (hasButtonsResp) {
           const activeSlideRespData = feedback.responses.find(
-            (slide) => slide.imageId === activeSlideId
+            (slide) => slide.imageId === activeSlide?.id
           );
           return activeSlideRespData?.respBtnId === respBtnId;
         }
       }
       return false;
     },
-    [feedback, hasButtonsResp, activeSlideId]
+    [feedback, hasButtonsResp, activeSlide]
   );
 
   return (
@@ -335,6 +330,7 @@ const Demo = ({
             isSquareBtnVisible && (
               <motion.div {...opacityAnimation} key="1">
                 <SquareBtn
+                  type="default"
                   icon={<MakeSquareIcon />}
                   $isActive={isSquare}
                   onClick={() => squareBtnHandler?.(!isSquare)}
@@ -344,6 +340,7 @@ const Demo = ({
           {(isHovered || isColorPickerOpen) && (
             <motion.div {...opacityAnimation} key="2">
               <ColorPickerBtn
+                type="default"
                 icon={<ColorPickerIcon />}
                 $isActive={isColorPickerOpen}
                 onClick={colorPickerBtnHandler}
@@ -367,8 +364,8 @@ const Demo = ({
         >
           <TitlePreview
             dangerouslySetInnerHTML={createMarkup}
-            $titleShadowColor={titleShadowColor}
             $hasBtnResp={hasButtonsResp}
+            $color={titleDynamicColor}
           />
           {(isNotFirstStep || !isCreationMode) && hasButtonsResp && (
             <Responses>
@@ -388,7 +385,10 @@ const Demo = ({
         </ResponseTitleWrapper>
         <AnimatePresence>
           {isColorPickerOpen && (
-            <ColorPickerWrapper {...opacityWithScaleAnimation}>
+            <ColorPickerWrapper
+              {...opacityWithScaleAnimation}
+              ref={colorPickerRef}
+            >
               <CircleColorPicker
                 color={color}
                 colors={colorPickerMainColors}
