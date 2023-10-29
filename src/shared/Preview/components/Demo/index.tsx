@@ -12,6 +12,7 @@ import {
   ClientLayerEnums,
 } from "@/enums";
 import DOMPurify from "dompurify";
+import { ColorExtractor } from "react-color-extractor";
 import useRequest from "@ahooksjs/use-request";
 import Slider from "react-slick";
 import { useQuery } from "@/hooks";
@@ -312,6 +313,18 @@ const Demo = ({
     [feedback, hasButtonsResp, activeSlide]
   );
 
+  const handleDominantColors = (colors: any) => {
+    console.log(colors, "999");
+  };
+
+  const imageBlobURL = useMemo(() => {
+    if (activeSlide?.src) {
+      return `${process.env.REACT_APP_API_URL}/${activeSlide.src}`;
+    }
+
+    return "";
+  }, [activeSlide]);
+
   return (
     <>
       <PreviewFlow
@@ -417,6 +430,9 @@ const Demo = ({
           )}
         </AnimatePresence>
       </PreviewFlow>
+      {imageBlobURL && (
+        <ColorExtractor src={imageBlobURL} getColors={handleDominantColors} />
+      )}
     </>
   );
 };

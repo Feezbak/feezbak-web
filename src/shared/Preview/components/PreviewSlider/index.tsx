@@ -25,6 +25,10 @@ const PreviewSlider = (
     [setActiveSlide, isLessThanMd]
   );
 
+  const handleAfterChange = (currentSlide: number) => {
+    setActiveSlide?.(images[currentSlide]);
+  };
+
   return (
     <SliderContainer
       $isCreationMode={!setActiveSlide || isSquare}
@@ -37,7 +41,7 @@ const PreviewSlider = (
       <Slider
         {...getSlickSettings(isLessThanMd)}
         ref={ref}
-        afterChange={(currentSlide) => setActiveSlide?.(images[currentSlide])}
+        afterChange={handleAfterChange}
       >
         {images?.map((image) => (
           <PreviewSlide
