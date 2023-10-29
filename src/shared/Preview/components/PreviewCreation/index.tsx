@@ -15,7 +15,7 @@ const PreviewCreation = () => {
     setPreviewBackground,
     setImageSquareState,
   } = useContext(StoryCreationContext);
-  const { background, title, titleColor } = step1;
+  const { background, title } = step1;
   const { imageVoting, type, response } = step2;
   const { isInfoCollectionAllowed, userInfoFields } = step3;
   const [color, setColor] = useState(background);
@@ -46,7 +46,6 @@ const PreviewCreation = () => {
         isCreationMode={true}
         responseButtons={responseButtons}
         title={title}
-        titleColor={titleColor}
         type={type}
         coverImgSrc={imageVoting.selectedImgSrc}
         images={imageVoting.images}

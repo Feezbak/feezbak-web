@@ -12,10 +12,9 @@ import {
   ClientLayerEnums,
 } from "@/enums";
 import DOMPurify from "dompurify";
-import { ColorExtractor } from "react-color-extractor";
 import useRequest from "@ahooksjs/use-request";
 import Slider from "react-slick";
-import { useQuery } from "@/hooks";
+import { useQuery, useOutsideClick } from "@/hooks";
 import { generateFeedback, sendFeedback } from "@/api";
 import { useParams } from "react-router-dom";
 import { DemoProps, Feedback, ContactToData } from "./types";
@@ -41,7 +40,6 @@ import {
 const Demo = ({
   color,
   title,
-  titleColor,
   userInfoFields,
   responseButtons,
   isSquare,
@@ -61,6 +59,8 @@ const Demo = ({
   currentStep,
   handleCompleteFeedback,
 }: DemoProps) => {
+  const colorPickerRef = useRef<HTMLDivElement>(null);
+  useOutsideClick(colorPickerRef, () => colorPickerBtnHandler?.());
   const { storyId } = useParams();
   const query = useQuery();
   const feedbackId = query.get("feedbackId");
@@ -313,18 +313,6 @@ const Demo = ({
     [feedback, hasButtonsResp, activeSlide]
   );
 
-  const handleDominantColors = (colors: any) => {
-    console.log(colors, "999");
-  };
-
-  const imageBlobURL = useMemo(() => {
-    if (activeSlide?.src) {
-      return `${process.env.REACT_APP_API_URL}/${activeSlide.src}`;
-    }
-
-    return "";
-  }, [activeSlide]);
-
   return (
     <>
       <PreviewFlow
@@ -397,7 +385,10 @@ const Demo = ({
         </ResponseTitleWrapper>
         <AnimatePresence>
           {isColorPickerOpen && (
-            <ColorPickerWrapper {...opacityWithScaleAnimation}>
+            <ColorPickerWrapper
+              {...opacityWithScaleAnimation}
+              ref={colorPickerRef}
+            >
               <CircleColorPicker
                 color={color}
                 colors={colorPickerMainColors}
@@ -430,9 +421,6 @@ const Demo = ({
           )}
         </AnimatePresence>
       </PreviewFlow>
-      {imageBlobURL && (
-        <ColorExtractor src={imageBlobURL} getColors={handleDominantColors} />
-      )}
     </>
   );
 };
