@@ -1,21 +1,28 @@
 import { ReactNode } from "react";
-import { ProductLogoWhite } from "@/icons";
+import { ProductLogoWhite, ProductLogoBlack } from "@/icons";
+import { dynamicTextColor } from "@helpers/dynamicTextColor";
 import { TemplateWrapper, Title, QRcontainer, PoweredBy } from "./styles";
 
 interface Props {
-  backgound: string;
+  background: string;
   title: string;
   children: ReactNode;
 }
 
-const QRtemplate = ({ backgound, title, children }: Props) => {
+const QRtemplate = ({ background, title, children }: Props) => {
+  const textColor = dynamicTextColor(background).color;
+
   return (
-    <TemplateWrapper $background={backgound}>
-      <Title>{title}</Title>
+    <TemplateWrapper $background={background}>
+      <Title $color={textColor}>{title}</Title>
       <QRcontainer>{children}</QRcontainer>
-      <PoweredBy>
+      <PoweredBy $color={textColor}>
         <p>POWERED BY</p>
-        <ProductLogoWhite />
+        {dynamicTextColor(background).isDark ? (
+          <ProductLogoBlack />
+        ) : (
+          <ProductLogoWhite />
+        )}
       </PoweredBy>
     </TemplateWrapper>
   );

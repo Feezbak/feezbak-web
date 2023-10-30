@@ -10,13 +10,15 @@ export const TemplateWrapper = styled.div<{
   background: ${prop("$background")};
 `;
 
-export const Title = styled.p`
+export const Title = styled.p<{
+  readonly $color: string;
+}>`
   font-family: ${StyleEnums.fontFamilyExtraBold};
   font-size: 2.5rem;
   font-weight: 900;
   line-height: 2.75rem;
   letter-spacing: -0.8px;
-  color: ${StyleEnums.white};
+  color: ${prop("$color")};
   margin-bottom: 3.5rem;
   text-align: center;
   display: inline-block;
@@ -32,12 +34,14 @@ export const QRcontainer = styled.div`
   margin-bottom: 5.25rem;
 `;
 
-export const PoweredBy = styled.div`
+export const PoweredBy = styled.div<{
+  readonly $color: string;
+}>`
   ${FlexBoxEnum.CenterVertical}
 
   p {
     margin: 1.3rem 0 0.45rem 0;
-    color: ${StyleEnums.white};
+    color: ${prop("$color")};
     font-size: 0.875rem;
     line-height: 0.75rem;
     letter-spacing: 4px;

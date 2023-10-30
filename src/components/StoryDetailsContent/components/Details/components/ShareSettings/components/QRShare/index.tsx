@@ -39,9 +39,9 @@ const QRShare = ({ link, title, background }: Props) => {
 
   return (
     <QRShareWrapper {...opacityAnimation}>
-      <QRCode value={link} size={250} fgColor={StyleEnums.primary as string} />
+      <QRCode value={link} size={350} fgColor={StyleEnums.primary as string} />
       <ExportWrapper ref={componentRef}>
-        <QRtemplate title={title} backgound={background}>
+        <QRtemplate title={title} background={background}>
           <QRCode
             value={link}
             size={180}
