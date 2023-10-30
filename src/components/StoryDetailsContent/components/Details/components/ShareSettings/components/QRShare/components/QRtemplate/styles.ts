@@ -7,7 +7,6 @@ export const TemplateWrapper = styled.div<{
 }>`
   ${FlexBoxEnum.CenterVertical}
   padding: 6.25rem 3.125rem 3.75rem 3.125rem;
-  border-radius: 1.5rem;
   background: ${prop("$background")};
 `;
 
