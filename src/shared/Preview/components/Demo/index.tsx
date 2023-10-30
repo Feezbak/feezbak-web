@@ -173,7 +173,10 @@ const Demo = ({
     [currentStep]
   );
 
-  const titleDynamicColor = useMemo(() => dynamicTextColor(color), [color]);
+  const titleDynamicColor = useMemo(
+    () => dynamicTextColor(color).color,
+    [color]
+  );
 
   const createMarkup = useMemo(() => {
     return {

@@ -70,8 +70,10 @@ const DashboardContent = () => {
         <Header />
         {!storyDataLoading && story?.data ? (
           <Details
+            title={story.data.titleText}
+            background={story.data.background}
             link={shareableLink}
-            emailsDefault={story?.data?.invitedFriendsEmails}
+            emailsDefault={story.data?.invitedFriendsEmails}
           />
         ) : (
           <DetailsSkeleton active={true} />
