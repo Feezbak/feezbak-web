@@ -9,5 +9,8 @@ export const dynamicTextColor = (colorHex: string) => {
 
   const isDarkBackground = calculateBrightness(colorHex) < 128;
 
-  return isDarkBackground ? "white" : "black";
+  return {
+    color: isDarkBackground ? "white" : "black",
+    isDark: !isDarkBackground,
+  };
 };

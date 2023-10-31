@@ -18,10 +18,10 @@ export const InfoWrapper = styled.div`
 
 export const InfoTitle = styled.p`
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.25rem;
   line-height: 1.25rem;
   letter-spacing: -0.02em;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 `;
 
 export const InfoDesc = styled.p`

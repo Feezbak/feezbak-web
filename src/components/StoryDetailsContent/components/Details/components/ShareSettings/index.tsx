@@ -8,9 +8,11 @@ import { ShareSettingsWrapper, ShareSettingsTitle } from "./styles";
 
 interface Props {
   link: string;
+  title: string;
+  background: string;
 }
 
-const ShareSettings = ({ link }: Props) => {
+const ShareSettings = ({ link, title, background }: Props) => {
   const [shareMethod, setShareMethod] = useState(LinkShareEnum);
   return (
     <>
@@ -25,7 +27,7 @@ const ShareSettings = ({ link }: Props) => {
         {shareMethod === LinkShareEnum ? (
           <LinkShare link={link} />
         ) : (
-          <QRShare link={link} />
+          <QRShare link={link} title={title} background={background} />
         )}
       </AnimatePresence>
     </>

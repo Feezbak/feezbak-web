@@ -10,7 +10,7 @@ interface Props {
 
 const CredentialsFormContent = ({
   fields,
-  isCreation = true,
+  isCreation,
   isLoading = false,
   sendContactInfo,
 }: Props) => {
@@ -23,11 +23,7 @@ const CredentialsFormContent = ({
   };
 
   return (
-    <FormWrapper
-      name="credentials"
-      onFinish={isCreation ? undefined : handleSubmit}
-      autoComplete="off"
-    >
+    <FormWrapper name="credentials" onFinish={handleSubmit} autoComplete="off">
       {fields.map((field, index) => (
         <FormItem name={field} key={index} rules={[{ required: true }]}>
           <div>
@@ -40,9 +36,10 @@ const CredentialsFormContent = ({
       ))}
       <FormItem>
         <SubmitBtn
-          type="primary"
+          type="default"
           size="large"
           htmlType="submit"
+          disabled={isCreation}
           loading={isLoading}
         >
           Send My Feedback
