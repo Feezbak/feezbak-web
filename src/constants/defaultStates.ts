@@ -96,7 +96,7 @@ export const storyDefaultState: StoryCreationDataType = {
   },
   step3: {
     shareType: LinkShareEnum,
-    isInfoCollectionAllowed: false,
+    isInfoCollectionAllowed: true,
     userInfoFields: [
       {
         value: "First Name",

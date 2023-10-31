@@ -35,7 +35,9 @@ const CredentialsForm = ({
     >
       {isOpen && (
         <DrawerContent {...opacityAnimation}>
-          <CloseBtn onClick={onClose} icon={<GoBackRoundIcon />} />
+          {!isCreationMode && (
+            <CloseBtn onClick={onClose} icon={<GoBackRoundIcon />} />
+          )}
           <CredTitle>
             The Story creator asks for your credentials, Please feel data to be
             able to send your feedback
