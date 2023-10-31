@@ -1,4 +1,4 @@
-name: Deploy Staging
+name: Deploy to Digital Ocean
 
 on:
   push:
@@ -6,35 +6,33 @@ on:
       - develop
 
 jobs:
-  test_jov:
-    name: Deploy Job
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Feature Branch
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          ref: develop
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-      - name: Use Node.js
-        uses: actions/setup-node@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: '16.x'
+          node-version: 16
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: yarn
 
-      - name: Build application
+      - name: Build CRA Application
         run: yarn build
 
-      - name: Install SSH Key
-        uses: shimataro/ssh-key-action@v2
+      - name: Deploy to Digital Ocean
+        uses: appleboy/ssh-action@master
         with:
+          host: ${{ secrets.DROPLET_IP }}
+          username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          known_hosts: "unnecessary"
-
-      - name: Adding Known Hosts
-        run: ssh-keyscan -H ${{ secrets.DROPLET_IP }} >> ~/.ssh/known_hosts
-
-      - name: Deploy with rsync
-        run: rsync -avz --delete . ${{ secrets.SSH_USERNAME }}@${{ secrets.DROPLET_IP }}:/root/apps/feezbak-web
+          script: |
+            export PATH="$PATH:$HOME/.nvm/versions/node/v18.18.1/bin"
+            cd apps/feezbak-web
+            git pull origin develop
+            yarn
+            yarn build
