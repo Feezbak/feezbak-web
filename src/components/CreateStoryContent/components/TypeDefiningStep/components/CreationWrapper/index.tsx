@@ -23,6 +23,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
   const {
     currentStep,
     step2,
+    step1,
     setNextStep,
     setPrevStep,
     setVotingType,
@@ -62,6 +63,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
     const stepInfoBody = {
       id: storyId,
       progress: parsedData?.step3 ? "step3" : "step2",
+      ...step1,
       ...step2,
     };
     (() => runSaveStoryFields(stepInfoBody))();
