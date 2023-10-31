@@ -30,7 +30,7 @@ const Layout = ({ pageTitle, children, isAnimated = true }: Props) => {
 
         // Add your JavaScript code inside the script tag
         script.innerHTML = `
-     window.$sleek=[];window.SLEEK_PRODUCT_ID=652916511;(function(){d=document;s=d.createElement("script");s.src="https://client.sleekplan.com/sdk/e.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
+     window.$sleek=[];window.SLEEK_PRODUCT_ID=${process.env.REACT_APP_SLEEK_PRODUCT_ID};(function(){d=document;s=d.createElement("script");s.src="https://client.sleekplan.com/sdk/e.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
     `;
 
         // Append the script tag to the body

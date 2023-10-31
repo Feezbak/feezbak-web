@@ -25,7 +25,7 @@ const StoriesWelcomeBanner = () => {
             upon.
           </p>
           <BecomeProAdvice>
-            <p>4 out of 6 stories used</p>
+            {/*<p>4 out of 6 stories used</p>*/}
           </BecomeProAdvice>
         </TextContent>
         <ImageWrapper xs={24} sm={24} md={8} lg={8} xl={8} xxl={8}>
