@@ -19,13 +19,13 @@ const StoriesWelcomeBanner = () => {
     >
       <RowWrapper>
         <TextContent xs={24} sm={24} md={10} lg={10} xl={10} xxl={10}>
-          <h3>Don’t get confused where to ask feedback.</h3>
+          <h3>Don’t get confused where to ask feedback. </h3>
           <p>
             Get feedbacks from every platform in one place and take actions
             upon.
           </p>
           <BecomeProAdvice>
-            {/*<p>4 out of 6 stories used</p>*/}
+            <p>4 out of 6 stories used</p>
           </BecomeProAdvice>
         </TextContent>
         <ImageWrapper xs={24} sm={24} md={8} lg={8} xl={8} xxl={8}>
