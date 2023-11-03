@@ -1,20 +1,20 @@
-name: Deploy Staging
+name: Deploy Production
 
 on:
   push:
     branches:
-      - develop
+      - master
 
 jobs:
   test_jov:
-    name: Deploy Job
+    name: Deploy to Production
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Feature Branch
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          ref: develop
+          ref: master
 
       - name: Use Node.js
         uses: actions/setup-node@v1
@@ -27,8 +27,8 @@ jobs:
       - name: Create .env file
         run: |
           echo "REACT_APP_SLEEK_PRODUCT_ID=${{ secrets.REACT_APP_SLEEK_PRODUCT_ID }}" > .env
-          echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL_STAGE }}" >> .env
-          echo "REACT_APP_FRONT_END_URL=${{ secrets.REACT_APP_FRONT_END_URL_STAGE }}" >> .env
+          echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL_PROD }}" >> .env
+          echo "REACT_APP_FRONT_END_URL=${{ secrets.REACT_APP_FRONT_END_URL_PROD }}" >> .env
 
 
       - name: Build application
@@ -44,4 +44,4 @@ jobs:
         run: ssh-keyscan -H ${{ secrets.DROPLET_IP }} >> ~/.ssh/known_hosts
 
       - name: Deploy with rsync
-        run: rsync -avz --delete . ${{ secrets.SSH_USERNAME }}@${{ secrets.DROPLET_IP }}:/root/apps/feezbak-web
+        run: rsync -avz --delete . ${{ secrets.SSH_USERNAME }}@${{ secrets.DROPLET_IP }}:/root/apps/feezbak-web-prod
