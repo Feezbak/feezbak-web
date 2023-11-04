@@ -1,24 +1,18 @@
 import { Dropdown } from "antd";
-import { MenuItems } from "./utils";
+import { getMenuItems } from "./utils";
 import { ProfileAvatarIcon } from "@/icons";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useResetRecoilState } from "recoil";
-import { userData } from "@/recoil";
 import { CreatorAvatar } from "./styles";
 
-const CreatorDropdownMenu = () => {
-  const resetUserStore = useResetRecoilState(userData);
+interface Props {
+  handleLogout: () => void;
+}
+
+const CreatorDropdownMenu = ({ handleLogout }: Props) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("refreshToken");
-    resetUserStore();
-    navigate("/sign-in");
-  };
-
-  const items = MenuItems(() => navigate("/profile"), handleLogout);
+  const items = getMenuItems(() => navigate("/profile"), handleLogout);
 
   return (
     <Dropdown
@@ -28,7 +22,7 @@ const CreatorDropdownMenu = () => {
         defaultSelectedKeys: location.pathname === "/profile" ? ["1"] : [],
       }}
       placement="bottom"
-      arrow
+      arrow={true}
     >
       <CreatorAvatar
         size={{ xs: 40, sm: 40, md: 48, lg: 48, xl: 48, xxl: 48 }}

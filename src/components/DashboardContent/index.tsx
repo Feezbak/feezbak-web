@@ -1,5 +1,5 @@
 import { NavigationHeader } from "@/shared";
-import { links } from "./utils";
+import { links, mobileMenuLinks } from "./utils";
 import { Outlet } from "react-router-dom";
 import { DashboardContentWrapper } from "./styles";
 
@@ -7,8 +7,8 @@ import { DashboardContentWrapper } from "./styles";
 
 const DashboardContent = () => {
   return (
-    <DashboardContentWrapper xs={20} sm={20} md={20} lg={20} xl={15} xxl={15}>
-      <NavigationHeader links={links} />
+    <DashboardContentWrapper xs={22} sm={22} md={20} lg={20} xl={15} xxl={15}>
+      <NavigationHeader links={links} mobileMenuLinks={mobileMenuLinks} />
       <Outlet />
     </DashboardContentWrapper>
   );

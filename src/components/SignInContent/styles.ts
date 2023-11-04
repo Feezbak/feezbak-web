@@ -31,4 +31,5 @@ export const Description = styled.p`
   font-size: 0.938rem;
   line-height: 1.25rem;
   margin-bottom: 0;
+  text-align: center;
 `;
