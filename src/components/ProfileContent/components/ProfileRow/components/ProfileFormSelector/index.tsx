@@ -9,7 +9,7 @@ interface Props {
 
 const ProfileFormSelector = ({ active, setActive }: Props) => {
   return (
-    <SelectorWrapper xs={20} sm={20} md={5} lg={5} xl={5} xxl={5}>
+    <SelectorWrapper xs={24} sm={24} md={5} lg={5} xl={5} xxl={5}>
       <SelectorContainer>
         {userProfileTabs.map((item) => (
           <SelectionItem

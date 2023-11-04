@@ -1,7 +1,7 @@
-import { CreatorMenuItem } from "./styles";
+import { CreatorMenuItem } from "../../styles";
 import type { MenuProps } from "antd";
 
-export const MenuItems = (
+export const getMenuItems = (
   navigate: () => void,
   signOut: () => void
 ): MenuProps["items"] => [

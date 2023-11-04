@@ -1,11 +1,16 @@
 import styled from "styled-components";
 import { Space } from "antd";
-import { FlexBoxEnum, StyleEnums } from "@/enums";
+import { FlexBoxEnum, StyleEnums, BreakpointEnums } from "@/enums";
+import { inLessThan } from "@/helpers";
 
 export const CommentTileWrapper = styled.div`
   width: 100%;
   padding: 1.5rem;
   border-bottom: 1px solid ${StyleEnums.gray4};
+
+  ${inLessThan(BreakpointEnums.mobile)`
+     padding: 0 0 1.5rem 0;
+  `}
 `;
 
 export const UserInfoSection = styled.div`

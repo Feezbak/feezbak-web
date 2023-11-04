@@ -8,7 +8,7 @@ interface Props {
   closeModal: () => void;
   children: ReactElement;
 }
-const ConfirmModal = ({ isOpen, closeModal, children }: Props) => {
+const CustomModal = ({ isOpen, closeModal, children }: Props) => {
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add("disable-scroll");
@@ -30,4 +30,4 @@ const ConfirmModal = ({ isOpen, closeModal, children }: Props) => {
     : null;
 };
 
-export default ConfirmModal;
+export default CustomModal;
