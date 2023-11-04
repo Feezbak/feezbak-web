@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { StyleEnums, FlexBoxEnum } from "@/enums";
+import { inLessThan } from "@/helpers";
+import { StyleEnums, FlexBoxEnum, BreakpointEnums } from "@/enums";
 
 export const NavigationHeaderWrapper = styled.div`
   width: 100%;
@@ -11,6 +12,10 @@ export const NavigationHeaderWrapper = styled.div`
   z-index: 3;
   background: ${StyleEnums.white};
   ${FlexBoxEnum.SpaceBetweenHorizontal}
+
+  ${inLessThan(BreakpointEnums.mobile)`
+    padding-top: 2rem;
+   `};
 `;
 
 export const UserContainer = styled.div``;

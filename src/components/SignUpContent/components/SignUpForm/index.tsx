@@ -73,7 +73,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
       >
         <div>
           <label htmlFor="firstName">
-            Firstname <sub>*</sub>
+            First Name <sub>*</sub>
           </label>
           <Controller
             render={({ field: { onChange, value } }) => (
@@ -95,7 +95,7 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
       >
         <div>
           <label htmlFor="lastName">
-            Lastname <sub>*</sub>
+            Last Name <sub>*</sub>
           </label>
           <Controller
             render={({ field: { onChange, value } }) => (
