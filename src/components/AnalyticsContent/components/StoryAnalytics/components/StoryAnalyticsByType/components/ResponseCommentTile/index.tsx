@@ -6,6 +6,7 @@ import {
   Comment,
   UserInfoSection,
   SecondaryInfo,
+  Contacts,
   UserAvatar,
   UserInfo,
   Name,
@@ -42,6 +43,10 @@ const ResponseCommentTile = ({ data, index }: Props) => {
         <UserInfo>
           <Name>{userName}</Name>
           <SecondaryInfo>{commentDate}</SecondaryInfo>
+          <Contacts>
+            <p>{data.email}</p>
+            <p>{data.phone}</p>
+          </Contacts>
         </UserInfo>
       </UserInfoSection>
       <Comment>{data.commentText}</Comment>

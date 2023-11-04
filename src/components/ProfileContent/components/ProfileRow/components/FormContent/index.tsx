@@ -11,7 +11,7 @@ const PasswordForm = lazy(() => import("./components/PasswordForm"));
 
 const FormContent = ({ activeForm }: Props) => {
   return (
-    <FormWrapper xs={20} sm={20} md={18} lg={18} xl={18} xxl={18}>
+    <FormWrapper xs={24} sm={24} md={18} lg={18} xl={18} xxl={18}>
       <AnimatePresence initial={false}>
         {activeForm ? <PasswordForm /> : <ProfileForm />}
       </AnimatePresence>
