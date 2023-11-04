@@ -41,7 +41,7 @@ const UpdateProfileForm = ({ userRecoilData }: Props) => {
         >
           <div>
             <label htmlFor="firstName">
-              Firstname <sub>*</sub>
+              First Name <sub>*</sub>
             </label>
             <Controller
               render={({ field: { onChange, value } }) => (
@@ -67,7 +67,7 @@ const UpdateProfileForm = ({ userRecoilData }: Props) => {
         >
           <div>
             <label htmlFor="lastName">
-              Lastname <sub>*</sub>
+              Last Name <sub>*</sub>
             </label>
             <Controller
               render={({ field: { onChange, value } }) => (

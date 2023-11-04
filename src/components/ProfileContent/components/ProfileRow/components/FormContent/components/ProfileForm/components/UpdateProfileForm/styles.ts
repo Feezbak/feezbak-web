@@ -9,7 +9,6 @@ export const UpdateForm = styled(Form)`
 
 export const FieldsSection = styled(Space)`
   width: 100%;
-  flex-wrap: wrap;
   ${FlexBoxEnum.SpaceBetweenHorizontal}
 
   .ant-space-item {
@@ -18,6 +17,7 @@ export const FieldsSection = styled(Space)`
 
   ${inLessThan(BreakpointEnums.mobile)`
     row-gap: 0;
+    flex-wrap: wrap;
    `};
 `;
 
