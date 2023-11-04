@@ -11,6 +11,10 @@ export const StoryListItemWrapper = styled(Row)`
   margin-bottom: 0.75rem;
   ${FlexBoxEnum.SpaceBetweenHorizontal}
 
+  ${inLessThan(BreakpointEnums.tablet)`
+    padding: 1.5rem;
+  `}
+
   &:last-child {
     margin-bottom: 0;
   }

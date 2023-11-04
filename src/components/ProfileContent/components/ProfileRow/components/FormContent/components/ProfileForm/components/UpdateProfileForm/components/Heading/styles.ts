@@ -1,11 +1,16 @@
 import styled from "styled-components";
 import { Button } from "antd";
-import { FlexBoxEnum, StyleEnums } from "@/enums";
+import { inLessThan } from "@/helpers";
+import { FlexBoxEnum, StyleEnums, BreakpointEnums } from "@/enums";
 
 export const FormHeadingWrapper = styled.div`
   width: 100%;
   margin-bottom: 3.75rem;
   ${FlexBoxEnum.SpaceBetweenHorizontal}
+
+  ${inLessThan(BreakpointEnums.mobile)`
+    margin-bottom: 2rem;
+   `};
 `;
 
 export const DescriptionContainer = styled.div`
