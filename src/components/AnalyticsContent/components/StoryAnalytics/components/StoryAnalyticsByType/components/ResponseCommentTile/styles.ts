@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Space } from "antd";
 import { FlexBoxEnum, StyleEnums } from "@/enums";
 
 export const CommentTileWrapper = styled.div`
@@ -40,4 +41,10 @@ export const Comment = styled.p`
   font-size: 1rem;
   line-height: 1.5rem;
   letter-spacing: -0.3px;
+`;
+
+export const Contacts = styled(Space)`
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: ${StyleEnums.gray2};
 `;
