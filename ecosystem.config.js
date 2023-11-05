@@ -7,10 +7,10 @@ module.exports = {
   apps: [
     {
       name: process.env.REACT_APP_NAME,
-      script: "yarn",
-      args: "start",
+      script: "serve",
+      args: "-s build -p 8000",
       env: {
-        PORT: process.env.PORT || 3500, // Use the value from .env if available, or default to 3000
+        NODE_ENV: "production",
       },
     },
   ],
