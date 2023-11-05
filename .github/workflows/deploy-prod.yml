@@ -26,7 +26,7 @@ jobs:
 
       - name: Create .env file
         run: |
-          echo "REACT_APP_PORT=${{ secrets.PORT_PROD }}" > .env
+          echo "PORT=${{ secrets.PORT_PROD }}" > .env
           echo "REACT_APP_SLEEK_PRODUCT_ID=${{ secrets.REACT_APP_SLEEK_PRODUCT_ID }}" >> .env
           echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL_PROD }}" >> .env
           echo "REACT_APP_FRONT_END_URL=${{ secrets.REACT_APP_FRONT_END_URL_PROD }}" >> .env
