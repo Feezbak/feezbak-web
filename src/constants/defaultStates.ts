@@ -210,3 +210,10 @@ export type TextResponsesType = {
   currentPage?: number;
   commentsCount?: number;
 };
+
+export const acceptedImageTypes = {
+  "image/jpeg": [],
+  "image/png": [],
+};
+
+export const maxImageSize = 5242880;

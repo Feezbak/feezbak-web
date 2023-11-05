@@ -11,3 +11,12 @@ export function dataURLtoBlob(dataURL: string) {
 
   return new Blob([arrayBuffer], { type: contentType });
 }
+
+export const fileToDataUri = (file: File) =>
+  new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      event.target && resolve(event.target.result);
+    };
+    reader.readAsDataURL(file);
+  });

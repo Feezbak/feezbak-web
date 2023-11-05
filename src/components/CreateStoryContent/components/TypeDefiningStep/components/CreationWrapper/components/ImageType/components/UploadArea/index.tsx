@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import Dropzone from "react-dropzone";
 import { UploadFileIcon } from "@/icons";
 import { StoryCreationContext } from "@/context";
@@ -6,20 +6,12 @@ import { message, Spin } from "antd";
 import { uploadImageToStory } from "@/api";
 import useRequest from "@ahooksjs/use-request";
 import { useParams } from "react-router-dom";
+import { acceptedImageTypes, maxImageSize } from "@/constants";
+import { fileToDataUri } from "@helpers/fileHelpers";
 import { UploadWrapper, UploadIconWrapper } from "./styles";
-
-const fileToDataUri = (file: File) =>
-  new Promise((resolve) => {
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      event.target && resolve(event.target.result);
-    };
-    reader.readAsDataURL(file);
-  });
 
 const UploadArea = () => {
   const { id: storyId } = useParams();
-  const [dataBlobUri, setDataBlobUri] = useState<unknown>();
   const { setImageAttached, setSelectedImgSrc, setNewImage } =
     useContext(StoryCreationContext);
 
@@ -35,30 +27,28 @@ const UploadArea = () => {
           src: resp.data.src,
         });
       },
-      onError: (error: any) => {
-        message.error(error?.response?.data?.message);
+      onError: async (error: any) => {
+        await message.error(error?.response?.data?.message);
       },
     }
   );
 
-  useEffect(() => {
-    if (dataBlobUri) {
-      uploadToServer(dataBlobUri);
-    }
-  }, [dataBlobUri, uploadToServer]);
-
-  const handleUploadedFile = (file: File) => {
-    if (file) {
-      fileToDataUri(file).then((dataUri) => {
-        setDataBlobUri(dataUri);
-      });
+  const handleUploadedFile = async (files: File[]) => {
+    if (files.length) {
+      const blobArr = files.map((file) =>
+        fileToDataUri(file).then((dataUri) => dataUri)
+      );
+      const imagesData = await Promise.all(blobArr).then((result) => result);
+      uploadToServer(imagesData);
     }
   };
 
   return (
     <Dropzone
-      onDrop={(acceptedFiles) => handleUploadedFile(acceptedFiles[0])}
-      multiple={false}
+      onDrop={handleUploadedFile}
+      multiple={true}
+      accept={acceptedImageTypes}
+      maxSize={maxImageSize}
     >
       {({ getRootProps, getInputProps }) => (
         <UploadWrapper {...getRootProps()}>
