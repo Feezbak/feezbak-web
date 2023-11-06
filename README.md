@@ -69,6 +69,11 @@ yarn run start
 ```sh
 yarn run test
 ```
+## Create pm2 instance on server for react app
+
+```sh
+PORT=$(cat .env | grep PORT= | cut -d '=' -f2) pm2 serve build $PORT --spa --name 'frontend-prod'
+```
 
 ## Author
 
