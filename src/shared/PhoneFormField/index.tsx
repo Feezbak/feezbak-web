@@ -1,17 +1,17 @@
 import { Controller, Control } from "react-hook-form";
-import { FormItem, PhoneInput } from "./styles";
+import { FormItem, PhoneNumberInput } from "./styles";
 import { ErrorMessage } from "@/shared";
 import { ContactsCollectingInputs } from "@/validations";
+import "react-phone-number-input/style.css";
 
 interface Props {
   formError?: string;
   label: string;
-  type?: string;
   name: keyof ContactsCollectingInputs;
   formControl: Control<ContactsCollectingInputs>;
 }
 
-const TextField = ({ type, name, label, formError, formControl }: Props) => {
+const PhoneFormField = ({ name, label, formError, formControl }: Props) => {
   return (
     <FormItem
       name={name}
@@ -24,9 +24,9 @@ const TextField = ({ type, name, label, formError, formControl }: Props) => {
         </label>
         <Controller
           render={({ field: { onChange, value } }) => (
-            <PhoneInput
-              type={type}
-              size="large"
+            <PhoneNumberInput
+              defaultCountry="AM"
+              placeholder="Enter phone number"
               onChange={onChange}
               value={value}
             />
@@ -39,4 +39,4 @@ const TextField = ({ type, name, label, formError, formControl }: Props) => {
   );
 };
 
-export default TextField;
+export default PhoneFormField;

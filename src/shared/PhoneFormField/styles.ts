@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { FlexBoxEnum, StyleEnums } from "@/enums";
-import { Form, Input } from "antd";
+import { Form } from "antd";
+import PhoneInput from "react-phone-number-input";
 
 export const FormItem = styled(Form.Item)`
   max-width: 23.25rem;
@@ -28,6 +29,15 @@ export const FormItem = styled(Form.Item)`
   }
 `;
 
-export const PhoneInput = styled(Input)`
-  height: 2.75rem;
+export const PhoneNumberInput = styled(PhoneInput)`
+  border: 1px solid ${StyleEnums.inputBorderColor};
+  background: ${StyleEnums.white};
+  padding: 0.438rem 0.688rem;
+  border-radius: 0.75rem;
+  .PhoneInputInput {
+    height: 1.8rem;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+  }
 `;

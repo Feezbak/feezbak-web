@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { prop } from "@/helpers";
 import { FlexBoxEnum, StyleEnums } from "@/enums";
 import { Form, Input } from "antd";
 
@@ -28,6 +29,6 @@ export const FormItem = styled(Form.Item)`
   }
 `;
 
-export const CustomisedInput = styled(Input)`
-  height: 2.75rem;
+export const CustomisedInput = styled(Input)<{ $height: string }>`
+  height: ${prop("$height")}rem;
 `;

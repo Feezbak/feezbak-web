@@ -9,9 +9,18 @@ interface Props {
   type?: string;
   name: keyof ContactsCollectingInputs;
   formControl: Control<ContactsCollectingInputs>;
+  inputHeight?: string;
 }
 
-const TextField = ({ type, name, label, formError, formControl }: Props) => {
+const TextFormField = ({
+  type,
+  name,
+  label,
+  formError,
+  formControl,
+  inputHeight = "3",
+}: Props) => {
+  console.log(formError, 888);
   return (
     <FormItem
       name={name}
@@ -25,6 +34,7 @@ const TextField = ({ type, name, label, formError, formControl }: Props) => {
         <Controller
           render={({ field: { onChange, value } }) => (
             <CustomisedInput
+              $height={inputHeight}
               type={type}
               size="large"
               onChange={onChange}
@@ -39,4 +49,4 @@ const TextField = ({ type, name, label, formError, formControl }: Props) => {
   );
 };
 
-export default TextField;
+export default TextFormField;
