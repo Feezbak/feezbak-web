@@ -5,3 +5,4 @@ export * from "./resetPassword";
 export * from "./changePassword";
 export * from "./addEmailAddress";
 export * from "./updateProfile";
+export * from "./collectContacts";

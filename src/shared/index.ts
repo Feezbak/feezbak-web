@@ -13,3 +13,5 @@ export { default as ResizableTextArea } from "./ResizableTextArea";
 export { default as PageLoader } from "./PageLoader";
 export { default as CustomPagination } from "./CustomPagination";
 export { default as CustomModal } from "./CustomModal";
+export { default as PhoneFormField } from "./PhoneFormField";
+export { default as TextFormField } from "./TextFormField";
