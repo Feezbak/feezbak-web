@@ -2,6 +2,7 @@ import { ContactToData } from "@shared/Preview/components/Demo/types";
 import { useContactCollectionForm } from "@/hooks";
 import { FormWrapper, SubmitBtn, FormItem } from "./styles";
 import { PhoneFormField, TextFormField } from "@/shared";
+import { isPossiblePhoneNumber } from "react-phone-number-input";
 
 interface Props {
   fields: string[];
@@ -16,14 +17,18 @@ const CredentialsFormContent = ({
   isLoading = false,
   sendContactInfo,
 }: Props) => {
-  const { submitForm, formState, formControl, formErrors } =
+  const { submitForm, watch, formState, formControl, formErrors } =
     useContactCollectionForm(sendContactInfo);
+  const phoneValue = watch("phone");
+  const isValidPhoneNumber =
+    phoneValue && isPossiblePhoneNumber(String(phoneValue));
 
   const formContent = fields.map((field, index) => {
     switch (field) {
       case "First Name":
         return (
           <TextFormField
+            inputHeight="2.75"
             key={field}
             formError={formErrors["firstName"]?.message}
             label={field}
@@ -34,6 +39,7 @@ const CredentialsFormContent = ({
       case "Last Name":
         return (
           <TextFormField
+            inputHeight="2.75"
             key={field}
             formError={formErrors["lastName"]?.message}
             label={field}
@@ -44,6 +50,7 @@ const CredentialsFormContent = ({
       case "Email Address":
         return (
           <TextFormField
+            inputHeight="2.75"
             key={field}
             formError={formErrors["email"]?.message}
             label={field}
@@ -66,6 +73,8 @@ const CredentialsFormContent = ({
     }
   });
 
+  const isDisabeld = !isValidPhoneNumber || isCreation || !formState.isValid;
+
   return (
     <FormWrapper
       name="credentials"
@@ -78,7 +87,8 @@ const CredentialsFormContent = ({
           type="default"
           size="large"
           htmlType="submit"
-          disabled={isCreation || !formState.isDirty || !formState.isValid}
+          loading={isLoading}
+          disabled={isDisabeld}
         >
           Send My Feeeeedback
         </SubmitBtn>

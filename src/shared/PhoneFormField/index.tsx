@@ -1,4 +1,4 @@
-import { Controller, Control } from "react-hook-form";
+import { Control } from "react-hook-form";
 import { FormItem, PhoneNumberInput } from "./styles";
 import { ErrorMessage } from "@/shared";
 import { ContactsCollectingInputs } from "@/validations";
@@ -19,19 +19,12 @@ const PhoneFormField = ({ name, label, formError, formControl }: Props) => {
       help={formError && <ErrorMessage message={formError} />}
     >
       <div>
-        <label htmlFor="email">
+        <label htmlFor="phone">
           {label} <sub>*</sub>
         </label>
-        <Controller
-          render={({ field: { onChange, value } }) => (
-            <PhoneNumberInput
-              defaultCountry="AM"
-              placeholder="Enter phone number"
-              onChange={onChange}
-              value={value}
-            />
-          )}
+        <PhoneNumberInput
           name={name}
+          defaultCountry="AM"
           control={formControl}
         />
       </div>

@@ -8,9 +8,11 @@ import {
   UseFormGetValues,
   UseFormSetValue,
   UseFormReset,
+  UseFormWatch,
 } from "react-hook-form";
 
 export interface UseContactCollectionFormResult {
+  watch: UseFormWatch<ContactsCollectingInputs>;
   reset: UseFormReset<ContactsCollectingInputs>;
   formErrors: DeepMap<ContactsCollectingInputs, FieldError>;
   formControl: Control<ContactsCollectingInputs>;

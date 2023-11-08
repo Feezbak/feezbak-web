@@ -20,7 +20,6 @@ const TextFormField = ({
   formControl,
   inputHeight = "3",
 }: Props) => {
-  console.log(formError, 888);
   return (
     <FormItem
       name={name}
