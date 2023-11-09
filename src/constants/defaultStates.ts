@@ -61,7 +61,7 @@ export type StoryCreationDataType = {
   setTitleData: (data: any) => void;
   setVotingType: (data: string) => void;
   setImageAttached: (data: boolean) => void;
-  setNewImage: (data: Image) => void;
+  setNewImages: (data: Image) => void;
   setInfoCollection: (data: boolean) => void;
   setInfoCollectionFields: (data: any) => void;
   setShareMethod: (data: string) => void;
@@ -127,7 +127,7 @@ export const storyDefaultState: StoryCreationDataType = {
   setVotingType: () => {},
   setImageAttached: () => {},
   setShareMethod: () => {},
-  setNewImage: () => {},
+  setNewImages: () => {},
   setInfoCollection: () => {},
   setInfoCollectionFields: () => {},
   setSelectedImgSrc: () => {},
@@ -210,3 +210,10 @@ export type TextResponsesType = {
   currentPage?: number;
   commentsCount?: number;
 };
+
+export const acceptedImageTypes = {
+  "image/jpeg": [],
+  "image/png": [],
+};
+
+export const maxImageSize = 5242880;
