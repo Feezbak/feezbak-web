@@ -12,7 +12,7 @@ import { UploadWrapper, UploadIconWrapper } from "./styles";
 
 const UploadArea = () => {
   const { id: storyId } = useParams();
-  const { setImageAttached, setSelectedImgSrc, setNewImage } =
+  const { setImageAttached, setSelectedImgSrc, setNewImages } =
     useContext(StoryCreationContext);
 
   const { run: uploadToServer, loading: uploadLoading } = useRequest(
@@ -20,12 +20,9 @@ const UploadArea = () => {
     {
       manual: true,
       onSuccess: (resp: any) => {
-        setImageAttached(true);
-        setSelectedImgSrc(`${resp.data.src}`);
-        setNewImage({
-          id: resp.data.id,
-          src: resp.data.src,
-        });
+        setImageAttached(!!resp.data.length);
+        setSelectedImgSrc(`${resp.data[0].src}`);
+        setNewImages(resp.data);
       },
       onError: async (error: any) => {
         await message.error(error?.response?.data?.message);
