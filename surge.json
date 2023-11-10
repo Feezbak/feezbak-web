@@ -1,4 +1,13 @@
 {
   "project": "./build",
-  "domain": "feezbak.surge.sh"
+  "domain": "feezbak.surge.sh",
+
+  "rewrites": [
+    {
+      "source": "**",
+      "destination": "/index.html"
+    }
+  ],
+
+  "cleanUrls": true
 }
