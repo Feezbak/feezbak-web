@@ -41,9 +41,6 @@ jobs:
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
-
-        # Set the deployment link as an output variable
-        env:
           DEPLOYMENT_LINK: ${{ github.actor }}-${{ steps.subdomain.outputs.subdomain }}.surge.sh
 
       - name: Comment on Pull Request
