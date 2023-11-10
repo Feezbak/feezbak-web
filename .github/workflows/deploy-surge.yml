@@ -35,7 +35,7 @@ jobs:
 
       - name: Set Unique Subdomain
         id: subdomain
-        run: echo "::set-output name=subdomain::$(date +%s)"
+        run: echo "::set-output name=subdomain::pr-${{ github.event.pull_request.number }}"
 
       - name: Deploy to Surge
         run: |
