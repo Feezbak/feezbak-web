@@ -27,9 +27,31 @@ jobs:
           echo "REACT_APP_SLEEK_PRODUCT_ID=${{ secrets.REACT_APP_SLEEK_PRODUCT_ID }}" >> .env
           echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL_STAGE }}" >> .env
           echo "REACT_APP_FRONT_END_URL=${{ secrets.REACT_APP_FRONT_END_URL_STAGE }}" >> .env
+      - name: Build
+        run: yarn build
 
-      - name: Build and Deploy to Surge
-        run: yarn deploy:surge
+      - name: Set Unique Subdomain
+        id: subdomain
+        run: echo "::set-output name=subdomain::$(date +%s)"
+
+      - name: Deploy to Surge
+        run: |
+          export DEPLOYMENT_LINK=${{ github.actor }}-${{ steps.subdomain.outputs.subdomain }}.surge.sh
+          surge --project ./build --domain $DEPLOYMENT_LINK
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+
+      - name: Comment on Pull Request
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const context = github.context;
+            const comment = `The deployment is available at: ${process.env.DEPLOYMENT_LINK}`;
+            github.issues.createComment({
+              issue_number: context.payload.pull_request.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
