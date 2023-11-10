@@ -52,13 +52,13 @@ jobs:
         shell: bash
 
       - name: Update Pull Request Description
-        uses: actions/github-script@v7
+        uses: actions/github-script@v4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const prNumber = context.payload.pull_request.number;
             const deploymentLink = `The deployment is available at: ${process.env.DEPLOYMENT_LINK}`;
-            await github.pulls.update({
+            github.pulls.update({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: prNumber,
