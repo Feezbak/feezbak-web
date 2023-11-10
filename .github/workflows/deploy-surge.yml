@@ -1,0 +1,66 @@
+name: Deploy to Surge
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    name: Deploy to Surge
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Install Surge CLI
+        run: yarn global add surge
+          
+      - name: Create .env file
+        run: |
+          echo "REACT_APP_SLEEK_PRODUCT_ID=${{ secrets.REACT_APP_SLEEK_PRODUCT_ID }}" >> .env
+          echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL_STAGE }}" >> .env
+          echo "REACT_APP_FRONT_END_URL=${{ secrets.REACT_APP_FRONT_END_URL_STAGE }}" >> .env
+      - name: Build and rename index.html to 200.html
+        run: yarn build && mv build/index.html build/200.html
+
+      - name: Set Unique Subdomain
+        id: subdomain
+        run: echo "::set-output name=subdomain::pr-${{ github.event.pull_request.number }}"
+
+      - name: Deploy to Surge
+        run: |
+          DEPLOYMENT_LINK=${{ github.actor }}-${{ steps.subdomain.outputs.subdomain }}.surge.sh
+          surge --project ./build --domain $DEPLOYMENT_LINK
+          echo "DEPLOYMENT_LINK=$DEPLOYMENT_LINK" >> $GITHUB_ENV
+        env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+
+      - name: Comment on Pull Request
+        run: |
+          echo "The deployment is available at: $DEPLOYMENT_LINK"
+        shell: bash
+
+      - name: Update Pull Request Description
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const deploymentLink = `The deployment is available at: https://${process.env.DEPLOYMENT_LINK}`;
+            github.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+              body: deploymentLink,
+            });
