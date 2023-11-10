@@ -51,11 +51,11 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const context = github.context;
+            const prContext = github.context;
             const comment = `The deployment is available at: ${process.env.DEPLOYMENT_LINK}`;
             github.issues.createComment({
-              issue_number: context.payload.pull_request.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
+              issue_number: prContext.payload.pull_request.number,
+              owner: prContext.repo.owner,
+              repo: prContext.repo.repo,
               body: comment
             });
