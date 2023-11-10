@@ -47,15 +47,7 @@ jobs:
           DEPLOYMENT_LINK: ${{ github.actor }}-${{ steps.subdomain.outputs.subdomain }}.surge.sh
 
       - name: Comment on Pull Request
-        uses: actions/github-script@v5
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const prContext = github.context;
-            const comment = `The deployment is available at: ${process.env.DEPLOYMENT_LINK}`;
-            github.issues.createComment({
-              issue_number: prContext.payload.pull_request.number,
-              owner: prContext.repo.owner,
-              repo: prContext.repo.repo,
-              body: comment
-            });
+        run: |
+          DEPLOYMENT_LINK=${{ github.actor }}-${{ steps.subdomain.outputs.subdomain }}.surge.sh
+          echo "The deployment is available at: $DEPLOYMENT_LINK"
+        shell: bash
