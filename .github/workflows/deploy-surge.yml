@@ -36,11 +36,15 @@ jobs:
 
       - name: Deploy to Surge
         run: |
-          export DEPLOYMENT_LINK=${{ github.actor }}-${{ steps.subdomain.outputs.subdomain }}.surge.sh
+          DEPLOYMENT_LINK=${{ github.actor }}-${{ steps.subdomain.outputs.subdomain }}.surge.sh
           surge --project ./build --domain $DEPLOYMENT_LINK
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+
+        # Set the deployment link as an output variable
+        env:
+          DEPLOYMENT_LINK: ${{ github.actor }}-${{ steps.subdomain.outputs.subdomain }}.surge.sh
 
       - name: Comment on Pull Request
         uses: actions/github-script@v5
