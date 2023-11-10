@@ -30,8 +30,8 @@ jobs:
           echo "REACT_APP_SLEEK_PRODUCT_ID=${{ secrets.REACT_APP_SLEEK_PRODUCT_ID }}" >> .env
           echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL_STAGE }}" >> .env
           echo "REACT_APP_FRONT_END_URL=${{ secrets.REACT_APP_FRONT_END_URL_STAGE }}" >> .env
-      - name: Build
-        run: yarn build
+      - name: Build and rename index.html to 200.html
+        run: yarn build && mv build/index.html build/200.html
 
       - name: Set Unique Subdomain
         id: subdomain
