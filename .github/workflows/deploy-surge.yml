@@ -58,7 +58,7 @@ jobs:
           script: |
             const prNumber = context.payload.pull_request.number;
             const deploymentLink = `The deployment is available at: ${process.env.DEPLOYMENT_LINK}`;
-            github.pulls.update({
+            await github.pulls.update({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: prNumber,
