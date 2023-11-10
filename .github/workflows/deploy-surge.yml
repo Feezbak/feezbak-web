@@ -57,7 +57,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const prNumber = context.payload.pull_request.number;
-            const deploymentLink = `The deployment is available at: ${process.env.DEPLOYMENT_LINK}`;
+            const deploymentLink = `The deployment is available at: https://${process.env.DEPLOYMENT_LINK}`;
             github.pulls.update({
               owner: context.repo.owner,
               repo: context.repo.repo,
