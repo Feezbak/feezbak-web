@@ -65,7 +65,7 @@
     "feez": "docker-compose up",
     "feezy-web": "docker run -p 3000:3000 -v $PWD:/app taronvardanyan/feezbak-web:latest",
     "start": "craco start",
-    "build": "craco build && cp build/index.html build/200.html",
+    "build": "craco build",
     "test": "craco test",
     "serve": "serve -s build",
     "serve:prod": "NODE_ENV=production npm run serve",
@@ -75,7 +75,8 @@
     "prettier-check": "prettier --check \"**/*.ts\" \"**/*.tsx\" \"**/*.json\"",
     "type-check": "tsc --noEmit",
     "prepare": "husky install",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "deploy": "yarn build && mv build/index.html build/200.html && surge build feezbak.surge.sh"
   },
   "husky": {
     "hooks": {

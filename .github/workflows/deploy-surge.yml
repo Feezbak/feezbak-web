@@ -20,10 +20,7 @@ jobs:
           node-version: 16
 
       - name: Install Dependencies
-        run: yarn install
+        run: yarn
 
-      - name: Build React App
-        run: yarn build
-
-      - name: Deploy to Surge
-        run: npx surge --project ./build --domain feezbak.surge.sh
+      - name: Build and Deploy to Surge
+        run: yarn deploy
