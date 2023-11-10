@@ -48,7 +48,7 @@ jobs:
 
       - name: Comment on Pull Request
         run: |
-          echo "The deployment is available at: $DEPLOYMENT_LINK"
+          echo "The deployment is available at: ${{ steps.set-deployment-link.outputs.deployment-link }}"
         shell: bash
 
       - name: Update Pull Request Description
@@ -57,8 +57,8 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const prNumber = context.payload.pull_request.number;
-            const deploymentLink = `The deployment is available at: ${process.env.DEPLOYMENT_LINK}`;
-            await github.pulls.update({
+            const deploymentLink = `The deployment is available at: ${{ steps.set-deployment-link.outputs.deployment-link }}`;
+            github.pulls.update({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: prNumber,
