@@ -23,4 +23,7 @@ jobs:
         run: yarn
 
       - name: Build and Deploy to Surge
-        run: yarn deploy
+        run: yarn deploy:surge
+        env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}

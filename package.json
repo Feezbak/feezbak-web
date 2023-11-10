@@ -76,7 +76,7 @@
     "type-check": "tsc --noEmit",
     "prepare": "husky install",
     "commit": "git-cz",
-    "deploy": "yarn build && mv build/index.html build/200.html && surge build feezbak.surge.sh"
+    "deploy:surge": "yarn build && mv build/index.html build/200.html && surge build feezbak.surge.sh"
   },
   "husky": {
     "hooks": {
