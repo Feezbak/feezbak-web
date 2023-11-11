@@ -1,0 +1,28 @@
+name: Deploy to Surge and Cleanup
+
+on:
+  pull_request:
+    branches:
+      - develop
+    types:
+      - closed
+      - synchronize
+
+
+jobs:
+  cleanup:
+    name: Teardown generated test domain
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install Surge CLI
+        run: yarn global add surge
+
+      - name: Teardown Surge Deployment
+        run: |
+          # Use appropriate logic to determine the subdomain if needed
+          SURGE_SUBDOMAIN=pr-${{ github.event.pull_request.number }}
+          surge teardown $SURGE_SUBDOMAIN
+        env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
