@@ -1,5 +1,8 @@
 import { ContactToData } from "@shared/Preview/components/Demo/types";
-import { FormWrapper, SubmitBtn, FormItem, CustomisedInput } from "./styles";
+import { useContactCollectionForm } from "@/hooks";
+import { FormWrapper, SubmitBtn, FormItem } from "./styles";
+import { PhoneFormField, TextFormField } from "@/shared";
+import { isPossiblePhoneNumber } from "react-phone-number-input";
 
 interface Props {
   fields: string[];
@@ -14,35 +17,80 @@ const CredentialsFormContent = ({
   isLoading = false,
   sendContactInfo,
 }: Props) => {
-  const handleSubmit = (formData: any) => {
-    const refactoredData = Object.entries(formData).map((field) => ({
-      field: field[0],
-      value: field[1] as string,
-    }));
-    sendContactInfo(refactoredData);
-  };
+  const { submitForm, watch, formState, formControl, formErrors } =
+    useContactCollectionForm(sendContactInfo);
+  const phoneValue = watch("phone");
+  const isValidPhoneNumber =
+    phoneValue && isPossiblePhoneNumber(String(phoneValue));
+
+  const formContent = fields.map((field, index) => {
+    switch (field) {
+      case "First Name":
+        return (
+          <TextFormField
+            inputHeight="2.75"
+            key={field}
+            formError={formErrors["firstName"]?.message}
+            label={field}
+            name="firstName"
+            formControl={formControl}
+          />
+        );
+      case "Last Name":
+        return (
+          <TextFormField
+            inputHeight="2.75"
+            key={field}
+            formError={formErrors["lastName"]?.message}
+            label={field}
+            name="lastName"
+            formControl={formControl}
+          />
+        );
+      case "Email Address":
+        return (
+          <TextFormField
+            inputHeight="2.75"
+            key={field}
+            formError={formErrors["email"]?.message}
+            label={field}
+            name="email"
+            formControl={formControl}
+          />
+        );
+      case "Phone":
+        return (
+          <PhoneFormField
+            key={field}
+            formError={formErrors["phone"]?.message}
+            label={field}
+            name="phone"
+            formControl={formControl}
+          />
+        );
+      default:
+        return null;
+    }
+  });
+
+  const isDisabeld = !isValidPhoneNumber || isCreation || !formState.isValid;
 
   return (
-    <FormWrapper name="credentials" onFinish={handleSubmit} autoComplete="off">
-      {fields.map((field, index) => (
-        <FormItem name={field} key={index} rules={[{ required: true }]}>
-          <div>
-            <label htmlFor={field}>
-              {field} <sub>*</sub>
-            </label>
-            <CustomisedInput disabled={isCreation} />
-          </div>
-        </FormItem>
-      ))}
+    <FormWrapper
+      name="credentials"
+      onFinish={() => submitForm()}
+      autoComplete="off"
+    >
+      {formContent}
       <FormItem>
         <SubmitBtn
           type="default"
           size="large"
           htmlType="submit"
-          disabled={isCreation}
           loading={isLoading}
+          disabled={isDisabeld}
         >
-          Send My Feedback
+          Send My Feeeeedback
         </SubmitBtn>
       </FormItem>
     </FormWrapper>

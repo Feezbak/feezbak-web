@@ -122,14 +122,14 @@ const storyReducer = (state: any, action: any) => {
           },
         },
       };
-    case storyStateActions.SET_NEW_IMAGE:
+    case storyStateActions.SET_NEW_IMAGES:
       return {
         ...state,
         step2: {
           ...state.step2,
           imageVoting: {
             ...state.step2.imageVoting,
-            images: [payload, ...state.step2.imageVoting.images],
+            images: [...payload, ...state.step2.imageVoting.images],
           },
         },
       };

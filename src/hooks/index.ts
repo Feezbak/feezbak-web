@@ -6,6 +6,7 @@ export { default as useWindowSize } from "./useWindowSize";
 export { default as useTextFromHTML } from "./useTextFromHTML";
 export { default as useOutsideClick } from "./useOutsideClick";
 export * from "./useSignUpByEmailForm";
+export * from "./useContactCollectionForm";
 export * from "./useProfileUpdateForm";
 export * from "./useAddEmailAddressForm";
 export * from "./useSignInByEmailForm";

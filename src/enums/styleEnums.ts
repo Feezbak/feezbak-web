@@ -27,6 +27,7 @@ export enum StyleEnums {
   borderRadiusBase = 10,
   inputPaddingHorizontal = 16,
   inputPaddingVertical = 10.5,
+  inputBorderColor = "#d9d9d9",
   buttonBaseHeightLG = 40,
   contentFontSizeLG = 14,
   paddingInlineLG = 24,

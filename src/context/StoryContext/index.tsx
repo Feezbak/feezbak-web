@@ -72,8 +72,8 @@ export const StoryProvider = ({ children }: Props) => {
     dispatch({ type: storyStateActions.SET_IMAGE_SQUARE_STATE, payload });
   };
 
-  const setNewImage = (payload: Image) => {
-    dispatch({ type: storyStateActions.SET_NEW_IMAGE, payload });
+  const setNewImages = (payload: Image) => {
+    dispatch({ type: storyStateActions.SET_NEW_IMAGES, payload });
   };
 
   const deleteImage = (payload: string) => {
@@ -100,7 +100,7 @@ export const StoryProvider = ({ children }: Props) => {
     setStep2,
     setStep3,
     deleteImage,
-    setNewImage,
+    setNewImages,
     setPrevStep,
     setTitleData,
     setVotingType,
