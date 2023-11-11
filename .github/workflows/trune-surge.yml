@@ -18,6 +18,10 @@ jobs:
       - name: Install Surge CLI
         run: yarn global add surge
 
+      - name: Set Unique Subdomain
+        id: subdomain
+        run: echo "::set-output name=subdomain::pr-${{ github.event.pull_request.number }}"
+
       - name: Teardown Surge Deployment
         run: |
           DEPLOYMENT_LINK=${{ github.actor }}-${{ steps.subdomain.outputs.subdomain }}.surge.sh
