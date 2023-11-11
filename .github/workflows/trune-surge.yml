@@ -20,9 +20,8 @@ jobs:
 
       - name: Teardown Surge Deployment
         run: |
-          # Use appropriate logic to determine the subdomain if needed
-          SURGE_SUBDOMAIN=pr-${{ github.event.pull_request.number }}
-          surge teardown $SURGE_SUBDOMAIN
+          DEPLOYMENT_LINK=${{ github.actor }}-${{ steps.subdomain.outputs.subdomain }}.surge.sh
+          surge teardown $DEPLOYMENT_LINK
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
