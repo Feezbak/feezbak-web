@@ -1,14 +1,13 @@
 import { Controller, Control } from "react-hook-form";
 import { FormItem, CustomisedInput } from "./styles";
 import { ErrorMessage } from "@/shared";
-import { ContactsCollectingInputs } from "@/validations";
 
 interface Props {
   formError?: string;
   label: string;
   type?: string;
-  name: keyof ContactsCollectingInputs;
-  formControl: Control<ContactsCollectingInputs>;
+  name: string;
+  formControl: Control;
   inputHeight?: string;
 }
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Form, Space, Input } from "antd";
+import { Form, Space } from "antd";
 import { inLessThan } from "@/helpers";
 import { FlexBoxEnum, StyleEnums, BreakpointEnums } from "@/enums";
 
@@ -41,8 +41,4 @@ export const FormItem = styled(Form.Item)`
       color: ${StyleEnums.error};
     }
   }
-`;
-
-export const CustomisedInput = styled(Input)`
-  height: 2.95rem;
 `;
