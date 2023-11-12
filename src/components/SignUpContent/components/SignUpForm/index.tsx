@@ -1,11 +1,10 @@
 import { Controller } from "react-hook-form";
-import { ErrorMessage, SelectWithAdd } from "@/shared";
+import { ErrorMessage, SelectWithAdd, TextFormField } from "@/shared";
 import { Link } from "react-router-dom";
 import { SignUpFormProps } from "./types";
 import { useSignUpByEmailForm } from "@hooks/useSignUpByEmailForm";
 import {
   SignUpFormWrapper,
-  CustomisedInput,
   PasswordInput,
   SubmitButton,
   Description,
@@ -35,77 +34,25 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
           />
         </div>
       </FormItem>
-      <FormItem
+      <TextFormField
+        formError={formErrors["email"]?.message}
+        label="Email"
         name="email"
-        validateStatus={formErrors?.email ? "error" : ""}
-        help={
-          formErrors.email && (
-            <ErrorMessage message={formErrors.email.message} />
-          )
-        }
-      >
-        <div>
-          <label htmlFor="email">
-            Email <sub>*</sub>
-          </label>
-          <Controller
-            render={({ field: { onChange, value } }) => (
-              <CustomisedInput
-                type="email"
-                size="large"
-                onChange={onChange}
-                value={value}
-              />
-            )}
-            name="email"
-            control={formControl}
-          />
-        </div>
-      </FormItem>
-      <FormItem
+        type="email"
+        formControl={formControl}
+      />
+      <TextFormField
+        formError={formErrors["firstName"]?.message}
+        label="First Name"
         name="firstName"
-        validateStatus={formErrors?.firstName ? "error" : ""}
-        help={
-          formErrors.firstName && (
-            <ErrorMessage message={formErrors.firstName.message} />
-          )
-        }
-      >
-        <div>
-          <label htmlFor="firstName">
-            First Name <sub>*</sub>
-          </label>
-          <Controller
-            render={({ field: { onChange, value } }) => (
-              <CustomisedInput size="large" onChange={onChange} value={value} />
-            )}
-            name="firstName"
-            control={formControl}
-          />
-        </div>
-      </FormItem>
-      <FormItem
-        name="lastname"
-        validateStatus={formErrors?.lastName ? "error" : ""}
-        help={
-          formErrors.lastName && (
-            <ErrorMessage message={formErrors.lastName.message} />
-          )
-        }
-      >
-        <div>
-          <label htmlFor="lastName">
-            Last Name <sub>*</sub>
-          </label>
-          <Controller
-            render={({ field: { onChange, value } }) => (
-              <CustomisedInput size="large" onChange={onChange} value={value} />
-            )}
-            name="lastName"
-            control={formControl}
-          />
-        </div>
-      </FormItem>
+        formControl={formControl}
+      />
+      <TextFormField
+        formError={formErrors["lastName"]?.message}
+        label="Last Name"
+        name="lastName"
+        formControl={formControl}
+      />
       <FormItem
         validateStatus={formErrors?.password ? "error" : ""}
         name="password"

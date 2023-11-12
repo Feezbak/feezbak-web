@@ -27,7 +27,7 @@ const TextFormField = ({
       help={formError && <ErrorMessage message={formError} />}
     >
       <div>
-        <label htmlFor="email">
+        <label htmlFor={name}>
           {label} <sub>*</sub>
         </label>
         <Controller

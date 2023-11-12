@@ -31,10 +31,6 @@ export const FormItem = styled(Form.Item)`
   }
 `;
 
-export const CustomisedInput = styled(Input)`
-  height: 3rem;
-`;
-
 export const PasswordInput = styled(Input.Password)`
   height: 3rem;
 `;
