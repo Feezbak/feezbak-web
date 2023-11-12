@@ -1,11 +1,10 @@
 import { Controller } from "react-hook-form";
-import { ErrorMessage } from "@/shared";
+import { ErrorMessage, TextFormField } from "@/shared";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useSignInByEmailForm } from "@hooks/useSignInByEmailForm";
 import {
   SignInFormWrapper,
-  CustomisedInput,
   PasswordInput,
   SubmitButton,
   Description,
@@ -28,33 +27,13 @@ const SignInForm = () => {
       onFinish={() => submitForm()}
       autoComplete="off"
     >
-      <FormItem
+      <TextFormField
+        formError={formErrors["email"]?.message}
+        label="Email"
         name="email"
-        validateStatus={formErrors && formErrors["email"] ? "error" : ""}
-        help={
-          formErrors.email && (
-            <ErrorMessage message={formErrors.email.message} />
-          )
-        }
-      >
-        <div>
-          <label htmlFor="email">
-            Email <sub>*</sub>
-          </label>
-          <Controller
-            render={({ field: { onChange, value } }) => (
-              <CustomisedInput
-                type="email"
-                size="large"
-                onChange={onChange}
-                value={value}
-              />
-            )}
-            name="email"
-            control={formControl}
-          />
-        </div>
-      </FormItem>
+        type="email"
+        formControl={formControl}
+      />
       <FormItem
         validateStatus={formErrors && formErrors["password"] ? "error" : ""}
         name="password"

@@ -35,10 +35,6 @@ export const SubmitButton = styled(Button)`
   width: 100%;
 `;
 
-export const CustomisedInput = styled(Input)`
-  height: 3rem;
-`;
-
 export const PasswordInput = styled(Input.Password)`
   height: 3rem;
 `;

@@ -14,9 +14,9 @@ const UserDataVerificationContent = () => {
     onSuccess: () => {
       navigate("/sign-in");
     },
-    onError: (error: any) => {
+    onError: async (error: any) => {
       setTimeout(() => navigate("/not-found"), 2000);
-      message.error(error?.response?.data?.message ?? "");
+      await message.error(error?.response?.data?.message ?? "");
     },
   });
 
