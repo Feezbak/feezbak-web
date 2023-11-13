@@ -5,11 +5,11 @@ import { FlexBoxEnum, StyleEnums, BreakpointEnums } from "@/enums";
 
 export const FormHeadingWrapper = styled.div`
   width: 100%;
-  margin-bottom: 3.75rem;
+  margin-bottom: 1.75rem;
   ${FlexBoxEnum.SpaceBetweenHorizontal}
 
   ${inLessThan(BreakpointEnums.mobile)`
-    margin-bottom: 2rem;
+    margin: 2rem 0;
    `};
 `;
 
