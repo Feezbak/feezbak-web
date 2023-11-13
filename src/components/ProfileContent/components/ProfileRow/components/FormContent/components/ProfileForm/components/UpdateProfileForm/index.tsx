@@ -1,4 +1,5 @@
 import Heading from "./components/Heading";
+import ProfileAvatar from "./components/ProfileAvatar";
 import { useProfileUpdateForm } from "@/hooks";
 import { message } from "antd";
 import { TextFormField, SelectWithAddFormField } from "@/shared";
@@ -28,6 +29,7 @@ const UpdateProfileForm = ({ userRecoilData }: Props) => {
         isDirty={formState.isDirty}
         isValid={formState.isValid}
       />
+      <ProfileAvatar />
       <FieldsSection size="large">
         <TextFormField
           formError={formErrors["firstName"]?.message}

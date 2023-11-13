@@ -33,9 +33,9 @@ const AnimatedRoutes = () => {
   const { run: getProfileData } = useRequest(() => getMyProfile(), {
     manual: true,
     onSuccess: (resp) => {
-      resp?.data && setUserData(resp.data);
+      resp?.data && setUserData({ ...resp.data, loading: false });
     },
-    onError: (error: any) => {
+    onError: async (error: any) => {
       message.error(error?.response?.data?.message ?? "");
       localStorage.clear();
     },
