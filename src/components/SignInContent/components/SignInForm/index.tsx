@@ -1,15 +1,12 @@
-import { Controller } from "react-hook-form";
-import { ErrorMessage, TextFormField } from "@/shared";
+import { TextFormField } from "@/shared";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useSignInByEmailForm } from "@hooks/useSignInByEmailForm";
 import {
   SignInFormWrapper,
-  PasswordInput,
   SubmitButton,
   Description,
   BtnWrapper,
-  FormItem,
 } from "./styles";
 
 const SignInForm = () => {
@@ -34,28 +31,12 @@ const SignInForm = () => {
         type="email"
         formControl={formControl}
       />
-      <FormItem
-        validateStatus={formErrors && formErrors["password"] ? "error" : ""}
+      <TextFormField
+        formError={formErrors["password"]?.message}
+        label="Password"
         name="password"
-        help={
-          formErrors.password && (
-            <ErrorMessage message={formErrors.password.message} />
-          )
-        }
-      >
-        <div>
-          <label htmlFor="password">
-            Password <sub>*</sub>
-          </label>
-          <Controller
-            render={({ field: { onChange, value } }) => (
-              <PasswordInput size="large" onChange={onChange} value={value} />
-            )}
-            name="password"
-            control={formControl}
-          />
-        </div>
-      </FormItem>
+        formControl={formControl}
+      />
       <BtnWrapper>
         <SubmitButton
           type="primary"

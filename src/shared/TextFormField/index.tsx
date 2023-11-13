@@ -9,6 +9,7 @@ interface Props {
   name: string;
   formControl: Control;
   inputHeight?: string;
+  autoComplete?: string;
 }
 
 const TextFormField = ({
@@ -18,6 +19,7 @@ const TextFormField = ({
   formError,
   formControl,
   inputHeight = "3",
+  autoComplete,
 }: Props) => {
   return (
     <FormItem
@@ -37,6 +39,7 @@ const TextFormField = ({
               size="large"
               onChange={onChange}
               value={value}
+              autoComplete={autoComplete}
             />
           )}
           name={name}

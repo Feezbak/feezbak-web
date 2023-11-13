@@ -1,11 +1,10 @@
 import { Controller } from "react-hook-form";
-import { ErrorMessage, SelectWithAdd, TextFormField } from "@/shared";
+import { SelectWithAdd, TextFormField } from "@/shared";
 import { Link } from "react-router-dom";
 import { SignUpFormProps } from "./types";
 import { useSignUpByEmailForm } from "@hooks/useSignUpByEmailForm";
 import {
   SignUpFormWrapper,
-  PasswordInput,
   SubmitButton,
   Description,
   BtnWrapper,
@@ -53,33 +52,13 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
         name="lastName"
         formControl={formControl}
       />
-      <FormItem
-        validateStatus={formErrors?.password ? "error" : ""}
+      <TextFormField
+        formError={formErrors["password"]?.message}
+        label="Password"
         name="password"
-        help={
-          formErrors.password && (
-            <ErrorMessage message={formErrors.password.message} />
-          )
-        }
-      >
-        <div>
-          <label htmlFor="password">
-            Password <sub>*</sub>
-          </label>
-          <Controller
-            render={({ field: { onChange, value } }) => (
-              <PasswordInput
-                autoComplete="new-password"
-                size="large"
-                onChange={onChange}
-                value={value}
-              />
-            )}
-            name="password"
-            control={formControl}
-          />
-        </div>
-      </FormItem>
+        formControl={formControl}
+        autoComplete="new-password"
+      />
       <BtnWrapper>
         <SubmitButton
           type="primary"
