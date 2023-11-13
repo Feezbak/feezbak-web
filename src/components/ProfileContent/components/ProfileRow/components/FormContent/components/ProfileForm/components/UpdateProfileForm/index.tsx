@@ -1,4 +1,5 @@
 import Heading from "./components/Heading";
+import ProfileAvatar from "./components/ProfileAvatar";
 import { useProfileUpdateForm } from "@/hooks";
 import { Controller } from "react-hook-form";
 import { message } from "antd";
@@ -29,6 +30,7 @@ const UpdateProfileForm = ({ userRecoilData }: Props) => {
         isDirty={formState.isDirty}
         isValid={formState.isValid}
       />
+      <ProfileAvatar />
       <FieldsSection size="large">
         <FormItem
           name="firstName"

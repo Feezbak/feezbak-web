@@ -6,8 +6,8 @@ export const UploadListWrapper = styled.ul`
   ${FlexBoxEnum.JustifyStartHorizontal}
   list-style: none;
   padding: 0;
-  margin: 0;
   overflow: auto;
   overflow-y: hidden;
   cursor: grabbing;
+  margin: 0 0 0 1rem;
 `;

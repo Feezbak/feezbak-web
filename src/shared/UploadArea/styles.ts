@@ -5,9 +5,9 @@ export const UploadWrapper = styled.div`
   cursor: pointer;
   min-width: 11.875rem;
   height: 15.5rem;
-  margin-right: 1rem;
   border: 1.2px dashed ${StyleEnums.gray3};
   border-radius: 20px;
+  padding: 0 0.5rem;
   ${FlexBoxEnum.CenterVertical}
 
   span {
@@ -16,6 +16,7 @@ export const UploadWrapper = styled.div`
   }
 
   p {
+    text-align: center;
     font-size: 0.813rem;
     line-height: 1rem;
   }
