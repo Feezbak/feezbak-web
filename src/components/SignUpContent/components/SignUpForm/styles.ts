@@ -8,29 +8,6 @@ export const SignUpFormWrapper = styled(Form)`
   ${FlexBoxEnum.CenterVertical}
 `;
 
-export const FormItem = styled(Form.Item)`
-  ${FlexBoxEnum.CenterVertical}
-  max-width: 23.25rem;
-  width: 100%;
-
-  .ant-form-item-row {
-    width: 100%;
-  }
-
-  label {
-    display: block;
-    color: ${StyleEnums.gray1};
-    margin-bottom: 0.75rem;
-    font-size: 1rem;
-    line-height: 1.25rem;
-
-    sub {
-      font-size: 1.5rem;
-      color: ${StyleEnums.error};
-    }
-  }
-`;
-
 export const SubmitButton = styled(Button)`
   width: 100%;
 `;

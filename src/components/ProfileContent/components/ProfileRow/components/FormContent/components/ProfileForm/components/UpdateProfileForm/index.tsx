@@ -1,9 +1,8 @@
 import Heading from "./components/Heading";
 import { useProfileUpdateForm } from "@/hooks";
-import { Controller } from "react-hook-form";
 import { message } from "antd";
-import { SelectWithAdd, TextFormField } from "@/shared";
-import { UpdateForm, FieldsSection, FormItem } from "./styles";
+import { TextFormField, SelectWithAddFormField } from "@/shared";
+import { UpdateForm, FieldsSection } from "./styles";
 import { UserDataType } from "@/constants";
 
 interface Props {
@@ -51,18 +50,11 @@ const UpdateProfileForm = ({ userRecoilData }: Props) => {
           type="email"
           formControl={formControl}
         />
-        <FormItem name="profession">
-          <div>
-            <label htmlFor="profession">I am a</label>
-            <Controller
-              render={({ field: { onChange, value } }) => (
-                <SelectWithAdd value={value} onChange={onChange} />
-              )}
-              name="profession"
-              control={formControl}
-            />
-          </div>
-        </FormItem>
+        <SelectWithAddFormField
+          label="I am a"
+          name="profession"
+          formControl={formControl}
+        />
       </FieldsSection>
     </UpdateForm>
   );

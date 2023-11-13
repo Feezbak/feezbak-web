@@ -1,5 +1,4 @@
-import { Controller } from "react-hook-form";
-import { SelectWithAdd, TextFormField } from "@/shared";
+import { TextFormField, SelectWithAddFormField } from "@/shared";
 import { Link } from "react-router-dom";
 import { SignUpFormProps } from "./types";
 import { useSignUpByEmailForm } from "@hooks/useSignUpByEmailForm";
@@ -8,7 +7,6 @@ import {
   SubmitButton,
   Description,
   BtnWrapper,
-  FormItem,
 } from "./styles";
 
 const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
@@ -21,18 +19,11 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
       onFinish={() => submitForm()}
       autoComplete="off"
     >
-      <FormItem name="profession">
-        <div>
-          <label htmlFor="profession">I am a</label>
-          <Controller
-            render={({ field: { onChange, value } }) => (
-              <SelectWithAdd value={value} onChange={onChange} />
-            )}
-            name="profession"
-            control={formControl}
-          />
-        </div>
-      </FormItem>
+      <SelectWithAddFormField
+        label="I am a"
+        name="profession"
+        formControl={formControl}
+      />
       <TextFormField
         formError={formErrors["email"]?.message}
         label="Email"
