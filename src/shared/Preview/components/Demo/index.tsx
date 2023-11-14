@@ -82,7 +82,7 @@ const Demo = ({
           firstName: "",
           lastName: "",
           email: "",
-          phone: "",
+          phone: 0,
         }
       : {};
     guestData?.forEach((item: { field: string; value: string }) => {
@@ -91,7 +91,7 @@ const Demo = ({
       } else if (item.field === "lastName") {
         guestPayloadData.lastName = item.value;
       } else if (item.field === "phone") {
-        guestPayloadData.phone = item.value;
+        guestPayloadData.phone = +item.value;
       } else {
         guestPayloadData.email = item.value;
       }
