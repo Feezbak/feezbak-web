@@ -58,6 +58,7 @@ export const ResizeBtn = styled(Button)`
 export const CloseBtn = styled(Button)`
   ${btnStyles};
   margin-right: 0.25rem;
+  background: transparent;
   ${FlexBoxEnum.CenterHorizontal}
 `;
 

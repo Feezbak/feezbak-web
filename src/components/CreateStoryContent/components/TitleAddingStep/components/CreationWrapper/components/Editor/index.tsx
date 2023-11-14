@@ -42,7 +42,8 @@ const Editor = () => {
 
   const handleBeforeInput = () => {
     if (
-      convertToRaw(editorState.getCurrentContent()).blocks[0].text.length >= 60
+      convertToRaw(editorState.getCurrentContent()).blocks[0].text.length >=
+      titleMaxLength
     ) {
       return "handled";
     }

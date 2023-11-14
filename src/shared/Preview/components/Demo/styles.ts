@@ -113,6 +113,7 @@ export const ColorPickerWrapper = styled(motion.div)`
   position: absolute;
   top: 6rem;
   right: 2.2rem;
+  z-index: 5;
   ${FlexBoxEnum.JustifyEndHorizontal}
 `;
 

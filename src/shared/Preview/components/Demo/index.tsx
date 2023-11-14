@@ -82,16 +82,16 @@ const Demo = ({
           firstName: "",
           lastName: "",
           email: "",
-          phone: 0,
+          phone: "",
         }
       : {};
     guestData?.forEach((item: { field: string; value: string }) => {
-      if (item.field === "First Name") {
+      if (item.field === "firstName") {
         guestPayloadData.firstName = item.value;
-      } else if (item.field === "Last Name") {
+      } else if (item.field === "lastName") {
         guestPayloadData.lastName = item.value;
-      } else if (item.field === "Phone") {
-        guestPayloadData.phone = +item.value;
+      } else if (item.field === "phone") {
+        guestPayloadData.phone = item.value;
       } else {
         guestPayloadData.email = item.value;
       }
@@ -414,7 +414,7 @@ const Demo = ({
               isFixed={true}
               placeholder="Your comment here."
               handleClose={handleCloseResizeText}
-              isFullHeight={!!respBtnId?.length}
+              isFullHeight={false}
               isDisabled={!!feedback?.isComplete}
               positionProps={{ bottom: "8%" }}
               isTextRespOnly={isTextRespRequired}

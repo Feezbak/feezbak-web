@@ -1,6 +1,6 @@
 import { ContactToData } from "@shared/Preview/components/Demo/types";
 import { useContactCollectionForm } from "@/hooks";
-import { FormWrapper, SubmitBtn, FormItem } from "./styles";
+import { FormWrapper, SubmitBtn } from "./styles";
 import { PhoneFormField, TextFormField } from "@/shared";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
 
@@ -82,17 +82,15 @@ const CredentialsFormContent = ({
       autoComplete="off"
     >
       {formContent}
-      <FormItem>
-        <SubmitBtn
-          type="default"
-          size="large"
-          htmlType="submit"
-          loading={isLoading}
-          disabled={isDisabeld}
-        >
-          Send My Feeeeedback
-        </SubmitBtn>
-      </FormItem>
+      <SubmitBtn
+        type="default"
+        size="large"
+        htmlType="submit"
+        loading={isLoading}
+        disabled={isDisabeld}
+      >
+        Send My Feedback
+      </SubmitBtn>
     </FormWrapper>
   );
 };
