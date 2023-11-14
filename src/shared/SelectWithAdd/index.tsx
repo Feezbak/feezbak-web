@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, MouseEvent, useRef, useState } from "react";
 import { Divider, Input, InputRef, Select } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { SelectActionWrapper, ItemAddButton, CustomSelect } from "./styles";
@@ -15,11 +15,11 @@ const SelectWithAdd = ({ value = "", onChange }: Props) => {
   const [name, setName] = useState("");
   const inputRef = useRef<InputRef>(null);
 
-  const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   };
 
-  const addItem = (e: React.MouseEvent<HTMLElement>) => {
+  const addItem = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
     setItems([...items, name]);
     setName("");

@@ -1,14 +1,7 @@
-import { Controller } from "react-hook-form";
-import { ErrorMessage } from "@/shared";
+import { TextFormField } from "@/shared";
 import { useNavigate, useParams } from "react-router-dom";
 import { useResetPasswordForm } from "@/hooks";
-import {
-  ResetPasswordFormWrapper,
-  PasswordInput,
-  SubmitButton,
-  BtnWrapper,
-  FormItem,
-} from "./styles";
+import { ResetPasswordFormWrapper, SubmitButton, BtnWrapper } from "./styles";
 
 const ResetPasswordForm = () => {
   const navigate = useNavigate();
@@ -26,48 +19,18 @@ const ResetPasswordForm = () => {
       onFinish={() => submitForm()}
       autoComplete="off"
     >
-      <FormItem
-        validateStatus={formErrors && formErrors["password"] ? "error" : ""}
+      <TextFormField
+        formError={formErrors["password"]?.message}
+        label="Password"
         name="password"
-        help={
-          formErrors.password && (
-            <ErrorMessage message={formErrors.password.message} />
-          )
-        }
-      >
-        <label htmlFor="password">
-          Password <sub>*</sub>
-        </label>
-        <Controller
-          render={({ field: { onChange, value } }) => (
-            <PasswordInput size="large" onChange={onChange} value={value} />
-          )}
-          name="password"
-          control={formControl}
-        />
-      </FormItem>
-      <FormItem
-        validateStatus={
-          formErrors && formErrors["confirmPassword"] ? "error" : ""
-        }
+        formControl={formControl}
+      />
+      <TextFormField
+        formError={formErrors["confirmPassword"]?.message}
+        label="Confirm Password"
         name="confirmPassword"
-        help={
-          formErrors.confirmPassword && (
-            <ErrorMessage message={formErrors.confirmPassword.message} />
-          )
-        }
-      >
-        <label htmlFor="confirmPassword">
-          Confirm Password <sub>*</sub>
-        </label>
-        <Controller
-          render={({ field: { onChange, value } }) => (
-            <PasswordInput size="large" onChange={onChange} value={value} />
-          )}
-          name="confirmPassword"
-          control={formControl}
-        />
-      </FormItem>
+        formControl={formControl}
+      />
       <BtnWrapper>
         <SubmitButton
           type="primary"

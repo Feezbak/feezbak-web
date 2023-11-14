@@ -15,3 +15,5 @@ export { default as CustomPagination } from "./CustomPagination";
 export { default as CustomModal } from "./CustomModal";
 export { default as PhoneFormField } from "./PhoneFormField";
 export { default as TextFormField } from "./TextFormField";
+export { default as SelectWithAddFormField } from "./SelectWithAddFormField";
+export { default as UploadArea } from "./UploadArea";

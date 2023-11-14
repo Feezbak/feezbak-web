@@ -138,24 +138,27 @@ export const storyDefaultState: StoryCreationDataType = {
 };
 
 export type UserDataType = {
-  accountVerificationCode: undefined | string;
-  changePasswordId: undefined | string;
-  createdAt: undefined | string;
-  email: undefined | string;
-  firstName: undefined | string;
-  lastName: undefined | string;
-  profession: undefined | string;
-  stories: undefined | string[];
-  updatedAt: undefined | string;
-  verified: undefined | boolean;
-  __v: undefined | number;
-  _id: undefined | string;
+  accountVerificationCode?: string;
+  changePasswordId?: string;
+  createdAt?: string;
+  avatarSrc?: string;
+  email?: string;
+  firstName?: string;
+  lastName?: string;
+  profession?: string;
+  stories?: string[];
+  updatedAt?: string;
+  verified?: boolean;
+  loading: boolean;
+  __v?: number;
+  _id?: string;
 };
 
 export const userDefaultData: UserDataType = {
   accountVerificationCode: undefined,
   changePasswordId: undefined,
   createdAt: undefined,
+  avatarSrc: undefined,
   email: undefined,
   firstName: undefined,
   lastName: undefined,
@@ -163,6 +166,7 @@ export const userDefaultData: UserDataType = {
   stories: undefined,
   updatedAt: undefined,
   verified: undefined,
+  loading: true,
   __v: undefined,
   _id: undefined,
 };
