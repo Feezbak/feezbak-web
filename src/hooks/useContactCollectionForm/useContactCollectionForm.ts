@@ -32,12 +32,11 @@ export default function useContactCollectionForm(
   });
 
   const submitForm = handleSubmit(async (formData) => {
-    console.log(formData);
-    //    const refactoredData = Object.entries(formData).map((field) => ({
-    //      field: field[0],
-    //      value: field[1] as string,
-    //    }));
-    //    sendContactInfo(refactoredData);
+    const refactoredData = Object.entries(formData).map((field) => ({
+      field: field[0],
+      value: field[1] as string,
+    }));
+    sendContactInfo(refactoredData);
   });
 
   return {

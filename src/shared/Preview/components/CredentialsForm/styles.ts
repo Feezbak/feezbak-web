@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import { Drawer, Button } from "antd";
+import { ifProp } from "@/helpers";
 import { motion } from "framer-motion";
-import { FlexBoxEnum } from "@/enums";
+import { FlexBoxEnum, StyleEnums } from "@/enums";
 
-export const FormDrawer = styled(Drawer)`
-  background: rgba(255, 255, 255, 0.92) !important;
-  border-radius: 1rem;
+export const FormDrawer = styled(Drawer)<{
+  readonly $isCreationMode: boolean;
+}>`
+  background: ${StyleEnums.white} !important;
+  border-radius: ${ifProp("$isCreationMode", "1rem", "unset")};
   z-index: 2;
 `;
 

@@ -32,6 +32,7 @@ const CredentialsForm = ({
       mask={false}
       onClose={onClose}
       open={isOpen}
+      $isCreationMode={isCreationMode}
     >
       {isOpen && (
         <DrawerContent {...opacityAnimation}>

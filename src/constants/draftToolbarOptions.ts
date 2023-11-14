@@ -5,4 +5,4 @@ export const toolbarOptions = {
   },
 };
 
-export const titleMaxLength = 60;
+export const titleMaxLength = 80;
