@@ -1,14 +1,7 @@
 import { useEffect } from "react";
-import { Controller } from "react-hook-form";
-import { ErrorMessage } from "@/shared";
+import { TextFormField } from "@/shared";
 import { useForgotPasswordForm } from "@hooks/useForgotPasswordForm";
-import {
-  ForgotPasswordFormWrapper,
-  CustomisedInput,
-  SubmitButton,
-  BtnWrapper,
-  FormItem,
-} from "./styles";
+import { ForgotPasswordFormWrapper, SubmitButton, BtnWrapper } from "./styles";
 
 interface Props {
   setEmailSendState: (state: boolean) => void;
@@ -39,33 +32,13 @@ const ForgotPasswordForm = ({ setEmailSendState }: Props) => {
       name="forgotPasswordForm"
       onFinish={() => submitForm()}
     >
-      <FormItem
+      <TextFormField
+        formError={formErrors["forgotEmail"]?.message}
+        label="Email"
         name="forgotEmail"
-        validateStatus={formErrors?.["forgotEmail"] ? "error" : ""}
-        help={
-          formErrors.forgotEmail && (
-            <ErrorMessage message={formErrors.forgotEmail.message} />
-          )
-        }
-      >
-        <>
-          <label htmlFor="forgotEmail">
-            Email <sub>*</sub>
-          </label>
-          <Controller
-            render={({ field: { onChange, value } }) => (
-              <CustomisedInput
-                type="email"
-                size="large"
-                value={value}
-                onChange={onChange}
-              />
-            )}
-            name="forgotEmail"
-            control={formControl}
-          />
-        </>
-      </FormItem>
+        type="email"
+        formControl={formControl}
+      />
       <BtnWrapper>
         <SubmitButton
           size="large"

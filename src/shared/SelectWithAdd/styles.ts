@@ -21,6 +21,7 @@ export const ItemAddButton = styled(Button)`
 
 export const CustomSelect = styled(Select)`
   height: 3rem;
+  max-width: 23.25rem;
   .ant-select-selector {
     height: 3rem !important;
   }

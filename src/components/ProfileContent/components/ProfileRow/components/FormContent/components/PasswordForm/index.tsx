@@ -1,13 +1,10 @@
 import { opacityAnimation } from "@assets/framerAnimations";
-import { Controller } from "react-hook-form";
-import { ErrorMessage } from "@/shared";
+import { TextFormField } from "@/shared";
 import { useChangePasswordForm } from "@/hooks";
 import {
   FormContainer,
   ChangePasswordFormWrapper,
-  FormItem,
   SubmitButton,
-  PasswordInput,
   BtnWrapper,
 } from "./styles";
 
@@ -22,54 +19,18 @@ const PasswordForm = () => {
         onFinish={() => submitForm()}
         autoComplete="off"
       >
-        <FormItem
-          validateStatus={
-            formErrors && formErrors["currentPassword"] ? "error" : ""
-          }
+        <TextFormField
+          formError={formErrors["currentPassword"]?.message}
+          label="Current Password"
           name="currentPassword"
-          help={
-            formErrors.currentPassword && (
-              <ErrorMessage message={formErrors.currentPassword.message} />
-            )
-          }
-        >
-          <>
-            <label htmlFor="currentPassword">
-              Current Password <sub>*</sub>
-            </label>
-            <Controller
-              render={({ field: { onChange, value } }) => (
-                <PasswordInput size="large" onChange={onChange} value={value} />
-              )}
-              name="currentPassword"
-              control={formControl}
-            />
-          </>
-        </FormItem>
-        <FormItem
-          validateStatus={
-            formErrors && formErrors["newPassword"] ? "error" : ""
-          }
+          formControl={formControl}
+        />
+        <TextFormField
+          formError={formErrors["newPassword"]?.message}
+          label="New Password"
           name="newPassword"
-          help={
-            formErrors.newPassword && (
-              <ErrorMessage message={formErrors.newPassword.message} />
-            )
-          }
-        >
-          <>
-            <label htmlFor="newPassword">
-              New Password <sub>*</sub>
-            </label>
-            <Controller
-              render={({ field: { onChange, value } }) => (
-                <PasswordInput size="large" onChange={onChange} value={value} />
-              )}
-              name="newPassword"
-              control={formControl}
-            />
-          </>
-        </FormItem>
+          formControl={formControl}
+        />
         <BtnWrapper>
           <SubmitButton
             type="primary"

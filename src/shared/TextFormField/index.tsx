@@ -1,15 +1,15 @@
 import { Controller, Control } from "react-hook-form";
 import { FormItem, CustomisedInput } from "./styles";
 import { ErrorMessage } from "@/shared";
-import { ContactsCollectingInputs } from "@/validations";
 
 interface Props {
   formError?: string;
   label: string;
   type?: string;
-  name: keyof ContactsCollectingInputs;
-  formControl: Control<ContactsCollectingInputs>;
+  name: string;
+  formControl: Control;
   inputHeight?: string;
+  autoComplete?: string;
 }
 
 const TextFormField = ({
@@ -19,6 +19,7 @@ const TextFormField = ({
   formError,
   formControl,
   inputHeight = "3",
+  autoComplete,
 }: Props) => {
   return (
     <FormItem
@@ -27,7 +28,7 @@ const TextFormField = ({
       help={formError && <ErrorMessage message={formError} />}
     >
       <div>
-        <label htmlFor="email">
+        <label htmlFor={name}>
           {label} <sub>*</sub>
         </label>
         <Controller
@@ -38,6 +39,7 @@ const TextFormField = ({
               size="large"
               onChange={onChange}
               value={value}
+              autoComplete={autoComplete}
             />
           )}
           name={name}
