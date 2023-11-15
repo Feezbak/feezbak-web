@@ -1,6 +1,6 @@
 import { ContactToData } from "@shared/Preview/components/Demo/types";
 import { useContactCollectionForm } from "@/hooks";
-import { FormWrapper, SubmitBtn } from "./styles";
+import { FormWrapper, SubmitBtn, FieldsWrapper } from "./styles";
 import { PhoneFormField, TextFormField } from "@/shared";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
 
@@ -81,7 +81,7 @@ const CredentialsFormContent = ({
       onFinish={() => submitForm()}
       autoComplete="off"
     >
-      {formContent}
+      <FieldsWrapper>{formContent}</FieldsWrapper>
       <SubmitBtn
         type="default"
         size="large"

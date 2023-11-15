@@ -14,29 +14,25 @@ export const FormDrawer = styled(Drawer)<{
   )} !important;
   border-radius: ${ifProp("$isCreationMode", "1rem", "unset")};
   z-index: 2;
+  pading: 1.5rem 1rem;
 `;
 
-export const CredTitle = styled.h3`
-  margin-top: 3rem;
-  text-align: center;
-  font-weight: 700;
-  font-size: 1.5rem;
-  line-height: 2rem;
-  letter-spacing: -0.02em;
+export const CredTitle = styled.p`
+  margin-top: 1rem;
+  text-align: left;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  letter-spacing: -0.4px;
 `;
 
 export const CloseBtn = styled(Button)`
-  position: absolute;
-  top: 1rem;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  padding: 0;
   border-radius: 50%;
   ${FlexBoxEnum.CenterHorizontal}
 `;
 
 export const DrawerContent = styled(motion.div)`
   width: 100%;
-  ${FlexBoxEnum.CenterVertical}
+  height: 100%;
+  ${FlexBoxEnum.StartStartVertical}
 `;

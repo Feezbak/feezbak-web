@@ -40,8 +40,7 @@ const CredentialsForm = ({
             <CloseBtn onClick={onClose} icon={<GoBackRoundIcon />} />
           )}
           <CredTitle>
-            The Story creator asks for your credentials, Please feel data to be
-            able to send your feedback
+            Please fill in the information to be able to submit your feedback
           </CredTitle>
           <CredentialsFormContent
             fields={fields}
