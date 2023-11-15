@@ -3,8 +3,8 @@ import { ColorPickerIcon, MakeSquareIcon } from "@/icons";
 import { AnimatePresence, motion } from "framer-motion";
 import ResponsePreviewBtn from "@/shared/ResponsePreviewBtn";
 import PreviewSlider from "@/shared/Preview/components/PreviewSlider";
-import { ResizableTextArea } from "@/shared";
 import CredentialsForm from "@/shared/Preview/components/CredentialsForm";
+import CommentDrawer from "@shared/Preview/components/CommentDrawer";
 import {
   StoryStepEnum,
   StoryTypeEnum,
@@ -291,7 +291,7 @@ const Demo = ({
     }
   };
 
-  const handleCloseResizeText = () => {
+  const handleCloseCommentDrawer = () => {
     setRespBtnId("");
   };
 
@@ -408,21 +408,14 @@ const Demo = ({
           isOpen={isCredentialDrawerOpen}
           onClose={() => setCredentialDrawerState(false)}
         />
-        <AnimatePresence initial={false}>
-          {((!isCreationMode && isTextRespRequired) || !!respBtnId?.length) && (
-            <ResizableTextArea
-              isFixed={true}
-              placeholder="Your comment here."
-              handleClose={handleCloseResizeText}
-              isFullHeight={false}
-              isDisabled={!!feedback?.isComplete}
-              positionProps={{ bottom: "8%" }}
-              isTextRespOnly={isTextRespRequired}
-              hasGoBack={type === StoryTypeEnum.COMBINED}
-              handleSend={handleTextFeedback}
-            />
-          )}
-        </AnimatePresence>
+        <CommentDrawer
+          isOpen={
+            (!isCreationMode && isTextRespRequired) || !!respBtnId?.length
+          }
+          handleClose={handleCloseCommentDrawer}
+          isDisabled={!!feedback?.isComplete && !isInfoCollectionAllowed}
+          handleSend={handleTextFeedback}
+        />
       </PreviewFlow>
     </>
   );
