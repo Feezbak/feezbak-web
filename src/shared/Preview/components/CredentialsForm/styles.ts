@@ -7,7 +7,11 @@ import { FlexBoxEnum, StyleEnums } from "@/enums";
 export const FormDrawer = styled(Drawer)<{
   readonly $isCreationMode: boolean;
 }>`
-  background: ${StyleEnums.white} !important;
+  background: ${ifProp(
+    "$isCreationMode",
+    "rgba(255, 255, 255, 0.89)",
+    StyleEnums.white
+  )} !important;
   border-radius: ${ifProp("$isCreationMode", "1rem", "unset")};
   z-index: 2;
 `;
