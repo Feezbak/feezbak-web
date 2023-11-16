@@ -1,12 +1,16 @@
 import styled from "styled-components";
-import { FlexBoxEnum, StyleEnums } from "@/enums";
-import { ifProp, prop } from "@/helpers";
+import { FlexBoxEnum, StyleEnums, BreakpointEnums } from "@/enums";
+import { ifProp, prop, inLessThan } from "@/helpers";
 import { Button } from "antd";
 
 export const ButtonDataWrapper = styled.div`
   width: 100%;
   margin-bottom: 1.5rem;
   ${FlexBoxEnum.SpaceBetweenHorizontal}
+
+  ${inLessThan(BreakpointEnums.mobile)`
+    flex-wrap: wrap;
+ `};
 
   &:last-child {
     margin: 0;
@@ -20,6 +24,7 @@ export const ProgressText = styled.div`
   ${FlexBoxEnum.JustifyStartHorizontal}
 
   p {
+    white-space: nowrap;
     position: absolute;
     left: 1.35rem;
     font-size: 1rem;
@@ -36,6 +41,9 @@ export const ColoredProgress = styled.div<{ readonly $width: number }>`
 
 export const ActionsAndInfoContainer = styled.div`
   margin-left: 1.875rem;
+  ${inLessThan(BreakpointEnums.mobile)`
+    margin: 1rem 0 0 0;
+  `}
   ${FlexBoxEnum.SpaceBetweenHorizontal}
 `;
 

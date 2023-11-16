@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { FlexBoxEnum, StyleEnums } from "@/enums";
+import { inLessThan } from "@/helpers";
+import { FlexBoxEnum, StyleEnums, BreakpointEnums } from "@/enums";
 
 export const StoryFeedbackWrapper = styled(motion.div)`
   width: 100%;
@@ -11,6 +12,10 @@ export const StoryFeedbackWrapper = styled(motion.div)`
   padding: 2rem;
   box-shadow: 0px 3px 6px 0px rgba(246, 245, 255, 0.16);
   ${FlexBoxEnum.StartStartVertical}
+
+  ${inLessThan(BreakpointEnums.mobile)`
+    padding: 1rem;
+  `}
 `;
 
 export const TitleText = styled.h3`
