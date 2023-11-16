@@ -7,14 +7,14 @@ import { FlexBoxEnum, StyleEnums } from "@/enums";
 export const FormDrawer = styled(Drawer)<{
   readonly $isCreationMode: boolean;
 }>`
-  background: ${ifProp(
-    "$isCreationMode",
-    "rgba(255, 255, 255, 0.89)",
-    StyleEnums.white
-  )} !important;
-  border-radius: ${ifProp("$isCreationMode", "1rem", "unset")};
+  background: ${StyleEnums.white};
+  border: ${ifProp("$isCreationMode", `1px solid ${StyleEnums.gray3}`, "none")};
+  border-radius: ${ifProp("$isCreationMode", "3rem", "unset")};
   z-index: 2;
-  pading: 1.5rem 1rem;
+  padding: 0;
+  .ant-drawer-body {
+    padding: 1.5rem 1rem !important;
+  }
 `;
 
 export const CredTitle = styled.p`
@@ -24,6 +24,7 @@ export const CredTitle = styled.p`
   font-weight: 500;
   line-height: 1.5rem;
   letter-spacing: -0.4px;
+  max-width: 23.25rem;
 `;
 
 export const CloseBtn = styled(Button)`
@@ -31,8 +32,17 @@ export const CloseBtn = styled(Button)`
   ${FlexBoxEnum.CenterHorizontal}
 `;
 
-export const DrawerContent = styled(motion.div)`
+export const CloseBtnWrapper = styled.div`
+  width: 100%;
+  max-width: 23.25rem;
+  ${FlexBoxEnum.JustifyStartHorizontal}
+`;
+
+export const DrawerContent = styled(motion.div)<{
+  readonly $isCreationMode: boolean;
+}>`
   width: 100%;
   height: 100%;
-  ${FlexBoxEnum.StartStartVertical}
+  padding: ${ifProp("$isCreationMode", "5%", "0")};
+  ${FlexBoxEnum.CenterVertical}
 `;

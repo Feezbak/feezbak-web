@@ -8,7 +8,7 @@ export const FormWrapper = styled(Form)`
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  ${FlexBoxEnum.SpaceBetweenColumnStretch}
+  ${FlexBoxEnum.SpaceBetweenCenterVertical}
 `;
 
 export const SubmitBtn = styled(Button)`
@@ -17,5 +17,6 @@ export const SubmitBtn = styled(Button)`
 `;
 
 export const FieldsWrapper = styled.div`
+  width: 100%;
   ${FlexBoxEnum.StartCenterVertical}
 `;

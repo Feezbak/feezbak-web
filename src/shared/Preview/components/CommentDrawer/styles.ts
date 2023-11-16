@@ -4,11 +4,11 @@ import { FlexBoxEnum, StyleEnums } from "@/enums";
 const { TextArea } = Input;
 
 export const CommentMainDrawer = styled(Drawer)`
-  padding: 1.5rem 1rem;
   background: ${StyleEnums.white};
+  padding: 0;
   .ant-drawer-body {
-    ${FlexBoxEnum.SpaceBetweenColumnStretch}
-    padding: 0;
+    padding: 1.5rem 1rem;
+    ${FlexBoxEnum.CenterVertical}
   }
 `;
 
@@ -21,6 +21,7 @@ export const TextField = styled(TextArea)`
   outline: none;
   padding: 0;
   box-shadow: none;
+  max-width: 23.25rem;
   border-radius: unset;
   font-size: 1rem;
   margin-top: 2.375rem;
@@ -46,6 +47,7 @@ export const SendMSGBtn = styled(Button)`
   width: 100%;
   color: ${StyleEnums.white};
   margin-top: 1rem;
+  max-width: 23.25rem;
   background: ${StyleEnums.black};
   ${FlexBoxEnum.CenterHorizontal}
 `;
@@ -77,5 +79,6 @@ export const Description = styled.p`
 export const ContentWrapper = styled.div`
   width: 100%;
   height: 100%;
+  max-width: 23.25rem;
   ${FlexBoxEnum.StartStartVertical}
 `;
