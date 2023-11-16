@@ -108,7 +108,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
       step2.type === StoryTypeEnum.IMAGE_VOTING_ONLY_TEXT_RESP ||
       step2.type === StoryTypeEnum.COMBINED
     ) {
-      return step2.imageVoting.isImageAttached;
+      return !!step2.imageVoting.images.length;
     }
     return false;
   }, [step2]);
