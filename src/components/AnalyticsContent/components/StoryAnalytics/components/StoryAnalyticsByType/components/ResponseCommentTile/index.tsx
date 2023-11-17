@@ -45,7 +45,7 @@ const ResponseCommentTile = ({ data, index }: Props) => {
           <SecondaryInfo>{commentDate}</SecondaryInfo>
           <Contacts>
             <p>{data.email}</p>
-            <p>{data.phone}</p>
+            <p>+{data.phone}</p>
           </Contacts>
         </UserInfo>
       </UserInfoSection>
