@@ -6,11 +6,11 @@ const FeedbackerNavBar = () => {
   return (
     <FeedbackerNavWrapper>
       <LinkTxt>
-        <Link to="/about">About Feezbak</Link>
+        <Link to="https://www.feezbak.com/">About Feezbak</Link>
       </LinkTxt>
-      <LinkTxt>
-        <Link to="/blog">Blog</Link>
-      </LinkTxt>
+      {/*<LinkTxt>*/}
+      {/*  <Link to="/blog">Blog</Link>*/}
+      {/*</LinkTxt>*/}
       {!token && (
         <>
           <LinkTxt>

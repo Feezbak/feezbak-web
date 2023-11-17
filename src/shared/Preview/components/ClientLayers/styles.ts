@@ -22,7 +22,7 @@ export const LayerWrapper = styled(motion.div)`
   height: 100%;
   padding: 3rem 2rem;
   color: ${StyleEnums.white};
-  ${FlexBoxEnum.SpaceBetweenCenterVertical}
+  ${FlexBoxEnum.CenterVertical}
 `;
 
 export const LayerInfoContent = styled.div`
@@ -41,26 +41,27 @@ export const LayerInfoContent = styled.div`
 `;
 
 export const NextBtn = styled(Button)`
-  background: ${StyleEnums.black};
-  color: ${StyleEnums.white};
-  border-radius: 2rem;
-  padding: 0 3rem;
-  border: none;
-  outline: none;
-  font-weight: bold;
-  margin-right: 0.25rem;
-`;
-
-export const SkipBtn = styled(Button)`
   background: ${StyleEnums.white};
   color: ${StyleEnums.black};
   border-radius: 2rem;
   padding: 0 3rem;
-  border: 2px solid ${StyleEnums.black};
   outline: none;
   font-weight: bold;
+  margin-right: 0.25rem;
+  border: 1px solid ${StyleEnums.black};
+`;
+
+export const SkipBtn = styled(Button)`
+  background: ${StyleEnums.black};
+  color: ${StyleEnums.white};
+  border-radius: 2rem;
+  padding: 0 3rem;
+  outline: none;
+  font-weight: bold;
+  border: none;
 `;
 
 export const ActionsWrapper = styled.div`
+  margin-top: 1rem;
   ${FlexBoxEnum.CenterHorizontal}
 `;

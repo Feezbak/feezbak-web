@@ -5,13 +5,18 @@ import { Form, Button } from "antd";
 export const FormWrapper = styled(Form)`
   margin-top: 3rem;
   width: 100%;
-  max-height: 30rem;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  ${FlexBoxEnum.StartCenterVertical}
+  ${FlexBoxEnum.SpaceBetweenCenterVertical}
 `;
 
 export const SubmitBtn = styled(Button)`
   width: 100%;
   max-width: 23.25rem;
+`;
+
+export const FieldsWrapper = styled.div`
+  width: 100%;
+  ${FlexBoxEnum.StartCenterVertical}
 `;

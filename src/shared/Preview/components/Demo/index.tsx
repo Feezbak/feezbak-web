@@ -3,14 +3,9 @@ import { ColorPickerIcon, MakeSquareIcon } from "@/icons";
 import { AnimatePresence, motion } from "framer-motion";
 import ResponsePreviewBtn from "@/shared/ResponsePreviewBtn";
 import PreviewSlider from "@/shared/Preview/components/PreviewSlider";
-import { ResizableTextArea } from "@/shared";
 import CredentialsForm from "@/shared/Preview/components/CredentialsForm";
-import {
-  StoryStepEnum,
-  StoryTypeEnum,
-  StyleEnums,
-  ClientLayerEnums,
-} from "@/enums";
+import CommentDrawer from "@shared/Preview/components/CommentDrawer";
+import { CommentOutlined } from "@ant-design/icons";
 import DOMPurify from "dompurify";
 import useRequest from "@ahooksjs/use-request";
 import Slider from "react-slick";
@@ -22,6 +17,12 @@ import { handleResponse } from "./utils";
 import { message } from "antd";
 import { colorPickerMainColors, Image } from "@/constants";
 import { dynamicTextColor } from "@helpers/dynamicTextColor";
+import {
+  StoryStepEnum,
+  StoryTypeEnum,
+  StyleEnums,
+  ClientLayerEnums,
+} from "@/enums";
 import {
   opacityAnimation,
   opacityWithScaleAnimation,
@@ -35,6 +36,7 @@ import {
   ResponseTitleWrapper,
   SquareBtn,
   TitlePreview,
+  LeaveComment,
 } from "./styles";
 
 const Demo = ({
@@ -70,6 +72,7 @@ const Demo = ({
     images?.[0] || null
   );
   const [isCredentialDrawerOpen, setCredentialDrawerState] = useState(false);
+  const [isCommentDrawerOpen, setCommentDrawerState] = useState(false);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [respBtnId, setRespBtnId] = useState("");
 
@@ -268,6 +271,7 @@ const Demo = ({
         activeSlide?.id ?? ""
       );
     }
+    setCommentDrawerState(false);
   };
 
   const handleButtonFeedback = (actionData: any) => {
@@ -291,8 +295,9 @@ const Demo = ({
     }
   };
 
-  const handleCloseResizeText = () => {
+  const handleCloseCommentDrawer = () => {
     setRespBtnId("");
+    setCommentDrawerState(false);
   };
 
   const handleSetContactInfo = (contactToData: ContactToData[]) => {
@@ -315,6 +320,8 @@ const Demo = ({
     },
     [feedback, hasButtonsResp, activeSlide]
   );
+
+  console.log(respBtnId, isTextRespRequired, 6666);
 
   return (
     <>
@@ -385,6 +392,12 @@ const Demo = ({
               </AnimatePresence>
             </Responses>
           )}
+          {isTextRespRequired && !isCreationMode && (
+            <LeaveComment
+              onClick={() => setCommentDrawerState(true)}
+              icon={<CommentOutlined />}
+            ></LeaveComment>
+          )}
         </ResponseTitleWrapper>
         <AnimatePresence>
           {isColorPickerOpen && (
@@ -408,21 +421,12 @@ const Demo = ({
           isOpen={isCredentialDrawerOpen}
           onClose={() => setCredentialDrawerState(false)}
         />
-        <AnimatePresence initial={false}>
-          {((!isCreationMode && isTextRespRequired) || !!respBtnId?.length) && (
-            <ResizableTextArea
-              isFixed={true}
-              placeholder="Your comment here."
-              handleClose={handleCloseResizeText}
-              isFullHeight={false}
-              isDisabled={!!feedback?.isComplete}
-              positionProps={{ bottom: "8%" }}
-              isTextRespOnly={isTextRespRequired}
-              hasGoBack={type === StoryTypeEnum.COMBINED}
-              handleSend={handleTextFeedback}
-            />
-          )}
-        </AnimatePresence>
+        <CommentDrawer
+          isOpen={isCommentDrawerOpen || !!respBtnId.length}
+          handleClose={handleCloseCommentDrawer}
+          isDisabled={!!feedback?.isComplete && !isInfoCollectionAllowed}
+          handleSend={handleTextFeedback}
+        />
       </PreviewFlow>
     </>
   );
