@@ -1,9 +1,11 @@
+import { SyntheticEvent } from "react";
 import { Dropdown } from "antd";
 import { getMenuItems } from "./utils";
 import { ProfileAvatarIcon } from "@/icons";
 import { useRecoilValue } from "recoil";
 import { userData } from "@/recoil";
 import { useNavigate, useLocation } from "react-router-dom";
+import profileDefaultImgSrc from "@/assets/images/profile.png";
 import { CreatorAvatar, AvatarSkeleton, ProfileImage } from "./styles";
 
 interface Props {
@@ -15,6 +17,12 @@ const CreatorDropdownMenu = ({ handleLogout }: Props) => {
   const navigate = useNavigate();
   const location = useLocation();
   const items = getMenuItems(() => navigate("/profile"), handleLogout);
+
+  const handleBrokenImage = (
+    event: SyntheticEvent<HTMLImageElement, Event>
+  ) => {
+    event.currentTarget.src = profileDefaultImgSrc;
+  };
 
   return (
     <Dropdown
@@ -30,6 +38,7 @@ const CreatorDropdownMenu = ({ handleLogout }: Props) => {
         <AvatarSkeleton active={true} />
       ) : profileData?.avatarSrc?.length ? (
         <ProfileImage
+          onError={handleBrokenImage}
           src={`${process.env.REACT_APP_API_URL}/${profileData.avatarSrc}`}
         />
       ) : (
