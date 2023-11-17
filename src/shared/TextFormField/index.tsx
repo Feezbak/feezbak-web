@@ -1,5 +1,6 @@
 import { Controller, Control } from "react-hook-form";
-import { FormItem, CustomisedInput } from "./styles";
+import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
+import { FormItem, CustomisedInput, CustomisedInputPassword } from "./styles";
 import { ErrorMessage } from "@/shared";
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
   formControl: Control;
   inputHeight?: string;
   autoComplete?: string;
+  isPassword?: boolean;
 }
 
 const TextFormField = ({
@@ -20,6 +22,7 @@ const TextFormField = ({
   formControl,
   inputHeight = "3",
   autoComplete,
+  isPassword = false,
 }: Props) => {
   return (
     <FormItem
@@ -32,16 +35,30 @@ const TextFormField = ({
           {label} <sub>*</sub>
         </label>
         <Controller
-          render={({ field: { onChange, value } }) => (
-            <CustomisedInput
-              $height={inputHeight}
-              type={type}
-              size="large"
-              onChange={onChange}
-              value={value}
-              autoComplete={autoComplete}
-            />
-          )}
+          render={({ field: { onChange, value } }) =>
+            isPassword ? (
+              <CustomisedInputPassword
+                $height={inputHeight}
+                type={type}
+                size="large"
+                onChange={onChange}
+                value={value}
+                autoComplete={autoComplete}
+                iconRender={(visible) =>
+                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                }
+              />
+            ) : (
+              <CustomisedInput
+                $height={inputHeight}
+                type={type}
+                size="large"
+                onChange={onChange}
+                value={value}
+                autoComplete={autoComplete}
+              />
+            )
+          }
           name={name}
           control={formControl}
         />

@@ -32,3 +32,9 @@ export const FormItem = styled(Form.Item)`
 export const CustomisedInput = styled(Input)<{ $height: string }>`
   height: ${prop("$height")}rem;
 `;
+
+export const CustomisedInputPassword = styled(Input.Password)<{
+  $height: string;
+}>`
+  height: ${prop("$height")}rem;
+`;

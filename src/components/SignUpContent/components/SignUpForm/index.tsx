@@ -47,6 +47,8 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
         formError={formErrors["password"]?.message}
         label="Password"
         name="password"
+        type="password"
+        isPassword={true}
         formControl={formControl}
         autoComplete="new-password"
       />
