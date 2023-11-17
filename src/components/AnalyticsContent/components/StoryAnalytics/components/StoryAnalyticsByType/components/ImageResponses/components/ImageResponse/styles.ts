@@ -1,12 +1,17 @@
 import styled from "styled-components";
 import { Row, Col } from "antd";
-import { FlexBoxEnum, StyleEnums } from "@/enums";
+import { FlexBoxEnum, StyleEnums, BreakpointEnums } from "@/enums";
+import { inLessThan } from "@/helpers";
 
 export const ImageResponseContainer = styled(Row)`
   width: 100%;
   padding: 2rem 0;
   border-bottom: 1px solid ${StyleEnums.gray4};
   ${FlexBoxEnum.SpaceBetweenStartVertical}
+
+  ${inLessThan(BreakpointEnums.mobile)`
+    padding: 1rem 0;
+ `};
 
   &:last-child {
     border: none;
@@ -15,6 +20,9 @@ export const ImageResponseContainer = styled(Row)`
 
 export const ImageCol = styled(Col)`
   height: 15rem;
+  ${inLessThan(BreakpointEnums.mobile)`
+    margin-bottom: 1rem;
+ `};
 `;
 
 export const Image = styled.img`

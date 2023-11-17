@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { FlexBoxEnum, StyleEnums } from "@/enums";
+import { inLessThan } from "@/helpers";
+import { FlexBoxEnum, StyleEnums, BreakpointEnums } from "@/enums";
 import { Row } from "antd";
 
 export const ModalWrapper = styled(motion.div)`
@@ -13,6 +14,9 @@ export const ModalWrapper = styled(motion.div)`
   max-height: 80dvh;
   overflow-y: auto;
   position: relative;
+  ${inLessThan(BreakpointEnums.mobile)`
+    width: 95%;
+ `};
 `;
 
 export const ContentWrapper = styled(Row)`
