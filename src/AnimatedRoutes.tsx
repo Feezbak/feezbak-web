@@ -75,6 +75,7 @@ const AnimatedRoutes = () => {
         (pathname.includes("/create-story") ||
           pathname.includes("/story-details") ||
           pathname.includes("/dashboard") ||
+          pathname.includes("/analytics") ||
           pathname.includes("/profile"))
       ) {
         (async () => await getProfileData())();
