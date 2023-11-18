@@ -45,7 +45,6 @@ const ClientLayers = ({
         return (
           <TypeInfoLayer
             type={type}
-            handleSkip={handleCloseLayers}
             handleLayer={() =>
               setActiveLayer(
                 isMultySelectRequested
@@ -60,7 +59,6 @@ const ClientLayers = ({
       case ClientLayerEnums.MULTI_SELECT:
         return (
           <SelectionQuantityLayer
-            handleSkip={handleCloseLayers}
             handleLayer={() =>
               setActiveLayer(
                 isPIIRequested ? ClientLayerEnums.PII : ClientLayerEnums.CLOSE
@@ -71,7 +69,6 @@ const ClientLayers = ({
       case ClientLayerEnums.PII:
         return (
           <PIILayer
-            handleSkip={handleCloseLayers}
             handleLayer={() => setActiveLayer(ClientLayerEnums.CLOSE)}
           />
         );

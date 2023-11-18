@@ -321,8 +321,6 @@ const Demo = ({
     [feedback, hasButtonsResp, activeSlide]
   );
 
-  console.log(respBtnId, isTextRespRequired, 6666);
-
   return (
     <>
       <PreviewFlow
