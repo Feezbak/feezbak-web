@@ -20,3 +20,4 @@ export { ProductLogoWhite } from "./productLogoWhite";
 export { ProductLogoBlack } from "./productLogoBlack";
 export { AnalyticsIcon } from "./analyticsIcon";
 export { ProfileAvatarIcon } from "./profileAvatarIcon";
+export { CreatedByFeezBlackIcon } from "./createdByFeezBlackIcon";

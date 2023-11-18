@@ -12,7 +12,7 @@ export const LayersSelectionWrapper = styled(motion.div)`
   height: 100%;
   z-index: 3;
   border-radius: 2.75rem;
-  background: ${StyleEnums.primary};
+  background: ${StyleEnums.white};
   ${inLessThan(BreakpointEnums.mobile)`
      border-radius: 0;
   `}
@@ -22,30 +22,46 @@ export const LayerWrapper = styled(motion.div)`
   height: 100%;
   padding: 3rem 2rem;
   color: ${StyleEnums.white};
-  ${FlexBoxEnum.CenterVertical}
+  ${FlexBoxEnum.EndCenterVertical}
 `;
 
 export const LayerInfoContent = styled.div`
+  ${FlexBoxEnum.CenterVertical}
+  height: 100%;
   h2 {
     font-size: 1.8rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
     text-align: center;
+    color: ${StyleEnums.black};
+    font-size: 1.375rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    letter-spacing: -0.44px;
   }
 
   p {
     font-weight: 500;
-    font-size: 1.1rem;
-    line-height: 1.8rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
     text-align: center;
+    color: ${StyleEnums.gray2};
   }
 `;
 
-export const NextBtn = styled(Button)`
-  background: ${StyleEnums.white};
-  color: ${StyleEnums.black};
+export const LearnBtn = styled(Button)`
   border-radius: 2rem;
   padding: 0 3rem;
   outline: none;
+  font-weight: bold;
+  margin-right: 0.25rem;
+  border: 1px solid ${StyleEnums.black};
+`;
+
+export const NextBtn = styled(Button)`
+  border-radius: 2rem;
+  padding: 0 3rem;
+  outline: none;
+  width: 100%;
   font-weight: bold;
   margin-right: 0.25rem;
   border: 1px solid ${StyleEnums.black};
@@ -63,5 +79,11 @@ export const SkipBtn = styled(Button)`
 
 export const ActionsWrapper = styled.div`
   margin-top: 1rem;
+  width: 100%;
   ${FlexBoxEnum.CenterHorizontal}
+`;
+
+export const Illustration = styled.img`
+  width: 12.5rem;
+  margin-bottom: 1rem;
 `;

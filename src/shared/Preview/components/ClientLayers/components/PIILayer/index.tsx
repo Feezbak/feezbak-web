@@ -1,46 +1,35 @@
 import { opacityAnimation } from "@assets/framerAnimations";
+import CreatedBy from "../CreatedBy";
+import piiIllustartionSrc from "@images/data.png";
 import {
-  LayerWrapper,
   NextBtn,
+  LayerWrapper,
+  Illustration,
   ActionsWrapper,
-  SkipBtn,
   LayerInfoContent,
 } from "../../styles";
 
 interface Props {
   handleLayer: () => void;
-  handleSkip: () => void;
 }
 
-const PIILayer = ({ handleLayer, handleSkip }: Props) => {
+const PIILayer = ({ handleLayer }: Props) => {
   return (
     <LayerWrapper {...opacityAnimation}>
       <LayerInfoContent>
+        <Illustration src={piiIllustartionSrc} alt="pii image" />
         <p>
           <h2>Credentials Request! 📝</h2>
-          Feedback story creator kindly request that you provide some
-          credentials to establish a means of communication and ensure the
-          security and authenticity of our exchange. These credentials will
-          enable me to reach out to you directly and ensure that our
-          correspondence remains confidential.
-          <br />
-          Rest assured that the information you provide will be treated with the
-          utmost care and confidentiality. It will only be used for the purpose
-          of establishing communication for this feedback request.
-          <br />
-          <br />
-          By clicking on "Accept" button you will accept to provide your
-          credentials to be able to connect with you.
+          We'll need to ask for some of your personal information soon. Thanks
+          for understanding.
         </p>
       </LayerInfoContent>
       <ActionsWrapper>
         <NextBtn onClick={handleLayer} size="large">
-          Next
+          See what's next
         </NextBtn>
-        <SkipBtn onClick={handleSkip} size="large">
-          Skip {">>>"}
-        </SkipBtn>
       </ActionsWrapper>
+      <CreatedBy />
     </LayerWrapper>
   );
 };
