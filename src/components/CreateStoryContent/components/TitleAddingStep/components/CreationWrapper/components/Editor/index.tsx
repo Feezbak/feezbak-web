@@ -29,7 +29,7 @@ const Editor = () => {
   const [convertedContent, setConvertedContent] = useState(
     storyEditorConvertedContent
   );
-  const debouncedData = useDebounce(convertedContent, 1000);
+  const debouncedData = useDebounce(convertedContent, 500);
   const blocksFromHTML = convertFromHTML(step1.title);
   const [editorState, setEditorState] = useState(
     EditorState.createWithContent(

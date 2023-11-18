@@ -1,7 +1,7 @@
 {
   "name": "feezbak-web",
   "version": "0.1.0",
-  "description": "Feedback accumulating and managing web platform",
+  "description": "The ultimate feedbacks managing platform",
   "author": "Taron Vardanyan",
   "repository": {
     "type": "git",

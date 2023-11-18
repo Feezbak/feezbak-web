@@ -220,4 +220,4 @@ export const acceptedImageTypes = {
   "image/png": [],
 };
 
-export const maxImageSize = 5242880;
+export const maxImageSize = 1000000;
