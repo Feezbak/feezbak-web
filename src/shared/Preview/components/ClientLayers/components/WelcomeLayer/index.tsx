@@ -1,10 +1,11 @@
 import { opacityAnimation } from "@assets/framerAnimations";
+import CreatedBy from "../CreatedBy";
 import {
   LayerWrapper,
   LayerInfoContent,
   ActionsWrapper,
   SkipBtn,
-  NextBtn,
+  LearnBtn,
 } from "../../styles";
 
 interface Props {
@@ -22,13 +23,14 @@ const WelcomeLayer = ({ handleLayer, handleSkip }: Props) => {
         </p>
       </LayerInfoContent>
       <ActionsWrapper>
-        <NextBtn onClick={handleLayer} size="large">
+        <LearnBtn onClick={handleLayer} size="large" ghost={true}>
           Learn About Feezbak
-        </NextBtn>
+        </LearnBtn>
         <SkipBtn onClick={handleSkip} size="large">
           Give Feedback
         </SkipBtn>
       </ActionsWrapper>
+      <CreatedBy />
     </LayerWrapper>
   );
 };

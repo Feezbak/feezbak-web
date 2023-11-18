@@ -1,8 +1,9 @@
 import { opacityAnimation } from "@assets/framerAnimations";
+import CreatedBy from "../CreatedBy";
 import {
-  LayerWrapper,
   LayerInfoContent,
   ActionsWrapper,
+  LayerWrapper,
   NextBtn,
 } from "../../styles";
 
@@ -21,6 +22,7 @@ const SuccessLayer = () => {
           Go to Feezbak.com
         </NextBtn>
       </ActionsWrapper>
+      <CreatedBy />
     </LayerWrapper>
   );
 };

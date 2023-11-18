@@ -1,6 +1,6 @@
 import Dropzone from "react-dropzone";
 import { UploadFileIcon } from "@/icons";
-import { Spin } from "antd";
+import { message, Spin } from "antd";
 import { acceptedImageTypes, maxImageSize } from "@/constants";
 import { fileToDataUri } from "@helpers/fileHelpers";
 import { UploadWrapper, UploadIconWrapper } from "./styles";
@@ -23,12 +23,17 @@ const UploadArea = ({ handleUpload, loading, title, description }: Props) => {
     }
   };
 
+  const handleDropRejected = async () => {
+    message.error("Uploaded file size should be not bigger than 1mb!");
+  };
+
   return (
     <Dropzone
       onDrop={handleUploadedFile}
       multiple={true}
       accept={acceptedImageTypes}
       maxSize={maxImageSize}
+      onDropRejected={handleDropRejected}
     >
       {({ getRootProps, getInputProps }) => (
         <UploadWrapper {...getRootProps()}>
