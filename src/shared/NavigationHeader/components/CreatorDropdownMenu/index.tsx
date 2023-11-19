@@ -5,7 +5,7 @@ import { ProfileAvatarIcon } from "@/icons";
 import { useRecoilValue } from "recoil";
 import { userData } from "@/recoil";
 import { useNavigate, useLocation } from "react-router-dom";
-import profileDefaultImgSrc from "@/assets/images/profile.png";
+import profileDefaultImgSrc from "@images/profile.png";
 import { CreatorAvatar, AvatarSkeleton, ProfileImage } from "./styles";
 
 interface Props {
