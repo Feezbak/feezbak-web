@@ -17,7 +17,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: '16.x'
 
       - name: Install Dependencies
         run: yarn
@@ -38,10 +38,17 @@ jobs:
         id: subdomain
         run: echo "::set-output name=subdomain::pr-${{ github.event.pull_request.number }}"
 
+      - name: Debug Information
+        run: |
+            echo "Environment variables:"
+            env
+            echo "Content of ./build directory:"
+            ls -la ./build
+
       - name: Deploy to Surge
         run: |
           DEPLOYMENT_LINK=${{ github.actor }}-${{ steps.subdomain.outputs.subdomain }}.surge.sh
-          surge --project ./build --domain $DEPLOYMENT_LINK
+          surge --project ./build --domain $DEPLOYMENT_LINK --debug
           echo "DEPLOYMENT_LINK=$DEPLOYMENT_LINK" >> $GITHUB_ENV
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
