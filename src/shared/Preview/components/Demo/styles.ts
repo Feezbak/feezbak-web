@@ -23,7 +23,7 @@ export const PreviewFlow = styled(motion.div)<{
   background: ${prop("$background")};
   width: 100%;
   height: 100%;
-  border-radius: 3rem;
+  border-radius: 3.3rem;
   position: relative;
   ${FlexBoxEnum.EndCenterVertical}
   transition: 0.3s;
