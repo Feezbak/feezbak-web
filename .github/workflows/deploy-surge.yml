@@ -48,7 +48,7 @@ jobs:
       - name: Deploy to Surge
         run: |
           DEPLOYMENT_LINK=${{ github.actor }}-${{ steps.subdomain.outputs.subdomain }}.surge.sh
-          surge --project ./build --domain $DEPLOYMENT_LINK --debug
+          surge --project ./build --domain $DEPLOYMENT_LINK
           echo "DEPLOYMENT_LINK=$DEPLOYMENT_LINK" >> $GITHUB_ENV
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
@@ -56,7 +56,7 @@ jobs:
 
       - name: Comment on Pull Request
         run: |
-          echo "The deployment is available at: $DEPLOYMENT_LINK"
+          echo "The deployment is available at link: $DEPLOYMENT_LINK"
         shell: bash
 
       - name: Update Pull Request Description
