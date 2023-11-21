@@ -49,20 +49,13 @@ export const LayerInfoContent = styled.div`
 `;
 
 export const LearnBtn = styled(Button)`
-  border-radius: 2rem;
-  padding: 0 3rem;
   outline: none;
-  font-weight: bold;
   margin-right: 0.25rem;
-  border: 1px solid ${StyleEnums.black};
 `;
 
 export const NextBtn = styled(Button)`
-  border-radius: 2rem;
-  padding: 0 3rem;
   outline: none;
   width: 100%;
-  font-weight: bold;
   margin-right: 0.25rem;
   border: 1px solid ${StyleEnums.black};
 `;
@@ -70,10 +63,7 @@ export const NextBtn = styled(Button)`
 export const SkipBtn = styled(Button)`
   background: ${StyleEnums.black};
   color: ${StyleEnums.white};
-  border-radius: 2rem;
-  padding: 0 3rem;
   outline: none;
-  font-weight: bold;
   border: none;
 `;
 
