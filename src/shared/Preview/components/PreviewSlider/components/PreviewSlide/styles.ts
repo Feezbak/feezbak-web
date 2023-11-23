@@ -15,7 +15,7 @@ export const PoweredByWrapper = styled.div<{
   background-image: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, ${ifProp("$hasLayer", "0.65", "0")}) 100%
+      rgba(0, 0, 0, ${ifProp("$hasLayer", "0.35", "0")}) 100%
     ),
     url(${ifProp("$hasCover", prop("$imgSrc"), "")});
   background-position: ${ifProp("$isSquare", "top", "center")};
