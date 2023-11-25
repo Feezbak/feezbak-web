@@ -9,9 +9,19 @@ interface Props {
   label: string;
   name: keyof ContactsCollectingInputs;
   formControl: Control<ContactsCollectingInputs>;
+  isRequired?: boolean;
+  disabled?: boolean;
 }
 
-const PhoneFormField = ({ name, label, formError, formControl }: Props) => {
+const PhoneFormField = ({
+  name,
+  label,
+  formError,
+  formControl,
+  isRequired = false,
+  disabled = false,
+}: Props) => {
+  console.log(formControl._formValues, 7777);
   return (
     <FormItem
       name={name}
@@ -19,13 +29,15 @@ const PhoneFormField = ({ name, label, formError, formControl }: Props) => {
       help={formError && <ErrorMessage message={formError} />}
     >
       <div>
-        <label htmlFor="phone">
-          {label} <sub>*</sub>
+        <label htmlFor={name}>
+          {label} {isRequired && <sub>*</sub>}
         </label>
         <PhoneNumberInput
           name={name}
           defaultCountry="AM"
           control={formControl}
+          disabled={disabled}
+          rules={{ required: false }}
         />
       </div>
     </FormItem>

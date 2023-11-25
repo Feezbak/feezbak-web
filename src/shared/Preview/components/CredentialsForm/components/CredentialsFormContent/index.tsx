@@ -2,7 +2,6 @@ import { ContactToData } from "@shared/Preview/components/Demo/types";
 import { useContactCollectionForm } from "@/hooks";
 import { FormWrapper, SubmitBtn, FieldsWrapper } from "./styles";
 import { PhoneFormField, TextFormField } from "@/shared";
-import { isPossiblePhoneNumber } from "react-phone-number-input";
 
 interface Props {
   fields: string[];
@@ -17,17 +16,15 @@ const CredentialsFormContent = ({
   isLoading = false,
   sendContactInfo,
 }: Props) => {
-  const { submitForm, watch, formState, formControl, formErrors } =
+  const { submitForm, formState, formControl, formErrors } =
     useContactCollectionForm(sendContactInfo);
-  const phoneValue = watch("phone");
-  const isValidPhoneNumber =
-    phoneValue && isPossiblePhoneNumber(String(phoneValue));
 
   const formContent = fields.map((field, index) => {
     switch (field) {
       case "First Name":
         return (
           <TextFormField
+            disabled={isCreation}
             inputHeight="2.75"
             key={field}
             formError={formErrors["firstName"]?.message}
@@ -39,6 +36,7 @@ const CredentialsFormContent = ({
       case "Last Name":
         return (
           <TextFormField
+            disabled={isCreation}
             inputHeight="2.75"
             key={field}
             formError={formErrors["lastName"]?.message}
@@ -50,6 +48,7 @@ const CredentialsFormContent = ({
       case "Email Address":
         return (
           <TextFormField
+            disabled={isCreation}
             inputHeight="2.75"
             key={field}
             formError={formErrors["email"]?.message}
@@ -61,6 +60,7 @@ const CredentialsFormContent = ({
       case "Phone":
         return (
           <PhoneFormField
+            disabled={isCreation}
             key={field}
             formError={formErrors["phone"]?.message}
             label={field}
@@ -73,7 +73,7 @@ const CredentialsFormContent = ({
     }
   });
 
-  const isDisabeld = !isValidPhoneNumber || isCreation || !formState.isValid;
+  const isDisabeld = isCreation || !formState.isValid;
 
   return (
     <FormWrapper

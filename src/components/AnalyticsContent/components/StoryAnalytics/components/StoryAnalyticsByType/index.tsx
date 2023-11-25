@@ -64,6 +64,7 @@ const StoryAnalyticsByType = ({
           storyId={commentsModalData?.storyId}
           imageId={commentsModalData?.imageId}
           respBtnId={commentsModalData?.respBtnId}
+          closeModal={() => setCommentsModalData(null)}
         />
       </CustomModal>
     </StoryFeedbackWrapper>
