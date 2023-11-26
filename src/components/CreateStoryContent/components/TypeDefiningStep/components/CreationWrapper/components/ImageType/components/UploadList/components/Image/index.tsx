@@ -1,7 +1,7 @@
 import { useState, MouseEvent } from "react";
 import { TrashWhiteIcon } from "@/icons";
-import { usePresence, AnimatePresence } from "framer-motion";
-import { listItemAnimation, opacityAnimation } from "@assets/framerAnimations";
+import { AnimatePresence } from "framer-motion";
+import { opacityAnimation } from "@assets/framerAnimations";
 import { ImageBackgroundWrapper, DeleteBtnWrapper, DeleteBtn } from "./styles";
 
 interface Props {
@@ -13,15 +13,12 @@ interface Props {
 }
 
 const Image = ({ src, id, handleDelete, handleSelect, isSelected }: Props) => {
-  const [isPresent, safeToRemove] = usePresence();
   const [isHovered, setHoverState] = useState(false);
 
   const handleDeleteImage = (e: MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     handleDelete(id);
   };
-
-  const animations = listItemAnimation(isPresent, () => safeToRemove?.());
 
   return (
     <ImageBackgroundWrapper
@@ -30,7 +27,6 @@ const Image = ({ src, id, handleDelete, handleSelect, isSelected }: Props) => {
       onMouseEnter={() => setHoverState(true)}
       onMouseLeave={() => setHoverState(false)}
       onClick={() => handleSelect(src)}
-      {...animations}
     >
       <AnimatePresence initial={false}>
         {isHovered && (

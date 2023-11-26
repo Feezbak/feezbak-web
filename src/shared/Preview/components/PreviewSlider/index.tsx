@@ -1,6 +1,6 @@
 import { memo, forwardRef, useMemo } from "react";
 import Slider from "react-slick";
-import { getSlickSettings, Image } from "@/constants";
+import { getPreviewSlickSettings, Image } from "@/constants";
 import { ProductLogoWhite } from "@/icons";
 import PreviewSlide from "./components/PreviewSlide";
 import { useResponsive } from "@/hooks";
@@ -39,7 +39,7 @@ const PreviewSlider = (
         <ProductLogoWhite />
       </PoweredByFixed>
       <Slider
-        {...getSlickSettings(isLessThanMd)}
+        {...getPreviewSlickSettings(isLessThanMd)}
         ref={ref}
         afterChange={handleAfterChange}
       >
