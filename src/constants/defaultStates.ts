@@ -221,3 +221,10 @@ export const acceptedImageTypes = {
 };
 
 export const maxImageSize = 1000000;
+
+export const defaultContactForm = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: 0,
+};

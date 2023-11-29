@@ -1,9 +1,13 @@
 import { CreatedByWrapper } from "./styles";
 import { CreatedByFeezBlackIcon } from "@/icons";
 
-const CreatedBy = () => {
+interface Props {
+  margins: string;
+}
+
+const CreatedBy = ({ margins }: Props) => {
   return (
-    <CreatedByWrapper>
+    <CreatedByWrapper $margins={margins}>
       <p>Created by</p>
       <CreatedByFeezBlackIcon />
     </CreatedByWrapper>

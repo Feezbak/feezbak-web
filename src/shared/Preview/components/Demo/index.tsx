@@ -2,8 +2,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ColorPickerIcon, MakeSquareIcon } from "@/icons";
 import { AnimatePresence, motion } from "framer-motion";
 import ResponsePreviewBtn from "@/shared/ResponsePreviewBtn";
-import PreviewSlider from "@/shared/Preview/components/PreviewSlider";
-import CredentialsForm from "@/shared/Preview/components/CredentialsForm";
+import CreatedBy from "@shared/CreatedBy";
+import PreviewSlider from "@shared/Preview/components/PreviewSlider";
+import CredentialsForm from "@shared/Preview/components/CredentialsForm";
 import CommentDrawer from "@shared/Preview/components/CommentDrawer";
 import { CommentOutlined } from "@ant-design/icons";
 import DOMPurify from "dompurify";
@@ -15,7 +16,7 @@ import { useParams } from "react-router-dom";
 import { DemoProps, Feedback, ContactToData } from "./types";
 import { handleResponse } from "./utils";
 import { message } from "antd";
-import { colorPickerMainColors, Image } from "@/constants";
+import { colorPickerMainColors, Image, defaultContactForm } from "@/constants";
 import { dynamicTextColor } from "@helpers/dynamicTextColor";
 import {
   StoryStepEnum,
@@ -28,15 +29,16 @@ import {
   opacityWithScaleAnimation,
 } from "@assets/framerAnimations";
 import {
+  ResponseTitleWrapper,
+  ColorPickerWrapper,
   CircleColorPicker,
   ColorPickerBtn,
-  ColorPickerWrapper,
-  PreviewFlow,
-  Responses,
-  ResponseTitleWrapper,
-  SquareBtn,
   TitlePreview,
   LeaveComment,
+  PreviewFlow,
+  SeeFullBtn,
+  Responses,
+  SquareBtn,
 } from "./styles";
 
 const Demo = ({
@@ -75,20 +77,16 @@ const Demo = ({
   const [isCommentDrawerOpen, setCommentDrawerState] = useState(false);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [respBtnId, setRespBtnId] = useState("");
+  const [isFullContentVisible, setFullContentVisibilityState] = useState(
+    !isSquare
+  );
 
   const structureFeedbackPayload = (feedbackObj: Feedback) => {
     const feedbackData = structuredClone(feedbackObj);
     const guestData = feedbackData.contactToData;
     delete feedbackData.contactToData;
-    const guestPayloadData = guestData
-      ? {
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: 0,
-        }
-      : {};
-    guestData?.forEach((item: { field: string; value: string }) => {
+    const guestPayloadData = defaultContactForm;
+    guestData.forEach((item: { field: string; value: string }) => {
       if (item.field === "firstName") {
         guestPayloadData.firstName = item.value;
       } else if (item.field === "lastName") {
@@ -101,7 +99,7 @@ const Demo = ({
     });
     return {
       feedback: feedbackData,
-      guest: guestPayloadData,
+      guest: guestData ? guestPayloadData : {},
     };
   };
 
@@ -220,11 +218,6 @@ const Demo = ({
     [type]
   );
 
-  const isFullHeight = useMemo(
-    () => (isCreationMode && !isNotFirstStep) || isTextType || !isSquare,
-    [isNotFirstStep, isSquare, isTextType, isCreationMode]
-  );
-
   const isSquareBtnVisible = useMemo(
     () => isCreationMode && hasButtonsResp,
     [isCreationMode, hasButtonsResp]
@@ -327,7 +320,6 @@ const Demo = ({
         $hasBorder={!isCreationMode}
         $background={color}
         $hasOutline={hasOutline}
-        $isSquare={isSquare}
         $hasBorderRadius={!isCreationMode}
         onMouseLeave={() => flowMouseLeave?.(false)}
         onMouseEnter={() => flowMouseEnter?.(true)}
@@ -363,38 +355,45 @@ const Demo = ({
             images={images}
             hasCover={!!coverImgSrc?.length}
             hasLayer={hasLayer || !isCreationMode}
-            isSquare={isSquare}
+            isSquare={!isFullContentVisible}
           />
         )}
-        <ResponseTitleWrapper
-          $isFullHeight={isFullHeight}
-          $justifyContent={hasButtonsResp}
-        >
+        {!isCreationMode && (
+          <SeeFullBtn
+            ghost={true}
+            onClick={() => setFullContentVisibilityState((ps) => !ps)}
+          >
+            {isFullContentVisible ? "See Questions" : "See Full Image"}
+          </SeeFullBtn>
+        )}
+        <ResponseTitleWrapper>
           <TitlePreview
             dangerouslySetInnerHTML={createMarkup}
             $hasBtnResp={hasButtonsResp}
             $color={titleDynamicColor}
           />
-          {(isNotFirstStep || !isCreationMode) && hasButtonsResp && (
-            <Responses>
-              <AnimatePresence initial={false}>
-                {responseButtons.map((respBtn) => (
-                  <ResponsePreviewBtn
-                    disabled={generateGuestLoading || sendFeedbackLoading}
-                    isActive={checkActivity(respBtn.id)}
-                    key={respBtn.id}
-                    text={respBtn.text}
-                    action={() => handleButtonFeedback(respBtn)}
-                  />
-                ))}
-              </AnimatePresence>
-            </Responses>
-          )}
+          {isFullContentVisible &&
+            (isNotFirstStep || !isCreationMode) &&
+            hasButtonsResp && (
+              <Responses>
+                <AnimatePresence initial={false}>
+                  {responseButtons.map((respBtn) => (
+                    <ResponsePreviewBtn
+                      disabled={generateGuestLoading || sendFeedbackLoading}
+                      isActive={checkActivity(respBtn.id)}
+                      key={respBtn.id}
+                      text={respBtn.text}
+                      action={() => handleButtonFeedback(respBtn)}
+                    />
+                  ))}
+                </AnimatePresence>
+              </Responses>
+            )}
           {isTextRespRequired && !isCreationMode && (
             <LeaveComment
               onClick={() => setCommentDrawerState(true)}
               icon={<CommentOutlined />}
-            ></LeaveComment>
+            />
           )}
         </ResponseTitleWrapper>
         <AnimatePresence>
@@ -425,6 +424,7 @@ const Demo = ({
           isDisabled={!!feedback?.isComplete && !isInfoCollectionAllowed}
           handleSend={handleTextFeedback}
         />
+        <CreatedBy margins="2.75rem 0 1.25rem 0" />
       </PreviewFlow>
     </>
   );

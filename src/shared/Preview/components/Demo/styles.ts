@@ -16,7 +16,6 @@ export const iconBtnStyles = css`
 export const PreviewFlow = styled(motion.div)<{
   readonly $background: string;
   readonly $hasOutline: boolean;
-  readonly $isSquare: boolean;
   readonly $hasBorderRadius: boolean;
   readonly $hasBorder: boolean;
 }>`
@@ -117,24 +116,17 @@ export const ColorPickerWrapper = styled(motion.div)`
   ${FlexBoxEnum.JustifyEndHorizontal}
 `;
 
-export const ResponseTitleWrapper = styled.div<{
-  readonly $isFullHeight: boolean;
-  readonly $justifyContent: boolean;
-}>`
+export const ResponseTitleWrapper = styled.div`
   transition: 0.3s;
   width: 80%;
   display: flex;
   border-radius: 2.5rem;
-  padding: ${ifProp("$justifyContent", "76% 0 8% 0", "inherit")};
-  justify-content: ${ifProp("$justifyContent", "space-between", "center")};
-  align-items: center;
-  flex-direction: column;
-  min-height: ${ifProp("$isFullHeight", "100%", "55%")};
+  ${FlexBoxEnum.EndCenterVertical}
 `;
 
 export const Responses = styled.div`
   width: 80%;
-  margin: 1.5rem 0 1.25rem 0;
+  margin-top: 1.5rem;
   ${FlexBoxEnum.CenterVertical}
 `;
 
@@ -155,4 +147,14 @@ export const LeaveComment = styled(Button)`
     font-size: 2.25rem;
     color: ${StyleEnums.black};
   }
+`;
+
+export const SeeFullBtn = styled(Button)`
+  margin-bottom: 0.75rem;
+  border-radius: 12.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1rem;
+  letter-spacing: -0.28px;
+  height: 2.25rem;
 `;

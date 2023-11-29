@@ -3,16 +3,16 @@ import { FlexBoxEnum, StyleEnums } from "@/enums";
 import { ifProp } from "@/helpers";
 
 export const SliderContainer = styled.div<{
-  readonly $isCreationMode: boolean;
+  readonly $isSquare: boolean;
   readonly $isFeedbackerMobile: boolean;
 }>`
   ${FlexBoxEnum.SpaceBetweenCenterVertical}
   position: absolute;
-  width: ${ifProp("$isCreationMode", "auto", "100%")};
-  height: ${ifProp("$isCreationMode", "95", "100")}%;
-  top: ${ifProp("$isCreationMode", "1.25rem", "unset")};
-  left: ${ifProp("$isCreationMode", "1.25rem", "unset")};
-  right: ${ifProp("$isCreationMode", "1.25rem", "unset")};
+  width: ${ifProp("$isSquare", "auto", "100%")};
+  height: ${ifProp("$isSquare", "95", "100")}%;
+  top: ${ifProp("$isSquare", "1.25rem", "unset")};
+  left: ${ifProp("$isSquare", "1.25rem", "unset")};
+  right: ${ifProp("$isSquare", "1.25rem", "unset")};
   margin: 0 auto;
   border-radius: 2rem;
 
@@ -48,7 +48,7 @@ export const SliderContainer = styled.div<{
   }
 
   .slick-dots {
-    bottom: 0.85rem;
+    bottom: ${ifProp("$isSquare", "3.375", "4.5")}rem;
 
     li {
       opacity: 0.4;
@@ -66,22 +66,5 @@ export const SliderContainer = styled.div<{
       background: ${StyleEnums.white};
       opacity: 1;
     }
-  }
-`;
-
-export const PoweredByFixed = styled.div`
-  position: fixed;
-  height: unset !important;
-  z-index: 3;
-  ${FlexBoxEnum.CenterVertical}
-
-  p {
-    margin: 1.3rem 0 0.45rem 0;
-    color: ${StyleEnums.white};
-    font-weight: 600;
-    font-size: 0.563rem;
-    line-height: 0.75rem;
-    text-align: center;
-    letter-spacing: 0.25rem;
   }
 `;

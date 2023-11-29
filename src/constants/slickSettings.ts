@@ -1,7 +1,10 @@
-export const getPreviewSlickSettings = (isMobile: boolean) => ({
+export const getPreviewSlickSettings = (
+  isMobile: boolean,
+  isSquare: boolean
+) => ({
   dots: true,
   infinite: false,
-  arrows: !isMobile,
+  arrows: !isMobile && !isSquare,
   speed: 300,
   slidesToShow: 1,
   slidesToScroll: 1,

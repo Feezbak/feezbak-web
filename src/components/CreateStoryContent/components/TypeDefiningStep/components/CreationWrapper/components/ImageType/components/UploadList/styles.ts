@@ -5,6 +5,7 @@ import { FlexBoxEnum, BreakpointEnums } from "@/enums";
 export const UploadListWrapper = styled.div`
   margin: 0 0 0 1rem;
   overflow: auto;
+  width: 100%;
   overflow-y: hidden;
 
   .upload-list-slider {

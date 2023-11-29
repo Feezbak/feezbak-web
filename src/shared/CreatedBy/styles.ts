@@ -1,9 +1,11 @@
 import styled from "styled-components";
+import { prop } from "@/helpers";
 import { FlexBoxEnum, StyleEnums } from "@/enums";
 
-export const CreatedByWrapper = styled.div`
+export const CreatedByWrapper = styled.div<{ readonly $margins: string }>`
   width: 100%;
-  margin-top: 1rem;
+  z-index: 5;
+  margin: ${prop("$margins")};
   ${FlexBoxEnum.CenterHorizontal}
 
   p {
