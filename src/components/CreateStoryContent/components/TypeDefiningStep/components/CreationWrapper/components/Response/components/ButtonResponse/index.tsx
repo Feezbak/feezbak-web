@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import RespButton from "./components/RespButton";
-import { AnimatePresence } from "framer-motion";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { StoryCreationContext } from "@/context";
 import uuid from "react-uuid";
@@ -47,17 +46,15 @@ const ButtonResponse = () => {
   return (
     <ResponseListAndBtnContainer {...opacityAnimation}>
       <ResponseBtnList>
-        <AnimatePresence initial={false}>
-          {respBtnState.map(({ id, text }, index) => (
-            <RespButton
-              deleteItem={handleDeleteRespBtn}
-              key={id}
-              textContent={text}
-              index={index}
-              sendTextUpdate={handleTextUpdate}
-            />
-          ))}
-        </AnimatePresence>
+        {respBtnState.map(({ id, text }, index) => (
+          <RespButton
+            deleteItem={handleDeleteRespBtn}
+            key={id}
+            textContent={text}
+            index={index}
+            sendTextUpdate={handleTextUpdate}
+          />
+        ))}
       </ResponseBtnList>
       <AddNewRespBtn
         type="default"
