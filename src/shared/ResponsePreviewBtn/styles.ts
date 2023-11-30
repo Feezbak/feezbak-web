@@ -31,15 +31,19 @@ export const ResponsePreviewButton = styled(Button)<{
   border-radius: 5rem;
   font-size: 1.25rem;
   font-weight: 500;
-  line-height: 1.5rem;
+  line-height: 1.25rem;
   letter-spacing: -0.4px;
   height: 3.25rem;
   width: 100%;
   ${FlexBoxEnum.CenterVertical}
-  border: 2px solid ${ifProp("$isActive", StyleEnums.white, StyleEnums.black)};
+  border: 1px solid ${ifProp("$isActive", StyleEnums.white, StyleEnums.black)};
   color: ${ifProp("$isActive", StyleEnums.white, StyleEnums.black)};
 
   &:disabled {
     background: ${StyleEnums.gray5};
+  }
+
+  &:hover {
+    color: ${StyleEnums.black} !important;
   }
 `;
