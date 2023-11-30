@@ -11,7 +11,7 @@ export const TemplateWrapper = styled.div<{
 `;
 
 export const Title = styled.p<{
-  readonly $color: string;
+  readonly $color: StyleEnums;
 }>`
   font-family: ${StyleEnums.fontFamilyExtraBold};
   font-size: 2.5rem;
@@ -35,7 +35,7 @@ export const QRcontainer = styled.div`
 `;
 
 export const PoweredBy = styled.div<{
-  readonly $color: string;
+  readonly $color: StyleEnums;
 }>`
   ${FlexBoxEnum.CenterVertical}
 

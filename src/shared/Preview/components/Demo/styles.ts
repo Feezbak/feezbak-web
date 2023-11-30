@@ -22,7 +22,7 @@ export const PreviewFlow = styled(motion.div)<{
   background: ${prop("$background")};
   width: 100%;
   height: 100%;
-  border-radius: 3.3rem;
+  border-radius: 3rem;
   position: relative;
   ${FlexBoxEnum.EndCenterVertical}
   transition: 0.3s;
@@ -40,7 +40,7 @@ export const PreviewFlow = styled(motion.div)<{
 `;
 
 export const TitlePreview = styled(motion.div)<{
-  readonly $color: string;
+  readonly $color: StyleEnums;
   readonly $hasBtnResp: boolean;
 }>`
   user-select: none;
@@ -124,7 +124,7 @@ export const ResponseTitleWrapper = styled.div`
   ${FlexBoxEnum.EndCenterVertical}
 `;
 
-export const Responses = styled.div`
+export const Responses = styled(motion.div)`
   width: 80%;
   margin-top: 1.5rem;
   ${FlexBoxEnum.CenterVertical}
@@ -149,7 +149,10 @@ export const LeaveComment = styled(Button)`
   }
 `;
 
-export const SeeFullBtn = styled(Button)`
+export const SeeFullBtn = styled(Button)<{
+  readonly $bgColor: StyleEnums | string;
+  readonly $color: StyleEnums;
+}>`
   margin-bottom: 0.75rem;
   border-radius: 12.5rem;
   font-size: 0.875rem;
@@ -157,4 +160,8 @@ export const SeeFullBtn = styled(Button)`
   line-height: 1rem;
   letter-spacing: -0.28px;
   height: 2.25rem;
+  background-color: ${prop("$bgColor")} !important;
+  color: ${prop("$color")} !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
 `;

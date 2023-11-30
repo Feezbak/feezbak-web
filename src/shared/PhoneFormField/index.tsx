@@ -21,7 +21,6 @@ const PhoneFormField = ({
   isRequired = false,
   disabled = false,
 }: Props) => {
-  console.log(formControl._formValues, 7777);
   return (
     <FormItem
       name={name}

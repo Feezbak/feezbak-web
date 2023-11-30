@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button } from "antd";
-import { StyleEnums } from "@/enums";
+import { FlexBoxEnum, StyleEnums } from "@/enums";
 import { motion } from "framer-motion";
 import { ifProp } from "@/helpers";
 
@@ -25,16 +25,17 @@ export const AnimationWrapper = styled(motion.div)`
 export const ResponsePreviewButton = styled(Button)<{
   readonly $isActive: boolean;
 }>`
-  padding: 0.72rem 1.5rem;
+  padding: 0.875rem 1.25rem;
   outline: none;
   background: ${ifProp("$isActive", StyleEnums.primary, StyleEnums.white)};
   border-radius: 5rem;
-  font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
+  font-weight: 500;
   line-height: 1.5rem;
-  letter-spacing: -0.02em;
-  height: 3rem;
+  letter-spacing: -0.4px;
+  height: 3.25rem;
   width: 100%;
+  ${FlexBoxEnum.CenterVertical}
   border: 2px solid ${ifProp("$isActive", StyleEnums.white, StyleEnums.black)};
   color: ${ifProp("$isActive", StyleEnums.white, StyleEnums.black)};
 

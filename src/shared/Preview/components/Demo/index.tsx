@@ -174,11 +174,6 @@ const Demo = ({
     [currentStep]
   );
 
-  const titleDynamicColor = useMemo(
-    () => dynamicTextColor(color).color,
-    [color]
-  );
-
   const createMarkup = useMemo(() => {
     return {
       __html:
@@ -314,6 +309,12 @@ const Demo = ({
     [feedback, hasButtonsResp, activeSlide]
   );
 
+  const seeFullBtnBckg: StyleEnums | string = useMemo(() => {
+    return isFullContentVisible
+      ? "rgba(255, 255, 255, 0.2)"
+      : dynamicTextColor(color).color;
+  }, [color, isFullContentVisible]);
+
   return (
     <>
       <PreviewFlow
@@ -360,7 +361,13 @@ const Demo = ({
         )}
         {!isCreationMode && (
           <SeeFullBtn
-            ghost={true}
+            $bgColor={seeFullBtnBckg}
+            $color={
+              isFullContentVisible
+                ? StyleEnums.white
+                : dynamicTextColor(seeFullBtnBckg as string).color
+            }
+            ghost={!isFullContentVisible}
             onClick={() => setFullContentVisibilityState((ps) => !ps)}
           >
             {isFullContentVisible ? "See Questions" : "See Full Image"}
@@ -370,12 +377,16 @@ const Demo = ({
           <TitlePreview
             dangerouslySetInnerHTML={createMarkup}
             $hasBtnResp={hasButtonsResp}
-            $color={titleDynamicColor}
+            $color={dynamicTextColor(color).color}
           />
           {isFullContentVisible &&
             (isNotFirstStep || !isCreationMode) &&
             hasButtonsResp && (
-              <Responses>
+              <Responses
+                initial={{ y: -100 }}
+                animate={{ y: 0 }}
+                transition={{ type: "spring", duration: 1, stiffness: 200 }}
+              >
                 <AnimatePresence initial={false}>
                   {responseButtons.map((respBtn) => (
                     <ResponsePreviewBtn
