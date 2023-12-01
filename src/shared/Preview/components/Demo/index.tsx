@@ -315,6 +315,11 @@ const Demo = ({
       : dynamicTextColor(color).color;
   }, [color, isFullContentVisible]);
 
+  const isSquareContent = useMemo(
+    () => (isCreationMode ? isSquare : !isFullContentVisible),
+    [isCreationMode, isSquare, isFullContentVisible]
+  );
+
   return (
     <>
       <PreviewFlow
@@ -356,7 +361,7 @@ const Demo = ({
             images={images}
             hasCover={!!coverImgSrc?.length}
             hasLayer={hasLayer || !isCreationMode}
-            isSquare={!isFullContentVisible}
+            isSquare={isSquareContent}
           />
         )}
         {!isCreationMode && (
