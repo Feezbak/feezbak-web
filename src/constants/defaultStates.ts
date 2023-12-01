@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { StoryTypeEnum, StyleEnums, LinkShareEnum } from "@/enums";
 
 export const responseBtnListDefaultState = [
@@ -228,3 +229,12 @@ export const defaultContactForm = {
   email: "",
   phone: 0,
 };
+
+export const getContentNotificationConfig = (icon: ReactNode) => ({
+  message: "Noticed Some Changes",
+  description:
+    "You currently made some changes and We’re pretty sure that it looks way nicer now!",
+  duration: 1,
+  placement: "topRight",
+  icon,
+});

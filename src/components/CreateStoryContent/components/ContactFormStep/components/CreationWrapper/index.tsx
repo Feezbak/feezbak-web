@@ -1,12 +1,13 @@
-import { useContext, useCallback } from "react";
+import { useContext } from "react";
 import { StoryCreationContext } from "@/context";
+import { getContentNotificationConfig } from "@/constants";
 import { CreationFlowFooter, CreationFlowHeader } from "@/shared";
-import { notification, message } from "antd";
+import { notification, message, NotificationArgsProps } from "antd";
 import { AnanasOnBikeIcon } from "@/icons";
 import useRequest from "@ahooksjs/use-request";
 import { useParams, useNavigate } from "react-router-dom";
 import { saveStoryFields } from "@/api";
-import FeedbackShareAndGetSettings from "./components/FeedbackShareAndGetSettings";
+import UserInfoCollect from "./components/UserInfoCollect";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
 
 interface Props {
@@ -18,17 +19,8 @@ const CreationWrapper = ({ handleDemo }: Props) => {
   const navigate = useNavigate();
   const [api, contextHolder] = notification.useNotification();
   const { currentStep, setPrevStep, step3 } = useContext(StoryCreationContext);
-
-  const openNotification = useCallback(() => {
-    api.open({
-      message: "Noticed Some Changes",
-      description:
-        "You currently made some changes and We’re pretty sure that it looks way nicer now!",
-      duration: 1,
-      placement: "topRight",
-      icon: <AnanasOnBikeIcon />,
-    });
-  }, [api]);
+  const apiConfig = getContentNotificationConfig(<AnanasOnBikeIcon />);
+  const openNotification = () => api.open(apiConfig as NotificationArgsProps);
 
   const { run: runSaveStoryFields, loading: isLoading } = useRequest(
     (payload) => saveStoryFields(payload),
@@ -63,7 +55,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
   return (
     <CreationFlowWrapper xs={24} sm={24} md={24} lg={14} xl={13} xxl={12}>
       <CreationFlowHeader handleDemo={handleDemo} />
-      <FeedbackShareAndGetSettings />
+      <UserInfoCollect />
       <CreationFlowFooter
         nextLoading={isLoading}
         prevBtnActionHandler={handleGoToPrevStep}

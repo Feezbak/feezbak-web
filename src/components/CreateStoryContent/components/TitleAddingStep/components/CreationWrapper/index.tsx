@@ -1,9 +1,9 @@
-import { useContext, useCallback } from "react";
+import { useContext } from "react";
 import Editor from "./components/Editor";
 import { AnanasOnBikeIcon } from "@/icons";
 import { StoryCreationContext } from "@/context";
-import { storyDefaultState } from "@/constants";
-import { notification, message } from "antd";
+import { getContentNotificationConfig, storyDefaultState } from "@/constants";
+import { notification, message, NotificationArgsProps } from "antd";
 import { saveStoryFields } from "@/api";
 import { useParams } from "react-router-dom";
 import { useTextFromHTML } from "@/hooks";
@@ -20,17 +20,8 @@ const CreationWrapper = ({ handleDemo }: Props) => {
   const [api, contextHolder] = notification.useNotification();
   const { currentStep, step1, setNextStep } = useContext(StoryCreationContext);
   const titleText = useTextFromHTML(step1.title);
-
-  const openNotification = useCallback(() => {
-    api.open({
-      message: "Noticed Some Changes",
-      description:
-        "You currently made some changes and We’re pretty sure that it looks way nicer now!",
-      duration: 1,
-      placement: "topRight",
-      icon: <AnanasOnBikeIcon />,
-    });
-  }, [api]);
+  const apiConfig = getContentNotificationConfig(<AnanasOnBikeIcon />);
+  const openNotification = () => api.open(apiConfig as NotificationArgsProps);
 
   const { run: runSaveStoryFields, loading: isLoading } = useRequest(
     (payload) => saveStoryFields(payload),
@@ -42,7 +33,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
           setTimeout(() => setNextStep(), 1000);
         }
       },
-      onError: (error: any) => {
+      onError: async (error: any) => {
         message.error(error?.response?.data?.message);
       },
     }
