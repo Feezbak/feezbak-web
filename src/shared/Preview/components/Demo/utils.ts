@@ -133,7 +133,7 @@ export const handleResponse = (
         cleanSavedRespBtnId?.();
       }
       slideToNext();
-    } else if (!isMultiple) {
+    } else {
       if (type === StoryTypeEnum.COMBINED) {
         cleanSavedRespBtnId?.();
       }
