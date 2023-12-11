@@ -131,9 +131,11 @@ export const handleResponse = (
     if (isMultiple) {
       if (type === StoryTypeEnum.COMBINED) {
         cleanSavedRespBtnId?.();
-        slideToNext();
-      } else {
-        slideToNext();
+      }
+      slideToNext();
+    } else {
+      if (type === StoryTypeEnum.COMBINED) {
+        cleanSavedRespBtnId?.();
       }
     }
   }
