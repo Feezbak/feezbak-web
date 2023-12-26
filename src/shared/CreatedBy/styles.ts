@@ -7,11 +7,11 @@ export const CreatedByWrapper = styled.div<{ readonly $margins: string }>`
   z-index: 5;
   margin: ${prop("$margins")};
   ${FlexBoxEnum.CenterHorizontal}
+`;
 
-  p {
-    color: ${StyleEnums.black};
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    margin-right: 0.25rem;
-  }
+export const CreatedByText = styled.p<{ readonly $color: StyleEnums }>`
+  color: ${prop("$color")};
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-right: 0.25rem;
 `;

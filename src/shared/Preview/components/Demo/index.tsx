@@ -440,7 +440,11 @@ const Demo = ({
           isDisabled={!!feedback?.isComplete && !isInfoCollectionAllowed}
           handleSend={handleTextFeedback}
         />
-        <CreatedBy margins={`2.75rem 0 ${isCreationMode ? 2.25 : 1.25}rem 0`} />
+        <CreatedBy
+          isDark={dynamicTextColor(color).isDark}
+          color={dynamicTextColor(color).color}
+          margins={`2.75rem 0 ${isCreationMode ? 2.25 : 1.25}rem 0`}
+        />
       </PreviewFlow>
     </>
   );

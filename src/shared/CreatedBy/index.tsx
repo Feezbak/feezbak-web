@@ -1,15 +1,22 @@
-import { CreatedByWrapper } from "./styles";
-import { CreatedByFeezBlackIcon } from "@/icons";
+import { CreatedByFeezBlackIcon, CreatedByFeezWhiteIcon } from "@/icons";
+import { CreatedByWrapper, CreatedByText } from "./styles";
+import { StyleEnums } from "@/enums";
 
 interface Props {
   margins: string;
+  color?: StyleEnums;
+  isDark?: boolean;
 }
 
-const CreatedBy = ({ margins }: Props) => {
+const CreatedBy = ({
+  margins,
+  color = StyleEnums.black,
+  isDark = true,
+}: Props) => {
   return (
     <CreatedByWrapper $margins={margins}>
-      <p>Created by</p>
-      <CreatedByFeezBlackIcon />
+      <CreatedByText $color={color}>Created by</CreatedByText>
+      {isDark ? <CreatedByFeezBlackIcon /> : <CreatedByFeezWhiteIcon />}
     </CreatedByWrapper>
   );
 };

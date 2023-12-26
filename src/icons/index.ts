@@ -1,4 +1,5 @@
 export { CreatedByFeezBlackIcon } from "./createdByFeezBlackIcon";
+export { CreatedByFeezWhiteIcon } from "./createdByFeezWhiteIcon";
 export { ProfileAvatarIcon } from "./profileAvatarIcon";
 export { AnanasOnBikeIcon } from "./ananasOnBikeIcon";
 export { DeleteIconGrayBg } from "./deleteIconGrayBg";
