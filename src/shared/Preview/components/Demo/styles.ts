@@ -140,8 +140,7 @@ export const LeaveComment = styled(Button)`
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   border: none;
-  position: absolute;
-  bottom: 2rem;
+  margin-top: 1rem;
 
   svg {
     font-size: 2.25rem;

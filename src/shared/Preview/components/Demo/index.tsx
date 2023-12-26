@@ -364,7 +364,7 @@ const Demo = ({
             isSquare={isSquareContent}
           />
         )}
-        {!isCreationMode && (
+        {!isTextType && !isCreationMode && (
           <SeeFullBtn
             $bgColor={seeFullBtnBckg}
             $color={
@@ -384,6 +384,12 @@ const Demo = ({
             $hasBtnResp={hasButtonsResp}
             $color={dynamicTextColor(color).color}
           />
+          {isTextRespRequired && !isCreationMode && (
+            <LeaveComment
+              onClick={() => setCommentDrawerState(true)}
+              icon={<CommentOutlined />}
+            />
+          )}
           {isFullContentVisible &&
             (isNotFirstStep || !isCreationMode) &&
             hasButtonsResp && (
@@ -405,12 +411,6 @@ const Demo = ({
                 </AnimatePresence>
               </Responses>
             )}
-          {isTextRespRequired && !isCreationMode && (
-            <LeaveComment
-              onClick={() => setCommentDrawerState(true)}
-              icon={<CommentOutlined />}
-            />
-          )}
         </ResponseTitleWrapper>
         <AnimatePresence>
           {isColorPickerOpen && (
