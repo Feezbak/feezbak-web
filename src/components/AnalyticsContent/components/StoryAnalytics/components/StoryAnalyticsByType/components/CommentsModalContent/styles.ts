@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { inLessThan } from "@/helpers";
-import { FlexBoxEnum, StyleEnums, BreakpointEnums } from "@/enums";
 import { Row } from "antd";
+import { FlexBoxEnum, StyleEnums, BreakpointEnums } from "@/enums";
 
 export const ModalWrapper = styled(motion.div)`
   background: ${StyleEnums.white};
@@ -11,6 +11,7 @@ export const ModalWrapper = styled(motion.div)`
   box-shadow: 0 17px 40px rgba(74, 68, 143, 0.06);
   border-radius: 1.25rem;
   width: 65%;
+  max-width: 47.125rem;
   max-height: 80dvh;
   overflow-y: auto;
   position: relative;

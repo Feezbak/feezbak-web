@@ -10,9 +10,6 @@ export const InfoFormWrapper = styled(motion.div)`
 
   ul {
     height: 100%;
-    max-height: 16.5rem;
-    overflow-x: hidden;
-    overflow-y: auto;
     padding: 0;
     list-style: none;
     ${inLessThan(BreakpointEnums.mobile)`

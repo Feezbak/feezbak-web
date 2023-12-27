@@ -1,7 +1,6 @@
-import { useState, ChangeEvent } from "react";
-import { listItemAnimation } from "@assets/framerAnimations";
+import { ChangeEvent, useEffect, useRef, memo } from "react";
+import { InputRef } from "antd";
 import { ResponseButtonWrapper, DeleteRespBtn, ResponseInput } from "./styles";
-import { usePresence } from "framer-motion";
 import { TrashWhiteIcon } from "@/icons";
 
 interface Props {
@@ -17,19 +16,23 @@ const RespButton = ({
   deleteItem,
   index,
 }: Props) => {
-  const [isPresent, safeToRemove] = usePresence();
-  const [btnText, setBtnText] = useState(textContent);
+  const respInputRef = useRef<InputRef>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setBtnText(e.target.value);
     sendTextUpdate(index, e.target.value);
   };
 
-  const animations = listItemAnimation(isPresent, () => safeToRemove?.());
+  useEffect(() => {
+    respInputRef?.current?.focus();
+  }, []);
 
   return (
-    <ResponseButtonWrapper {...animations} transition={{ duration: 0.2 }}>
-      <ResponseInput value={btnText} onChange={handleChange} />
+    <ResponseButtonWrapper>
+      <ResponseInput
+        ref={respInputRef}
+        value={textContent}
+        onChange={handleChange}
+      />
       {!!index && (
         <DeleteRespBtn
           ghost={true}
@@ -41,4 +44,4 @@ const RespButton = ({
   );
 };
 
-export default RespButton;
+export default memo(RespButton);

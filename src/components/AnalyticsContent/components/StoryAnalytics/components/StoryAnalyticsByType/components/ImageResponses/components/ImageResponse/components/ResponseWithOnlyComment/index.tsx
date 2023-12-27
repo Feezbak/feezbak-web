@@ -16,12 +16,8 @@ const ResponseWithOnlyComment = ({
 }: Props) => {
   return (
     <ResponseCommentsWrapper xs={24} sm={24} md={17} lg={18} xl={18} xxl={18}>
-      {data?.map((commentData, index) => (
-        <ResponseCommentTile
-          key={commentData._id}
-          data={commentData}
-          index={index}
-        />
+      {data?.map((commentData) => (
+        <ResponseCommentTile key={commentData._id} data={commentData} />
       ))}
       {(totalCommentCount ?? 0) > 3 && (
         <CommentsForChoiceBtn $hasMargin={true} onClick={handleSeeMoreComments}>

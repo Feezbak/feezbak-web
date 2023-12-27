@@ -14,7 +14,7 @@ import {
 
 const TitleAddingStep = lazy(() => import("../TitleAddingStep"));
 const TypeDefiningStep = lazy(() => import("../TypeDefiningStep"));
-const ShareSettingsStep = lazy(() => import("../ShareSettingsStep"));
+const ContactFormStep = lazy(() => import("../ContactFormStep"));
 
 const StepSelector = () => {
   usePageLeaveDetection();
@@ -103,7 +103,7 @@ const StepSelector = () => {
   } else if (currentStep === StoryStepEnum.TYPE_STEP) {
     return <TypeDefiningStep />;
   } else if (currentStep === StoryStepEnum.SHARE_SETTINGS_STEP) {
-    return <ShareSettingsStep />;
+    return <ContactFormStep />;
   } else if (!currentStep) {
     return <Spin size="large" />;
   } else {

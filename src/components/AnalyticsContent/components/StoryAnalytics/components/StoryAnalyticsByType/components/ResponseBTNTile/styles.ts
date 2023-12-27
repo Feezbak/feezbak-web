@@ -28,14 +28,16 @@ export const ProgressText = styled.div`
     position: absolute;
     left: 1.35rem;
     font-size: 1rem;
-    line-height: 1.25rem;
+    line-height: 1.25rem
+    font-weight: 500;
+    letter-spacing: -0.32px;
   }
 `;
 
 export const ColoredProgress = styled.div<{ readonly $width: number }>`
   width: ${prop("$width")}%;
   border-radius: 1rem;
-  height: 3.25rem;
+  height: 2.5rem;
   background: ${StyleEnums.gray5};
 `;
 
@@ -53,29 +55,27 @@ export const CommentsForChoiceBtn = styled(Button)<{
   margin-right: 0.5rem;
   height: 40px;
   padding: 0 1rem;
+  background-color: ${StyleEnums.gray5} !important;
   border-radius: 0.75rem;
-  margin: ${ifProp("$hasMargin", "1.25rem 0 0 1.25rem", 0)};
-  ${FlexBoxEnum.CenterHorizontal}
-`;
-
-export const VotesForChoiceBtn = styled(Button)`
-  margin-right: 0.5rem;
-  border-radius: 0.75rem;
-  height: 40px;
-  padding: 0 1rem;
-  color: ${StyleEnums.storyDefaultColor2};
-  background: ${StyleEnums.gray4};
   border: none;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.938rem;
+  font-weight: 500;
   line-height: 1.25rem;
+  letter-spacing: -0.45px;
+  margin: ${ifProp("$hasMargin", "1.25rem 0 0 1.25rem", 0)};
   ${FlexBoxEnum.CenterHorizontal}
 
   &:hover {
-    color: ${StyleEnums.storyDefaultColor2} !important;
+    color: ${StyleEnums.black} !important;
   }
+`;
 
-  span {
-    margin-left: 0.25rem;
-  }
+export const VotesCount = styled.p`
+  margin-right: 1.781rem;
+  white-space: nowrap;
+  color: ${StyleEnums.black};
+  font-size: 0.938rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  letter-spacing: -0.45px;
 `;

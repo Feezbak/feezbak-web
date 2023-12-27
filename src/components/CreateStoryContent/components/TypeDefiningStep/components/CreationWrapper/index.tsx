@@ -1,11 +1,12 @@
-import { useContext, useMemo, useCallback } from "react";
+import { useContext, useMemo } from "react";
 import { StoryTypeEnum } from "@/enums";
 import { StoryCreationContext } from "@/context";
 import ImageType from "./components/ImageType";
 import TextType from "./components/TextType";
 import Response from "./components/Response";
 import { AnimatePresence } from "framer-motion";
-import { notification, message } from "antd";
+import { notification, message, NotificationArgsProps } from "antd";
+import { getContentNotificationConfig } from "@/constants";
 import { AnanasOnBikeIcon } from "@/icons";
 import useRequest from "@ahooksjs/use-request";
 import { saveStoryFields } from "@/api";
@@ -20,6 +21,8 @@ interface Props {
 const CreationWrapper = ({ handleDemo }: Props) => {
   const { id: storyId } = useParams();
   const [api, contextHolder] = notification.useNotification();
+  const apiConfig = getContentNotificationConfig(<AnanasOnBikeIcon />);
+  const openNotification = () => api.open(apiConfig as NotificationArgsProps);
   const {
     currentStep,
     step2,
@@ -29,17 +32,6 @@ const CreationWrapper = ({ handleDemo }: Props) => {
     setVotingType,
     setSelectionQuantityState,
   } = useContext(StoryCreationContext);
-
-  const openNotification = useCallback(() => {
-    api.open({
-      message: "Noticed Some Changes",
-      description:
-        "You currently made some changes and We’re pretty sure that it looks way nicer now!",
-      duration: 1,
-      placement: "topRight",
-      icon: <AnanasOnBikeIcon />,
-    });
-  }, [api]);
 
   const { run: runSaveStoryFields, loading: isLoading } = useRequest(
     (payload) => saveStoryFields(payload),

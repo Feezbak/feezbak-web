@@ -16,3 +16,4 @@ export { default as PhoneFormField } from "./PhoneFormField";
 export { default as TextFormField } from "./TextFormField";
 export { default as SelectWithAddFormField } from "./SelectWithAddFormField";
 export { default as UploadArea } from "./UploadArea";
+export { default as CreatedBy } from "./CreatedBy";

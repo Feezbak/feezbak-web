@@ -6,7 +6,7 @@ interface Props {
 
 const Image = ({ src }: Props) => {
   return (
-    <ImageWrapper xs={24} sm={24} md={24} lg={9} xl={7} xxl={7}>
+    <ImageWrapper xs={24} sm={24} md={24} lg={8} xl={8} xxl={8}>
       <Img src={src} alt="story image" />
     </ImageWrapper>
   );

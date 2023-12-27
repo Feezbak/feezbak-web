@@ -1,5 +1,5 @@
 import { opacityAnimation } from "@assets/framerAnimations";
-import CreatedBy from "../CreatedBy";
+import CreatedBy from "@shared/CreatedBy";
 import singleSelectIllustartionSrc from "@images/confused.png";
 import {
   LayerInfoContent,
@@ -33,7 +33,7 @@ const SelectionQuantityLayer = ({ handleLayer }: Props) => {
           See what's next
         </NextBtn>
       </ActionsWrapper>
-      <CreatedBy />
+      <CreatedBy margins="1rem 0 0 0" />
     </LayerWrapper>
   );
 };

@@ -1,3 +1,5 @@
+import { StyleEnums } from "@/enums";
+
 export const dynamicTextColor = (colorHex: string) => {
   const calculateBrightness = (background: string) => {
     const hex = background.replace("#", "");
@@ -10,7 +12,7 @@ export const dynamicTextColor = (colorHex: string) => {
   const isDarkBackground = calculateBrightness(colorHex) < 128;
 
   return {
-    color: isDarkBackground ? "white" : "black",
+    color: isDarkBackground ? StyleEnums.white : StyleEnums.black,
     isDark: !isDarkBackground,
   };
 };

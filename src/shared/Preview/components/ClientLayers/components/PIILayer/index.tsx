@@ -1,6 +1,6 @@
 import { opacityAnimation } from "@assets/framerAnimations";
-import CreatedBy from "../CreatedBy";
 import piiIllustartionSrc from "@images/data.png";
+import CreatedBy from "@shared/CreatedBy";
 import {
   NextBtn,
   LayerWrapper,
@@ -29,7 +29,7 @@ const PIILayer = ({ handleLayer }: Props) => {
           See what's next
         </NextBtn>
       </ActionsWrapper>
-      <CreatedBy />
+      <CreatedBy margins="1rem 0 0 0" />
     </LayerWrapper>
   );
 };

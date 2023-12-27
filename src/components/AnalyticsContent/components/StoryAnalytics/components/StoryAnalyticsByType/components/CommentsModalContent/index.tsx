@@ -15,6 +15,7 @@ interface Props {
   imageId?: string;
   respBtnId?: string;
   imageSrc?: string;
+  closeModal: () => void;
 }
 
 const CommentsModalContent = ({
@@ -22,6 +23,7 @@ const CommentsModalContent = ({
   imageId,
   respBtnId,
   imageSrc,
+  closeModal,
 }: Props) => {
   const navigate = useNavigate();
   const [commentsData, setCommentsData] =
@@ -51,7 +53,11 @@ const CommentsModalContent = ({
     >
       <ContentWrapper>
         {imageSrc && <Image src={imageSrc} />}
-        <Comments isLoading={loading} comments={commentsData?.comments} />
+        <Comments
+          isLoading={loading}
+          comments={commentsData?.comments}
+          closeModal={closeModal}
+        />
       </ContentWrapper>
       {!!commentsData?.comments?.length &&
         commentsData?.commentsCount > commentsData.perPage &&

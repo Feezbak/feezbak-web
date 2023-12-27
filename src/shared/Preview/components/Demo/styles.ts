@@ -16,14 +16,13 @@ export const iconBtnStyles = css`
 export const PreviewFlow = styled(motion.div)<{
   readonly $background: string;
   readonly $hasOutline: boolean;
-  readonly $isSquare: boolean;
   readonly $hasBorderRadius: boolean;
   readonly $hasBorder: boolean;
 }>`
   background: ${prop("$background")};
   width: 100%;
   height: 100%;
-  border-radius: 3.3rem;
+  border-radius: 3rem;
   position: relative;
   ${FlexBoxEnum.EndCenterVertical}
   transition: 0.3s;
@@ -41,7 +40,7 @@ export const PreviewFlow = styled(motion.div)<{
 `;
 
 export const TitlePreview = styled(motion.div)<{
-  readonly $color: string;
+  readonly $color: StyleEnums;
   readonly $hasBtnResp: boolean;
 }>`
   user-select: none;
@@ -117,24 +116,17 @@ export const ColorPickerWrapper = styled(motion.div)`
   ${FlexBoxEnum.JustifyEndHorizontal}
 `;
 
-export const ResponseTitleWrapper = styled.div<{
-  readonly $isFullHeight: boolean;
-  readonly $justifyContent: boolean;
-}>`
+export const ResponseTitleWrapper = styled.div`
   transition: 0.3s;
   width: 80%;
   display: flex;
   border-radius: 2.5rem;
-  padding: ${ifProp("$justifyContent", "76% 0 8% 0", "inherit")};
-  justify-content: ${ifProp("$justifyContent", "space-between", "center")};
-  align-items: center;
-  flex-direction: column;
-  min-height: ${ifProp("$isFullHeight", "100%", "55%")};
+  ${FlexBoxEnum.EndCenterVertical}
 `;
 
-export const Responses = styled.div`
+export const Responses = styled(motion.div)`
   width: 80%;
-  margin: 1.5rem 0 1.25rem 0;
+  margin-top: 1.5rem;
   ${FlexBoxEnum.CenterVertical}
 `;
 
@@ -148,11 +140,27 @@ export const LeaveComment = styled(Button)`
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   border: none;
-  position: absolute;
-  bottom: 2rem;
+  margin-top: 1rem;
 
   svg {
     font-size: 2.25rem;
     color: ${StyleEnums.black};
   }
+`;
+
+export const SeeFullBtn = styled(Button)<{
+  readonly $bgColor: StyleEnums | string;
+  readonly $color: StyleEnums;
+}>`
+  margin-bottom: 0.75rem;
+  border-radius: 12.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1rem;
+  letter-spacing: -0.28px;
+  height: 2.25rem;
+  background-color: ${prop("$bgColor")} !important;
+  color: ${prop("$color")} !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
 `;
