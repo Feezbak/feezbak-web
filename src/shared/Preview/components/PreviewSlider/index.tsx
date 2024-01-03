@@ -1,10 +1,9 @@
 import { memo, forwardRef, useMemo } from "react";
 import Slider from "react-slick";
-import { getSlickSettings, Image } from "@/constants";
-import { ProductLogoWhite } from "@/icons";
+import { getPreviewSlickSettings, Image } from "@/constants";
 import PreviewSlide from "./components/PreviewSlide";
 import { useResponsive } from "@/hooks";
-import { SliderContainer, PoweredByFixed } from "./styles";
+import { SliderContainer } from "./styles";
 
 interface Props {
   hasCover: boolean;
@@ -31,15 +30,11 @@ const PreviewSlider = (
 
   return (
     <SliderContainer
-      $isCreationMode={!setActiveSlide || isSquare}
+      $isSquare={!setActiveSlide || isSquare}
       $isFeedbackerMobile={isFeedbackerMobile}
     >
-      <PoweredByFixed>
-        <p>POWERED BY</p>
-        <ProductLogoWhite />
-      </PoweredByFixed>
       <Slider
-        {...getSlickSettings(isLessThanMd)}
+        {...getPreviewSlickSettings(isLessThanMd, isSquare)}
         ref={ref}
         afterChange={handleAfterChange}
       >

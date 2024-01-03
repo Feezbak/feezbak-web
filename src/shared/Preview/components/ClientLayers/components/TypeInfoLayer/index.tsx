@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { StoryTypeEnum } from "@/enums";
-import CreatedBy from "../CreatedBy";
+import CreatedBy from "@shared/CreatedBy";
 import {
   ActionsWrapper,
   LayerInfoContent,
@@ -80,7 +80,7 @@ const TypeInfoLayer = ({ handleLayer, type }: Props) => {
           See what's next
         </NextBtn>
       </ActionsWrapper>
-      <CreatedBy />
+      <CreatedBy margins="1rem 0 0 0" />
     </LayerWrapper>
   );
 };

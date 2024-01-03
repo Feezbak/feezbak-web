@@ -8,13 +8,10 @@ export const ImageBackgroundWrapper = styled(motion.div)<{
   readonly $srcURL: string;
   readonly $isSelected: boolean;
 }>`
-  min-width: 11.875rem;
-  height: 15.5rem;
+  cursor: grabbing;
   border-radius: 1.2rem;
   background: url(${prop("$srcURL")}) no-repeat center;
   background-size: cover;
-  ${FlexBoxEnum.CenterHorizontal}
-  margin-right: 1rem;
   border: ${ifProp(
     "$isSelected",
     "2.5px solid " + StyleEnums.storyDefaultColor2,
@@ -23,6 +20,10 @@ export const ImageBackgroundWrapper = styled(motion.div)<{
 
   &:last-child {
     margin: 0;
+  }
+
+  & > div {
+    ${FlexBoxEnum.CenterHorizontal}
   }
 `;
 

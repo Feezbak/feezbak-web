@@ -1,23 +1,25 @@
 import { useMemo } from "react";
 import { UserCommentsType } from "@/constants";
+import { EmailIcon, PhoneIcon } from "@/icons";
 import dayjs from "dayjs";
 import {
   CommentTileWrapper,
-  Comment,
   UserInfoSection,
   SecondaryInfo,
-  Contacts,
+  ContactBlock,
   UserAvatar,
+  Contacts,
   UserInfo,
+  Comment,
   Name,
 } from "./styles";
 
 interface Props {
   data: UserCommentsType;
-  index?: number;
+  hasHorizontalPadding?: boolean;
 }
 
-const ResponseCommentTile = ({ data, index }: Props) => {
+const ResponseCommentTile = ({ data, hasHorizontalPadding = true }: Props) => {
   const userName = useMemo(() => {
     if (data?.firstName?.length || data?.lastName?.length) {
       return data.firstName + " " + data.lastName;
@@ -34,7 +36,7 @@ const ResponseCommentTile = ({ data, index }: Props) => {
   const avatarSrc = useMemo(() => dayjs(data.createdAt).unix(), [data]);
 
   return (
-    <CommentTileWrapper>
+    <CommentTileWrapper $hasHorizontalPadding={hasHorizontalPadding}>
       <UserInfoSection>
         <UserAvatar
           src={`https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${avatarSrc}`}
@@ -44,8 +46,18 @@ const ResponseCommentTile = ({ data, index }: Props) => {
           <Name>{userName}</Name>
           <SecondaryInfo>{commentDate}</SecondaryInfo>
           <Contacts>
-            <p>{data.email}</p>
-            <p>+{data.phone}</p>
+            {data?.email && (
+              <ContactBlock>
+                <EmailIcon />
+                <p>{data.email}</p>
+              </ContactBlock>
+            )}
+            {data?.phone && (
+              <ContactBlock>
+                <PhoneIcon />
+                <p>+{data.phone}</p>
+              </ContactBlock>
+            )}
           </Contacts>
         </UserInfo>
       </UserInfoSection>

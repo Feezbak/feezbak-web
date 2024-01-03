@@ -6,6 +6,7 @@ import { FlexBoxEnum, StyleEnums, BreakpointEnums } from "@/enums";
 export const StoryFeedbackWrapper = styled(motion.div)`
   width: 100%;
   margin: 2.75rem 0;
+  height: max-content;
   background: ${StyleEnums.white};
   border-radius: 1rem;
   border: 1px solid ${StyleEnums.gray4};
@@ -23,6 +24,10 @@ export const TitleText = styled.h3`
   font-style: normal;
   line-height: 1.5rem;
   margin-bottom: 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
 `;
 
 export const OverallCountText = styled.p`

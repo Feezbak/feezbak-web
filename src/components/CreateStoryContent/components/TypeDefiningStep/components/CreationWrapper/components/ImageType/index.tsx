@@ -7,7 +7,12 @@ import { UploadArea } from "@/shared";
 import useRequest from "@ahooksjs/use-request";
 import UploadList from "./components/UploadList";
 import { opacityAnimation } from "@assets/framerAnimations";
-import { ImageTypeWrapper, ImageTypeTitle, ImageUploadArea } from "./styles";
+import {
+  ImageTypeWrapper,
+  ImageTypeTitle,
+  ImageUploadArea,
+  UploadAreaWrapper,
+} from "./styles";
 
 const ImageType = () => {
   const { id: storyId } = useParams();
@@ -35,12 +40,14 @@ const ImageType = () => {
         Include the images you want people to vote
       </ImageTypeTitle>
       <ImageUploadArea>
-        <UploadArea
-          handleUpload={uploadToServer}
-          loading={uploadLoading}
-          title="Images"
-          description="Add more Images"
-        />
+        <UploadAreaWrapper>
+          <UploadArea
+            handleUpload={uploadToServer}
+            loading={uploadLoading}
+            title="Images"
+            description="Add more Images"
+          />
+        </UploadAreaWrapper>
         <UploadList />
       </ImageUploadArea>
     </ImageTypeWrapper>

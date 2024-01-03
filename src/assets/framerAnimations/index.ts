@@ -1,5 +1,5 @@
 export const listItemAnimation = (
-  isPresent: boolean,
+  isPresent = true,
   safeToRemove: () => void
 ) => {
   return {

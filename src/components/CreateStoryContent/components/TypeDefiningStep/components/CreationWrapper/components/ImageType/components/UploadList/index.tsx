@@ -6,6 +6,8 @@ import { StoryCreationContext } from "@/context";
 import { deleteUploadedImgById } from "@/api";
 import useRequest from "@ahooksjs/use-request";
 import { useParams } from "react-router-dom";
+import Slider from "react-slick";
+import { uploadListSlickSettings } from "@/constants";
 import { UploadListWrapper } from "./styles";
 
 const UploadList = () => {
@@ -49,19 +51,21 @@ const UploadList = () => {
     [step2]
   );
 
-  return imageVoting.images.length ? (
+  return !!imageVoting.images.length ? (
     <UploadListWrapper>
       <AnimatePresence initial={false}>
-        {imageVoting.images.map(({ id, src }) => (
-          <Image
-            isSelected={isSelected(src)}
-            key={id}
-            id={id}
-            src={`${process.env.REACT_APP_API_URL}/${src}`}
-            handleDelete={handleDelete}
-            handleSelect={handleSelect}
-          />
-        ))}
+        <Slider {...uploadListSlickSettings}>
+          {imageVoting.images.map(({ id, src }) => (
+            <Image
+              isSelected={isSelected(src)}
+              key={id}
+              id={id}
+              src={`${process.env.REACT_APP_API_URL}/${src}`}
+              handleDelete={handleDelete}
+              handleSelect={handleSelect}
+            />
+          ))}
+        </Slider>
       </AnimatePresence>
     </UploadListWrapper>
   ) : null;

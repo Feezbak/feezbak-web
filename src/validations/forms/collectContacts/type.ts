@@ -1,6 +1,6 @@
 export interface ContactsCollectingInputs {
   email?: string;
-  phone?: number;
+  phone?: string;
   firstName?: string;
   lastName?: string;
 }

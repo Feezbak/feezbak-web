@@ -24,4 +24,15 @@ export const ImageTypeTitle = styled.p`
 export const ImageUploadArea = styled.div`
   width: 100%;
   ${FlexBoxEnum.SpaceBetweenHorizontal}
+
+  ${inLessThan(BreakpointEnums.mobile)`
+    flex-wrap: wrap;
+ `};
+`;
+
+export const UploadAreaWrapper = styled.div`
+  ${inLessThan(BreakpointEnums.mobile)`
+    width: 100%;
+    margin-bottom: 1rem;
+ `};
 `;

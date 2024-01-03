@@ -1,4 +1,4 @@
-import { PoweredByWrapper } from "./styles";
+import { PreviewSlideWrapper } from "./styles";
 
 interface Props {
   hasCover: boolean;
@@ -9,7 +9,7 @@ interface Props {
 
 const PreviewSlide = ({ hasCover, hasLayer, isSquare, imgSrc }: Props) => {
   return (
-    <PoweredByWrapper
+    <PreviewSlideWrapper
       $hasCover={hasCover}
       $imgSrc={imgSrc}
       $isSquare={isSquare}

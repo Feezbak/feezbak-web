@@ -1,12 +1,11 @@
 import { useMemo } from "react";
-import { GroupUsersIcon } from "@/icons";
 import {
   ButtonDataWrapper,
   ProgressText,
   ActionsAndInfoContainer,
   ColoredProgress,
   CommentsForChoiceBtn,
-  VotesForChoiceBtn,
+  VotesCount,
 } from "./styles";
 
 interface Props {
@@ -37,23 +36,21 @@ const ResponseBTNTile = ({
     <ButtonDataWrapper>
       <ProgressText>
         <p>
-          {text} - <b>{progress}</b>%
+          {text} • {progress}%
         </p>
         <ColoredProgress $width={progress === 0 ? 2 : progress} />
       </ProgressText>
       <ActionsAndInfoContainer>
+        {!!votesCount && <VotesCount>{votesCount} Votes</VotesCount>}
         {hasComments && (
           <CommentsForChoiceBtn
             $hasMargin={false}
+            ghost={true}
             onClick={handleSeeMoreComments}
           >
-            See {commentsCount} comments
+            See comments
           </CommentsForChoiceBtn>
         )}
-        <VotesForChoiceBtn>
-          <GroupUsersIcon />
-          <span>{votesCount} Votes</span>
-        </VotesForChoiceBtn>
       </ActionsAndInfoContainer>
     </ButtonDataWrapper>
   );

@@ -17,4 +17,5 @@ export const Img = styled.img`
   width: 100%;
   border-radius: 1.5rem;
   object-fit: cover;
+  max-height: 21.25rem;
 `;

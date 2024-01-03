@@ -1,5 +1,5 @@
 import { opacityAnimation } from "@assets/framerAnimations";
-import CreatedBy from "../CreatedBy";
+import CreatedBy from "@shared/CreatedBy";
 import {
   LayerInfoContent,
   ActionsWrapper,
@@ -22,7 +22,7 @@ const SuccessLayer = () => {
           Go to Feezbak.com
         </NextBtn>
       </ActionsWrapper>
-      <CreatedBy />
+      <CreatedBy margins="1rem 0 0 0" />
     </LayerWrapper>
   );
 };

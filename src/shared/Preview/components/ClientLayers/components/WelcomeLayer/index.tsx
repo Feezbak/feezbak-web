@@ -1,5 +1,5 @@
 import { opacityAnimation } from "@assets/framerAnimations";
-import CreatedBy from "../CreatedBy";
+import CreatedBy from "@shared/CreatedBy";
 import {
   LayerWrapper,
   LayerInfoContent,
@@ -30,7 +30,7 @@ const WelcomeLayer = ({ handleLayer, handleSkip }: Props) => {
           Give Feedback
         </SkipBtn>
       </ActionsWrapper>
-      <CreatedBy />
+      <CreatedBy margins="1rem 0 0 0" />
     </LayerWrapper>
   );
 };

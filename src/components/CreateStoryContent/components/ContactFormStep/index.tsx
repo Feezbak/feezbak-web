@@ -4,7 +4,7 @@ import { Preview, PreviewMobileDrawer } from "@/shared";
 import { useResponsive } from "@/hooks";
 import { ContentWrapper } from "../../styles";
 
-const ShareSettingsStep = () => {
+const ContactFormStep = () => {
   const [isDemoDrawerOpen, setDemoDrawerState] = useState(false);
   const { isMobile } = useResponsive();
 
@@ -30,4 +30,4 @@ const ShareSettingsStep = () => {
   );
 };
 
-export default ShareSettingsStep;
+export default ContactFormStep;

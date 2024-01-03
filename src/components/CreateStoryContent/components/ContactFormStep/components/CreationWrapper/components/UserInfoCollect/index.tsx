@@ -1,7 +1,7 @@
 import CollectUserInfo from "./components/CollectUserInfo";
 import { ShareSettingsWrapper } from "./styles";
 
-const FeedbackShareAndGetSettings = () => {
+const UserInfoCollect = () => {
   return (
     <ShareSettingsWrapper>
       <CollectUserInfo />
@@ -9,4 +9,4 @@ const FeedbackShareAndGetSettings = () => {
   );
 };
 
-export default FeedbackShareAndGetSettings;
+export default UserInfoCollect;

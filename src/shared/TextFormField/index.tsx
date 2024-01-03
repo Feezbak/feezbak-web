@@ -12,6 +12,7 @@ interface Props {
   inputHeight?: string;
   autoComplete?: string;
   isPassword?: boolean;
+  disabled?: boolean;
 }
 
 const TextFormField = ({
@@ -23,6 +24,7 @@ const TextFormField = ({
   inputHeight = "3",
   autoComplete,
   isPassword = false,
+  disabled = false,
 }: Props) => {
   return (
     <FormItem
@@ -43,6 +45,7 @@ const TextFormField = ({
                 size="large"
                 onChange={onChange}
                 value={value}
+                disabled={disabled}
                 autoComplete={autoComplete}
                 iconRender={(visible) =>
                   visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
@@ -53,6 +56,7 @@ const TextFormField = ({
                 $height={inputHeight}
                 type={type}
                 size="large"
+                disabled={disabled}
                 onChange={onChange}
                 value={value}
                 autoComplete={autoComplete}
