@@ -81,12 +81,12 @@ const Demo = ({
     !isSquare
   );
 
-  const structureFeedbackPayload = (feedbackObj: Feedback) => {
+  const structureFeedbackPayload = async (feedbackObj: Feedback) => {
     const feedbackData = structuredClone(feedbackObj);
     const guestData = feedbackData.contactToData;
     delete feedbackData.contactToData;
     const guestPayloadData = defaultContactForm;
-    guestData.forEach((item: { field: string; value: string }) => {
+    guestData?.forEach((item: { field: string; value: string }) => {
       if (item.field === "firstName") {
         guestPayloadData.firstName = item.value;
       } else if (item.field === "lastName") {
@@ -125,7 +125,7 @@ const Demo = ({
     {
       manual: true,
       onSuccess: async (resp) => {
-        const feedbackPayload = structureFeedbackPayload(feedback!);
+        const feedbackPayload = await structureFeedbackPayload(feedback!);
         await sendFeedbackResults(
           feedbackPayload,
           resp.data.feedbackId,
@@ -146,13 +146,13 @@ const Demo = ({
       );
   }, [currentStep, isCreationMode, isInfoCollectionAllowed]);
 
-  const sendFeedbackRequests = () => {
+  const sendFeedbackRequests = async () => {
     const isGuest = !guestId && !feedbackId;
     if (isGuest) {
-      (() => generateGuest())();
+      await generateGuest();
     } else {
-      const feedbackPayload = structureFeedbackPayload(feedback!);
-      (() => sendFeedbackResults(feedbackPayload, guestId, feedbackId))();
+      const feedbackPayload = await structureFeedbackPayload(feedback!);
+      await sendFeedbackResults(feedbackPayload, guestId, feedbackId);
     }
   };
 
