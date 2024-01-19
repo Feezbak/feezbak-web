@@ -30,8 +30,14 @@ const CommentsModalContent = ({
     useState<CommentPaginatedDataType | null>(null);
 
   const { run: getCommentsData, loading } = useRequest(
-    (page = 1) =>
-      getFeedbackComments(storyId!, imageId ?? "", respBtnId ?? "", page),
+    (page = 1, perPage = 20) =>
+      getFeedbackComments(
+        storyId!,
+        imageId ?? "",
+        respBtnId ?? "",
+        page,
+        perPage
+      ),
     {
       onSuccess: (response) => {
         setCommentsData(response.data);
@@ -65,7 +71,9 @@ const CommentsModalContent = ({
           <FixedWrapper>
             <CustomPagination
               currentPage={commentsData.currentPage}
-              setCurrentPage={(page) => getCommentsData(page)}
+              setCurrentPage={(page, pageSize) =>
+                getCommentsData(page, pageSize)
+              }
               pageSize={commentsData.perPage!}
               total={commentsData.commentsCount}
             />

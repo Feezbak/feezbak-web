@@ -6,7 +6,7 @@ interface Props {
   total: number;
   pageSize: number;
   currentPage: number;
-  setCurrentPage: (page: number) => void;
+  setCurrentPage: (page: number, pageSize: number) => void;
 }
 
 const CustomPagination = ({
@@ -17,8 +17,8 @@ const CustomPagination = ({
 }: Props) => {
   const navigate = useNavigate();
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+  const handlePageChange = (page: number, pageSize: number) => {
+    setCurrentPage(page, pageSize);
     navigate(`?page=${page}`);
   };
 
