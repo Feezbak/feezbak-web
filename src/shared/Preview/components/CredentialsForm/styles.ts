@@ -29,13 +29,10 @@ export const CredTitle = styled.p`
 
 export const CloseBtn = styled(Button)`
   border-radius: 50%;
+  border: none;
+  width: 2.5rem !important;
+  height: 2.5rem;
   ${FlexBoxEnum.CenterHorizontal}
-`;
-
-export const CloseBtnWrapper = styled.div`
-  width: 100%;
-  max-width: 23.25rem;
-  ${FlexBoxEnum.JustifyStartHorizontal}
 `;
 
 export const DrawerContent = styled(motion.div)<{
@@ -44,5 +41,5 @@ export const DrawerContent = styled(motion.div)<{
   width: 100%;
   height: 100%;
   padding: ${ifProp("$isCreationMode", "5%", "0")};
-  ${FlexBoxEnum.CenterVertical}
+  ${FlexBoxEnum.StartStartVertical}
 `;
