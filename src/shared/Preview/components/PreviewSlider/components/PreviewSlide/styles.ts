@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { ifProp, prop, inLessThan } from "@/helpers";
-import { FlexBoxEnum, BreakpointEnums } from "@/enums";
+import { ifProp, prop } from "@/helpers";
+import { FlexBoxEnum } from "@/enums";
 
 export const PreviewSlideWrapper = styled.div<{
   readonly $hasCover: boolean;
