@@ -13,10 +13,6 @@ export const PreviewSlideWrapper = styled.div<{
   width: 100%;
   height: ${ifProp("$isSquare", "50%", "100%")} !important;
 
-  ${inLessThan(BreakpointEnums.mobile)`
-        height: ${ifProp("$isSquare", "50%", "100dvh")} !important;
-   `};
-
   background-image: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0) 0%,
