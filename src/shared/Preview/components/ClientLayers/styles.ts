@@ -9,12 +9,13 @@ export const LayersSelectionWrapper = styled(motion.div)`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100dvh;
+  height: 100%;
   z-index: 3;
   border-radius: 2.75rem;
   background: ${StyleEnums.white};
   ${inLessThan(BreakpointEnums.mobile)`
      border-radius: 0;
+     height: 100dvh;
   `}
 `;
 
