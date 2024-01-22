@@ -6,7 +6,9 @@ const { TextArea } = Input;
 export const CommentMainDrawer = styled(Drawer)`
   background: ${StyleEnums.white};
   padding: 0;
+  height: 100dvh;
   .ant-drawer-body {
+    height: 100dvh;
     padding: 1.5rem 1rem;
     ${FlexBoxEnum.CenterVertical}
   }
@@ -17,7 +19,7 @@ export const TextField = styled(TextArea)`
   border: none;
   min-height: 5rem !important;
   overflow-y: auto !important;
-  height: 100% !important;
+  height: 40dvh !important;
   outline: none;
   padding: 0;
   box-shadow: none;

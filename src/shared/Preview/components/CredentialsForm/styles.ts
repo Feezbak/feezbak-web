@@ -11,6 +11,7 @@ export const FormDrawer = styled(Drawer)<{
   border: ${ifProp("$isCreationMode", `1px solid ${StyleEnums.gray3}`, "none")};
   border-radius: ${ifProp("$isCreationMode", "3rem", "unset")};
   z-index: 2;
+  height: 100dvh;
   padding: 0;
   .ant-drawer-body {
     padding: 1.5rem 1rem !important;
