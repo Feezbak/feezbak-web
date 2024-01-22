@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { ifProp, prop } from "@/helpers";
-import { FlexBoxEnum } from "@/enums";
+import { ifProp, prop, inLessThan } from "@/helpers";
+import { FlexBoxEnum, BreakpointEnums } from "@/enums";
 
 export const PreviewSlideWrapper = styled.div<{
   readonly $hasCover: boolean;
@@ -12,6 +12,11 @@ export const PreviewSlideWrapper = styled.div<{
   transition: 0.3s;
   width: 100%;
   height: ${ifProp("$isSquare", "50%", "100%")} !important;
+
+  ${inLessThan(BreakpointEnums.mobile)`
+        height: ${ifProp("$isSquare", "50%", "100dvh")} !important;
+   `};
+
   background-image: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0) 0%,
