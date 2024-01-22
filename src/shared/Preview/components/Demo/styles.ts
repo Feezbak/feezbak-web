@@ -37,6 +37,9 @@ export const PreviewFlow = styled(motion.div)<{
 
   .ant-drawer-content-wrapper {
     box-shadow: unset;
+    ${inLessThan(BreakpointEnums.mobile)`
+      height: ${ifProp("$hasBorderRadius", "100dvh", "100%")};
+   `}
   }
 `;
 
