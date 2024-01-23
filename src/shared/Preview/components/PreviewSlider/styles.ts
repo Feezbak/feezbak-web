@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { FlexBoxEnum, StyleEnums, BreakpointEnums } from "@/enums";
-import { ifProp, inLessThan } from "@/helpers";
+import { FlexBoxEnum, StyleEnums } from "@/enums";
+import { ifProp } from "@/helpers";
 
 export const SliderContainer = styled.div<{
   readonly $isSquare: boolean;
@@ -18,10 +18,6 @@ export const SliderContainer = styled.div<{
 
   div {
     height: 100%;
-
-    ${inLessThan(BreakpointEnums.mobile)`
-      height: 100dvh;
-   `}
   }
 
   div.slick-slider {
