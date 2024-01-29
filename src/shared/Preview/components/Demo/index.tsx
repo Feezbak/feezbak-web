@@ -6,7 +6,6 @@ import CreatedBy from "@shared/CreatedBy";
 import PreviewSlider from "@shared/Preview/components/PreviewSlider";
 import CredentialsForm from "@shared/Preview/components/CredentialsForm";
 import CommentDrawer from "@shared/Preview/components/CommentDrawer";
-import { CommentOutlined } from "@ant-design/icons";
 import DOMPurify from "dompurify";
 import useRequest from "@ahooksjs/use-request";
 import Slider from "react-slick";
@@ -34,7 +33,6 @@ import {
   CircleColorPicker,
   ColorPickerBtn,
   TitlePreview,
-  LeaveComment,
   PreviewFlow,
   SeeFullBtn,
   Responses,
@@ -385,9 +383,10 @@ const Demo = ({
             $color={dynamicTextColor(color).color}
           />
           {isTextRespRequired && !isCreationMode && (
-            <LeaveComment
-              onClick={() => setCommentDrawerState(true)}
-              icon={<CommentOutlined />}
+            <ResponsePreviewBtn
+              text="Leave Your Feedback"
+              margin="1rem 0 0 0"
+              action={() => setCommentDrawerState(true)}
             />
           )}
           {isFullContentVisible &&

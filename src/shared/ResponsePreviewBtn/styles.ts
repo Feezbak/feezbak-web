@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Button } from "antd";
 import { FlexBoxEnum, StyleEnums } from "@/enums";
 import { motion } from "framer-motion";
-import { ifProp } from "@/helpers";
+import { ifProp, prop } from "@/helpers";
 
 export const AnimationWrapper = styled(motion.div)`
   margin-bottom: 1rem;
@@ -24,6 +24,7 @@ export const AnimationWrapper = styled(motion.div)`
 
 export const ResponsePreviewButton = styled(Button)<{
   readonly $isActive: boolean;
+  readonly $margin: string;
 }>`
   padding: 0.875rem 1.25rem;
   outline: none;
@@ -46,4 +47,6 @@ export const ResponsePreviewButton = styled(Button)<{
   &:hover {
     color: ${StyleEnums.black} !important;
   }
+
+  margin: ${prop("$margin")};
 `;
