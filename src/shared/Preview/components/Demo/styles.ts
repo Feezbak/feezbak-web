@@ -130,24 +130,6 @@ export const Responses = styled(motion.div)`
   ${FlexBoxEnum.CenterVertical}
 `;
 
-export const LeaveComment = styled(Button)`
-  border-radius: 50%;
-  ${FlexBoxEnum.CenterVertical}
-  width: 3.5rem !important;
-  height: 3.5rem !important;
-  padding: 0;
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  border: none;
-  margin-top: 1rem;
-
-  svg {
-    font-size: 2.25rem;
-    color: ${StyleEnums.black};
-  }
-`;
-
 export const SeeFullBtn = styled(Button)<{
   readonly $bgColor: StyleEnums | string;
   readonly $color: StyleEnums;
