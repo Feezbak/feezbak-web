@@ -3,6 +3,7 @@ import { ResponsePreviewButton, AnimationWrapper } from "./styles";
 
 interface Props {
   text: string;
+  margin?: string;
   action?: () => void;
   isActive?: boolean;
   disabled?: boolean;
@@ -11,6 +12,7 @@ interface Props {
 const ResponsePreviewBtn = ({
   text,
   action,
+  margin = "",
   isActive = false,
   disabled = false,
 }: Props) => {
@@ -18,8 +20,9 @@ const ResponsePreviewBtn = ({
     <AnimationWrapper {...opacityAnimation} transition={{ duration: 0.2 }}>
       <ResponsePreviewButton
         disabled={disabled}
-        $isActive={isActive}
         onClick={isActive ? undefined : action}
+        $isActive={isActive}
+        $margin={margin}
       >
         {text}
       </ResponsePreviewButton>
