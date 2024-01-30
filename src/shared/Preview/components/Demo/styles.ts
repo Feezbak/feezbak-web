@@ -33,10 +33,6 @@ export const PreviewFlow = styled(motion.div)<{
      border: unset;
      border-radius: ${ifProp("$hasBorderRadius", "0", "3.5rem")} !important;
   `}
-
-  .ant-drawer-content-wrapper {
-    box-shadow: unset;
-  }
 `;
 
 export const TitlePreview = styled(motion.div)<{
