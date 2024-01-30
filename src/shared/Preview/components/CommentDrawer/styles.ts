@@ -1,12 +1,17 @@
 import styled, { css } from "styled-components";
 import { Input, Button, Drawer } from "antd";
-import { FlexBoxEnum, StyleEnums } from "@/enums";
+import { inLessThan } from "@/helpers";
+import { FlexBoxEnum, StyleEnums, BreakpointEnums } from "@/enums";
 const { TextArea } = Input;
 
 export const CommentMainDrawer = styled(Drawer)`
   background: ${StyleEnums.white};
   border-radius: 3rem;
   padding: 0;
+
+  ${inLessThan(BreakpointEnums.mobile)`
+       border-radius: unset;
+    `};
   .ant-drawer-body {
     padding: 1.5rem 1rem;
     ${FlexBoxEnum.CenterVertical}
