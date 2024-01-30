@@ -17,7 +17,7 @@ export const TextField = styled(TextArea)`
   border: none;
   min-height: 5rem !important;
   overflow-y: auto !important;
-  height: 40dvh !important;
+  height: 100% !important;
   outline: none;
   padding: 0;
   box-shadow: none;
