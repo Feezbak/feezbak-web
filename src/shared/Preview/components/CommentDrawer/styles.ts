@@ -5,6 +5,7 @@ const { TextArea } = Input;
 
 export const CommentMainDrawer = styled(Drawer)`
   background: ${StyleEnums.white};
+  border-radius: 3rem;
   padding: 0;
   .ant-drawer-body {
     padding: 1.5rem 1rem;
