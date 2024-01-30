@@ -9,7 +9,7 @@ export const FormDrawer = styled(Drawer)<{
 }>`
   background: ${StyleEnums.white};
   border: ${ifProp("$isCreationMode", `1px solid ${StyleEnums.gray3}`, "none")};
-  border-radius: ${ifProp("$isCreationMode", "3rem", "unset")};
+  border-radius: 3rem;
   z-index: 2;
   padding: 0;
   .ant-drawer-body {
@@ -41,5 +41,9 @@ export const DrawerContent = styled(motion.div)<{
   width: 100%;
   height: 100%;
   padding: ${ifProp("$isCreationMode", "5%", "0")};
-  ${FlexBoxEnum.StartStartVertical}
+  ${FlexBoxEnum.CenterVertical}
+`;
+
+export const DrawerHeader = styled.div`
+  max-width: 23.25rem;
 `;
