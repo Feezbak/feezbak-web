@@ -5,6 +5,11 @@ import { FlexBoxEnum, StyleEnums, BreakpointEnums } from "@/enums";
 export const FeedbackerContentWrapper = styled.div`
   width: 100%;
   height: 100%;
+
+  ${inLessThan(BreakpointEnums.mobile)`
+     height: 100dvh;
+  `}
+
   background: ${StyleEnums.storyDefaultColor1};
   ${FlexBoxEnum.StartCenterVertical}
 `;
