@@ -9,7 +9,7 @@ import CommentDrawer from "@shared/Preview/components/CommentDrawer";
 import DOMPurify from "dompurify";
 import useRequest from "@ahooksjs/use-request";
 import Slider from "react-slick";
-import { useQuery, useOutsideClick } from "@/hooks";
+import { useQuery, useOutsideClick, useResponsive } from "@/hooks";
 import { generateFeedback, sendFeedback } from "@/api";
 import { useParams } from "react-router-dom";
 import { DemoProps, Feedback, ContactToData } from "./types";
@@ -61,6 +61,7 @@ const Demo = ({
   currentStep,
   handleCompleteFeedback,
 }: DemoProps) => {
+  const { isMobile } = useResponsive();
   const colorPickerRef = useRef<HTMLDivElement>(null);
   useOutsideClick(colorPickerRef, () => colorPickerBtnHandler?.());
   const { storyId } = useParams();
@@ -434,6 +435,7 @@ const Demo = ({
           onClose={() => setCredentialDrawerState(false)}
         />
         <CommentDrawer
+          isMobile={isMobile}
           isOpen={isCommentDrawerOpen || !!respBtnId.length}
           handleClose={handleCloseCommentDrawer}
           isDisabled={!!feedback?.isComplete && !isInfoCollectionAllowed}

@@ -17,6 +17,7 @@ interface Props {
   handleSend: (msg: string) => void;
   handleClose: () => void;
   defaultValue?: string;
+  isMobile: boolean;
 }
 
 const CommentDrawer: FC<Props> = ({
@@ -25,6 +26,7 @@ const CommentDrawer: FC<Props> = ({
   isDisabled,
   defaultValue = "",
   handleClose,
+  isMobile = false,
 }) => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [value, setValue] = useState(defaultValue);
@@ -50,7 +52,7 @@ const CommentDrawer: FC<Props> = ({
       title=""
       footer={false}
       placement="bottom"
-      height="100%"
+      height={`100${isMobile ? "dvh" : "%"}`}
       getContainer={false}
       closable={false}
       mask={false}
