@@ -426,27 +426,28 @@ const Demo = ({
             </ColorPickerWrapper>
           )}
         </AnimatePresence>
-        <CredentialsForm
-          sendContactInfo={handleSetContactInfo}
-          isCreationMode={isCreationMode}
-          fields={fields}
-          isLoading={generateGuestLoading || sendFeedbackLoading}
-          isOpen={isCredentialDrawerOpen}
-          onClose={() => setCredentialDrawerState(false)}
-        />
-        <CommentDrawer
-          isMobile={isMobile}
-          isOpen={isCommentDrawerOpen || !!respBtnId.length}
-          handleClose={handleCloseCommentDrawer}
-          isDisabled={!!feedback?.isComplete && !isInfoCollectionAllowed}
-          handleSend={handleTextFeedback}
-        />
         <CreatedBy
           isDark={dynamicTextColor(color).isDark}
           color={dynamicTextColor(color).color}
           margins={`2.75rem 0 ${isCreationMode ? 2.25 : 1.25}rem 0`}
         />
       </PreviewFlow>
+      <CommentDrawer
+        isMobile={isMobile}
+        isOpen={isCommentDrawerOpen || !!respBtnId.length}
+        handleClose={handleCloseCommentDrawer}
+        isDisabled={!!feedback?.isComplete && !isInfoCollectionAllowed}
+        handleSend={handleTextFeedback}
+      />
+      <CredentialsForm
+        sendContactInfo={handleSetContactInfo}
+        isCreationMode={isCreationMode}
+        fields={fields}
+        isMobile={isMobile}
+        isLoading={generateGuestLoading || sendFeedbackLoading}
+        isOpen={isCredentialDrawerOpen}
+        onClose={() => setCredentialDrawerState(false)}
+      />
     </>
   );
 };
