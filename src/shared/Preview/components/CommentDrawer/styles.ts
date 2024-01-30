@@ -17,7 +17,7 @@ export const TextField = styled(TextArea)`
   border: none;
   min-height: 5rem !important;
   overflow-y: auto !important;
-  height: 100% !important;
+  height: 40dvh !important;
   outline: none;
   padding: 0;
   box-shadow: none;
@@ -78,7 +78,7 @@ export const Description = styled.p`
 
 export const ContentWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100dvh;
   max-width: 23.25rem;
   ${FlexBoxEnum.StartStartVertical}
 `;
