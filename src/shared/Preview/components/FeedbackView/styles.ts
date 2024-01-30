@@ -16,12 +16,9 @@ export const DemoWrapper = styled.div`
     box-shadow: unset;
     border-radius: 3rem;
 
-    ${inGreaterThan(BreakpointEnums.mobile)`
-       border-radius: unset;
-    `};
-
     ${inLessThan(BreakpointEnums.mobile)`
        height: 100dvh !important;
+       border-radius: unset;
     `};
   }
 `;

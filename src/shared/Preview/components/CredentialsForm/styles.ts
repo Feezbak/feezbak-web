@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Drawer, Button } from "antd";
-import { ifProp } from "@/helpers";
+import { ifProp, inLessThan } from "@/helpers";
 import { motion } from "framer-motion";
-import { FlexBoxEnum, StyleEnums } from "@/enums";
+import { FlexBoxEnum, StyleEnums, BreakpointEnums } from "@/enums";
 
 export const FormDrawer = styled(Drawer)<{
   readonly $isCreationMode: boolean;
@@ -12,6 +12,10 @@ export const FormDrawer = styled(Drawer)<{
   border-radius: 3rem;
   z-index: 2;
   padding: 0;
+
+  ${inLessThan(BreakpointEnums.mobile)`
+       border-radius: unset;
+    `};
   .ant-drawer-body {
     padding: 1.5rem 1rem !important;
   }
