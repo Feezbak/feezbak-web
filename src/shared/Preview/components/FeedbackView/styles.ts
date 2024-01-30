@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { inLessThan } from "@/helpers";
+import { inLessThan, inGreaterThan } from "@/helpers";
 import { FlexBoxEnum, BreakpointEnums } from "@/enums";
 
 export const DemoWrapper = styled.div`
@@ -8,9 +8,17 @@ export const DemoWrapper = styled.div`
   position: relative;
   ${FlexBoxEnum.CenterHorizontal}
 
+  ${inLessThan(BreakpointEnums.mobile)`
+       height: 100dvh !important;
+   `};
+
   .ant-drawer-content-wrapper {
     box-shadow: unset;
     border-radius: 3rem;
+
+    ${inGreaterThan(BreakpointEnums.mobile)`
+       border-radius: 3rem;
+    `};
 
     ${inLessThan(BreakpointEnums.mobile)`
        height: 100dvh !important;
