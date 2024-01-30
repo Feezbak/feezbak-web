@@ -17,7 +17,7 @@ export const DemoWrapper = styled.div`
     border-radius: 3rem;
 
     ${inGreaterThan(BreakpointEnums.mobile)`
-       border-radius: 3rem;
+       border-radius: unset;
     `};
 
     ${inLessThan(BreakpointEnums.mobile)`

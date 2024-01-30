@@ -2,7 +2,13 @@ import CredentialsFormContent from "./components/CredentialsFormContent";
 import { GoBackRoundIcon } from "@/icons";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { ContactToData } from "@shared/Preview/components/Demo/types";
-import { FormDrawer, CredTitle, CloseBtn, DrawerContent } from "./styles";
+import {
+  FormDrawer,
+  CredTitle,
+  CloseBtn,
+  DrawerContent,
+  DrawerHeader,
+} from "./styles";
 
 interface Props {
   isOpen: boolean;
@@ -38,12 +44,14 @@ const CredentialsForm = ({
     >
       {isOpen && (
         <DrawerContent {...opacityAnimation} $isCreationMode={isCreationMode}>
-          {!isCreationMode && (
-            <CloseBtn onClick={onClose} icon={<GoBackRoundIcon />} />
-          )}
-          <CredTitle>
-            Please fill in the information to be able to submit your feedback
-          </CredTitle>
+          <DrawerHeader>
+            {!isCreationMode && (
+              <CloseBtn onClick={onClose} icon={<GoBackRoundIcon />} />
+            )}
+            <CredTitle>
+              Please fill in the information to be able to submit your feedback
+            </CredTitle>
+          </DrawerHeader>
           <CredentialsFormContent
             fields={fields}
             isLoading={isLoading}
