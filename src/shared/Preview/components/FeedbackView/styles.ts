@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { inLessThan, inGreaterThan } from "@/helpers";
+import { inLessThan } from "@/helpers";
 import { FlexBoxEnum, BreakpointEnums } from "@/enums";
 
 export const DemoWrapper = styled.div`
