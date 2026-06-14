@@ -31,12 +31,9 @@ export const PreviewFlow = styled(motion.div)<{
 
   ${inLessThan(BreakpointEnums.mobile)`
      border: unset;
+     height: 100dvh;
      border-radius: ${ifProp("$hasBorderRadius", "0", "3.5rem")} !important;
   `}
-
-  .ant-drawer-content-wrapper {
-    box-shadow: unset;
-  }
 `;
 
 export const TitlePreview = styled(motion.div)<{

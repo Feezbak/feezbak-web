@@ -7,7 +7,7 @@ import {
   CredTitle,
   CloseBtn,
   DrawerContent,
-  CloseBtnWrapper,
+  DrawerHeader,
 } from "./styles";
 
 interface Props {
@@ -15,12 +15,14 @@ interface Props {
   fields: string[];
   isCreationMode: boolean;
   isLoading: boolean;
+  isMobile: boolean;
   onClose: () => void;
   sendContactInfo: (info: ContactToData[]) => void;
 }
 
 const CredentialsForm = ({
   isOpen = true,
+  isMobile = false,
   onClose,
   fields,
   isCreationMode,
@@ -32,7 +34,7 @@ const CredentialsForm = ({
       title=""
       footer={false}
       placement="bottom"
-      height="100%"
+      height={`100${isMobile ? "dvh" : "%"}`}
       getContainer={false}
       closable={false}
       mask={false}
@@ -42,14 +44,14 @@ const CredentialsForm = ({
     >
       {isOpen && (
         <DrawerContent {...opacityAnimation} $isCreationMode={isCreationMode}>
-          {!isCreationMode && (
-            <CloseBtnWrapper>
+          <DrawerHeader>
+            {!isCreationMode && (
               <CloseBtn onClick={onClose} icon={<GoBackRoundIcon />} />
-            </CloseBtnWrapper>
-          )}
-          <CredTitle>
-            Please fill in the information to be able to submit your feedback
-          </CredTitle>
+            )}
+            <CredTitle>
+              Please fill in the information to be able to submit your feedback
+            </CredTitle>
+          </DrawerHeader>
           <CredentialsFormContent
             fields={fields}
             isLoading={isLoading}

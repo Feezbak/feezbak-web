@@ -1,17 +1,21 @@
 import styled from "styled-components";
 import { Drawer, Button } from "antd";
-import { ifProp } from "@/helpers";
+import { ifProp, inLessThan } from "@/helpers";
 import { motion } from "framer-motion";
-import { FlexBoxEnum, StyleEnums } from "@/enums";
+import { FlexBoxEnum, StyleEnums, BreakpointEnums } from "@/enums";
 
 export const FormDrawer = styled(Drawer)<{
   readonly $isCreationMode: boolean;
 }>`
   background: ${StyleEnums.white};
   border: ${ifProp("$isCreationMode", `1px solid ${StyleEnums.gray3}`, "none")};
-  border-radius: ${ifProp("$isCreationMode", "3rem", "unset")};
+  border-radius: 3rem;
   z-index: 2;
   padding: 0;
+
+  ${inLessThan(BreakpointEnums.mobile)`
+       border-radius: unset;
+    `};
   .ant-drawer-body {
     padding: 1.5rem 1rem !important;
   }
@@ -29,13 +33,10 @@ export const CredTitle = styled.p`
 
 export const CloseBtn = styled(Button)`
   border-radius: 50%;
+  border: none;
+  width: 2.5rem !important;
+  height: 2.5rem;
   ${FlexBoxEnum.CenterHorizontal}
-`;
-
-export const CloseBtnWrapper = styled.div`
-  width: 100%;
-  max-width: 23.25rem;
-  ${FlexBoxEnum.JustifyStartHorizontal}
 `;
 
 export const DrawerContent = styled(motion.div)<{
@@ -45,4 +46,8 @@ export const DrawerContent = styled(motion.div)<{
   height: 100%;
   padding: ${ifProp("$isCreationMode", "5%", "0")};
   ${FlexBoxEnum.CenterVertical}
+`;
+
+export const DrawerHeader = styled.div`
+  max-width: 23.25rem;
 `;

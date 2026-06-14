@@ -1,11 +1,17 @@
 import styled, { css } from "styled-components";
 import { Input, Button, Drawer } from "antd";
-import { FlexBoxEnum, StyleEnums } from "@/enums";
+import { inLessThan } from "@/helpers";
+import { FlexBoxEnum, StyleEnums, BreakpointEnums } from "@/enums";
 const { TextArea } = Input;
 
 export const CommentMainDrawer = styled(Drawer)`
   background: ${StyleEnums.white};
+  border-radius: 3rem;
   padding: 0;
+
+  ${inLessThan(BreakpointEnums.mobile)`
+       border-radius: unset;
+    `};
   .ant-drawer-body {
     padding: 1.5rem 1rem;
     ${FlexBoxEnum.CenterVertical}
@@ -17,7 +23,7 @@ export const TextField = styled(TextArea)`
   border: none;
   min-height: 5rem !important;
   overflow-y: auto !important;
-  height: 100% !important;
+  height: 40dvh !important;
   outline: none;
   padding: 0;
   box-shadow: none;
@@ -78,7 +84,7 @@ export const Description = styled.p`
 
 export const ContentWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100dvh;
   max-width: 23.25rem;
   ${FlexBoxEnum.StartStartVertical}
 `;

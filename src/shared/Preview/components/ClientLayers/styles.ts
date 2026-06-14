@@ -15,6 +15,7 @@ export const LayersSelectionWrapper = styled(motion.div)`
   background: ${StyleEnums.white};
   ${inLessThan(BreakpointEnums.mobile)`
      border-radius: 0;
+     height: 100dvh;
   `}
 `;
 
