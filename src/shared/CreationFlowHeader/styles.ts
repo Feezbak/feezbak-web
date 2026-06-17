@@ -34,9 +34,12 @@ export const StepDot = styled.span<{
   $isActive: boolean;
   $isCompleted: boolean;
 }>`
+  display: inline-block;
+  flex-shrink: 0;
   width: ${({ $isActive }) => ($isActive ? "1.5rem" : "0.5rem")};
   height: 0.5rem;
   border-radius: 1rem;
+  border: none;
   transition: width 0.25s ease, background 0.25s ease;
   background: ${({ $isActive, $isCompleted }) =>
     $isActive || $isCompleted ? StyleEnums.primary : StyleEnums.gray3};
