@@ -3,7 +3,7 @@ import { CustomPagination } from "@/shared";
 import useRequest from "@ahooksjs/use-request";
 import { getStories, deleteStory } from "@/api";
 import { message, Button, notification } from "antd";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import emptyStoriesSrc from "@images/empty-stories.webp";
 import { useLocation, useNavigate } from "react-router-dom";
 import { opacityAnimation } from "@assets/framerAnimations";
@@ -139,7 +139,7 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
       {contextHolder}
       <AnimatePresence initial={false} exitBeforeEnter>
         {isLoading ? (
-          <SkeletonsWrapper key="skeletons">
+          <SkeletonsWrapper key="skeletons" {...opacityAnimation}>
             {[1, 2, 3].map((item) => (
               <StorySkeleton
                 key={item}
@@ -150,9 +150,9 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
             ))}
           </SkeletonsWrapper>
         ) : storiesPaginatedData && storiesPaginatedData?.total >= 1 ? (
-          <div key="list">
+          <motion.div key="list" {...opacityAnimation}>
             {!!storiesPaginatedData.total && <ListHeader />}
-            <StoriesListWrapper {...opacityAnimation}>
+            <StoriesListWrapper>
               {storiesPaginatedData?.stories?.map((story: any) => (
                 <StoryItem
                   storyId={story._id}
@@ -171,7 +171,7 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
                 total={storiesPaginatedData.total}
               />
             )}
-          </div>
+          </motion.div>
         ) : (
           <EmptyStoriesWrapper key="empty" {...opacityAnimation}>
             <EmptyStoriesImage
