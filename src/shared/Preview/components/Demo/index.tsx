@@ -48,6 +48,7 @@ interface ColorPickerPanelProps {
   isColorPickerOpen: boolean;
   isSquare: boolean;
   isSquareBtnVisible: boolean;
+  hasCoverImg: boolean;
   colorPickerRef: React.RefObject<HTMLDivElement>;
   colorPickerBtnHandler?: () => void;
   colorPickerOnChange?: (color: string) => void;
@@ -61,6 +62,7 @@ const ColorPickerPanel = memo(
     isColorPickerOpen,
     isSquare,
     isSquareBtnVisible,
+    hasCoverImg,
     colorPickerRef,
     colorPickerBtnHandler,
     colorPickerOnChange,
@@ -68,7 +70,7 @@ const ColorPickerPanel = memo(
   }: ColorPickerPanelProps) => (
     <>
       <AnimatePresence>
-        {((isHovered && squareBtnHandler) || isSquare) &&
+        {((isHovered && hasCoverImg && squareBtnHandler) || isSquare) &&
           isSquareBtnVisible && (
             <motion.div {...opacityAnimation} key="1">
               <SquareBtn
@@ -414,6 +416,7 @@ const Demo = ({
           isColorPickerOpen={isColorPickerOpen}
           isSquare={isSquare}
           isSquareBtnVisible={isSquareBtnVisible}
+          hasCoverImg={!!coverImgSrc?.length}
           colorPickerRef={colorPickerRef}
           colorPickerBtnHandler={colorPickerBtnHandler}
           colorPickerOnChange={colorPickerOnChange}
