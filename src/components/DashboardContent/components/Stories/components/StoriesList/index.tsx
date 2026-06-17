@@ -79,15 +79,14 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
       const deletedId = params[0];
       // Immediately remove from local state to prevent the deleted story
       // flashing back after the skeleton disappears
-      setStoriesPaginatedData((prev) =>
-        prev
-          ? {
-              ...prev,
-              total: prev.total - 1,
-              stories: prev.stories.filter((s: any) => s._id !== deletedId),
-            }
-          : null
-      );
+      setStoriesPaginatedData((prev) => {
+        if (!prev) return null;
+        return {
+          ...prev,
+          total: prev.total - 1,
+          stories: prev.stories.filter((s: any) => s._id !== deletedId),
+        };
+      });
       try {
         let page = currentPage;
         if (storiesPaginatedData!.total % 5 === 1) {
