@@ -1,4 +1,6 @@
 import { lazy, useMemo } from "react";
+import { motion } from "framer-motion";
+import { opacityAnimation } from "@assets/framerAnimations";
 import { StoryAnalyticsWrapper } from "./styles";
 import useRequest from "@ahooksjs/use-request";
 import { getFeedbackAnalytics } from "@/api";
@@ -55,8 +57,9 @@ const StoryAnalytics = () => {
               feedbacks={feedbackDataSelector}
             />
           ) : (
-            <div
+            <motion.div
               key="empty"
+              {...opacityAnimation}
               style={{ textAlign: "center", padding: "4rem 0", opacity: 0.45 }}
             >
               <div style={{ fontSize: "2.5rem", marginBottom: "0.75rem" }}>
@@ -64,7 +67,7 @@ const StoryAnalytics = () => {
               </div>
               <h3 style={{ marginBottom: "0.5rem" }}>No responses yet</h3>
               <p>Share your story link to start collecting feedback.</p>
-            </div>
+            </motion.div>
           )
         ) : (
           <PageLoader key="loader" />
