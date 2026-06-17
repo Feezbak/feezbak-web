@@ -6,6 +6,7 @@ import { createStory } from "@/api";
 import { Button, message } from "antd";
 import { useResponsive } from "@/hooks";
 import { StoriesListHeader, StoriesContent, StoriesWrapper } from "./styles";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 const Stories = () => {
   const { isLessThanSm } = useResponsive();
@@ -21,7 +22,7 @@ const Stories = () => {
       },
       onError: (error: any) => {
         setTimeout(() => navigate("/not-found"), 2000);
-        message.error(error?.response?.data?.message ?? "");
+        message.error(getErrorMessage(error));
       },
     }
   );

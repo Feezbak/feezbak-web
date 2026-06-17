@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { UserDataVerifyWrapper } from "./styles";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 const UserDataVerificationContent = () => {
   const { id } = useParams();
@@ -16,7 +17,7 @@ const UserDataVerificationContent = () => {
     },
     onError: async (error: any) => {
       setTimeout(() => navigate("/not-found"), 2000);
-      await message.error(error?.response?.data?.message ?? "");
+      await message.error(getErrorMessage(error));
     },
   });
 

@@ -9,6 +9,7 @@ import AddEmailAddress from "./components/AddEmailAddress";
 import EmailsList from "./components/EmailsList";
 import SendEmailsFooter from "./components/SendEmailsFooter";
 import { SendEmailAddressesWrapper } from "./styles";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 export type EmailsListType = {
   email: string;
@@ -42,7 +43,7 @@ const SendToEmailAddresses = ({ emailsDefault }: Props) => {
         );
       },
       onError: (error: any) => {
-        message.error(error?.response?.data?.message);
+        message.error(getErrorMessage(error));
       },
     }
   );

@@ -5,6 +5,7 @@ import { registerUser } from "@/api";
 import { message } from "antd";
 import useRequest from "@ahooksjs/use-request";
 import { SignUpEmailFormInputs, SignUpEmailSchema } from "@/validations";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 export default function useSignUpByEmailForm(
   setAccountState: () => void
@@ -48,7 +49,7 @@ export default function useSignUpByEmailForm(
       },
       onError: (error: any) => {
         console.error(error);
-        message.error(error.response.data.message);
+        message.error(getErrorMessage(error));
       },
     }
   );

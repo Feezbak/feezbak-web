@@ -13,6 +13,7 @@ import {
   ImageUploadArea,
   UploadAreaWrapper,
 } from "./styles";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 const ImageType = () => {
   const { id: storyId } = useParams();
@@ -29,7 +30,7 @@ const ImageType = () => {
         setNewImages(resp.data);
       },
       onError: async (error: any) => {
-        await message.error(error?.response?.data?.message);
+        await message.error(getErrorMessage(error));
       },
     }
   );

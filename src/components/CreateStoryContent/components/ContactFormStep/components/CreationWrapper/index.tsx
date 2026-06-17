@@ -9,6 +9,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { saveStoryFields } from "@/api";
 import UserInfoCollect from "./components/UserInfoCollect";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 interface Props {
   handleDemo: () => void;
@@ -34,7 +35,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
         }
       },
       onError: (error: any) => {
-        message.error(error?.response?.data?.message);
+        message.error(getErrorMessage(error));
       },
     }
   );
@@ -54,7 +55,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
 
   return (
     <CreationFlowWrapper xs={24} sm={24} md={24} lg={14} xl={13} xxl={12}>
-      <CreationFlowHeader handleDemo={handleDemo} />
+      <CreationFlowHeader handleDemo={handleDemo} currentStep={currentStep} />
       <UserInfoCollect />
       <CreationFlowFooter
         nextLoading={isLoading}

@@ -9,6 +9,7 @@ import useRequest from "@ahooksjs/use-request";
 import { Preview } from "@/shared";
 import { AnimatePresence } from "framer-motion";
 import { FeedbackerContentWrapper, PreviewFlowWrapper } from "./styles";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 const FeedbackerContent = () => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const FeedbackerContent = () => {
     {
       onError: (error: any) => {
         setTimeout(() => navigate("/not-found"), 2000);
-        message.error(error?.response?.data?.message);
+        message.error(getErrorMessage(error));
       },
     }
   );

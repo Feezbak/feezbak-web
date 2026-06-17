@@ -5,6 +5,7 @@ import useRequest from "@ahooksjs/use-request";
 import { useRecoilState } from "recoil";
 import { userData } from "@/recoil";
 import { UploadProfileAvatarWrapper } from "./styles";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 const ProfileAvatar = () => {
   const [profileData, updateProfileData] = useRecoilState(userData);
@@ -22,7 +23,7 @@ const ProfileAvatar = () => {
         }
       },
       onError: async (error: any) => {
-        await message.error(error?.response?.data?.message);
+        await message.error(getErrorMessage(error));
       },
     }
   );

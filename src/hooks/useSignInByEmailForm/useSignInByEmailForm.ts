@@ -7,6 +7,7 @@ import { message } from "antd";
 import { useSetRecoilState } from "recoil";
 import { userData } from "@/recoil";
 import useRequest from "@ahooksjs/use-request";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 export default function useSignInByEmailForm(
   onUserSuccessLogin: () => void
@@ -56,7 +57,7 @@ export default function useSignInByEmailForm(
         }
       },
       onError: (error: any) => {
-        message.error(error?.response?.data?.message);
+        message.error(getErrorMessage(error));
       },
     }
   );

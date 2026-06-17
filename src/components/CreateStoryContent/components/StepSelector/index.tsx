@@ -11,6 +11,7 @@ import {
   useManageStepInStorage as manageStepInStorage,
   usePageLeaveDetection,
 } from "@/hooks";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 const TitleAddingStep = lazy(() => import("../TitleAddingStep"));
 const TypeDefiningStep = lazy(() => import("../TypeDefiningStep"));
@@ -55,7 +56,7 @@ const StepSelector = () => {
       },
       onError: (error: any) => {
         setTimeout(() => navigate("/not-found"), 2000);
-        message.error(error?.response?.data?.message);
+        message.error(getErrorMessage(error));
       },
     }
   );

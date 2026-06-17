@@ -5,6 +5,7 @@ import { changePassword } from "@/api";
 import { ChangePasswordFormInputs, ChangePasswordSchema } from "@/validations";
 import { message } from "antd";
 import useRequest from "@ahooksjs/use-request";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 export default function useChangePasswordForm(): UseChangePasswordFormResult {
   const {
@@ -38,7 +39,7 @@ export default function useChangePasswordForm(): UseChangePasswordFormResult {
       },
       onError: (error: any) => {
         console.error(error);
-        message.error(error.response.data.message);
+        message.error(getErrorMessage(error));
       },
     }
   );

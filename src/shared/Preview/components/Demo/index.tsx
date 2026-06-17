@@ -39,6 +39,7 @@ import {
   SquareBtn,
 } from "./styles";
 import { ResponseBtnsType } from "@/constants";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 // ---------- sub-components ----------
 
@@ -260,7 +261,7 @@ const Demo = ({
         }
       },
       onError: (error: any) => {
-        message.error(error?.response?.data?.message);
+        message.error(getErrorMessage(error));
       },
     }
   );
@@ -278,7 +279,7 @@ const Demo = ({
         );
       },
       onError: (error: any) => {
-        message.error(error?.response?.data?.message);
+        message.error(getErrorMessage(error));
       },
     }
   );

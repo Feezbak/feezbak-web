@@ -5,6 +5,9 @@ import { useResponsive } from "@/hooks";
 import {
   CreationFlowHeaderWrapper,
   GoBackContentWrapper,
+  StepProgressWrapper,
+  StepDot,
+  StepLabel,
   DemoBtn,
   BackBtn,
 } from "./styles";
@@ -14,8 +17,12 @@ export interface ActionsList {
   typeSelection: boolean;
 }
 
+const TOTAL_STEPS = 3;
+const STEP_LABELS = ["Title", "Type", "Settings"];
+
 interface Props {
   actions?: ActionsList;
+  currentStep?: number;
   handleQuantitySelection?: (value: boolean) => void;
   quantitySelectionDefaultValue?: boolean;
   handleTypeSelection?: (value: StoryTypeEnum) => void;
@@ -25,6 +32,7 @@ interface Props {
 
 const CreationFlowHeader = ({
   actions,
+  currentStep,
   handleDemo,
   handleQuantitySelection,
   handleTypeSelection,
@@ -46,6 +54,28 @@ const CreationFlowHeader = ({
           />
         )}
       </GoBackContentWrapper>
+
+      {currentStep && (
+        <StepProgressWrapper>
+          {Array.from({ length: TOTAL_STEPS }, (_, i) => {
+            const step = i + 1;
+            const isCompleted = step < currentStep;
+            const isActive = step === currentStep;
+            return (
+              <StepDot
+                key={step}
+                $isActive={isActive}
+                $isCompleted={isCompleted}
+                title={STEP_LABELS[i]}
+              />
+            );
+          })}
+          <StepLabel>
+            Step {currentStep} of {TOTAL_STEPS} — {STEP_LABELS[currentStep - 1]}
+          </StepLabel>
+        </StepProgressWrapper>
+      )}
+
       {!!actions && (
         <HeaderActions
           actions={actions}

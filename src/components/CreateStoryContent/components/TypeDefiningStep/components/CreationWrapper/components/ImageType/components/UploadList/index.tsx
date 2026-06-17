@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import Slider from "react-slick";
 import { uploadListSlickSettings } from "@/constants";
 import { UploadListWrapper } from "./styles";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 const UploadList = () => {
   const { step2, setSelectedImgSrc, deleteImage } =
@@ -21,7 +22,7 @@ const UploadList = () => {
     {
       manual: true,
       onError: (error: any) => {
-        message.error(error?.response?.data?.message);
+        message.error(getErrorMessage(error));
       },
     }
   );

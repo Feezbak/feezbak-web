@@ -8,6 +8,7 @@ import { userData } from "@/recoil";
 import useRequest from "@ahooksjs/use-request";
 import { getMyProfile } from "@/api";
 import { PrivateRoute } from "@/components";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 const SignIn = lazy(() => import("@/pages/SignIn"));
 const SignUp = lazy(() => import("@/pages/SignUp"));
@@ -40,7 +41,7 @@ const AnimatedRoutes = () => {
       resp?.data && setUserData({ ...resp.data, loading: false });
     },
     onError: async (error: any) => {
-      message.error(error?.response?.data?.message ?? "");
+      message.error(getErrorMessage(error));
       localStorage.clear();
     },
   });

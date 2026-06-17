@@ -1,7 +1,7 @@
+import { useState } from "react";
 import TitleDescriptionPair from "../../../TitleDescriptionPair";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { message } from "antd";
 import {
   LinkShareWrapper,
   CopyToClipboardWrapper,
@@ -14,9 +14,11 @@ interface Props {
 }
 
 const LinkShare = ({ link }: Props) => {
-  const handleCopyToClipboard = async () => {
-    message.destroy();
-    await message.success("The link was successfully copied!");
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyToClipboard = () => {
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
@@ -30,7 +32,7 @@ const LinkShare = ({ link }: Props) => {
           <p>{link}</p>
         </LinkContainer>
         <CopyToClipboard text={link} onCopy={handleCopyToClipboard}>
-          <CopyBtn type="primary">Copy Link</CopyBtn>
+          <CopyBtn type="primary">{copied ? "Copied!" : "Copy Link"}</CopyBtn>
         </CopyToClipboard>
       </CopyToClipboardWrapper>
     </LinkShareWrapper>

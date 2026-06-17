@@ -7,6 +7,7 @@ import {
   FooterTextWithLink,
   Description,
 } from "./styles";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const Footer = () => {
       navigate(`/create-story/${resp.data._id}`);
     },
     onError: (error: any) => {
-      message.error(error?.response?.data?.message);
+      message.error(getErrorMessage(error));
     },
   });
   const handleCreateStory = async () => {

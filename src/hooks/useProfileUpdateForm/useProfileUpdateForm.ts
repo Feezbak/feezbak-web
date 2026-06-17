@@ -8,6 +8,7 @@ import { message } from "antd";
 import { UserDataType } from "@/constants";
 import { updateProfile } from "@/api";
 import useRequest from "@ahooksjs/use-request";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 export default function useProfileUpdateForm(
   onSuccessAction: () => void,
@@ -53,7 +54,7 @@ export default function useProfileUpdateForm(
       },
       onError: (error: any) => {
         console.error(error);
-        message.error(error.response.data.message);
+        message.error(getErrorMessage(error));
       },
     }
   );
