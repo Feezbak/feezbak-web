@@ -1,5 +1,5 @@
 import { opacityAnimation } from "@assets/framerAnimations";
-import piiIllustartionSrc from "@images/data.png";
+import piiIllustartionSrc from "@images/data.webp";
 import CreatedBy from "@shared/CreatedBy";
 import {
   NextBtn,

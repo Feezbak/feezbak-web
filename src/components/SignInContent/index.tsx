@@ -1,5 +1,5 @@
 import SignInForm from "./components/SignInForm";
-import signUpImgSrc from "@images/sign-in.png";
+import signUpImgSrc from "@images/sign-in.webp";
 import {
   SignInMainWrapper,
   SignInFormWrapper,

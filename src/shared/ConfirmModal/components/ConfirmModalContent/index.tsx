@@ -1,5 +1,5 @@
 import { dropIn } from "@/constants";
-import confirmModalSrc from "@images/sammy-line-downloading.png";
+import confirmModalSrc from "@images/sammy-line-downloading.webp";
 import {
   ModalWrapper,
   ModalContent,

@@ -1,8 +1,8 @@
-import imgTypeBtnRespSrc from "@images/image-type-btn-resp.png";
-import imgTypeBtnTextSrc from "@images/image-type-text-resp.png";
-import textTypeBtnRespSrc from "@images/text-type-btn-resp.png";
-import textTypeTextRespSrc from "@images/text-type-text-resp.png";
-import combinedSrc from "@images/combined-type.png";
+import imgTypeBtnRespSrc from "@images/image-type-btn-resp.webp";
+import imgTypeBtnTextSrc from "@images/image-type-text-resp.webp";
+import textTypeBtnRespSrc from "@images/text-type-btn-resp.webp";
+import textTypeTextRespSrc from "@images/text-type-text-resp.webp";
+import combinedSrc from "@images/combined-type.webp";
 import { StoryTypeEnum } from "@/enums";
 
 export const typesModalContent = [

@@ -6,7 +6,7 @@ import {
   IllustrationWrapper,
   Footer,
 } from "./styles";
-import emailVerifySrc from "@images/email-verification.png";
+import emailVerifySrc from "@images/email-verification.webp";
 
 interface Props {
   handleGoBackAction: () => void;

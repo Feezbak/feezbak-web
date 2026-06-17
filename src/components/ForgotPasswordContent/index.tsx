@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ForgotPasswordForm from "./components/ForgotPasswordForm";
 import { EmailVerificationNotifier } from "@/shared";
-import forgotPasswordImgSrc from "@images/forgot-pass.png";
+import forgotPasswordImgSrc from "@images/forgot-pass.webp";
 import { AnimatePresence } from "framer-motion";
 import { opacityAnimation } from "@assets/framerAnimations";
 import {

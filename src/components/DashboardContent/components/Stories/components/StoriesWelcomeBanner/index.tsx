@@ -1,4 +1,4 @@
-import StoryWelcomeBannerImgSrc from "@images/sammy-line-delivery.png";
+import StoryWelcomeBannerImgSrc from "@images/sammy-line-delivery.webp";
 import {
   RowWrapper,
   StoriesWelcomeBannerWrapper,

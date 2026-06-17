@@ -1,5 +1,5 @@
 import ResetPasswordForm from "./components/ResetPasswordForm";
-import forgotPasswordImgSrc from "@images/forgot-pass.png";
+import forgotPasswordImgSrc from "@images/forgot-pass.webp";
 import {
   ResetPasswordMainWrapper,
   ResetPasswordFormWrapper,

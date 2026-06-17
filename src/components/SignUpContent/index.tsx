@@ -1,6 +1,6 @@
 import { useState } from "react";
 import SignUpForm from "./components/SignUpForm";
-import signUpImgSrc from "@images/sign-up.png";
+import signUpImgSrc from "@images/sign-up.webp";
 import { AnimatePresence } from "framer-motion";
 import { EmailVerificationNotifier } from "@/shared";
 import { opacityAnimation } from "@assets/framerAnimations";

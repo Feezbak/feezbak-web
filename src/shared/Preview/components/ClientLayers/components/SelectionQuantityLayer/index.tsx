@@ -1,6 +1,6 @@
 import { opacityAnimation } from "@assets/framerAnimations";
 import CreatedBy from "@shared/CreatedBy";
-import singleSelectIllustartionSrc from "@images/confused.png";
+import singleSelectIllustartionSrc from "@images/confused.webp";
 import {
   LayerInfoContent,
   ActionsWrapper,

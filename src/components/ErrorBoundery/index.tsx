@@ -1,5 +1,5 @@
 import React, { ErrorInfo } from "react";
-import appCrashSrc from "@images/application-crash.png";
+import appCrashSrc from "@images/application-crash.webp";
 import Prism from "prismjs";
 import {
   ErrorBounderyWrapper,

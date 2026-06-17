@@ -4,7 +4,7 @@ import useRequest from "@ahooksjs/use-request";
 import { getStories, deleteStory } from "@/api";
 import { message } from "antd";
 import { AnimatePresence } from "framer-motion";
-import emptyStoriesSrc from "@images/empty-stories.png";
+import emptyStoriesSrc from "@images/empty-stories.webp";
 import { useLocation, useNavigate } from "react-router-dom";
 import { opacityAnimation } from "@assets/framerAnimations";
 import ListHeader from "./components/ListHeader";

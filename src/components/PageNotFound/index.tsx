@@ -1,4 +1,4 @@
-import notFoundPageSrc from "@images/page-not-found.png";
+import notFoundPageSrc from "@images/page-not-found.webp";
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import { NotFoundWrapper, NotFoundIllustration } from "./styles";
