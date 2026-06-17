@@ -63,6 +63,11 @@ const ButtonResponse = () => {
         disabled={respBtnState.length >= 3}
       >
         Add New Response Button
+        <span
+          style={{ marginLeft: "0.5rem", opacity: 0.5, fontSize: "0.85em" }}
+        >
+          {respBtnState.length} / 3
+        </span>
       </AddNewRespBtn>
     </ResponseListAndBtnContainer>
   );

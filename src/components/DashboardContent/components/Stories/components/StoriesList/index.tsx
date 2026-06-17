@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { ConfirmModal, CustomPagination } from "@/shared";
 import useRequest from "@ahooksjs/use-request";
 import { getStories, deleteStory } from "@/api";
-import { message } from "antd";
+import { message, Button } from "antd";
 import { AnimatePresence } from "framer-motion";
 import emptyStoriesSrc from "@images/empty-stories.webp";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -135,8 +135,16 @@ const StoriesList = () => {
             <h2>It’s ok not to have stories!</h2>
             <p>
               Stories are ways to understand how people think about a certain
-              part of your business or product, create one now.!
+              part of your business or product, create one now.
             </p>
+            <Button
+              type="primary"
+              size="large"
+              onClick={() => navigate("/create-story")}
+              style={{ marginTop: "1rem" }}
+            >
+              Create your first story →
+            </Button>
           </EmptyStoriesWrapper>
         )}
       </AnimatePresence>

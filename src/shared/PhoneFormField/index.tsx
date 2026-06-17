@@ -29,11 +29,16 @@ const PhoneFormField = ({
     >
       <div>
         <label htmlFor={name}>
-          {label} {isRequired && <sub>*</sub>}
+          {label}{" "}
+          {isRequired ? (
+            <sub>*</sub>
+          ) : (
+            <span style={{ fontSize: "0.75em", opacity: 0.5 }}>(optional)</span>
+          )}
         </label>
         <PhoneNumberInput
           name={name}
-          defaultCountry="AM"
+          international
           control={formControl}
           disabled={disabled}
           rules={{ required: false }}

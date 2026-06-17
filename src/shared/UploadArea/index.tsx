@@ -43,6 +43,11 @@ const UploadArea = ({ handleUpload, loading, title, description }: Props) => {
           </UploadIconWrapper>
           <span>{title}</span>
           <p>{description}</p>
+          <p
+            style={{ fontSize: "0.75rem", opacity: 0.5, marginTop: "0.25rem" }}
+          >
+            Max file size: 1 MB
+          </p>
         </UploadWrapper>
       )}
     </Dropzone>
