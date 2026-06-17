@@ -17,7 +17,7 @@ const Stories = () => {
     {
       manual: true,
       onSuccess: (resp) => {
-        localStorage.setItem(resp.data._id, JSON.stringify({}));
+        localStorage.setItem(resp.data._id, JSON.stringify({ __v: "1" }));
         navigate(`/create-story/${resp.data._id}`);
       },
       onError: (error: any) => {

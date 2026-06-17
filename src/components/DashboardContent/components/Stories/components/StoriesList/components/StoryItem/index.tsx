@@ -38,7 +38,7 @@ const StoryItem = memo(
     const titleTextContent = useTextFromHTML(title ?? "");
 
     const handleEdit = useCallback(() => {
-      if (!title) localStorage.setItem(storyId, JSON.stringify({}));
+      if (!title) localStorage.setItem(storyId, JSON.stringify({ __v: "1" }));
       navigate(`/create-story/${storyId}`);
     }, [storyId, navigate, title]);
 
