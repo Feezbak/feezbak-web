@@ -96,6 +96,23 @@ describe("StoryItem", () => {
     expect(handleDelete).toHaveBeenCalledWith("story-123");
   });
 
+  describe("localStorage on edit", () => {
+    beforeEach(() => localStorage.clear());
+
+    it("writes __v:'1' to localStorage when title is empty and edit is clicked", () => {
+      renderItem({ storyData: { ...defaultStory, title: "" } });
+      fireEvent.click(screen.getByTestId("edit-icon"));
+      const stored = JSON.parse(localStorage.getItem("story-123")!);
+      expect(stored.__v).toBe("1");
+    });
+
+    it("does NOT write to localStorage when the story already has a title", () => {
+      renderItem();
+      fireEvent.click(screen.getByTestId("edit-icon"));
+      expect(localStorage.getItem("story-123")).toBeNull();
+    });
+  });
+
   it("shows skeleton when loading and deletion id matches", () => {
     const handleDelete = jest.fn();
     const { rerender } = render(
