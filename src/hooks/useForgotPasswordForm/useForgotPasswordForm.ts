@@ -5,6 +5,7 @@ import { forgotPassword } from "@/api";
 import { ForgotPasswordFormInputs, ForgotPasswordSchema } from "@/validations";
 import { message } from "antd";
 import useRequest from "@ahooksjs/use-request";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 export default function useForgotPasswordForm(
   onSuccessAction: () => void
@@ -48,7 +49,7 @@ export default function useForgotPasswordForm(
       },
       onError: (error: any) => {
         console.error(error);
-        message.error(error?.response?.data?.message);
+        message.error(getErrorMessage(error));
       },
     }
   );

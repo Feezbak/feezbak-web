@@ -7,6 +7,7 @@ import { AnimatePresence } from "framer-motion";
 import { useParams, useNavigate } from "react-router-dom";
 import { PageLoader } from "@/shared";
 import { StoryTypeEnum } from "@/enums";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 const StoryAnalyticsByType = lazy(
   () => import("./components/StoryAnalyticsByType")
@@ -21,7 +22,7 @@ const StoryAnalytics = () => {
     {
       onError: (error: any) => {
         setTimeout(() => navigate("/not-found"), 2000);
-        message.error(error?.response?.data?.message ?? "");
+        message.error(getErrorMessage(error));
       },
     }
   );

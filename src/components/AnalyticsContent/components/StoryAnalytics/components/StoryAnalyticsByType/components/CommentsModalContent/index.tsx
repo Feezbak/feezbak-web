@@ -9,6 +9,7 @@ import { CommentPaginatedDataType } from "@/constants";
 import Image from "./components/Image";
 import Comments from "./components/Comments";
 import { ModalWrapper, ContentWrapper, FixedWrapper } from "./styles";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 interface Props {
   storyId?: string;
@@ -44,7 +45,7 @@ const CommentsModalContent = ({
       },
       onError: (error: any) => {
         setTimeout(() => navigate("/not-found"), 2000);
-        message.error(error?.response?.data?.message ?? "");
+        message.error(getErrorMessage(error));
       },
     }
   );

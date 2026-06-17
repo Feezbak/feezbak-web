@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getFeedbackComments } from "@/api";
 import ResponseCommentTile from "../../../ResponseCommentTile";
 import { CommentsListWrapper } from "./styles";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 interface Props {
   feedbacksPaginatedData: any;
@@ -33,7 +34,7 @@ const TextWithCommentResp = ({ feedbacksPaginatedData }: Props) => {
       },
       onError: (error: any) => {
         setTimeout(() => navigate("/not-found"), 2000);
-        message.error(error?.response?.data?.message ?? "");
+        message.error(getErrorMessage(error));
       },
     }
   );

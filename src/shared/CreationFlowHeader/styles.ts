@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import { Button } from "antd";
 import { inLessThan } from "@/helpers";
-import { FlexBoxEnum, BreakpointEnums } from "@/enums";
+import { FlexBoxEnum, BreakpointEnums, StyleEnums } from "@/enums";
 
 export const CreationFlowHeaderWrapper = styled.div`
   width: 100%;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   ${FlexBoxEnum.SpaceBetweenHorizontal}
 
   ${inLessThan(BreakpointEnums.mobile)`
@@ -21,6 +23,32 @@ export const GoBackContentWrapper = styled.div`
     font-size: 1.5rem;
     letter-spacing: -0.02em;
   }
+`;
+
+export const StepProgressWrapper = styled.div`
+  ${FlexBoxEnum.CenterHorizontal}
+  gap: 0.5rem;
+`;
+
+export const StepDot = styled.span<{
+  $isActive: boolean;
+  $isCompleted: boolean;
+}>`
+  width: ${({ $isActive }) => ($isActive ? "1.5rem" : "0.5rem")};
+  height: 0.5rem;
+  border-radius: 1rem;
+  transition: width 0.25s ease, background 0.25s ease;
+  background: ${({ $isActive, $isCompleted }) =>
+    $isActive || $isCompleted ? StyleEnums.primary : StyleEnums.gray3};
+  opacity: ${({ $isCompleted }) => ($isCompleted ? 0.5 : 1)};
+`;
+
+export const StepLabel = styled.span`
+  font-size: 0.8rem;
+  color: ${StyleEnums.gray2};
+  font-weight: 500;
+  white-space: nowrap;
+  margin-left: 0.25rem;
 `;
 
 export const BackBtn = styled(Button)`

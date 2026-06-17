@@ -16,6 +16,7 @@ import {
   SkeletonsWrapper,
   StorySkeleton,
 } from "./styles";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 type StoryListItem = {
   id: string;
@@ -47,7 +48,7 @@ const StoriesList = () => {
         resp?.data && setStoriesPaginatedData(resp.data);
       },
       onError: (error: any) => {
-        message.error(error?.response?.data?.message);
+        message.error(getErrorMessage(error));
       },
     }
   );
@@ -65,11 +66,11 @@ const StoriesList = () => {
         const updatedPageData = await getStories(page);
         updatedPageData?.data && setStoriesPaginatedData(updatedPageData.data);
       } catch (error: any) {
-        message.error(error?.response?.data?.message);
+        message.error(getErrorMessage(error));
       }
     },
     onError: (error: any) => {
-      message.error(error?.response?.data?.message);
+      message.error(getErrorMessage(error));
     },
   });
 

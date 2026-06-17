@@ -13,6 +13,8 @@ type PredictedProp = {
 type PredictedFn = (props: PredictedProp) => number | string;
 type ConditionalStyle = number | string | PredictedFn;
 
+export { getErrorMessage } from "./errorMessage";
+
 export const prop = (name: string, defaultValue?: any): any => {
   // to support reading object props
   if (name.includes(".")) {

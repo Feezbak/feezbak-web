@@ -13,6 +13,7 @@ import { saveStoryFields } from "@/api";
 import { useParams } from "react-router-dom";
 import { CreationFlowFooter, CreationFlowHeader } from "@/shared";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 interface Props {
   handleDemo: () => void;
@@ -44,7 +45,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
         }
       },
       onError: (error: any) => {
-        message.error(error?.response?.data?.message);
+        message.error(getErrorMessage(error));
       },
     }
   );
@@ -109,6 +110,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
     <CreationFlowWrapper xs={24} sm={24} md={24} lg={14} xl={13} xxl={12}>
       <CreationFlowHeader
         handleDemo={handleDemo}
+        currentStep={currentStep}
         actions={{ quantitySelection: isImageVoting, typeSelection: true }}
         typeSelectionDefaultValue={step2.type}
         quantitySelectionDefaultValue={step2.isMultiple}

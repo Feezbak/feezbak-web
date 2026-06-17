@@ -16,6 +16,7 @@ import {
   DetailsSkeleton,
   LogoContainer,
 } from "./styles";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 dayjs.extend(duration);
 
@@ -29,7 +30,7 @@ const DashboardContent = () => {
     {
       onError: async (error: any) => {
         setTimeout(() => navigate("/not-found"), 2000);
-        await message.error(error?.response?.data?.message);
+        await message.error(getErrorMessage(error));
       },
     }
   );

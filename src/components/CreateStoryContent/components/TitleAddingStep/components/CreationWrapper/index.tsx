@@ -10,6 +10,7 @@ import { useTextFromHTML } from "@/hooks";
 import useRequest from "@ahooksjs/use-request";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
 import { CreationFlowHeader, CreationFlowFooter } from "@/shared";
+import { getErrorMessage } from "@helpers/errorMessage";
 
 interface Props {
   handleDemo: () => void;
@@ -34,7 +35,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
         }
       },
       onError: async (error: any) => {
-        message.error(error?.response?.data?.message);
+        message.error(getErrorMessage(error));
       },
     }
   );
@@ -57,7 +58,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
 
   return (
     <CreationFlowWrapper xs={24} sm={24} md={24} lg={14} xl={13} xxl={12}>
-      <CreationFlowHeader handleDemo={handleDemo} />
+      <CreationFlowHeader handleDemo={handleDemo} currentStep={currentStep} />
       <Editor />
       <CreationFlowFooter
         nextLoading={isLoading}
