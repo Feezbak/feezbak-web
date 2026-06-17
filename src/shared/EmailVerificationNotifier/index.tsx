@@ -1,5 +1,5 @@
 import { opacityAnimation } from "@assets/framerAnimations";
-import emailVerifySrc from "@images/email-verification.png";
+import emailVerifySrc from "@images/email-verification.webp";
 import {
   VerificationWrapper,
   IllustrationWrapper,

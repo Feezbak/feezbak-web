@@ -1,4 +1,4 @@
-import girlSendingMessageSrc from "@images/girl-sending-message.png";
+import girlSendingMessageSrc from "@images/girl-sending-message.webp";
 import { opacityAnimation } from "@assets/framerAnimations";
 import { TextTypeWrapper, TextTypeImage } from "./styles";
 
