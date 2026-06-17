@@ -42,7 +42,7 @@ const Stories = () => {
             Create Story
           </Button>
         </StoriesListHeader>
-        <StoriesList />
+        <StoriesList onCreateStory={createNewStory} isCreating={isLoading} />
       </StoriesContent>
     </StoriesWrapper>
   );

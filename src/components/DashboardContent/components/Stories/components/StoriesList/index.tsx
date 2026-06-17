@@ -31,7 +31,12 @@ interface StoriesListI {
   stories: StoryListItem[];
 }
 
-const StoriesList = () => {
+interface Props {
+  onCreateStory: () => void;
+  isCreating: boolean;
+}
+
+const StoriesList = ({ onCreateStory, isCreating }: Props) => {
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -140,7 +145,8 @@ const StoriesList = () => {
             <Button
               type="primary"
               size="large"
-              onClick={() => navigate("/create-story")}
+              onClick={onCreateStory}
+              loading={isCreating}
               style={{ marginTop: "1rem" }}
             >
               Create your first story →
