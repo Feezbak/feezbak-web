@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { ConfirmModal, CustomPagination } from "@/shared";
 import useRequest from "@ahooksjs/use-request";
 import { getStories, deleteStory } from "@/api";
@@ -73,9 +73,9 @@ const StoriesList = () => {
     },
   });
 
-  const handleDelete = (id: string) => {
+  const handleDelete = useCallback((id: string) => {
     setRemoveIdState(id);
-  };
+  }, []);
 
   const handleRunDelete = async () => {
     await runDeleteStory(removeId);

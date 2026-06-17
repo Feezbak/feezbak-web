@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ColorPickerIcon, MakeSquareIcon } from "@/icons";
 import { AnimatePresence, motion } from "framer-motion";
 import ResponsePreviewBtn from "@/shared/ResponsePreviewBtn";
@@ -38,6 +38,113 @@ import {
   Responses,
   SquareBtn,
 } from "./styles";
+import { ResponseBtnsType } from "@/constants";
+
+// ---------- sub-components ----------
+
+interface ColorPickerPanelProps {
+  color: string;
+  isHovered: boolean;
+  isColorPickerOpen: boolean;
+  isSquare: boolean;
+  isSquareBtnVisible: boolean;
+  hasCoverImg: boolean;
+  colorPickerRef: React.RefObject<HTMLDivElement>;
+  colorPickerBtnHandler?: () => void;
+  colorPickerOnChange?: (color: string) => void;
+  squareBtnHandler?: (state: boolean) => void;
+}
+
+const ColorPickerPanel = memo(
+  ({
+    color,
+    isHovered,
+    isColorPickerOpen,
+    isSquare,
+    isSquareBtnVisible,
+    hasCoverImg,
+    colorPickerRef,
+    colorPickerBtnHandler,
+    colorPickerOnChange,
+    squareBtnHandler,
+  }: ColorPickerPanelProps) => (
+    <>
+      <AnimatePresence>
+        {((isHovered && hasCoverImg && squareBtnHandler) || isSquare) &&
+          isSquareBtnVisible && (
+            <motion.div {...opacityAnimation} key="1">
+              <SquareBtn
+                type="default"
+                icon={<MakeSquareIcon />}
+                $isActive={isSquare}
+                onClick={() => squareBtnHandler?.(!isSquare)}
+              />
+            </motion.div>
+          )}
+        {(isHovered || isColorPickerOpen) && (
+          <motion.div {...opacityAnimation} key="2">
+            <ColorPickerBtn
+              type="default"
+              icon={<ColorPickerIcon />}
+              $isActive={isColorPickerOpen}
+              onClick={colorPickerBtnHandler}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {isColorPickerOpen && (
+          <ColorPickerWrapper
+            {...opacityWithScaleAnimation}
+            ref={colorPickerRef}
+          >
+            <CircleColorPicker
+              color={color}
+              colors={colorPickerMainColors}
+              onChange={(c) => colorPickerOnChange?.(c.hex)}
+            />
+          </ColorPickerWrapper>
+        )}
+      </AnimatePresence>
+    </>
+  )
+);
+
+interface ResponseButtonsProps {
+  responseButtons: ResponseBtnsType;
+  isLoading: boolean;
+  checkActivity: (id: string) => boolean;
+  onButtonClick: (btn: any) => void;
+}
+
+const ResponseButtons = memo(
+  ({
+    responseButtons,
+    isLoading,
+    checkActivity,
+    onButtonClick,
+  }: ResponseButtonsProps) => (
+    <Responses
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: "spring", duration: 1, stiffness: 200 }}
+    >
+      <AnimatePresence initial={false}>
+        {responseButtons.map((respBtn) => (
+          <ResponsePreviewBtn
+            disabled={isLoading}
+            isActive={checkActivity(respBtn.id)}
+            key={respBtn.id}
+            text={respBtn.text}
+            action={() => onButtonClick(respBtn)}
+          />
+        ))}
+      </AnimatePresence>
+    </Responses>
+  )
+);
+
+// ---------- main component ----------
 
 const Demo = ({
   color,
@@ -79,6 +186,45 @@ const Demo = ({
   const [isFullContentVisible, setFullContentVisibilityState] = useState(
     !isSquare
   );
+
+  // Derived values — cheap enough to compute inline
+  const hasButtonsResp = useMemo(
+    () =>
+      type === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
+      type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP ||
+      type === StoryTypeEnum.COMBINED,
+    [type]
+  );
+  const isTextType =
+    type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP ||
+    type === StoryTypeEnum.TEXT_VOTING_ONLY_TEXT_RESP;
+  const isTextRespRequired =
+    type === StoryTypeEnum.TEXT_VOTING_ONLY_TEXT_RESP ||
+    type === StoryTypeEnum.IMAGE_VOTING_ONLY_TEXT_RESP;
+  const isNotFirstStep = currentStep !== StoryStepEnum.TITLE_STEP;
+  const hasOutline = color.toUpperCase() === StyleEnums.white;
+  const hasLayer = !!coverImgSrc?.length && isNotFirstStep && !isSquare;
+  const isSquareBtnVisible = isCreationMode && hasButtonsResp;
+  const isSquareContent = isCreationMode ? isSquare : !isFullContentVisible;
+
+  const createMarkup = useMemo(
+    () => ({
+      __html:
+        !title.length || title === "<p></p>"
+          ? '<p class="story-title-placeholder">Do you like my jacket?</p>'
+          : DOMPurify.sanitize(title),
+    }),
+    [title]
+  );
+
+  const fields = useMemo(
+    () => userInfoFields.map((f) => f.label),
+    [userInfoFields]
+  );
+
+  const seeFullBtnBckg: StyleEnums | string = isFullContentVisible
+    ? "rgba(255, 255, 255, 0.2)"
+    : dynamicTextColor(color).color;
 
   const structureFeedbackPayload = async (feedbackObj: Feedback) => {
     const feedbackData = structuredClone(feedbackObj);
@@ -156,73 +302,15 @@ const Demo = ({
   };
 
   useEffect(() => {
-    if (feedback) {
-      if (feedback.isComplete) {
-        if (isInfoCollectionAllowed) {
-          setCredentialDrawerState(true);
-        } else {
-          sendFeedbackRequests();
-        }
+    if (feedback?.isComplete) {
+      if (isInfoCollectionAllowed) {
+        setCredentialDrawerState(true);
+      } else {
+        sendFeedbackRequests();
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [feedback, query]);
-
-  const isNotFirstStep = useMemo(
-    () => currentStep !== StoryStepEnum.TITLE_STEP,
-    [currentStep]
-  );
-
-  const createMarkup = useMemo(() => {
-    return {
-      __html:
-        !title.length || title === "<p></p>"
-          ? '<p class="story-title-placeholder">Do you like my jacket?</p>'
-          : DOMPurify.sanitize(title),
-    };
-  }, [title]);
-
-  const fields = useMemo(
-    () => userInfoFields.map((userField) => userField.label),
-    [userInfoFields]
-  );
-
-  const hasButtonsResp = useMemo(
-    () =>
-      type === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
-      type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP ||
-      type === StoryTypeEnum.COMBINED,
-    [type]
-  );
-
-  const hasOutline = useMemo(
-    () => color.toUpperCase() === StyleEnums.white,
-    [color]
-  );
-
-  const hasLayer = useMemo(
-    () => !!coverImgSrc?.length && isNotFirstStep && !isSquare,
-    [coverImgSrc, isNotFirstStep, isSquare]
-  );
-
-  const isTextType = useMemo(
-    () =>
-      type === StoryTypeEnum.TEXT_VOTING_ONLY_BUTTON_RESP ||
-      type === StoryTypeEnum.TEXT_VOTING_ONLY_TEXT_RESP,
-    [type]
-  );
-
-  const isSquareBtnVisible = useMemo(
-    () => isCreationMode && hasButtonsResp,
-    [isCreationMode, hasButtonsResp]
-  );
-
-  const isTextRespRequired = useMemo(() => {
-    return (
-      type === StoryTypeEnum.TEXT_VOTING_ONLY_TEXT_RESP ||
-      type === StoryTypeEnum.IMAGE_VOTING_ONLY_TEXT_RESP
-    );
-  }, [type]);
 
   useEffect(() => {
     if (isCreationMode && isTextType && squareBtnHandler) {
@@ -261,26 +349,28 @@ const Demo = ({
     setCommentDrawerState(false);
   };
 
-  const handleButtonFeedback = (actionData: any) => {
-    if (isCreationMode) return;
-
-    if (type === StoryTypeEnum.COMBINED) {
-      setRespBtnId(actionData.id);
-    } else {
-      handleResponse(
-        type,
-        feedback,
-        setFeedback,
-        () => sliderRef?.current?.slickNext(),
-        isMultiple,
-        storyId!,
-        "",
-        images,
-        activeSlide?.id ?? "",
-        actionData.id
-      );
-    }
-  };
+  const handleButtonFeedback = useCallback(
+    (actionData: any) => {
+      if (isCreationMode) return;
+      if (type === StoryTypeEnum.COMBINED) {
+        setRespBtnId(actionData.id);
+      } else {
+        handleResponse(
+          type,
+          feedback,
+          setFeedback,
+          () => sliderRef?.current?.slickNext(),
+          isMultiple,
+          storyId!,
+          "",
+          images,
+          activeSlide?.id ?? "",
+          actionData.id
+        );
+      }
+    },
+    [isCreationMode, type, feedback, isMultiple, storyId, images, activeSlide]
+  );
 
   const handleCloseCommentDrawer = () => {
     setRespBtnId("");
@@ -294,30 +384,20 @@ const Demo = ({
   };
 
   const checkActivity = useCallback(
-    (respBtnId: string) => {
-      if (feedback?.responses) {
-        if (hasButtonsResp) {
-          const activeSlideRespData = feedback.responses.find(
-            (slide) => slide.imageId === activeSlide?.id
-          );
-          return activeSlideRespData?.respBtnId === respBtnId;
-        }
+    (id: string) => {
+      if (feedback?.responses && hasButtonsResp) {
+        const activeSlideRespData = feedback.responses.find(
+          (slide) => slide.imageId === activeSlide?.id
+        );
+        return activeSlideRespData?.respBtnId === id;
       }
       return false;
     },
     [feedback, hasButtonsResp, activeSlide]
   );
 
-  const seeFullBtnBckg: StyleEnums | string = useMemo(() => {
-    return isFullContentVisible
-      ? "rgba(255, 255, 255, 0.2)"
-      : dynamicTextColor(color).color;
-  }, [color, isFullContentVisible]);
-
-  const isSquareContent = useMemo(
-    () => (isCreationMode ? isSquare : !isFullContentVisible),
-    [isCreationMode, isSquare, isFullContentVisible]
-  );
+  const isResponseBtnLoading = generateGuestLoading || sendFeedbackLoading;
+  const textColor = dynamicTextColor(color);
 
   return (
     <>
@@ -330,29 +410,18 @@ const Demo = ({
         onMouseEnter={() => flowMouseEnter?.(true)}
         {...opacityWithScaleAnimation}
       >
-        <AnimatePresence>
-          {((isHovered && coverImgSrc && squareBtnHandler) || isSquare) &&
-            isSquareBtnVisible && (
-              <motion.div {...opacityAnimation} key="1">
-                <SquareBtn
-                  type="default"
-                  icon={<MakeSquareIcon />}
-                  $isActive={isSquare}
-                  onClick={() => squareBtnHandler?.(!isSquare)}
-                />
-              </motion.div>
-            )}
-          {(isHovered || isColorPickerOpen) && (
-            <motion.div {...opacityAnimation} key="2">
-              <ColorPickerBtn
-                type="default"
-                icon={<ColorPickerIcon />}
-                $isActive={isColorPickerOpen}
-                onClick={colorPickerBtnHandler}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <ColorPickerPanel
+          color={color}
+          isHovered={isHovered}
+          isColorPickerOpen={isColorPickerOpen}
+          isSquare={isSquare}
+          isSquareBtnVisible={isSquareBtnVisible}
+          hasCoverImg={!!coverImgSrc?.length}
+          colorPickerRef={colorPickerRef}
+          colorPickerBtnHandler={colorPickerBtnHandler}
+          colorPickerOnChange={colorPickerOnChange}
+          squareBtnHandler={squareBtnHandler}
+        />
         {!!images.length && (
           <PreviewSlider
             setActiveSlide={!isCreationMode ? setActiveSlide : undefined}
@@ -381,7 +450,7 @@ const Demo = ({
           <TitlePreview
             dangerouslySetInnerHTML={createMarkup}
             $hasBtnResp={hasButtonsResp}
-            $color={dynamicTextColor(color).color}
+            $color={textColor.color}
           />
           {isTextRespRequired && !isCreationMode && (
             <ResponsePreviewBtn
@@ -393,42 +462,17 @@ const Demo = ({
           {isFullContentVisible &&
             (isNotFirstStep || !isCreationMode) &&
             hasButtonsResp && (
-              <Responses
-                initial={{ y: -100 }}
-                animate={{ y: 0 }}
-                transition={{ type: "spring", duration: 1, stiffness: 200 }}
-              >
-                <AnimatePresence initial={false}>
-                  {responseButtons.map((respBtn) => (
-                    <ResponsePreviewBtn
-                      disabled={generateGuestLoading || sendFeedbackLoading}
-                      isActive={checkActivity(respBtn.id)}
-                      key={respBtn.id}
-                      text={respBtn.text}
-                      action={() => handleButtonFeedback(respBtn)}
-                    />
-                  ))}
-                </AnimatePresence>
-              </Responses>
+              <ResponseButtons
+                responseButtons={responseButtons}
+                isLoading={isResponseBtnLoading}
+                checkActivity={checkActivity}
+                onButtonClick={handleButtonFeedback}
+              />
             )}
         </ResponseTitleWrapper>
-        <AnimatePresence>
-          {isColorPickerOpen && (
-            <ColorPickerWrapper
-              {...opacityWithScaleAnimation}
-              ref={colorPickerRef}
-            >
-              <CircleColorPicker
-                color={color}
-                colors={colorPickerMainColors}
-                onChange={(color) => colorPickerOnChange?.(color.hex)}
-              />
-            </ColorPickerWrapper>
-          )}
-        </AnimatePresence>
         <CreatedBy
-          isDark={dynamicTextColor(color).isDark}
-          color={dynamicTextColor(color).color}
+          isDark={textColor.isDark}
+          color={textColor.color}
           margins={`2.75rem 0 ${isCreationMode ? 2.25 : 1.25}rem 0`}
         />
       </PreviewFlow>
@@ -444,7 +488,7 @@ const Demo = ({
         isCreationMode={isCreationMode}
         fields={fields}
         isMobile={isMobile}
-        isLoading={generateGuestLoading || sendFeedbackLoading}
+        isLoading={isResponseBtnLoading}
         isOpen={isCredentialDrawerOpen}
         onClose={() => setCredentialDrawerState(false)}
       />
