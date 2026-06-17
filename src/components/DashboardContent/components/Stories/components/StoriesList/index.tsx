@@ -28,7 +28,7 @@ type StoryListItem = {
 interface StoriesListI {
   limit: number;
   offset: null;
-  total: 1;
+  total: number;
   stories: StoryListItem[];
 }
 
