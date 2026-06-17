@@ -1,7 +1,33 @@
 import { Step1Type, Step2Type, Step3Type } from "@/constants";
+import { StoryProgressEnum } from "@/enums";
 
 type StepType = Step1Type | Step2Type | Step3Type;
-type SelectorType = "step1" | "step2" | "step3";
+type SelectorType = StoryProgressEnum;
+
+const STORAGE_VERSION = "1";
+
+function getStorageData(storyId: string): Record<string, any> | null {
+  const raw = localStorage.getItem(storyId);
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw);
+    if (parsed?.__v !== STORAGE_VERSION) {
+      localStorage.removeItem(storyId);
+      return null;
+    }
+    return parsed;
+  } catch {
+    localStorage.removeItem(storyId);
+    return null;
+  }
+}
+
+function setStorageData(storyId: string, data: Record<string, any>) {
+  localStorage.setItem(
+    storyId,
+    JSON.stringify({ ...data, __v: STORAGE_VERSION })
+  );
+}
 
 function useManageStepInStorage(
   step: StepType,
@@ -10,23 +36,15 @@ function useManageStepInStorage(
   storyId: string
 ) {
   const stringifyStoreStep = JSON.stringify(step);
-  const dataOfStorage = localStorage.getItem(storyId);
+  const parsedStorage = getStorageData(storyId);
+
   if (stringifyStoreStep !== stringifyDefaultStep) {
-    if (dataOfStorage) {
-      const parsedStorage = JSON.parse(dataOfStorage);
-      const newStorageData = {
-        ...parsedStorage,
-        [stepSelector]: step,
-      };
-      localStorage.setItem(storyId, JSON.stringify(newStorageData));
-    } else {
-      localStorage.setItem(storyId, JSON.stringify({ [stepSelector]: step }));
-    }
+    const newData = { ...(parsedStorage ?? {}), [stepSelector]: step };
+    setStorageData(storyId, newData);
   } else {
-    if (dataOfStorage) {
-      const parsedStorage = JSON.parse(dataOfStorage);
+    if (parsedStorage) {
       delete parsedStorage[stepSelector];
-      localStorage.setItem(storyId, JSON.stringify(parsedStorage));
+      setStorageData(storyId, parsedStorage);
     }
   }
 }

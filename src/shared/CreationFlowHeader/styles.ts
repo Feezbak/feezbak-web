@@ -30,18 +30,19 @@ export const StepProgressWrapper = styled.div`
   gap: 0.5rem;
 `;
 
-export const StepDot = styled.span<{
+export const StepDot = styled.div<{
   $isActive: boolean;
   $isCompleted: boolean;
 }>`
-  display: inline-block;
   flex-shrink: 0;
   width: ${({ $isActive }) => ($isActive ? "1.5rem" : "0.5rem")};
   height: 0.5rem;
   border-radius: 1rem;
   border: none;
-  transition: width 0.25s ease, background 0.25s ease;
-  background: ${({ $isActive, $isCompleted }) =>
+  outline: none;
+  box-shadow: none;
+  transition: width 0.25s ease, background-color 0.25s ease;
+  background-color: ${({ $isActive, $isCompleted }) =>
     $isActive || $isCompleted ? StyleEnums.primary : StyleEnums.gray3};
   opacity: ${({ $isCompleted }) => ($isCompleted ? 0.5 : 1)};
 `;

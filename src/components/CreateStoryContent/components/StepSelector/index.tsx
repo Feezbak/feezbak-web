@@ -1,5 +1,5 @@
 import { lazy, useContext, useEffect } from "react";
-import { StoryStepEnum } from "@/enums";
+import { StoryStepEnum, StoryProgressEnum } from "@/enums";
 import { Spin, message } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { storyDefaultState } from "@/constants";
@@ -41,7 +41,7 @@ const StepSelector = () => {
       manual: true,
       onSuccess: (resp) => {
         if (resp?.data) {
-          if (resp?.data?.progress !== "step3") {
+          if (resp?.data?.progress !== StoryProgressEnum.STEP3) {
             setStoryDataToStore(
               resp.data,
               setStep1,
@@ -70,7 +70,14 @@ const StepSelector = () => {
 
     if (storageDataById) {
       const parsedDataFromStorage = JSON.parse(storageDataById);
-      const lastFinishStep = Object.keys(parsedDataFromStorage).length;
+      if (parsedDataFromStorage?.__v !== "1") {
+        localStorage.removeItem(storyId!);
+        getStoryData();
+        return;
+      }
+      const lastFinishStep = Object.keys(parsedDataFromStorage).filter(
+        (k) => k !== "__v"
+      ).length;
       parsedDataFromStorage?.step1 && setStep1(parsedDataFromStorage.step1);
       parsedDataFromStorage?.step2 && setStep2(parsedDataFromStorage.step2);
       parsedDataFromStorage?.step3 && setStep3(parsedDataFromStorage.step3);
@@ -83,19 +90,34 @@ const StepSelector = () => {
 
   useEffect(() => {
     if (!requestLoading && storyId) {
-      manageStepInStorage(step1, stringifyStep1, "step1", storyId);
+      manageStepInStorage(
+        step1,
+        stringifyStep1,
+        StoryProgressEnum.STEP1,
+        storyId
+      );
     }
   }, [step1, storyId, stringifyStep1, requestLoading]);
 
   useEffect(() => {
     if (!requestLoading && storyId) {
-      manageStepInStorage(step2, stringifyStep2, "step2", storyId);
+      manageStepInStorage(
+        step2,
+        stringifyStep2,
+        StoryProgressEnum.STEP2,
+        storyId
+      );
     }
   }, [step2, storyId, stringifyStep2, requestLoading]);
 
   useEffect(() => {
     if (!requestLoading && storyId) {
-      manageStepInStorage(step3, stringifyStep3, "step3", storyId);
+      manageStepInStorage(
+        step3,
+        stringifyStep3,
+        StoryProgressEnum.STEP3,
+        storyId
+      );
     }
   }, [step3, storyId, stringifyStep3, requestLoading]);
 

@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import StoryItem from "@components/DashboardContent/components/Stories/components/StoriesList/components/StoryItem";
-import { StoryEnums } from "@/enums";
+import { StoryEnums, StoryProgressEnum } from "@/enums";
 
 // styled-components renders arbitrary HTML — mock the icon components to keep snapshots clean
 jest.mock("@/icons", () => ({
@@ -14,7 +14,7 @@ jest.mock("@/icons", () => ({
 const defaultStory = {
   _id: "story-123",
   title: "<p>My test story</p>",
-  progress: "step1",
+  progress: StoryProgressEnum.STEP1,
 };
 
 const renderItem = (overrides = {}) =>
@@ -50,7 +50,7 @@ describe("StoryItem", () => {
 
   it("shows Completed badge when progress is step3", () => {
     renderItem({
-      storyData: { ...defaultStory, progress: "step3" },
+      storyData: { ...defaultStory, progress: StoryProgressEnum.STEP3 },
     });
     expect(screen.getByText(StoryEnums.COMPLETED)).toBeInTheDocument();
   });
@@ -63,7 +63,7 @@ describe("StoryItem", () => {
 
   it("shows link icon for completed stories (step3)", () => {
     renderItem({
-      storyData: { ...defaultStory, progress: "step3" },
+      storyData: { ...defaultStory, progress: StoryProgressEnum.STEP3 },
     });
     expect(screen.getByTestId("link-icon")).toBeInTheDocument();
     expect(screen.queryByTestId("edit-icon")).not.toBeInTheDocument();
@@ -76,7 +76,7 @@ describe("StoryItem", () => {
     rerender(
       <MemoryRouter>
         <StoryItem
-          storyData={{ ...defaultStory, progress: "step3" }}
+          storyData={{ ...defaultStory, progress: StoryProgressEnum.STEP3 }}
           storyId="story-123"
           handleDelete={jest.fn()}
           loading={false}

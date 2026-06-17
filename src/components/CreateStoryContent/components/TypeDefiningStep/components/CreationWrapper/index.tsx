@@ -14,6 +14,7 @@ import { useParams } from "react-router-dom";
 import { CreationFlowFooter, CreationFlowHeader } from "@/shared";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
 import { getErrorMessage } from "@helpers/errorMessage";
+import { StoryProgressEnum } from "@/enums";
 
 interface Props {
   handleDemo: () => void;
@@ -55,7 +56,9 @@ const CreationWrapper = ({ handleDemo }: Props) => {
     const parsedData = JSON.parse(storageStepsData!);
     const stepInfoBody = {
       id: storyId,
-      progress: parsedData?.step3 ? "step3" : "step2",
+      progress: parsedData?.step3
+        ? StoryProgressEnum.STEP3
+        : StoryProgressEnum.STEP2,
       ...step1,
       ...step2,
     };

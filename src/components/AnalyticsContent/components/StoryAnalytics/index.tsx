@@ -40,18 +40,34 @@ const StoryAnalytics = () => {
     }
   }, [feedbacks]);
 
+  const hasVotes = feedbacks && feedbacks.data.storyVotesCount > 0;
+
   return (
     <StoryAnalyticsWrapper>
-      <AnimatePresence>
+      <AnimatePresence exitBeforeEnter>
         {!isLoading && feedbacks ? (
-          <StoryAnalyticsByType
-            title={feedbacks.data.storyTitle}
-            storyType={feedbacks.data.storyType}
-            overallVotes={feedbacks.data.storyVotesCount}
-            feedbacks={feedbackDataSelector}
-          />
+          hasVotes ? (
+            <StoryAnalyticsByType
+              key="analytics"
+              title={feedbacks.data.storyTitle}
+              storyType={feedbacks.data.storyType}
+              overallVotes={feedbacks.data.storyVotesCount}
+              feedbacks={feedbackDataSelector}
+            />
+          ) : (
+            <div
+              key="empty"
+              style={{ textAlign: "center", padding: "4rem 0", opacity: 0.45 }}
+            >
+              <div style={{ fontSize: "2.5rem", marginBottom: "0.75rem" }}>
+                📭
+              </div>
+              <h3 style={{ marginBottom: "0.5rem" }}>No responses yet</h3>
+              <p>Share your story link to start collecting feedback.</p>
+            </div>
+          )
         ) : (
-          <PageLoader />
+          <PageLoader key="loader" />
         )}
       </AnimatePresence>
     </StoryAnalyticsWrapper>

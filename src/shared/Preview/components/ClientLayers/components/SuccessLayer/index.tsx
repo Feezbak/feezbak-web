@@ -18,7 +18,7 @@ const SuccessLayer = () => {
         </p>
       </LayerInfoContent>
       <ActionsWrapper>
-        <NextBtn size="large" href="https://www.feezbak.com">
+        <NextBtn size="large" href="https://feezbak-web.vercel.app/">
           Go to Feezbak.com
         </NextBtn>
       </ActionsWrapper>

@@ -10,6 +10,7 @@ import { saveStoryFields } from "@/api";
 import UserInfoCollect from "./components/UserInfoCollect";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
 import { getErrorMessage } from "@helpers/errorMessage";
+import { StoryProgressEnum } from "@/enums";
 
 interface Props {
   handleDemo: () => void;
@@ -47,7 +48,7 @@ const CreationWrapper = ({ handleDemo }: Props) => {
   const handleFinalize = () => {
     const stepInfoBody = {
       id: storyId,
-      progress: "step3",
+      progress: StoryProgressEnum.STEP3,
       ...step3,
     };
     (() => runSaveStoryFields(stepInfoBody))();

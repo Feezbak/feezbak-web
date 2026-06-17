@@ -1,5 +1,6 @@
 import { message } from "antd";
 import { Step1Type, Step2Type, Step3Type } from "@/constants";
+import { StoryProgressEnum } from "@/enums";
 
 export function setStoryDataToStore(
   responseData: any,
@@ -21,14 +22,14 @@ export function setStoryDataToStore(
     isMultiple,
   } = responseData;
 
-  if (responseData.progress === "step1") {
+  if (responseData.progress === StoryProgressEnum.STEP1) {
     setStep1({
       title,
       titleColor,
       background,
     });
     setCurrentStep(1);
-  } else if (responseData.progress === "step2") {
+  } else if (responseData.progress === StoryProgressEnum.STEP2) {
     setStep1({
       title,
       titleColor,
@@ -41,7 +42,7 @@ export function setStoryDataToStore(
       response,
     });
     setCurrentStep(2);
-  } else if (responseData.progress === "step3") {
+  } else if (responseData.progress === StoryProgressEnum.STEP3) {
     setStep1({
       title,
       titleColor,

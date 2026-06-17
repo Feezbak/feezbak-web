@@ -19,13 +19,20 @@ export const listItemAnimation = (
 
 export const opacityAnimation = {
   initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 1 },
+  animate: { opacity: 1, transition: { duration: 0.2, ease: "easeOut" } },
+  exit: { opacity: 0, transition: { duration: 0.15, ease: "easeIn" } },
 };
 
 export const opacityWithScaleAnimation = {
-  initial: { opacity: 0, scale: 0.5 },
-  animate: { opacity: 1, scale: 1 },
-  exit: { opacity: 0, scale: 0 },
-  transition: { duration: 0.2 },
+  initial: { opacity: 0, scale: 0.95 },
+  animate: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.2, ease: "easeOut" },
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.95,
+    transition: { duration: 0.15, ease: "easeIn" },
+  },
 };

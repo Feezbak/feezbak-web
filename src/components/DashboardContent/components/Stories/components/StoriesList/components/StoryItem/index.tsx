@@ -1,7 +1,7 @@
 import { memo, useCallback, useMemo, useState } from "react";
 import { Badge } from "@/shared";
 import { useNavigate } from "react-router-dom";
-import { StyleEnums, StoryEnums } from "@/enums";
+import { StyleEnums, StoryEnums, StoryProgressEnum } from "@/enums";
 import { useTextFromHTML } from "@/hooks";
 import { StorySkeleton } from "../../styles";
 import {
@@ -53,19 +53,34 @@ const StoryItem = memo(
     const conditionalAction = useMemo(
       () => (
         <ActionBtn
-          onClick={progress !== "step3" ? handleEdit : handleShareDetails}
-          icon={progress !== "step3" ? <EditIconGrayBg /> : <LinkIconGrayBg />}
+          aria-label={
+            progress !== StoryProgressEnum.STEP3 ? "Edit story" : "Share story"
+          }
+          onClick={
+            progress !== StoryProgressEnum.STEP3
+              ? handleEdit
+              : handleShareDetails
+          }
+          icon={
+            progress !== StoryProgressEnum.STEP3 ? (
+              <EditIconGrayBg />
+            ) : (
+              <LinkIconGrayBg />
+            )
+          }
         />
       ),
       [progress, handleEdit, handleShareDetails]
     );
 
     const status = useMemo(() => {
-      return progress !== "step3" ? StoryEnums.DRAFT : StoryEnums.COMPLETED;
+      return progress !== StoryProgressEnum.STEP3
+        ? StoryEnums.DRAFT
+        : StoryEnums.COMPLETED;
     }, [progress]);
 
     const bgColor = useMemo(() => {
-      return progress !== "step3"
+      return progress !== StoryProgressEnum.STEP3
         ? StyleEnums.draftBudgeBckg
         : StyleEnums.publishedBudgeBckg;
     }, [progress]);
@@ -107,11 +122,16 @@ const StoryItem = memo(
           <StoryActionsContainer>
             {conditionalAction}
             <ActionBtn
+              aria-label="Delete story"
               icon={<DeleteIconGrayBg />}
               onClick={handleRemoveStory}
             />
-            {progress === "step3" && (
-              <ActionBtn onClick={handleAnalytics} icon={<AnalyticsIcon />} />
+            {progress === StoryProgressEnum.STEP3 && (
+              <ActionBtn
+                aria-label="View analytics"
+                onClick={handleAnalytics}
+                icon={<AnalyticsIcon />}
+              />
             )}
           </StoryActionsContainer>
         </StoryItemStatusAndActions>
