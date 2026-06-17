@@ -36,13 +36,21 @@ const Comments = ({ isLoading, comments, closeModal }: Props) => {
           </CommentsSkeletonWrapper>
         ) : (
           <CommentsContainer {...opacityAnimation}>
-            {comments?.map((comment) => (
-              <ResponseCommentTile
-                key={comment._id}
-                data={comment}
-                hasHorizontalPadding={false}
-              />
-            ))}
+            {comments?.length ? (
+              comments.map((comment) => (
+                <ResponseCommentTile
+                  key={comment._id}
+                  data={comment}
+                  hasHorizontalPadding={false}
+                />
+              ))
+            ) : (
+              <p
+                style={{ textAlign: "center", opacity: 0.4, padding: "2rem 0" }}
+              >
+                No comments yet
+              </p>
+            )}
           </CommentsContainer>
         )}
       </AnimatePresence>
