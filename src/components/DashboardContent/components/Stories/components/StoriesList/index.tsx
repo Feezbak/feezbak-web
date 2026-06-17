@@ -5,6 +5,7 @@ import { getStories, deleteStory } from "@/api";
 import { message, Button, notification } from "antd";
 import { AnimatePresence, motion } from "framer-motion";
 import emptyStoriesSrc from "@images/empty-stories.webp";
+import notificationIllustrationSrc from "@images/sammy-line-delivery.webp";
 import { useLocation, useNavigate } from "react-router-dom";
 import { opacityAnimation } from "@assets/framerAnimations";
 import ListHeader from "./components/ListHeader";
@@ -27,7 +28,7 @@ type StoryListItem = {
 interface StoriesListI {
   limit: number;
   offset: null;
-  total: 1;
+  total: number;
   stories: StoryListItem[];
 }
 
@@ -74,7 +75,18 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
 
   const { run: runDeleteStory, loading } = useRequest((id) => deleteStory(id), {
     manual: true,
-    onSuccess: async () => {
+    onSuccess: async (_, params) => {
+      const deletedId = params[0];
+      // Immediately remove from local state to prevent the deleted story
+      // flashing back after the skeleton disappears
+      setStoriesPaginatedData((prev) => {
+        if (!prev) return null;
+        return {
+          ...prev,
+          total: prev.total - 1,
+          stories: prev.stories.filter((s: any) => s._id !== deletedId),
+        };
+      });
       try {
         let page = currentPage;
         if (storiesPaginatedData!.total % 5 === 1) {
@@ -98,9 +110,14 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
       if (deleteTimerRef.current) clearTimeout(deleteTimerRef.current);
 
       let undone = false;
+      let executed = false;
       const key = `delete-${id}`;
 
+      // Guard against double-execution: api.destroy() triggers onClose which
+      // would call doDelete again without this flag.
       const doDelete = () => {
+        if (executed) return;
+        executed = true;
         if (!undone) runDeleteStory(id);
         api.destroy(key);
       };
@@ -110,6 +127,13 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
         message: "Story will be deleted",
         description: "You have 5 seconds to undo this action.",
         duration: UNDO_DELAY_MS / 1000,
+        icon: (
+          <img
+            src={notificationIllustrationSrc}
+            alt=""
+            style={{ width: "100%", height: "100%", objectFit: "contain" }}
+          />
+        ),
         btn: (
           <Button
             size="small"

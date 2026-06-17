@@ -120,11 +120,11 @@ const CreationWrapper = ({ handleDemo }: Props) => {
         handleQuantitySelection={handleQuantitySelection}
         handleTypeSelection={handleTypeSelection}
       />
-      <AnimatePresence initial={false}>
-        {isImageVoting ? <ImageType /> : <TextType />}
+      <AnimatePresence initial={false} exitBeforeEnter>
+        {isImageVoting ? <ImageType key="image" /> : <TextType key="text" />}
       </AnimatePresence>
-      <AnimatePresence initial={false}>
-        {isBtnResponse && <Response />}
+      <AnimatePresence initial={false} exitBeforeEnter>
+        {isBtnResponse && <Response key="response" />}
       </AnimatePresence>
       <CreationFlowFooter
         nextLoading={isLoading}

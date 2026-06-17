@@ -81,10 +81,15 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .ant-notification-notice-wrapper {
+  /* only width here — this is the animated slide element; putting
+     border-radius/shadow/height on it causes repaints on every frame */
+  width: 27rem !important;
+}
+
+.ant-notification-notice-wrapper .ant-notification-notice {
   border-radius: 1.5rem;
   box-shadow: 0 17px 40px rgba(74, 68, 143, 0.06);
   border: 1px solid #F0F0F4;
-  width: 27rem !important;
   min-height: 11.75rem;
   will-change: transform, opacity;
 
