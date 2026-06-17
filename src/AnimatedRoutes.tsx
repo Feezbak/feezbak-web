@@ -46,6 +46,10 @@ const AnimatedRoutes = () => {
     },
   });
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   useLayoutEffect(() => {
     if (
       authed &&

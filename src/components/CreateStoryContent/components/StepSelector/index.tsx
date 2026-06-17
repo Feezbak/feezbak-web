@@ -70,7 +70,14 @@ const StepSelector = () => {
 
     if (storageDataById) {
       const parsedDataFromStorage = JSON.parse(storageDataById);
-      const lastFinishStep = Object.keys(parsedDataFromStorage).length;
+      if (parsedDataFromStorage?.__v !== "1") {
+        localStorage.removeItem(storyId!);
+        getStoryData();
+        return;
+      }
+      const lastFinishStep = Object.keys(parsedDataFromStorage).filter(
+        (k) => k !== "__v"
+      ).length;
       parsedDataFromStorage?.step1 && setStep1(parsedDataFromStorage.step1);
       parsedDataFromStorage?.step2 && setStep2(parsedDataFromStorage.step2);
       parsedDataFromStorage?.step3 && setStep3(parsedDataFromStorage.step3);

@@ -53,6 +53,9 @@ const StoryItem = memo(
     const conditionalAction = useMemo(
       () => (
         <ActionBtn
+          aria-label={
+            progress !== StoryProgressEnum.STEP3 ? "Edit story" : "Share story"
+          }
           onClick={
             progress !== StoryProgressEnum.STEP3
               ? handleEdit
@@ -119,11 +122,16 @@ const StoryItem = memo(
           <StoryActionsContainer>
             {conditionalAction}
             <ActionBtn
+              aria-label="Delete story"
               icon={<DeleteIconGrayBg />}
               onClick={handleRemoveStory}
             />
             {progress === StoryProgressEnum.STEP3 && (
-              <ActionBtn onClick={handleAnalytics} icon={<AnalyticsIcon />} />
+              <ActionBtn
+                aria-label="View analytics"
+                onClick={handleAnalytics}
+                icon={<AnalyticsIcon />}
+              />
             )}
           </StoryActionsContainer>
         </StoryItemStatusAndActions>

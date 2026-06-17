@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { CustomPagination } from "@/shared";
 import useRequest from "@ahooksjs/use-request";
 import { getStories, deleteStory } from "@/api";
@@ -47,6 +47,17 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
   const [storiesPaginatedData, setStoriesPaginatedData] =
     useState<StoriesListI | null>(null);
   const [api, contextHolder] = notification.useNotification();
+
+  useEffect(() => {
+    const saved = sessionStorage.getItem("storiesScrollY");
+    if (saved) {
+      window.scrollTo(0, parseInt(saved, 10));
+      sessionStorage.removeItem("storiesScrollY");
+    }
+    return () => {
+      sessionStorage.setItem("storiesScrollY", String(window.scrollY));
+    };
+  }, []);
   const deleteTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const { run: getStoriesPaginatedData, loading: isLoading } = useRequest(
