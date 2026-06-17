@@ -137,9 +137,9 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
   return (
     <>
       {contextHolder}
-      <AnimatePresence initial={false}>
+      <AnimatePresence initial={false} exitBeforeEnter>
         {isLoading ? (
-          <SkeletonsWrapper>
+          <SkeletonsWrapper key="skeletons">
             {[1, 2, 3].map((item) => (
               <StorySkeleton
                 key={item}
@@ -150,7 +150,7 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
             ))}
           </SkeletonsWrapper>
         ) : storiesPaginatedData && storiesPaginatedData?.total >= 1 ? (
-          <>
+          <div key="list">
             {!!storiesPaginatedData.total && <ListHeader />}
             <StoriesListWrapper {...opacityAnimation}>
               {storiesPaginatedData?.stories?.map((story: any) => (
@@ -171,9 +171,9 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
                 total={storiesPaginatedData.total}
               />
             )}
-          </>
+          </div>
         ) : (
-          <EmptyStoriesWrapper {...opacityAnimation}>
+          <EmptyStoriesWrapper key="empty" {...opacityAnimation}>
             <EmptyStoriesImage
               src={emptyStoriesSrc}
               alt="No stories yet"

@@ -44,10 +44,11 @@ const StoryAnalytics = () => {
 
   return (
     <StoryAnalyticsWrapper>
-      <AnimatePresence>
+      <AnimatePresence exitBeforeEnter>
         {!isLoading && feedbacks ? (
           hasVotes ? (
             <StoryAnalyticsByType
+              key="analytics"
               title={feedbacks.data.storyTitle}
               storyType={feedbacks.data.storyType}
               overallVotes={feedbacks.data.storyVotesCount}
@@ -55,6 +56,7 @@ const StoryAnalytics = () => {
             />
           ) : (
             <div
+              key="empty"
               style={{ textAlign: "center", padding: "4rem 0", opacity: 0.45 }}
             >
               <div style={{ fontSize: "2.5rem", marginBottom: "0.75rem" }}>
@@ -65,7 +67,7 @@ const StoryAnalytics = () => {
             </div>
           )
         ) : (
-          <PageLoader />
+          <PageLoader key="loader" />
         )}
       </AnimatePresence>
     </StoryAnalyticsWrapper>

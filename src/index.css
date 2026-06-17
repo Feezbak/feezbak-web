@@ -85,10 +85,11 @@ p, h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 17px 40px rgba(74, 68, 143, 0.06);
   border: 1px solid #F0F0F4;
   width: 27rem !important;
-  height: 11.75rem !important;
+  min-height: 11.75rem;
+  will-change: transform, opacity;
 
   @media only screen and (max-width: 767px) {
-    height: 14.75rem !important;
+    min-height: 14.75rem;
   }
 }
 
