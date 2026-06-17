@@ -1,8 +1,8 @@
-import { useState, useCallback } from "react";
-import { ConfirmModal, CustomPagination } from "@/shared";
+import { useState, useCallback, useRef } from "react";
+import { CustomPagination } from "@/shared";
 import useRequest from "@ahooksjs/use-request";
 import { getStories, deleteStory } from "@/api";
-import { message, Button } from "antd";
+import { message, Button, notification } from "antd";
 import { AnimatePresence } from "framer-motion";
 import emptyStoriesSrc from "@images/empty-stories.webp";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -36,6 +36,8 @@ interface Props {
   isCreating: boolean;
 }
 
+const UNDO_DELAY_MS = 5000;
+
 const StoriesList = ({ onCreateStory, isCreating }: Props) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,7 +46,8 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
   const [currentPage, setCurrentPage] = useState(page ? +page : 1);
   const [storiesPaginatedData, setStoriesPaginatedData] =
     useState<StoriesListI | null>(null);
-  const [removeId, setRemoveIdState] = useState("");
+  const [api, contextHolder] = notification.useNotification();
+  const deleteTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const { run: getStoriesPaginatedData, loading: isLoading } = useRequest(
     (page) => getStories(page ? page : currentPage),
@@ -79,14 +82,41 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
     },
   });
 
-  const handleDelete = useCallback((id: string) => {
-    setRemoveIdState(id);
-  }, []);
+  const handleDelete = useCallback(
+    (id: string) => {
+      if (deleteTimerRef.current) clearTimeout(deleteTimerRef.current);
 
-  const handleRunDelete = async () => {
-    await runDeleteStory(removeId);
-    setRemoveIdState("");
-  };
+      let undone = false;
+      const key = `delete-${id}`;
+
+      const doDelete = () => {
+        if (!undone) runDeleteStory(id);
+        api.destroy(key);
+      };
+
+      api.warning({
+        key,
+        message: "Story will be deleted",
+        description: "You have 5 seconds to undo this action.",
+        duration: UNDO_DELAY_MS / 1000,
+        btn: (
+          <Button
+            size="small"
+            onClick={() => {
+              undone = true;
+              api.destroy(key);
+            }}
+          >
+            Undo
+          </Button>
+        ),
+        onClose: doDelete,
+      });
+
+      deleteTimerRef.current = setTimeout(doDelete, UNDO_DELAY_MS);
+    },
+    [api, runDeleteStory]
+  );
 
   const handleSetCurrentPage = async (page: number) => {
     setCurrentPage(page);
@@ -95,6 +125,7 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
 
   return (
     <>
+      {contextHolder}
       <AnimatePresence initial={false}>
         {isLoading ? (
           <SkeletonsWrapper>
@@ -137,7 +168,7 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
               alt="No stories yet"
               loading="lazy"
             />
-            <h2>It’s ok not to have stories!</h2>
+            <h2>It's ok not to have stories!</h2>
             <p>
               Stories are ways to understand how people think about a certain
               part of your business or product, create one now.
@@ -154,18 +185,6 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
           </EmptyStoriesWrapper>
         )}
       </AnimatePresence>
-      {isLoading}
-      <ConfirmModal
-        title="Why are you deleting."
-        text="We’re sorry to hear this but if you already made up your
-              mind, It’s Ok"
-        negativeBtnAction={() => setRemoveIdState("")}
-        positiveBtnAction={handleRunDelete}
-        negativeBtnText="Cancel"
-        positiveBtnText="Yes Delete"
-        modalIsOpen={!!removeId}
-        closeModal={() => setRemoveIdState("")}
-      />
     </>
   );
 };

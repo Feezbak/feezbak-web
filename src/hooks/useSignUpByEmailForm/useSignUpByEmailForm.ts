@@ -41,6 +41,7 @@ export default function useSignUpByEmailForm(
             () =>
               reset({
                 password: "",
+                confirmPassword: "",
                 email: "",
               }),
             1000

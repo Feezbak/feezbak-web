@@ -11,6 +11,7 @@ import useRequest from "@ahooksjs/use-request";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
 import { CreationFlowHeader, CreationFlowFooter } from "@/shared";
 import { getErrorMessage } from "@helpers/errorMessage";
+import { StoryProgressEnum } from "@/enums";
 
 interface Props {
   handleDemo: () => void;
@@ -46,10 +47,10 @@ const CreationWrapper = ({ handleDemo }: Props) => {
     const stepInfoBody = {
       id: storyId,
       progress: parsedData?.step3
-        ? "step3"
+        ? StoryProgressEnum.STEP3
         : parsedData?.step2
-        ? "step2"
-        : "step1",
+        ? StoryProgressEnum.STEP2
+        : StoryProgressEnum.STEP1,
       ...step1,
       titleText,
     };

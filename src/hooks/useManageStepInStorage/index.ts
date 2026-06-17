@@ -1,7 +1,8 @@
 import { Step1Type, Step2Type, Step3Type } from "@/constants";
+import { StoryProgressEnum } from "@/enums";
 
 type StepType = Step1Type | Step2Type | Step3Type;
-type SelectorType = "step1" | "step2" | "step3";
+type SelectorType = StoryProgressEnum;
 
 function useManageStepInStorage(
   step: StepType,

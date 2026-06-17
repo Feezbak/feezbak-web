@@ -8,6 +8,7 @@ import useRequest from "@ahooksjs/use-request";
 import { getStoryById } from "@/api";
 import { message } from "antd";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import { Breadcrumb } from "antd";
 import dayjs from "dayjs";
 import { ProductLogoBlack } from "@/icons";
 import duration from "dayjs/plugin/duration";
@@ -63,6 +64,13 @@ const DashboardContent = () => {
         xl={10}
         xxl={8}
       >
+        <Breadcrumb
+          style={{ marginBottom: "1rem" }}
+          items={[
+            { title: <Link to="/dashboard">Stories</Link> },
+            { title: "Story Details" },
+          ]}
+        />
         <LogoContainer>
           <Link to="/dashboard">
             <ProductLogoBlack />

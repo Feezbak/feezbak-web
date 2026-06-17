@@ -52,6 +52,15 @@ const SignUpForm = ({ setAccountState }: SignUpFormProps) => {
         formControl={formControl}
         autoComplete="new-password"
       />
+      <TextFormField
+        formError={formErrors["confirmPassword"]?.message}
+        label="Confirm Password"
+        name="confirmPassword"
+        type="password"
+        isPassword={true}
+        formControl={formControl}
+        autoComplete="new-password"
+      />
       <BtnWrapper>
         <SubmitButton
           type="primary"

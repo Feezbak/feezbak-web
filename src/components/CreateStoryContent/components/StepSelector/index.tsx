@@ -1,5 +1,5 @@
 import { lazy, useContext, useEffect } from "react";
-import { StoryStepEnum } from "@/enums";
+import { StoryStepEnum, StoryProgressEnum } from "@/enums";
 import { Spin, message } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { storyDefaultState } from "@/constants";
@@ -41,7 +41,7 @@ const StepSelector = () => {
       manual: true,
       onSuccess: (resp) => {
         if (resp?.data) {
-          if (resp?.data?.progress !== "step3") {
+          if (resp?.data?.progress !== StoryProgressEnum.STEP3) {
             setStoryDataToStore(
               resp.data,
               setStep1,
@@ -83,19 +83,34 @@ const StepSelector = () => {
 
   useEffect(() => {
     if (!requestLoading && storyId) {
-      manageStepInStorage(step1, stringifyStep1, "step1", storyId);
+      manageStepInStorage(
+        step1,
+        stringifyStep1,
+        StoryProgressEnum.STEP1,
+        storyId
+      );
     }
   }, [step1, storyId, stringifyStep1, requestLoading]);
 
   useEffect(() => {
     if (!requestLoading && storyId) {
-      manageStepInStorage(step2, stringifyStep2, "step2", storyId);
+      manageStepInStorage(
+        step2,
+        stringifyStep2,
+        StoryProgressEnum.STEP2,
+        storyId
+      );
     }
   }, [step2, storyId, stringifyStep2, requestLoading]);
 
   useEffect(() => {
     if (!requestLoading && storyId) {
-      manageStepInStorage(step3, stringifyStep3, "step3", storyId);
+      manageStepInStorage(
+        step3,
+        stringifyStep3,
+        StoryProgressEnum.STEP3,
+        storyId
+      );
     }
   }, [step3, storyId, stringifyStep3, requestLoading]);
 

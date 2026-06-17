@@ -9,6 +9,12 @@ export enum StoryStepEnum {
   SHARE_SETTINGS_STEP = 3,
 }
 
+export enum StoryProgressEnum {
+  STEP1 = "step1",
+  STEP2 = "step2",
+  STEP3 = "step3",
+}
+
 export enum StoryTypeEnum {
   IMAGE_VOTING_ONLY_BUTTON_RESP = "Image voting with button response",
   IMAGE_VOTING_ONLY_TEXT_RESP = "Image voting with text response",
