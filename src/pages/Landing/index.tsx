@@ -442,21 +442,41 @@ const Landing = () => {
             <button
               key={item.id}
               onClick={() => scrollTo(item.id)}
-              className="text-sm font-medium text-[#847e95] hover:text-[#06060c] transition-colors px-4 py-2 rounded-full hover:bg-black/5"
+              className={cn(
+                "text-sm font-medium transition-all px-4 py-2 rounded-full",
+                scrolled
+                  ? "text-[#847e95] hover:text-[#06060c] hover:bg-black/5"
+                  : "text-white/60 hover:text-white hover:bg-white/10"
+              )}
             >
               {item.label}
             </button>
           ))}
-          <div className="w-px h-5 bg-black/10 mx-2" />
+          <div
+            className={cn(
+              "w-px h-5 mx-2",
+              scrolled ? "bg-black/10" : "bg-white/10"
+            )}
+          />
           <button
             onClick={() => navigate("/sign-in")}
-            className="text-sm font-semibold px-4 py-2 rounded-full hover:bg-black/5 transition-colors"
+            className={cn(
+              "text-sm font-semibold px-4 py-2 rounded-full transition-all",
+              scrolled
+                ? "text-[#06060c] hover:bg-black/5"
+                : "text-white/70 hover:text-white hover:bg-white/10"
+            )}
           >
             Sign in
           </button>
           <button
             onClick={() => navigate("/sign-up")}
-            className="text-sm font-bold px-5 py-2 rounded-full bg-[#06060c] text-white hover:bg-[#1a1a2e] transition-colors ml-1"
+            className={cn(
+              "text-sm font-bold px-5 py-2 rounded-full transition-all ml-1",
+              scrolled
+                ? "bg-[#06060c] text-white hover:bg-[#1a1a2e]"
+                : "bg-white text-[#06060c] hover:bg-white/90"
+            )}
           >
             Get Started
           </button>
@@ -470,19 +490,22 @@ const Landing = () => {
         >
           <span
             className={cn(
-              "block h-0.5 w-6 bg-[#06060c] transition-all duration-300",
+              "block h-0.5 w-6 transition-all duration-300",
+              scrolled ? "bg-[#06060c]" : "bg-white",
               mobileMenuOpen && "rotate-45 translate-y-2"
             )}
           />
           <span
             className={cn(
-              "block h-0.5 w-6 bg-[#06060c] transition-all duration-300",
+              "block h-0.5 w-6 transition-all duration-300",
+              scrolled ? "bg-[#06060c]" : "bg-white",
               mobileMenuOpen && "opacity-0"
             )}
           />
           <span
             className={cn(
-              "block h-0.5 w-6 bg-[#06060c] transition-all duration-300",
+              "block h-0.5 w-6 transition-all duration-300",
+              scrolled ? "bg-[#06060c]" : "bg-white",
               mobileMenuOpen && "-rotate-45 -translate-y-2"
             )}
           />
