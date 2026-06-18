@@ -14,9 +14,18 @@ const UserDataVerificationContent = () => {
   const [verified, setVerified] = useState(false);
 
   const { loading: isLoading } = useRequest(() => verifyUserById(id ?? ""), {
-    onSuccess: () => {
+    onSuccess: (res: any) => {
       setVerified(true);
-      setTimeout(() => navigate("/sign-in"), 1500);
+      if (res?.data?.accessToken && res?.data?.refreshToken) {
+        localStorage.setItem("token", JSON.stringify(res.data.accessToken));
+        localStorage.setItem(
+          "refreshToken",
+          JSON.stringify(res.data.refreshToken)
+        );
+        setTimeout(() => navigate("/dashboard"), 1500);
+      } else {
+        setTimeout(() => navigate("/sign-in"), 1500);
+      }
     },
     onError: async (error: any) => {
       setTimeout(() => navigate("/not-found"), 2000);
@@ -35,7 +44,7 @@ const UserDataVerificationContent = () => {
           >
             <div style={{ fontSize: "3rem" }}>✓</div>
             <h2 style={{ marginTop: "0.5rem" }}>Email verified!</h2>
-            <p style={{ opacity: 0.5 }}>Redirecting to sign in…</p>
+            <p style={{ opacity: 0.5 }}>Taking you to your dashboard…</p>
           </motion.div>
         ) : isLoading ? (
           <motion.div key="loading" {...opacityAnimation}>
