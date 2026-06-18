@@ -837,7 +837,7 @@ const Landing = () => {
               <div className="rounded-3xl overflow-hidden shadow-2xl border border-black/5">
                 <img
                   src={imgTypeTextResp}
-                  alt="Image voting with text response"
+                  alt="Voting story with open-text responses"
                   className="w-full block"
                 />
               </div>
