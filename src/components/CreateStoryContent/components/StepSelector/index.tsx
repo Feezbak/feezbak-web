@@ -14,6 +14,7 @@ import {
 import { getErrorMessage } from "@helpers/errorMessage";
 
 const TitleAddingStep = lazy(() => import("../TitleAddingStep"));
+const TypeSelectionStep = lazy(() => import("../TypeSelectionStep"));
 const TypeDefiningStep = lazy(() => import("../TypeDefiningStep"));
 const ContactFormStep = lazy(() => import("../ContactFormStep"));
 
@@ -76,17 +77,38 @@ const StepSelector = () => {
         return;
       }
       const lastFinishStep = Object.keys(parsedDataFromStorage).filter(
-        (k) => k !== "__v"
+        (k) => k !== "__v" && k !== "uiStep"
       ).length;
       parsedDataFromStorage?.step1 && setStep1(parsedDataFromStorage.step1);
       parsedDataFromStorage?.step2 && setStep2(parsedDataFromStorage.step2);
       parsedDataFromStorage?.step3 && setStep3(parsedDataFromStorage.step3);
-      setCurrentStep(lastFinishStep ? lastFinishStep : 1);
+      const uiStep = parsedDataFromStorage?.uiStep;
+      setCurrentStep(uiStep ?? (lastFinishStep ? lastFinishStep : 1));
     } else {
       getStoryData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storyId]);
+
+  // Persist the current UI step to localStorage so we can restore it on refresh
+  useEffect(() => {
+    if (!requestLoading && storyId && currentStep > 0) {
+      const raw = localStorage.getItem(storyId);
+      if (raw) {
+        try {
+          const parsed = JSON.parse(raw);
+          if (parsed?.__v === "1") {
+            localStorage.setItem(
+              storyId,
+              JSON.stringify({ ...parsed, uiStep: currentStep })
+            );
+          }
+        } catch {
+          // corrupted storage — ignore
+        }
+      }
+    }
+  }, [currentStep, storyId, requestLoading]);
 
   useEffect(() => {
     if (!requestLoading && storyId) {
@@ -124,6 +146,8 @@ const StepSelector = () => {
   if (currentStep === StoryStepEnum.TITLE_STEP) {
     return <TitleAddingStep />;
   } else if (currentStep === StoryStepEnum.TYPE_STEP) {
+    return <TypeSelectionStep />;
+  } else if (currentStep === StoryStepEnum.CONTENT_STEP) {
     return <TypeDefiningStep />;
   } else if (currentStep === StoryStepEnum.SHARE_SETTINGS_STEP) {
     return <ContactFormStep />;

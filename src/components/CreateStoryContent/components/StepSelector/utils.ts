@@ -41,7 +41,8 @@ export function setStoryDataToStore(
       imageVoting,
       response,
     });
-    setCurrentStep(2);
+    // Type is already saved — land on Content step (3), not TypeSelection (2)
+    setCurrentStep(3);
   } else if (responseData.progress === StoryProgressEnum.STEP3) {
     setStep1({
       title,

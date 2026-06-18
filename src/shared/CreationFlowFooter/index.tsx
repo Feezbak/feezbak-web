@@ -60,7 +60,7 @@ const CreationFlowFooter = ({
   return (
     <CreationFlowFooterWrapper>
       <StepsText>
-        This is step {currentStep} out of 3 steps and then you’ll be able to
+        This is step {currentStep} out of 4 steps and then you’ll be able to
         share it with friends! 😎
       </StepsText>
       <StepsControlWrapper>
