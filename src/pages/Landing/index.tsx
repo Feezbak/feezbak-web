@@ -12,11 +12,9 @@ import { useNavigate } from "react-router-dom";
 import { isAuth } from "@/hooks";
 import { cn } from "@/lib/utils";
 
-import { BackgroundBeams } from "@components/ui/background-beams";
 import { SparklesCore } from "@components/ui/sparkles";
 import { MovingBorderButton } from "@components/ui/moving-border";
 import { InfiniteMovingCards } from "@components/ui/infinite-moving-cards";
-import { TextGenerateEffect } from "@components/ui/text-generate-effect";
 
 /* ─── Unsplash images — all confirmed free CDN URLs ─── */
 // Server-side crop to 16:9 (900×506) so every image renders identically
@@ -396,7 +394,6 @@ const Landing = () => {
     offset: ["start start", "end start"],
   });
   const heroY = useTransform(heroScroll, [0, 1], [0, 120]);
-  const heroOpacity = useTransform(heroScroll, [0, 0.6], [1, 0]);
 
   useEffect(() => {
     if (authed) navigate("/dashboard", { replace: true });
