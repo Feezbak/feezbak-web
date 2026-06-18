@@ -80,10 +80,34 @@ p, h1, h2, h3, h4, h5, h6 {
   }
 }
 
+@keyframes notificationEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes notificationLeave {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+  }
+}
+
 .ant-notification-notice-wrapper {
-  /* only width here — this is the animated slide element; putting
-     border-radius/shadow/height on it causes repaints on every frame */
   width: 27rem !important;
+  border-radius: 1.5rem;
+  will-change: transform, opacity;
+  /* replace antd's default side-slide with a smooth fade-drop */
+  animation: notificationEnter 0.3s cubic-bezier(0.16, 1, 0.3, 1) both !important;
 }
 
 .ant-notification-notice-wrapper .ant-notification-notice {
@@ -91,7 +115,6 @@ p, h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 17px 40px rgba(74, 68, 143, 0.06);
   border: 1px solid #F0F0F4;
   min-height: 11.75rem;
-  will-change: transform, opacity;
 
   @media only screen and (max-width: 767px) {
     min-height: 14.75rem;
