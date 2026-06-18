@@ -1,3 +1,4 @@
+export { default as Landing } from "./Landing";
 export { default as ForgotPassword } from "./ForgotPassword";
 export { default as ResetPassword } from "./ResetPassword";
 export { default as StoryDetails } from "./StoryDetails";

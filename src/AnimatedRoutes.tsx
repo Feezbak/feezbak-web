@@ -10,6 +10,7 @@ import { getMyProfile } from "@/api";
 import { PrivateRoute } from "@/components";
 import { getErrorMessage } from "@helpers/errorMessage";
 
+const Landing = lazy(() => import("@/pages/Landing"));
 const SignIn = lazy(() => import("@/pages/SignIn"));
 const SignUp = lazy(() => import("@/pages/SignUp"));
 const ForgotPassword = lazy(() => import("@/pages/ForgotPassword"));
@@ -50,7 +51,8 @@ const AnimatedRoutes = () => {
   useLayoutEffect(() => {
     if (
       authed &&
-      (pathname === "/sign-in" ||
+      (pathname === "/" ||
+        pathname === "/sign-in" ||
         pathname === "/sign-up" ||
         pathname === "/forgot-password" ||
         pathname === "/reset-password")
@@ -94,6 +96,7 @@ const AnimatedRoutes = () => {
     <AnimatePresence initial={false}>
       <Suspense fallback={null}>
         <Routes>
+          <Route caseSensitive path="/" element={<Landing />} />
           <Route caseSensitive path="/sign-in" element={<SignIn />} />
           <Route caseSensitive path="/sign-up" element={<SignUp />} />
           <Route path="*" element={<PageNotFound />} />
