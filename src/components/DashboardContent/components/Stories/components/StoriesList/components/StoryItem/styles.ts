@@ -3,12 +3,18 @@ import { inLessThan } from "@/helpers";
 import { StyleEnums, FlexBoxEnum, BreakpointEnums } from "@/enums";
 import { Button, Row, Col } from "antd";
 
-export const StoryListItemWrapper = styled(Row)`
+export const StoryListItemWrapper = styled(Row)<{ $isPendingDelete?: boolean }>`
   width: 100%;
-  border: 1px solid ${StyleEnums.gray4};
+  border: 1px solid
+    ${({ $isPendingDelete }) =>
+      $isPendingDelete ? "#ffccc7" : StyleEnums.gray4};
+  background: ${({ $isPendingDelete }) =>
+    $isPendingDelete ? "#fff2f0" : "transparent"};
   padding: 1.5rem 2rem;
   border-radius: 0.75rem;
   margin-bottom: 0.75rem;
+  opacity: ${({ $isPendingDelete }) => ($isPendingDelete ? 0.7 : 1)};
+  transition: border-color 0.25s ease, background 0.25s ease, opacity 0.25s ease;
   ${FlexBoxEnum.SpaceBetweenHorizontal}
 
   ${inLessThan(BreakpointEnums.tablet)`

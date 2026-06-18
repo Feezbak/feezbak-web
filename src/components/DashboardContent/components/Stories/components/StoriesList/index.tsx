@@ -47,6 +47,7 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
   const [currentPage, setCurrentPage] = useState(page ? +page : 1);
   const [storiesPaginatedData, setStoriesPaginatedData] =
     useState<StoriesListI | null>(null);
+  const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
   const [api, contextHolder] = notification.useNotification();
 
   useEffect(() => {
@@ -109,11 +110,13 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
     (id: string) => {
       if (deleteTimerRef.current) clearTimeout(deleteTimerRef.current);
 
+      setPendingDeleteId(id);
       let canceled = false;
       const key = `delete-${id}`;
 
       const cancel = () => {
         canceled = true;
+        setPendingDeleteId(null);
         if (deleteTimerRef.current) clearTimeout(deleteTimerRef.current);
         api.destroy(key);
       };
@@ -182,6 +185,7 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
                   storyData={story}
                   loading={loading}
                   handleDelete={handleDelete}
+                  isPendingDelete={story._id === pendingDeleteId}
                 />
               ))}
             </StoriesListWrapper>
