@@ -18,25 +18,28 @@ import { MovingBorderButton } from "@components/ui/moving-border";
 import { InfiniteMovingCards } from "@components/ui/infinite-moving-cards";
 import { TextGenerateEffect } from "@components/ui/text-generate-effect";
 
-/* ─── Unsplash images ─── */
-const BASE = "https://images.unsplash.com/photo-";
-const Q = "?w=900&auto=format&fit=crop&q=80";
+/* ─── Unsplash images — all confirmed free CDN URLs ─── */
+// Server-side crop to 16:9 (900×506) so every image renders identically
+const img = (id: string) =>
+  `https://images.unsplash.com/photo-${id}?w=900&h=506&auto=format&fit=crop&q=80`;
 
-// Hero – person working across phone + laptop (modern workspace)
-const combinedImg = `${BASE}1563986768609-322da13575f3${Q}`;
-// Step 1 – person conducting user research / creating content
-const imgTypeBtnResp = `${BASE}1661955247000-b529e946718e${Q}`;
-// Step 2 – person sharing via smartphone
-const girlSending = `${BASE}1488509082528-cefbba5ad692${Q}`;
-// Step 3 – clean analytics dashboard
-const dataImg = `${BASE}1551288049-bebda4e38f71${Q}`;
-// Story types
-const imgTypeTextResp = `${BASE}1540908390241-82158ab62887${Q}`;
-const textTypeBtnResp = `${BASE}1600880292089-90a7e086ee0c${Q}`;
-const textTypeTextResp = `${BASE}1587440871875-191322ee64b0${Q}`;
+// Hero – modern team working on laptops
+const combinedImg = img("1522071820081-009f0129c71c");
+// Step 1 – designer sketching / building a product
+const imgTypeBtnResp = img("1586717791821-3f44a563fa4c");
+// Step 2 – person presenting / sharing on screen
+const girlSending = img("1557804506-669a67965ba0");
+// Step 3 – analytics dashboard
+const dataImg = img("1551288049-bebda4e38f71");
+// Story types — all UX/design themed for visual consistency
+const imgTypeTextResp = img("1587440871875-191322ee64b0"); // UX research
+const textTypeBtnResp = img("1576153192396-180ecef2a715"); // design grid layout
+const textTypeTextResp = img("1558655146-d09347e92766"); // design on screen
+const combinedTypeImg = img("1618788372246-79faff0c3742"); // design tools overview
+const imgVotingType = img("1522542550221-31fd19575a2d"); // web/app wireframe
 // Split sections
-const splitImgVoting = `${BASE}1666875753105-c63a6f3bdc86${Q}`;
-const splitStatements = `${BASE}1522071820081-009f0129c71c${Q}`;
+const splitImgVoting = img("1521737852567-6949f3f9f2b5"); // team collaborating
+const splitStatements = img("1556761175-5973dc0f32e7"); // team discussion
 
 /* ─── data ─── */
 const STEPS = [
@@ -69,7 +72,7 @@ const STEPS = [
 const STORY_TYPES = [
   {
     label: "Image Voting · Button",
-    img: imgTypeBtnResp,
+    img: imgVotingType,
     accent: "#FF7F61",
     desc: "Respondents pick their favourite image — great for logos, product shots, and design options.",
   },
@@ -93,7 +96,7 @@ const STORY_TYPES = [
   },
   {
     label: "Combined",
-    img: combinedImg,
+    img: combinedTypeImg,
     accent: "#FF2976",
     desc: "Mix images and statements in one story for a richer, multi-format feedback experience.",
   },
@@ -322,19 +325,24 @@ const StoryTypeShowcase = () => {
             transition={{ duration: 0.4, ease }}
           >
             <TiltCard className="relative rounded-3xl overflow-hidden shadow-2xl">
-              <div
-                className="absolute inset-0 opacity-20"
-                style={{
-                  background: `radial-gradient(circle at 30% 40%, ${current.accent}, transparent 60%)`,
-                }}
-              />
-              <img
-                src={current.img}
-                alt={current.label}
-                className="w-full block rounded-3xl"
-              />
-              <div className="absolute bottom-4 left-4 right-4 rounded-2xl px-4 py-3 backdrop-blur-md bg-black/30 border border-white/10">
-                <p className="text-white text-sm font-medium">{current.desc}</p>
+              {/* fixed 16:9 container — all images same height */}
+              <div className="relative w-full" style={{ aspectRatio: "16/9" }}>
+                <div
+                  className="absolute inset-0 opacity-20 z-10"
+                  style={{
+                    background: `radial-gradient(circle at 30% 40%, ${current.accent}, transparent 60%)`,
+                  }}
+                />
+                <img
+                  src={current.img}
+                  alt={current.label}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute bottom-4 left-4 right-4 z-20 rounded-2xl px-4 py-3 backdrop-blur-md bg-black/40 border border-white/10">
+                  <p className="text-white text-sm font-medium">
+                    {current.desc}
+                  </p>
+                </div>
               </div>
             </TiltCard>
           </motion.div>
@@ -660,14 +668,21 @@ const Landing = () => {
                 {/* image */}
                 <div className="flex-1 min-w-0 w-full">
                   <TiltCard>
-                    <div className="relative rounded-3xl overflow-hidden shadow-2xl group">
+                    <div
+                      className="relative rounded-3xl overflow-hidden shadow-2xl group"
+                      style={{ aspectRatio: "16/9" }}
+                    >
                       <div
-                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        className="absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                         style={{
                           background: `radial-gradient(circle at 50% 50%, ${s.color}30, transparent 70%)`,
                         }}
                       />
-                      <img src={s.img} alt={s.title} className="w-full block" />
+                      <img
+                        src={s.img}
+                        alt={s.title}
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
                     </div>
                   </TiltCard>
                 </div>
@@ -846,11 +861,14 @@ const Landing = () => {
             viewport={{ once: true, margin: "-80px" }}
           >
             <TiltCard>
-              <div className="rounded-3xl overflow-hidden shadow-2xl border border-black/5">
+              <div
+                className="rounded-3xl overflow-hidden shadow-2xl border border-black/5"
+                style={{ aspectRatio: "16/9" }}
+              >
                 <img
                   src={splitImgVoting}
                   alt="Voting story with open-text responses"
-                  className="w-full block"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </TiltCard>
@@ -916,11 +934,14 @@ const Landing = () => {
             viewport={{ once: true, margin: "-80px" }}
           >
             <TiltCard>
-              <div className="rounded-3xl overflow-hidden shadow-2xl border border-black/5">
+              <div
+                className="rounded-3xl overflow-hidden shadow-2xl border border-black/5"
+                style={{ aspectRatio: "16/9" }}
+              >
                 <img
                   src={splitStatements}
                   alt="Statement feedback story"
-                  className="w-full block"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </TiltCard>
