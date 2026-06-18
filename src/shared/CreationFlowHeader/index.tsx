@@ -17,8 +17,8 @@ export interface ActionsList {
   typeSelection: boolean;
 }
 
-const TOTAL_STEPS = 3;
-const STEP_LABELS = ["Title", "Type", "Contact Form"];
+const TOTAL_STEPS = 4;
+const STEP_LABELS = ["Title", "Type", "Content", "Contact Form"];
 
 interface Props {
   actions?: ActionsList;

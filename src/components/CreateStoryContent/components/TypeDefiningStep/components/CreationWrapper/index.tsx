@@ -1,5 +1,5 @@
 import { useContext, useMemo } from "react";
-import { StoryTypeEnum } from "@/enums";
+import { StoryTypeEnum, StoryProgressEnum } from "@/enums";
 import { StoryCreationContext } from "@/context";
 import ImageType from "./components/ImageType";
 import TextType from "./components/TextType";
@@ -14,7 +14,6 @@ import { useParams } from "react-router-dom";
 import { CreationFlowFooter, CreationFlowHeader } from "@/shared";
 import { CreationFlowWrapper } from "@components/CreateStoryContent/styles";
 import { getErrorMessage } from "@helpers/errorMessage";
-import { StoryProgressEnum } from "@/enums";
 
 interface Props {
   handleDemo: () => void;
@@ -31,7 +30,6 @@ const CreationWrapper = ({ handleDemo }: Props) => {
     step1,
     setNextStep,
     setPrevStep,
-    setVotingType,
     setSelectionQuantityState,
   } = useContext(StoryCreationContext);
 
@@ -73,10 +71,6 @@ const CreationWrapper = ({ handleDemo }: Props) => {
     setSelectionQuantityState(value);
   };
 
-  const handleTypeSelection = (value: StoryTypeEnum) => {
-    setVotingType(value);
-  };
-
   const isImageVoting = useMemo(
     () =>
       step2.type === StoryTypeEnum.IMAGE_VOTING_ONLY_BUTTON_RESP ||
@@ -114,11 +108,9 @@ const CreationWrapper = ({ handleDemo }: Props) => {
       <CreationFlowHeader
         handleDemo={handleDemo}
         currentStep={currentStep}
-        actions={{ quantitySelection: isImageVoting, typeSelection: true }}
-        typeSelectionDefaultValue={step2.type}
+        actions={{ quantitySelection: isImageVoting, typeSelection: false }}
         quantitySelectionDefaultValue={step2.isMultiple}
         handleQuantitySelection={handleQuantitySelection}
-        handleTypeSelection={handleTypeSelection}
       />
       <AnimatePresence initial={false} exitBeforeEnter>
         {isImageVoting ? <ImageType key="image" /> : <TextType key="text" />}

@@ -25,9 +25,6 @@ const PageNotFound = lazy(() => import("@/components/PageNotFound"));
 const Stories = lazy(
   () => import("@components/DashboardContent/components/Stories")
 );
-const StoryAnalytics = lazy(
-  () => import("@components/AnalyticsContent/components/StoryAnalytics")
-);
 
 const AnimatedRoutes = () => {
   const authed = isAuth();
@@ -158,13 +155,7 @@ const AnimatedRoutes = () => {
                 <Analytics />
               </PrivateRoute>
             }
-          >
-            <Route
-              caseSensitive
-              path="/analytics/:storyId"
-              element={<StoryAnalytics />}
-            />
-          </Route>
+          />
         </Routes>
       </Suspense>
     </AnimatePresence>
