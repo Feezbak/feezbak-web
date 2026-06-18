@@ -40,6 +40,7 @@ export const BackgroundBeams = React.memo(
           height="100%"
           viewBox="0 0 696 316"
           fill="none"
+          overflow="hidden"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
