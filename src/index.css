@@ -102,29 +102,37 @@ p, h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* antd v5 gives the wrapper its own background/border-radius/shadow via CSS-in-JS.
+   We override those here. The actual animation classes are ant-notification-fade-* */
 .ant-notification-notice-wrapper {
   width: 27rem !important;
-  border-radius: 1.5rem;
-  /* overflow:hidden clips child content to our border-radius;
-     wrapper's own box-shadow is unaffected by its own overflow */
+  border-radius: 1.5rem !important;
   overflow: hidden;
-  box-shadow: 0 17px 40px rgba(74, 68, 143, 0.06);
+  box-shadow: 0 17px 40px rgba(74, 68, 143, 0.06) !important;
   will-change: transform, opacity;
 }
 
-/* Only override animation during enter — not unconditionally,
-   otherwise the leave/close animation is suppressed and X stops working */
-.ant-notification-notice-wrapper.ant-move-right-enter,
-.ant-notification-notice-wrapper.ant-move-right-appear {
-  animation: notificationEnter 0.3s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+/* Enter: override antd's default fade with our smooth drop-in.
+   antd's CSS-in-JS sets animationPlayState: paused on -enter,
+   then switches to running on -enter-active. We override animation-name only. */
+.ant-notification .ant-notification-fade-enter.ant-notification-fade-enter-active,
+.ant-notification .ant-notification-fade-appear.ant-notification-fade-appear-active {
+  animation-name: notificationEnter !important;
+  animation-duration: 0.3s !important;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+  animation-fill-mode: both !important;
 }
 
-.ant-notification-notice-wrapper.ant-move-right-leave {
-  animation: notificationLeave 0.2s ease-in both !important;
+/* Leave: antd's default collapses height (looks bad). Replace with a clean fade-up. */
+.ant-notification .ant-notification-fade-leave.ant-notification-fade-leave-active {
+  animation-name: notificationLeave !important;
+  animation-duration: 0.2s !important;
+  animation-timing-function: ease-in !important;
+  animation-fill-mode: both !important;
 }
 
 .ant-notification-notice-wrapper .ant-notification-notice {
-  border-radius: 1.5rem;
+  border-radius: 1.5rem !important;
   border: 1px solid #F0F0F4;
   min-height: 11.75rem;
 
