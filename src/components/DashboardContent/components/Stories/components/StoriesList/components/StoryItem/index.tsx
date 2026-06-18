@@ -28,10 +28,11 @@ interface Props {
   storyId: string;
   handleDelete: (id: string) => void;
   loading: boolean;
+  isPendingDelete?: boolean;
 }
 
 const StoryItem = memo(
-  ({ storyData, handleDelete, storyId, loading }: Props) => {
+  ({ storyData, handleDelete, storyId, loading, isPendingDelete }: Props) => {
     const [deletionId, setDeletionId] = useState("");
     const navigate = useNavigate();
     const { title, progress, _id: id } = storyData ?? {};
@@ -100,7 +101,7 @@ const StoryItem = memo(
     return loading && id === deletionId ? (
       <StorySkeleton />
     ) : (
-      <StoryListItemWrapper wrap>
+      <StoryListItemWrapper wrap $isPendingDelete={isPendingDelete}>
         <StoryItemInfo xs={24} sm={24} md={10} lg={12} xl={12} xxl={12}>
           <StoryInfoContainer>
             <p>{titleText}</p>
@@ -125,6 +126,7 @@ const StoryItem = memo(
               aria-label="Delete story"
               icon={<DeleteIconGrayBg />}
               onClick={handleRemoveStory}
+              disabled={isPendingDelete}
             />
             {progress === StoryProgressEnum.STEP3 && (
               <ActionBtn
