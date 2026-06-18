@@ -18,7 +18,7 @@ export interface ActionsList {
 }
 
 const TOTAL_STEPS = 3;
-const STEP_LABELS = ["Title", "Type", "Settings"];
+const STEP_LABELS = ["Title", "Type", "Contact Form"];
 
 interface Props {
   actions?: ActionsList;
