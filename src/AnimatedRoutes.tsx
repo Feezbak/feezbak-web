@@ -11,6 +11,7 @@ import { PrivateRoute } from "@/components";
 import { getErrorMessage } from "@helpers/errorMessage";
 
 const Landing = lazy(() => import("@/pages/Landing"));
+const GoogleAuthCallback = lazy(() => import("@/pages/GoogleAuthCallback"));
 const SignIn = lazy(() => import("@/pages/SignIn"));
 const SignUp = lazy(() => import("@/pages/SignUp"));
 const ForgotPassword = lazy(() => import("@/pages/ForgotPassword"));
@@ -121,6 +122,11 @@ const AnimatedRoutes = () => {
             element={<ResetPassword />}
           />
           <Route caseSensitive path="/verify/:id" element={<Verify />} />
+          <Route
+            caseSensitive
+            path="/auth/google/callback"
+            element={<GoogleAuthCallback />}
+          />
           <Route
             caseSensitive
             path="/dashboard"
