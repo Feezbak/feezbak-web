@@ -93,6 +93,7 @@ const ClientLayers = ({
     isPIIRequested,
     isMultySelectRequested,
     handleCloseLayers,
+    imageCount,
   ]);
 
   return (
