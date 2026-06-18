@@ -105,14 +105,26 @@ p, h1, h2, h3, h4, h5, h6 {
 .ant-notification-notice-wrapper {
   width: 27rem !important;
   border-radius: 1.5rem;
+  /* overflow:hidden clips child content to our border-radius;
+     wrapper's own box-shadow is unaffected by its own overflow */
+  overflow: hidden;
+  box-shadow: 0 17px 40px rgba(74, 68, 143, 0.06);
   will-change: transform, opacity;
-  /* replace antd's default side-slide with a smooth fade-drop */
+}
+
+/* Only override animation during enter — not unconditionally,
+   otherwise the leave/close animation is suppressed and X stops working */
+.ant-notification-notice-wrapper.ant-move-right-enter,
+.ant-notification-notice-wrapper.ant-move-right-appear {
   animation: notificationEnter 0.3s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+}
+
+.ant-notification-notice-wrapper.ant-move-right-leave {
+  animation: notificationLeave 0.2s ease-in both !important;
 }
 
 .ant-notification-notice-wrapper .ant-notification-notice {
   border-radius: 1.5rem;
-  box-shadow: 0 17px 40px rgba(74, 68, 143, 0.06);
   border: 1px solid #F0F0F4;
   min-height: 11.75rem;
 
