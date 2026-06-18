@@ -109,24 +109,23 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
     (id: string) => {
       if (deleteTimerRef.current) clearTimeout(deleteTimerRef.current);
 
-      let undone = false;
-      let executed = false;
+      let canceled = false;
       const key = `delete-${id}`;
 
-      // Guard against double-execution: api.destroy() triggers onClose which
-      // would call doDelete again without this flag.
-      const doDelete = () => {
-        if (executed) return;
-        executed = true;
-        if (!undone) runDeleteStory(id);
+      const cancel = () => {
+        canceled = true;
+        if (deleteTimerRef.current) clearTimeout(deleteTimerRef.current);
         api.destroy(key);
       };
 
+      // duration:0 disables antd's own auto-close so onClose never fires
+      // from a natural expiry — only our setTimeout controls when to delete.
+      // X button → onClose → cancel(). Undo button → cancel() directly.
       api.warning({
         key,
         message: "Story will be deleted",
         description: "You have 5 seconds to undo this action.",
-        duration: UNDO_DELAY_MS / 1000,
+        duration: 0,
         icon: (
           <img
             src={notificationIllustrationSrc}
@@ -135,20 +134,19 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
           />
         ),
         btn: (
-          <Button
-            size="small"
-            onClick={() => {
-              undone = true;
-              api.destroy(key);
-            }}
-          >
+          <Button size="small" onClick={cancel}>
             Undo
           </Button>
         ),
-        onClose: doDelete,
+        onClose: cancel,
       });
 
-      deleteTimerRef.current = setTimeout(doDelete, UNDO_DELAY_MS);
+      deleteTimerRef.current = setTimeout(() => {
+        if (!canceled) {
+          runDeleteStory(id);
+          api.destroy(key);
+        }
+      }, UNDO_DELAY_MS);
     },
     [api, runDeleteStory]
   );
