@@ -18,13 +18,25 @@ import { MovingBorderButton } from "@components/ui/moving-border";
 import { InfiniteMovingCards } from "@components/ui/infinite-moving-cards";
 import { TextGenerateEffect } from "@components/ui/text-generate-effect";
 
-import imgTypeBtnResp from "@images/image-type-btn-resp.webp";
-import imgTypeTextResp from "@images/image-type-text-resp.webp";
-import girlSending from "@images/girl-sending-message.webp";
-import dataImg from "@images/data.webp";
-import combinedImg from "@images/combined-type.webp";
-import textTypeBtnResp from "@images/text-type-btn-resp.webp";
-import textTypeTextResp from "@images/text-type-text-resp.webp";
+/* ─── Unsplash images ─── */
+const BASE = "https://images.unsplash.com/photo-";
+const Q = "?w=900&auto=format&fit=crop&q=80";
+
+// Hero – person working across phone + laptop (modern workspace)
+const combinedImg = `${BASE}1563986768609-322da13575f3${Q}`;
+// Step 1 – person conducting user research / creating content
+const imgTypeBtnResp = `${BASE}1661955247000-b529e946718e${Q}`;
+// Step 2 – person sharing via smartphone
+const girlSending = `${BASE}1488509082528-cefbba5ad692${Q}`;
+// Step 3 – clean analytics dashboard
+const dataImg = `${BASE}1551288049-bebda4e38f71${Q}`;
+// Story types
+const imgTypeTextResp = `${BASE}1540908390241-82158ab62887${Q}`;
+const textTypeBtnResp = `${BASE}1600880292089-90a7e086ee0c${Q}`;
+const textTypeTextResp = `${BASE}1587440871875-191322ee64b0${Q}`;
+// Split sections
+const splitImgVoting = `${BASE}1666875753105-c63a6f3bdc86${Q}`;
+const splitStatements = `${BASE}1522071820081-009f0129c71c${Q}`;
 
 /* ─── data ─── */
 const STEPS = [
@@ -836,7 +848,7 @@ const Landing = () => {
             <TiltCard>
               <div className="rounded-3xl overflow-hidden shadow-2xl border border-black/5">
                 <img
-                  src={imgTypeTextResp}
+                  src={splitImgVoting}
                   alt="Voting story with open-text responses"
                   className="w-full block"
                 />
@@ -906,7 +918,7 @@ const Landing = () => {
             <TiltCard>
               <div className="rounded-3xl overflow-hidden shadow-2xl border border-black/5">
                 <img
-                  src={textTypeTextResp}
+                  src={splitStatements}
                   alt="Statement feedback story"
                   className="w-full block"
                 />
