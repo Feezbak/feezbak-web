@@ -352,6 +352,37 @@ const StoryTypeShowcase = () => {
   );
 };
 
+/* ─── rotating word in hero headline ─── */
+const ROTATE_WORDS = ["designers", "marketers", "product teams", "researchers"];
+
+const HeroRotatingWord = () => {
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const t = setInterval(
+      () => setIndex((i) => (i + 1) % ROTATE_WORDS.length),
+      2600
+    );
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <span className="relative inline-block">
+      <AnimatePresence exitBeforeEnter>
+        <motion.span
+          key={index}
+          initial={{ y: 24, opacity: 0, filter: "blur(8px)" }}
+          animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+          exit={{ y: -24, opacity: 0, filter: "blur(8px)" }}
+          transition={{ duration: 0.45, ease }}
+          className="inline-block bg-gradient-to-r from-[#FF7F61] via-[#FF2976] to-[#6382F2] bg-clip-text text-transparent"
+        >
+          {ROTATE_WORDS[index]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+};
+
 /* ─── main component ─── */
 const Landing = () => {
   const navigate = useNavigate();
@@ -503,128 +534,290 @@ const Landing = () => {
       {/* ─── HERO ─── */}
       <section
         ref={heroRef}
-        className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden pt-24 pb-0"
+        className="relative w-full min-h-screen flex items-center overflow-hidden bg-[#06060c]"
       >
-        {/* bg */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <BackgroundBeams />
-        </div>
-        <div className="absolute inset-0 pointer-events-none">
+        {/* subtle dot grid */}
+        <div
+          className="absolute inset-0 opacity-[0.035] pointer-events-none"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, #ffffff 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+          }}
+        />
+
+        {/* animated orbs */}
+        <motion.div
+          animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 left-1/4 w-[700px] h-[700px] rounded-full opacity-[0.18] blur-[160px] pointer-events-none bg-[#FF7F61]"
+        />
+        <motion.div
+          animate={{ x: [0, -30, 0], y: [0, 40, 0] }}
+          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full opacity-[0.14] blur-[160px] pointer-events-none bg-[#6382F2]"
+        />
+        <motion.div
+          animate={{ x: [0, 20, 0], y: [0, 20, 0] }}
+          transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-3/4 left-1/2 w-[400px] h-[400px] rounded-full opacity-[0.10] blur-[140px] pointer-events-none bg-[#FFAF51]"
+        />
+
+        {/* sparkles */}
+        <div className="absolute inset-0 pointer-events-none opacity-60">
           <SparklesCore
-            particleDensity={50}
+            particleDensity={35}
             particleColor="#FF7F61"
-            minSize={0.3}
-            maxSize={0.8}
+            minSize={0.2}
+            maxSize={0.7}
           />
         </div>
-        {/* blobs */}
-        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full opacity-[0.15] blur-[120px] pointer-events-none bg-[#FF7F61]" />
-        <div className="absolute top-1/2 -right-32 w-[500px] h-[500px] rounded-full opacity-[0.12] blur-[120px] pointer-events-none bg-[#6382F2]" />
-        <div className="absolute bottom-0 left-1/3 w-[400px] h-[400px] rounded-full opacity-[0.10] blur-[100px] pointer-events-none bg-[#FFAF51]" />
 
-        {/* text content */}
-        <motion.div
-          className="relative z-10 text-center px-6 max-w-5xl mx-auto"
-          style={{ y: heroY, opacity: heroOpacity }}
-          variants={stagger(0.09)}
-          initial="hidden"
-          animate="show"
+        {/* top gradient fade */}
+        <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-[#06060c] to-transparent pointer-events-none z-10" />
+
+        {/* content */}
+        <div
+          className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 pt-28 pb-20 flex flex-col lg:flex-row items-center gap-12 lg:gap-20"
+          style={{ y: heroY } as any}
         >
-          <motion.div variants={fadeUp} className="mb-6">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-[#FF7F61] bg-[#FF7F61]/10 border border-[#FF7F61]/20">
-              ✨ Feedback, reimagined
-            </span>
-          </motion.div>
-
-          <motion.div variants={fadeUp} className="mb-6">
-            <TextGenerateEffect
-              words="Turn feedback into your superpower"
-              gradientWord="superpower"
-              className="text-[2.6rem] sm:text-6xl md:text-7xl lg:text-8xl leading-[1.05] tracking-[-0.02em] font-black"
-            />
-          </motion.div>
-
-          <motion.p
-            variants={fadeUp}
-            className="text-base sm:text-lg md:text-xl text-[#847e95] max-w-xl mx-auto leading-relaxed mb-10"
-          >
-            Create beautiful feedback stories. Share them in one link. Watch
-            real-time insights roll in — all in one place.
-          </motion.p>
-
+          {/* ── LEFT: text ── */}
           <motion.div
-            variants={fadeUp}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3"
+            className="flex-1 min-w-0 flex flex-col items-center lg:items-start text-center lg:text-left"
+            variants={stagger(0.1)}
+            initial="hidden"
+            animate="show"
           >
-            <MovingBorderButton
-              onClick={() => navigate("/sign-up")}
-              className="text-base px-10"
-              containerClassName="h-14"
-            >
-              Get Started Free →
-            </MovingBorderButton>
-            <button
-              onClick={() => scrollTo("how")}
-              className="h-14 px-8 rounded-full text-base font-semibold border border-black/10 bg-white/70 backdrop-blur hover:bg-white transition-colors"
-            >
-              See How It Works ↓
-            </button>
-          </motion.div>
-        </motion.div>
+            {/* badge */}
+            <motion.div variants={fadeUp} className="mb-7">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-[#FF7F61] bg-[#FF7F61]/12 border border-[#FF7F61]/25">
+                ✨ Feedback, reimagined
+              </span>
+            </motion.div>
 
-        {/* hero screenshot — slides up from bottom */}
-        <motion.div
-          className="relative z-10 mt-16 w-full max-w-5xl mx-auto px-4 sm:px-8"
-          initial={{ opacity: 0, y: 80 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.75, duration: 1, ease }}
-        >
-          <TiltCard className="relative">
+            {/* headline */}
+            <motion.h1
+              variants={fadeUp}
+              className="text-white font-black tracking-[-0.025em] leading-[1.06] text-[2.8rem] sm:text-6xl md:text-7xl mb-6"
+            >
+              The feedback tool <br className="hidden sm:block" />
+              built for <HeroRotatingWord />
+            </motion.h1>
+
+            <motion.p
+              variants={fadeUp}
+              className="text-white/50 text-base sm:text-lg md:text-xl max-w-lg leading-relaxed mb-10"
+            >
+              Create visual feedback stories. Share in one link. Get real-time
+              votes, comments, and insights — no dev needed.
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              variants={fadeUp}
+              className="flex flex-col sm:flex-row items-center gap-3 mb-12 w-full sm:w-auto"
+            >
+              <MovingBorderButton
+                onClick={() => navigate("/sign-up")}
+                className="text-base px-10 w-full sm:w-auto justify-center"
+                containerClassName="h-14 w-full sm:w-auto"
+              >
+                Get Started Free →
+              </MovingBorderButton>
+              <button
+                onClick={() => scrollTo("how")}
+                className="h-14 px-8 rounded-full text-base font-semibold border border-white/10 text-white/70 hover:text-white hover:border-white/25 transition-all w-full sm:w-auto"
+              >
+                See how it works ↓
+              </button>
+            </motion.div>
+
+            {/* trust row */}
+            <motion.div
+              variants={fadeUp}
+              className="flex items-center gap-4 flex-wrap justify-center lg:justify-start"
+            >
+              <div className="flex -space-x-2">
+                {["FF7F61", "6382F2", "25C7AA", "FFAF51", "FF2976"].map(
+                  (c, i) => (
+                    <div
+                      key={c}
+                      className="w-8 h-8 rounded-full border-2 border-[#06060c] flex items-center justify-center text-xs font-black text-white"
+                      style={{ background: `#${c}`, zIndex: 5 - i }}
+                    >
+                      {["S", "J", "M", "D", "A"][i]}
+                    </div>
+                  )
+                )}
+              </div>
+              <p className="text-white/40 text-sm">
+                <span className="text-white/70 font-semibold">500+</span> teams
+                already collecting better feedback
+              </p>
+            </motion.div>
+          </motion.div>
+
+          {/* ── RIGHT: floating visual ── */}
+          <motion.div
+            className="flex-1 min-w-0 relative w-full max-w-xl lg:max-w-none mx-auto"
+            initial={{ opacity: 0, scale: 0.92, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 1, ease }}
+          >
+            {/* pulsing rings */}
+            <motion.div
+              animate={{ scale: [1, 1.08, 1], opacity: [0.15, 0, 0.15] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute inset-0 rounded-[28px] border border-[#FF7F61]/40 pointer-events-none"
+            />
+            <motion.div
+              animate={{ scale: [1, 1.14, 1], opacity: [0.08, 0, 0.08] }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1,
+              }}
+              className="absolute -inset-5 rounded-[36px] border border-[#6382F2]/30 pointer-events-none"
+            />
+
+            {/* glow halo */}
             <div
-              className="absolute -inset-1 rounded-[28px] blur-2xl opacity-40"
+              className="absolute -inset-2 rounded-[30px] blur-2xl opacity-30 pointer-events-none"
               style={{
                 background: "linear-gradient(135deg,#FF7F61,#6382F2,#FFAF51)",
               }}
             />
-            <div className="relative rounded-[24px] overflow-hidden border border-white/50 shadow-[0_32px_80px_rgba(0,0,0,0.18)] bg-white">
-              <img
-                src={combinedImg}
-                alt="Feezbak combined story preview"
-                className="w-full block"
-              />
-              {/* overlay gradient to blend into next section */}
-              <div className="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-[#fafaf9] to-transparent" />
-            </div>
-            {/* floating badges */}
+
+            {/* main image */}
+            <TiltCard className="relative rounded-[24px] overflow-hidden border border-white/10 shadow-[0_40px_100px_rgba(0,0,0,0.5)]">
+              <div className="relative w-full" style={{ aspectRatio: "16/9" }}>
+                <img
+                  src={combinedImg}
+                  alt="Feezbak story preview"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                {/* dark tint */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              </div>
+            </TiltCard>
+
+            {/* floating card: responses */}
             <motion.div
-              className="absolute -top-3 right-8 sm:right-16 flex items-center gap-2 px-4 py-2.5 rounded-2xl text-white text-xs font-bold shadow-xl"
-              style={{ background: "linear-gradient(135deg,#FF7F61,#FF2976)" }}
-              initial={{ opacity: 0, scale: 0.7, y: 12 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: 1.3, duration: 0.5, ease }}
+              className="absolute -top-5 -right-3 sm:-right-8 flex items-center gap-2.5 px-4 py-3 rounded-2xl text-white text-xs font-bold shadow-2xl backdrop-blur-sm border border-white/10"
+              style={{
+                background: "linear-gradient(135deg,#FF7F61cc,#FF2976cc)",
+              }}
+              initial={{ opacity: 0, x: 20, y: -10 }}
+              animate={{ opacity: 1, x: 0, y: [0, -8, 0] }}
+              transition={{
+                opacity: { delay: 1, duration: 0.5 },
+                x: { delay: 1, duration: 0.5 },
+                y: {
+                  delay: 1.5,
+                  duration: 3.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                },
+              }}
             >
-              🗳️ 142 new responses
+              <span className="text-base">🗳️</span>
+              <div>
+                <div className="text-white/60 text-[10px] font-medium uppercase tracking-wide leading-none mb-0.5">
+                  Responses
+                </div>
+                <div className="text-sm font-black">142 new today</div>
+              </div>
             </motion.div>
+
+            {/* floating card: live */}
             <motion.div
-              className="absolute bottom-8 -left-2 sm:left-4 flex items-center gap-2 px-4 py-2.5 rounded-2xl text-white text-xs font-bold shadow-xl"
-              style={{ background: "linear-gradient(135deg,#6382F2,#4B5EDB)" }}
-              initial={{ opacity: 0, scale: 0.7, y: 12 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: 1.6, duration: 0.5, ease }}
+              className="absolute -bottom-5 -left-3 sm:-left-8 flex items-center gap-2.5 px-4 py-3 rounded-2xl text-white text-xs font-bold shadow-2xl backdrop-blur-sm border border-white/10"
+              style={{
+                background: "linear-gradient(135deg,#6382F2cc,#4B5EDBcc)",
+              }}
+              initial={{ opacity: 0, x: -20, y: 10 }}
+              animate={{ opacity: 1, x: 0, y: [0, 8, 0] }}
+              transition={{
+                opacity: { delay: 1.3, duration: 0.5 },
+                x: { delay: 1.3, duration: 0.5 },
+                y: {
+                  delay: 2,
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                },
+              }}
             >
-              ⚡ Live results
+              <span className="text-base">⚡</span>
+              <div>
+                <div className="text-white/60 text-[10px] font-medium uppercase tracking-wide leading-none mb-0.5">
+                  Status
+                </div>
+                <div className="text-sm font-black">Live results</div>
+              </div>
             </motion.div>
+
+            {/* floating card: shared */}
             <motion.div
-              className="absolute top-8 -left-3 sm:left-2 flex items-center gap-2 px-4 py-2.5 rounded-2xl text-white text-xs font-bold shadow-xl"
-              style={{ background: "linear-gradient(135deg,#25C7AA,#1aa88e)" }}
-              initial={{ opacity: 0, scale: 0.7, y: 12 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: 1.9, duration: 0.5, ease }}
+              className="absolute top-1/2 -translate-y-1/2 -right-3 sm:-right-10 flex items-center gap-2.5 px-4 py-3 rounded-2xl text-white text-xs font-bold shadow-2xl backdrop-blur-sm border border-white/10"
+              style={{
+                background: "linear-gradient(135deg,#25C7AAcc,#1aa88ecc)",
+              }}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0, y: [0, -6, 0] }}
+              transition={{
+                opacity: { delay: 1.6, duration: 0.5 },
+                x: { delay: 1.6, duration: 0.5 },
+                y: {
+                  delay: 2.5,
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                },
+              }}
             >
-              ✓ Shared via link
+              <span className="text-base">✓</span>
+              <div>
+                <div className="text-white/60 text-[10px] font-medium uppercase tracking-wide leading-none mb-0.5">
+                  Sharing
+                </div>
+                <div className="text-sm font-black">3 channels</div>
+              </div>
             </motion.div>
-          </TiltCard>
-        </motion.div>
+
+            {/* floating card: vote % */}
+            <motion.div
+              className="absolute top-6 -left-3 sm:-left-10 flex items-center gap-2.5 px-4 py-3 rounded-2xl text-white text-xs font-bold shadow-2xl backdrop-blur-sm border border-white/10"
+              style={{
+                background: "linear-gradient(135deg,#FFAF51cc,#e8913acc)",
+              }}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0, y: [0, 6, 0] }}
+              transition={{
+                opacity: { delay: 1.9, duration: 0.5 },
+                x: { delay: 1.9, duration: 0.5 },
+                y: {
+                  delay: 3,
+                  duration: 3.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                },
+              }}
+            >
+              <span className="text-base">📊</span>
+              <div>
+                <div className="text-white/60 text-[10px] font-medium uppercase tracking-wide leading-none mb-0.5">
+                  Top choice
+                </div>
+                <div className="text-sm font-black">Option A · 89%</div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* bottom fade into white */}
+        <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />
       </section>
 
       {/* ─── HOW IT WORKS ─── */}
