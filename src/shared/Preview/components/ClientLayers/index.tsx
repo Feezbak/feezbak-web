@@ -16,6 +16,7 @@ interface Props {
   handleCloseLayers: () => void;
   activeLayer: ClientLayerEnums;
   setActiveLayer: (state: ClientLayerEnums) => void;
+  imageCount?: number;
 }
 
 const ClientLayers = ({
@@ -25,6 +26,7 @@ const ClientLayers = ({
   isMultySelectRequested,
   type,
   handleCloseLayers,
+  imageCount = 0,
 }: Props) => {
   useEffect(() => {
     if (activeLayer === ClientLayerEnums.CLOSE) {
@@ -39,6 +41,8 @@ const ClientLayers = ({
           <WelcomeLayer
             handleSkip={handleCloseLayers}
             handleLayer={() => setActiveLayer(ClientLayerEnums.TYPE)}
+            imageCount={imageCount}
+            storyType={type}
           />
         );
       case ClientLayerEnums.TYPE:

@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import Header from "./components/Header";
 import Details from "./components/Details";
 import Footer from "./components/Footer";
@@ -6,7 +6,7 @@ import Confetti from "react-confetti";
 import { useWindowSize } from "@/hooks";
 import useRequest from "@ahooksjs/use-request";
 import { getStoryById } from "@/api";
-import { message } from "antd";
+import { message, Button } from "antd";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { Breadcrumb } from "antd";
 import dayjs from "dayjs";
@@ -16,6 +16,7 @@ import {
   StoryDetailsContentWrapper,
   DetailsSkeleton,
   LogoContainer,
+  ShareNudgeBar,
 } from "./styles";
 import { getErrorMessage } from "@helpers/errorMessage";
 
@@ -25,6 +26,7 @@ const DashboardContent = () => {
   const { id: storyId } = useParams();
   const navigate = useNavigate();
   const { width, height } = useWindowSize();
+  const [linkCopied, setLinkCopied] = useState(false);
 
   const { data: story, loading: storyDataLoading } = useRequest(
     () => getStoryById(storyId!),
@@ -77,6 +79,34 @@ const DashboardContent = () => {
           </Link>
         </LogoContainer>
         <Header />
+        {isNewCreated && shareableLink && (
+          <ShareNudgeBar>
+            <p>🎉 Your story is live! Share it now</p>
+            <div>
+              <Button
+                type="primary"
+                size="small"
+                href={`https://wa.me/?text=${encodeURIComponent(
+                  shareableLink
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Share on WhatsApp
+              </Button>
+              <Button
+                size="small"
+                onClick={() => {
+                  navigator.clipboard.writeText(shareableLink);
+                  setLinkCopied(true);
+                  setTimeout(() => setLinkCopied(false), 2000);
+                }}
+              >
+                {linkCopied ? "Copied!" : "Copy Link"}
+              </Button>
+            </div>
+          </ShareNudgeBar>
+        )}
         {!storyDataLoading && story?.data ? (
           <Details
             title={story.data.titleText}

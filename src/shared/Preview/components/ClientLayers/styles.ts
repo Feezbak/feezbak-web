@@ -78,3 +78,16 @@ export const Illustration = styled.img`
   width: 12.5rem;
   margin-bottom: 1rem;
 `;
+
+export const ContextPill = styled.span`
+  display: inline-block;
+  background: ${StyleEnums.primary}14;
+  color: ${StyleEnums.primary};
+  border: 1px solid ${StyleEnums.primary}30;
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.75rem;
+`;

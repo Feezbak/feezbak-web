@@ -39,6 +39,7 @@ const FeedbackView = ({ storyData }: Props) => {
             handleCloseLayers={() => setLayersState((ps) => !ps)}
             isPIIRequested={storyData.isInfoCollectionAllowed}
             isMultySelectRequested={storyData.isMultiple}
+            imageCount={images?.length ?? 0}
           />
         ) : (
           <Demo
