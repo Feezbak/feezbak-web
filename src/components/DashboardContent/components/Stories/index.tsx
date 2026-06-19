@@ -8,14 +8,11 @@ import { Button, message } from "antd";
 import { useResponsive } from "@/hooks";
 import { StoriesListHeader, StoriesContent, StoriesWrapper } from "./styles";
 import { getErrorMessage } from "@helpers/errorMessage";
-import { useRecoilValue } from "recoil";
-import { userData } from "@/recoil";
 import UpgradeModal from "@/components/UpgradeModal";
 
 const Stories = () => {
   const { isLessThanSm } = useResponsive();
   const navigate = useNavigate();
-  const user = useRecoilValue(userData);
   const [showUpgrade, setShowUpgrade] = useState(false);
 
   const { run: createNewStory, loading: isLoading } = useRequest(
