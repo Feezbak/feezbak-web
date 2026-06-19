@@ -60,7 +60,7 @@ const StoryAnalytics = () => {
             <motion.div
               key="empty"
               {...opacityAnimation}
-              style={{ textAlign: "center", padding: "4rem 0", opacity: 0.45 }}
+              style={{ textAlign: "center", opacity: 0.45 }}
             >
               <div style={{ fontSize: "2.5rem", marginBottom: "0.75rem" }}>
                 📭
