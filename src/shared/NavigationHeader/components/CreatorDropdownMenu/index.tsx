@@ -48,7 +48,11 @@ const CreatorDropdownMenu = ({ handleLogout }: Props) => {
         ) : profileData?.avatarSrc?.length ? (
           <ProfileImage
             onError={handleBrokenImage}
-            src={`${process.env.REACT_APP_API_URL}/${profileData.avatarSrc}`}
+            src={
+              profileData.avatarSrc?.startsWith("http")
+                ? profileData.avatarSrc
+                : `${process.env.REACT_APP_API_URL}/${profileData.avatarSrc}`
+            }
           />
         ) : (
           <CreatorAvatar

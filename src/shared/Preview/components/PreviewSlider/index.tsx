@@ -41,7 +41,11 @@ const PreviewSlider = (
         {images?.map((image) => (
           <PreviewSlide
             hasCover={hasCover}
-            imgSrc={`${process.env.REACT_APP_API_URL}/${image.src}`}
+            imgSrc={
+              image.src?.startsWith("http")
+                ? image.src
+                : `${process.env.REACT_APP_API_URL}/${image.src}`
+            }
             isSquare={isSquare}
             hasLayer={hasLayer}
             key={image.id}
