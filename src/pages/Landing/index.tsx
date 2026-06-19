@@ -438,6 +438,7 @@ const Landing = () => {
             { label: "How it works", id: "how" },
             { label: "Story types", id: "types" },
             { label: "Features", id: "features" },
+            { label: "Pricing", id: "pricing" },
           ].map((item) => (
             <button
               key={item.id}
@@ -521,7 +522,7 @@ const Landing = () => {
             transition={{ duration: 0.2 }}
             className="fixed top-[64px] inset-x-0 z-40 bg-white/96 backdrop-blur-xl border-b border-black/5 px-6 py-5 flex flex-col gap-2"
           >
-            {["how", "types", "features"].map((id) => (
+            {["how", "types", "features", "pricing"].map((id) => (
               <button
                 key={id}
                 onClick={() => scrollTo(id)}
@@ -531,7 +532,9 @@ const Landing = () => {
                   ? "How it works"
                   : id === "types"
                   ? "Story types"
-                  : "Features"}
+                  : id === "features"
+                  ? "Features"
+                  : "Pricing"}
               </button>
             ))}
             <div className="h-px bg-black/6 my-1" />
@@ -1269,6 +1272,171 @@ const Landing = () => {
             {STATS.map((s) => (
               <StatItem key={s.label} {...s} />
             ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* ─── PRICING ─── */}
+      <section
+        id="pricing"
+        className="w-full py-32 bg-[#F6F6F8] overflow-hidden"
+      >
+        <motion.div
+          className="max-w-6xl mx-auto px-6"
+          variants={stagger(0.1)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          <motion.p
+            variants={fadeUp}
+            className="text-center text-sm font-semibold uppercase tracking-widest text-[#FF7F61] mb-3"
+          >
+            Pricing
+          </motion.p>
+          <motion.h2
+            variants={fadeUp}
+            className="text-4xl sm:text-5xl font-extrabold text-[#06060c] text-center tracking-tight mb-4"
+          >
+            Simple, honest pricing
+          </motion.h2>
+          <motion.p
+            variants={fadeUp}
+            className="text-center text-[#847e95] text-lg mb-16 max-w-xl mx-auto"
+          >
+            Start free, upgrade when you need more. No hidden fees, no
+            surprises.
+          </motion.p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+            {/* FREE */}
+            <motion.div
+              variants={fadeUp}
+              className="bg-white rounded-3xl border border-black/[0.06] p-8 flex flex-col shadow-sm"
+            >
+              <p className="text-xs font-bold uppercase tracking-widest text-[#847e95] mb-4">
+                Free
+              </p>
+              <div className="mb-6">
+                <span className="text-5xl font-extrabold text-[#06060c]">
+                  $0
+                </span>
+                <span className="text-[#847e95] ml-1">/ month</span>
+              </div>
+              <ul className="space-y-3 mb-8 flex-1">
+                {[
+                  "Up to 3 stories",
+                  "All story types (image, text, voting)",
+                  "Unlimited feedbackers per story",
+                  "Basic analytics",
+                  "Feezbak watermark on stories",
+                ].map((f) => (
+                  <li
+                    key={f}
+                    className="flex items-start gap-2.5 text-sm text-[#27203C]"
+                  >
+                    <span className="mt-0.5 text-[#25C7AA] font-bold">✓</span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <button
+                onClick={() => navigate("/sign-up")}
+                className="w-full py-3 rounded-xl font-semibold text-sm border border-black/10 text-[#06060c] hover:bg-black/5 transition-colors"
+              >
+                Get started free
+              </button>
+            </motion.div>
+
+            {/* PRO */}
+            <motion.div
+              variants={fadeUp}
+              className="bg-[#06060c] rounded-3xl p-8 flex flex-col shadow-xl relative overflow-hidden"
+            >
+              <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full blur-3xl opacity-30 bg-[#FF7F61] pointer-events-none" />
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex items-center justify-between mb-4">
+                  <p className="text-xs font-bold uppercase tracking-widest text-[#FF7F61]">
+                    Pro
+                  </p>
+                  <span className="text-xs font-semibold bg-[#FF7F61]/20 text-[#FF7F61] px-3 py-1 rounded-full">
+                    Most popular
+                  </span>
+                </div>
+                <div className="mb-6">
+                  <span className="text-5xl font-extrabold text-white">$5</span>
+                  <span className="text-white/40 ml-1">/ month</span>
+                </div>
+                <ul className="space-y-3 mb-8 flex-1">
+                  {[
+                    "Everything in Free",
+                    "Unlimited stories",
+                    "Remove Feezbak watermark",
+                    "Send invitation links via email",
+                    "Full analytics & response details",
+                    "Export feedbacks as CSV",
+                    "Priority support",
+                  ].map((f) => (
+                    <li
+                      key={f}
+                      className="flex items-start gap-2.5 text-sm text-white/80"
+                    >
+                      <span className="mt-0.5 text-[#FF7F61] font-bold">✓</span>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  onClick={() => navigate("/sign-up")}
+                  className="w-full py-3 rounded-xl font-semibold text-sm bg-[#FF7F61] text-white hover:bg-[#ff6a4a] transition-colors"
+                >
+                  Start with Pro
+                </button>
+              </div>
+            </motion.div>
+
+            {/* TEAM — COMING SOON */}
+            <motion.div
+              variants={fadeUp}
+              className="bg-white rounded-3xl border border-black/[0.06] p-8 flex flex-col shadow-sm relative overflow-hidden"
+            >
+              <div className="absolute top-5 right-5 text-xs font-bold uppercase tracking-widest bg-[#F0F0F4] text-[#847e95] px-3 py-1 rounded-full">
+                Coming soon
+              </div>
+              <p className="text-xs font-bold uppercase tracking-widest text-[#847e95] mb-4">
+                Team
+              </p>
+              <div className="mb-6">
+                <span className="text-5xl font-extrabold text-[#CAC7D1]">
+                  $—
+                </span>
+              </div>
+              <ul className="space-y-3 mb-8 flex-1">
+                {[
+                  "Everything in Pro",
+                  "Multiple team members",
+                  "Shared story workspace",
+                  "Team-level analytics dashboard",
+                  "Role-based access (Admin / Viewer)",
+                  "Bulk invite collaborators",
+                  "Dedicated account support",
+                ].map((f) => (
+                  <li
+                    key={f}
+                    className="flex items-start gap-2.5 text-sm text-[#CAC7D1]"
+                  >
+                    <span className="mt-0.5 font-bold">·</span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <button
+                disabled
+                className="w-full py-3 rounded-xl font-semibold text-sm border border-black/10 text-[#CAC7D1] cursor-not-allowed bg-[#F6F6F8]"
+              >
+                Notify me when available
+              </button>
+            </motion.div>
           </div>
         </motion.div>
       </section>
