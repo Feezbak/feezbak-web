@@ -61,7 +61,11 @@ const UploadList = () => {
               isSelected={isSelected(src)}
               key={id}
               id={id}
-              src={`${process.env.REACT_APP_API_URL}/${src}`}
+              src={
+                src.startsWith("http")
+                  ? src
+                  : `${process.env.REACT_APP_API_URL}/${src}`
+              }
               handleDelete={handleDelete}
               handleSelect={handleSelect}
             />
