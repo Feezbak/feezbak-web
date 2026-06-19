@@ -24,3 +24,4 @@ export { DragIcon } from "./dragIcon";
 export { UserIcon } from "./userIcon";
 export { LockIcon } from "./lockIcon";
 export { SendIcon } from "./sendIcon";
+export { StarIcon } from "./starIcon";

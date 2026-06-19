@@ -16,8 +16,15 @@ import {
   EmptyStoriesImage,
   SkeletonsWrapper,
   StorySkeleton,
+  UsageBanner,
+  UsageBarTrack,
+  UsageBarFill,
+  UsageLabel,
+  UpgradeLink,
 } from "./styles";
 import { getErrorMessage } from "@helpers/errorMessage";
+import { useRecoilValue } from "recoil";
+import { userData } from "@/recoil";
 
 type StoryListItem = {
   id: string;
@@ -35,13 +42,17 @@ interface StoriesListI {
 interface Props {
   onCreateStory: () => void;
   isCreating: boolean;
+  onUpgrade: () => void;
 }
 
 const UNDO_DELAY_MS = 5000;
 
-const StoriesList = ({ onCreateStory, isCreating }: Props) => {
+const FREE_STORY_LIMIT = 3;
+
+const StoriesList = ({ onCreateStory, isCreating, onUpgrade }: Props) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const user = useRecoilValue(userData);
   const searchParams = new URLSearchParams(location.search);
   const page = searchParams.get("page");
   const [currentPage, setCurrentPage] = useState(page ? +page : 1);
@@ -176,6 +187,22 @@ const StoriesList = ({ onCreateStory, isCreating }: Props) => {
           </SkeletonsWrapper>
         ) : storiesPaginatedData && storiesPaginatedData?.total >= 1 ? (
           <motion.div key="list" {...opacityAnimation}>
+            {user.plan !== "pro" && (
+              <UsageBanner>
+                <UsageLabel>
+                  {storiesPaginatedData.total} / {FREE_STORY_LIMIT} stories used
+                </UsageLabel>
+                <UsageBarTrack>
+                  <UsageBarFill
+                    $pct={Math.min(
+                      (storiesPaginatedData.total / FREE_STORY_LIMIT) * 100,
+                      100
+                    )}
+                  />
+                </UsageBarTrack>
+                <UpgradeLink onClick={onUpgrade}>Upgrade</UpgradeLink>
+              </UsageBanner>
+            )}
             {!!storiesPaginatedData.total && <ListHeader />}
             <StoriesListWrapper>
               {storiesPaginatedData?.stories?.map((story: any) => (

@@ -56,7 +56,11 @@ const Stories = () => {
             Create Story
           </Button>
         </StoriesListHeader>
-        <StoriesList onCreateStory={handleCreateStory} isCreating={isLoading} />
+        <StoriesList
+          onCreateStory={handleCreateStory}
+          isCreating={isLoading}
+          onUpgrade={() => setShowUpgrade(true)}
+        />
       </StoriesContent>
       <UpgradeModal
         open={showUpgrade}

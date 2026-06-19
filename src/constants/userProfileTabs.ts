@@ -1,4 +1,4 @@
-import { UserIcon, LockIcon } from "@/icons";
+import { UserIcon, LockIcon, StarIcon } from "@/icons";
 
 export const userProfileTabs = [
   {
@@ -10,5 +10,10 @@ export const userProfileTabs = [
     key: 1,
     title: "Password",
     icon: LockIcon,
+  },
+  {
+    key: 2,
+    title: "Plan",
+    icon: StarIcon,
   },
 ];
