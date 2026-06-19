@@ -150,6 +150,7 @@ export type UserDataType = {
   stories?: string[];
   updatedAt?: string;
   verified?: boolean;
+  plan?: "free" | "pro";
   loading: boolean;
   __v?: number;
   _id?: string;
@@ -167,6 +168,7 @@ export const userDefaultData: UserDataType = {
   stories: undefined,
   updatedAt: undefined,
   verified: undefined,
+  plan: undefined,
   loading: true,
   __v: undefined,
   _id: undefined,

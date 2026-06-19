@@ -6,7 +6,13 @@ import { useRecoilValue } from "recoil";
 import { userData } from "@/recoil";
 import { useNavigate, useLocation } from "react-router-dom";
 import profileDefaultImgSrc from "@images/profile.webp";
-import { CreatorAvatar, AvatarSkeleton, ProfileImage } from "./styles";
+import {
+  CreatorAvatar,
+  AvatarSkeleton,
+  ProfileImage,
+  PlanBadge,
+  AvatarWrapper,
+} from "./styles";
 
 interface Props {
   handleLogout: () => void;
@@ -24,6 +30,8 @@ const CreatorDropdownMenu = ({ handleLogout }: Props) => {
     event.currentTarget.src = profileDefaultImgSrc;
   };
 
+  const isPro = profileData.plan === "pro";
+
   return (
     <Dropdown
       menu={{
@@ -34,19 +42,24 @@ const CreatorDropdownMenu = ({ handleLogout }: Props) => {
       placement="bottom"
       arrow={true}
     >
-      {profileData.loading ? (
-        <AvatarSkeleton active={true} />
-      ) : profileData?.avatarSrc?.length ? (
-        <ProfileImage
-          onError={handleBrokenImage}
-          src={`${process.env.REACT_APP_API_URL}/${profileData.avatarSrc}`}
-        />
-      ) : (
-        <CreatorAvatar
-          size={{ xs: 40, sm: 40, md: 48, lg: 48, xl: 48, xxl: 48 }}
-          icon={<ProfileAvatarIcon />}
-        />
-      )}
+      <AvatarWrapper>
+        {profileData.loading ? (
+          <AvatarSkeleton active={true} />
+        ) : profileData?.avatarSrc?.length ? (
+          <ProfileImage
+            onError={handleBrokenImage}
+            src={`${process.env.REACT_APP_API_URL}/${profileData.avatarSrc}`}
+          />
+        ) : (
+          <CreatorAvatar
+            size={{ xs: 40, sm: 40, md: 48, lg: 48, xl: 48, xxl: 48 }}
+            icon={<ProfileAvatarIcon />}
+          />
+        )}
+        {!profileData.loading && (
+          <PlanBadge $isPro={isPro}>{isPro ? "Pro" : "Free"}</PlanBadge>
+        )}
+      </AvatarWrapper>
     </Dropdown>
   );
 };

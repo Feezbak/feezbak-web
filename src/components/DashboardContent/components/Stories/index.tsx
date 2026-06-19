@@ -1,3 +1,4 @@
+import { useState } from "react";
 import StoriesList from "./components/StoriesList";
 import StoriesWelcomeBanner from "./components/StoriesWelcomeBanner";
 import useRequest from "@ahooksjs/use-request";
@@ -7,10 +8,12 @@ import { Button, message } from "antd";
 import { useResponsive } from "@/hooks";
 import { StoriesListHeader, StoriesContent, StoriesWrapper } from "./styles";
 import { getErrorMessage } from "@helpers/errorMessage";
+import UpgradeModal from "@/components/UpgradeModal";
 
 const Stories = () => {
   const { isLessThanSm } = useResponsive();
   const navigate = useNavigate();
+  const [showUpgrade, setShowUpgrade] = useState(false);
 
   const { run: createNewStory, loading: isLoading } = useRequest(
     () => createStory(),
@@ -21,11 +24,19 @@ const Stories = () => {
         navigate(`/create-story/${resp.data._id}`);
       },
       onError: (error: any) => {
-        setTimeout(() => navigate("/not-found"), 2000);
-        message.error(getErrorMessage(error));
+        const msg = getErrorMessage(error);
+        if (error?.response?.status === 403) {
+          setShowUpgrade(true);
+        } else {
+          message.error(msg);
+        }
       },
     }
   );
+
+  const handleCreateStory = () => {
+    createNewStory();
+  };
 
   return (
     <StoriesWrapper align="stretch" justify="space-between" wrap>
@@ -36,14 +47,23 @@ const Stories = () => {
           <Button
             type="default"
             size="large"
-            onClick={createNewStory}
+            onClick={handleCreateStory}
             loading={isLoading}
           >
             Create Story
           </Button>
         </StoriesListHeader>
-        <StoriesList onCreateStory={createNewStory} isCreating={isLoading} />
+        <StoriesList
+          onCreateStory={handleCreateStory}
+          isCreating={isLoading}
+          onUpgrade={() => setShowUpgrade(true)}
+        />
       </StoriesContent>
+      <UpgradeModal
+        open={showUpgrade}
+        onClose={() => setShowUpgrade(false)}
+        reason="Free plan is limited to 3 stories. Upgrade to Pro for unlimited stories."
+      />
     </StoriesWrapper>
   );
 };

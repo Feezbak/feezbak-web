@@ -1,6 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 import Stories from "@components/DashboardContent/components/Stories";
 import { createStory } from "@/api";
 
@@ -25,6 +26,11 @@ jest.mock(
   })
 );
 
+jest.mock("@/components/UpgradeModal", () => ({
+  __esModule: true,
+  default: () => null,
+}));
+
 jest.mock(
   "@components/DashboardContent/components/Stories/components/StoriesWelcomeBanner",
   () => ({ __esModule: true, default: () => null })
@@ -34,9 +40,11 @@ const mockCreateStory = createStory as jest.Mock;
 
 const renderStories = () =>
   render(
-    <MemoryRouter>
-      <Stories />
-    </MemoryRouter>
+    <RecoilRoot>
+      <MemoryRouter>
+        <Stories />
+      </MemoryRouter>
+    </RecoilRoot>
   );
 
 describe("Stories — createStory localStorage versioning", () => {
