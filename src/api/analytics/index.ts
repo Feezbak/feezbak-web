@@ -19,3 +19,10 @@ export async function getFeedbackComments(
     )
     .then((response) => response);
 }
+
+export async function exportStoryCsv(storyId: string): Promise<string> {
+  const response = await axiosClient.get(`/story/${storyId}/export`, {
+    responseType: "text",
+  });
+  return response.data;
+}

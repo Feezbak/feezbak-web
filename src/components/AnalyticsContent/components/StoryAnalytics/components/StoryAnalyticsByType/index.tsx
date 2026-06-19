@@ -7,6 +7,9 @@ import { opacityAnimation } from "@assets/framerAnimations";
 import { CustomModal } from "@/shared";
 import { TextResponsesType, ImageResponsesType } from "@/constants";
 import { OverallCountText, StoryFeedbackWrapper, TitleText } from "./styles";
+import { useRecoilValue } from "recoil";
+import { userData } from "@/recoil";
+import UpgradeModal from "@/components/UpgradeModal";
 
 interface Props {
   title: string;
@@ -21,12 +24,30 @@ const StoryAnalyticsByType = ({
   overallVotes,
   feedbacks,
 }: Props) => {
+  const user = useRecoilValue(userData);
+  const isPro = user?.plan === "pro";
+  const [showUpgrade, setShowUpgrade] = useState(false);
   const [commentsModalData, setCommentsModalData] = useState<null | {
     storyId: string;
     imageId?: string;
     respBtnId?: string;
     imageSrc?: string;
   }>(null);
+
+  const handleSetCommentsModalData = (
+    data: {
+      storyId: string;
+      imageId?: string;
+      respBtnId?: string;
+      imageSrc?: string;
+    } | null
+  ) => {
+    if (!isPro) {
+      setShowUpgrade(true);
+      return;
+    }
+    setCommentsModalData(data);
+  };
 
   const imageViewSelector = useMemo(
     () =>
@@ -46,13 +67,13 @@ const StoryAnalyticsByType = ({
         <ImageResponses
           feedbacks={feedbacks as ImageResponsesType[]}
           storyType={storyType}
-          setCommentsModalData={setCommentsModalData}
+          setCommentsModalData={handleSetCommentsModalData}
         />
       ) : (
         <TextResponses
           feedbacks={feedbacks as TextResponsesType}
           storyType={storyType}
-          setCommentsModalData={setCommentsModalData}
+          setCommentsModalData={handleSetCommentsModalData}
         />
       )}
       <CustomModal
@@ -67,6 +88,11 @@ const StoryAnalyticsByType = ({
           closeModal={() => setCommentsModalData(null)}
         />
       </CustomModal>
+      <UpgradeModal
+        open={showUpgrade}
+        onClose={() => setShowUpgrade(false)}
+        reason="View per-respondent comments and details."
+      />
     </StoryFeedbackWrapper>
   );
 };
