@@ -10,6 +10,9 @@ import EmailsList from "./components/EmailsList";
 import SendEmailsFooter from "./components/SendEmailsFooter";
 import { SendEmailAddressesWrapper } from "./styles";
 import { getErrorMessage } from "@helpers/errorMessage";
+import { useRecoilValue } from "recoil";
+import { userData } from "@/recoil";
+import UpgradeModal from "@/components/UpgradeModal";
 
 export type EmailsListType = {
   email: string;
@@ -22,6 +25,8 @@ interface Props {
 
 const SendToEmailAddresses = ({ emailsDefault }: Props) => {
   const { id: storyId } = useParams();
+  const user = useRecoilValue(userData);
+  const [showUpgrade, setShowUpgrade] = useState(false);
   const [emails, setEmail] = useState<EmailsListType[]>([]);
   const [emailsFromStory, setEmailsFromStory] = useState<EmailsListType[]>([]);
 
@@ -43,7 +48,11 @@ const SendToEmailAddresses = ({ emailsDefault }: Props) => {
         );
       },
       onError: (error: any) => {
-        message.error(getErrorMessage(error));
+        if (error?.response?.status === 403) {
+          setShowUpgrade(true);
+        } else {
+          message.error(getErrorMessage(error));
+        }
       },
     }
   );
@@ -102,7 +111,16 @@ const SendToEmailAddresses = ({ emailsDefault }: Props) => {
       <SendEmailsFooter
         isDisabled={!newEmailAddresses.length}
         loading={sendEmailsLoading}
-        shareViaEmail={handleShareViaEmail}
+        shareViaEmail={
+          user?.plan !== "pro"
+            ? () => setShowUpgrade(true)
+            : handleShareViaEmail
+        }
+      />
+      <UpgradeModal
+        open={showUpgrade}
+        onClose={() => setShowUpgrade(false)}
+        reason="Sending invitation links is a Pro feature."
       />
     </SendEmailAddressesWrapper>
   );
