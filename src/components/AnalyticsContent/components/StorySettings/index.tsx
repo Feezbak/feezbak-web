@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Switch, Input, message, Modal } from "antd";
 import useRequest from "@ahooksjs/use-request";
 import { useParams, useNavigate } from "react-router-dom";
